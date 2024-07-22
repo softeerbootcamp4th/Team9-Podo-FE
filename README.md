@@ -7,7 +7,7 @@
 ### 협업 전략
 * Backlog
   * Product Backlog는 마일스톤으로 설정함
-  * Sprint Backlog는 마일스톤에 작성함
+  * Sprint Backlog는 마일스톤에 작성함
 * Issue
   * Sprint Backlog를 기반으로 Issue를 생성함
 * Branch
