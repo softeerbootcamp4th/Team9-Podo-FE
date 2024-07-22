@@ -28,6 +28,7 @@
 [템플릿 폴더](https://github.com/softeerbootcamp4th/Team9-Podo-FE/tree/main/.github)
 
 ### 회의록/이슈/위키
-TEAM: [팀 회의록](https://www.notion.so/bside/19054254d3d14ebca54704c52c370e46)\n
+TEAM: [팀 회의록](https://www.notion.so/bside/19054254d3d14ebca54704c52c370e46)
+
 프론트엔드: [프론트엔드 회의록](https://www.notion.so/bside/4dac5712789243f09ed25a08c1d02670?v=061f3d1be85e4888bfa2769e516364c8)
 
