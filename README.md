@@ -6,10 +6,10 @@
 
 ### 협업 전략
 * Backlog
-  * 스프린트 백로그를 작성해 두고 개발 시작 시 Issue로 만듦
+  * Product Backlog는 마일스톤으로 설정함
+  * Sprint Backlog는 마일스톤에 작성함
 * Issue
-  * Product Backlog는 마일스톤에 작성함
-  * Sprint Backlog는 Projects에 backlog 태그를 달아 작성함
+  * Sprint Backlog를 기반으로 Issue를 생성함
 * Branch
   * branch naming: feature/{feature-name}
 * PR
@@ -24,13 +24,13 @@
 * 금요일 오전에 main에 dev를 merge함
 
 ### 기획/디자인
-[Hand off](https://www.figma.com/design/OKDklxTfqRuOKwFiXpwwqi/Handoff_%EB%AA%BB%EB%A7%90%EB%A6%AC%EB%8A%94-%ED%98%84%EA%B8%B0%EC%B0%A8~?node-id=0-1&t=UF1RvsAkEytBC7cD-0)
+[Hand off figma](https://www.figma.com/design/OKDklxTfqRuOKwFiXpwwqi/Handoff_%EB%AA%BB%EB%A7%90%EB%A6%AC%EB%8A%94-%ED%98%84%EA%B8%B0%EC%B0%A8~?node-id=0-1&t=UF1RvsAkEytBC7cD-0)
 
 ### 커밋 템플릿/이슈 템플릿
-[템플릿 폴더](https://github.com/softeerbootcamp4th/Team9-Podo-FE/tree/main/.github)
+[템플릿 폴더 github](https://github.com/softeerbootcamp4th/Team9-Podo-FE/tree/main/.github)
 
 ### 회의록/이슈/위키
-TEAM: [팀 회의록](https://www.notion.so/bside/19054254d3d14ebca54704c52c370e46)
+TEAM: [팀 회의록 notion](https://www.notion.so/bside/19054254d3d14ebca54704c52c370e46)
 
-프론트엔드: [프론트엔드 회의록](https://www.notion.so/bside/4dac5712789243f09ed25a08c1d02670?v=061f3d1be85e4888bfa2769e516364c8)
+프론트엔드: [프론트엔드 회의록 notion](https://www.notion.so/bside/4dac5712789243f09ed25a08c1d02670?v=061f3d1be85e4888bfa2769e516364c8)
 
