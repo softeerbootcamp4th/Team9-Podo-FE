@@ -5,6 +5,8 @@
 * FE 한승연
 
 ### 협업 전략
+* Backlog
+  * 스프린트 백로그를 작성해 두고 개발 시작 시 Issue로 만듦
 * Issue
   * Product Backlog는 마일스톤에 작성함
   * Sprint Backlog는 Projects에 backlog 태그를 달아 작성함
