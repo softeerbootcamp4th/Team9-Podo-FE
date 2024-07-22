@@ -24,13 +24,47 @@
 * 금요일 오전에 main에 dev를 merge함
 
 ### 기획/디자인
-[Hand off figma](https://www.figma.com/design/OKDklxTfqRuOKwFiXpwwqi/Handoff_%EB%AA%BB%EB%A7%90%EB%A6%AC%EB%8A%94-%ED%98%84%EA%B8%B0%EC%B0%A8~?node-id=0-1&t=UF1RvsAkEytBC7cD-0)
+[Figma](https://www.figma.com/design/OKDklxTfqRuOKwFiXpwwqi/Handoff_%EB%AA%BB%EB%A7%90%EB%A6%AC%EB%8A%94-%ED%98%84%EA%B8%B0%EC%B0%A8~?node-id=0-1&t=UF1RvsAkEytBC7cD-0)
 
-### 커밋 템플릿/이슈 템플릿
-[템플릿 폴더 github](https://github.com/softeerbootcamp4th/Team9-Podo-FE/tree/main/.github)
+### Issue Template
+```
+## 구현 기능
 
-### 회의록/이슈/위키
-TEAM: [팀 회의록 notion](https://www.notion.so/bside/19054254d3d14ebca54704c52c370e46)
+1-2문장으로 요약.
 
-프론트엔드: [프론트엔드 회의록 notion](https://www.notion.so/bside/4dac5712789243f09ed25a08c1d02670?v=061f3d1be85e4888bfa2769e516364c8)
+## 상세 작업 내용
+
+- [ ]
+- [ ]
+
+## 🔆 참고 사항 (선택)
+
+## ⏰ 예상 소요 기간
+
+```
+
+### PR Template
+```
+## 🎯 이슈 번호
+
+## 💡 작업 내용
+
+- [x] 작업 내용
+
+## 💡 자세한 설명
+
+## 📗 참고 자료 (선택)
+
+## 📢 리뷰 요구 사항 (선택)
+
+## 🚩 후속 작업 (선택)
+
+## ✅ 셀프 체크리스트
+
+```
+
+### Meeting Minutes
+TEAM: [Notion](https://www.notion.so/bside/19054254d3d14ebca54704c52c370e46)
+
+FE: [Notion](https://www.notion.so/bside/4dac5712789243f09ed25a08c1d02670?v=061f3d1be85e4888bfa2769e516364c8)
 
