@@ -60,6 +60,24 @@
 ## ✅ 셀프 체크리스트
 ```
 
+### Folder Structure
+```
+Team9-Podo-FE
+├── .github                         # Feature, PR, Bug template
+├── public                          # public
+└── src
+    ├── api                         # api 호출 Function
+    ├── assets                      # fonts, images, svg resoucres
+    ├── components                  # 페이지를 구성하는 components
+    ├── constants                   # api, message, pagination 및 공통적으로 사용되는 constants
+    ├── hooks                       # custom hooks        
+    ├─- mocks                       # MSW를 활용한 mock data, handler                         
+    ├── pages                       # 페이지를 구성하는 레이아웃
+    ├── providers                   # Context Provider             
+    ├── styles                      # Global Style                
+    ├── utils                       # date, validator 관련 util 함수
+```
+
 ### Meeting Minutes
 TEAM: [Notion](https://www.notion.so/bside/19054254d3d14ebca54704c52c370e46)
 
