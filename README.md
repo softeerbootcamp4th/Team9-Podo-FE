@@ -9,7 +9,7 @@
 <h3><b>강준우</b></h3></a></td>
         <td align="center">
         <a href="https://github.com/leve68">
-            <img src="" width="200px;" height="200px;" alt="김성현"/>
+            <img src="https://avatars.githubusercontent.com/u/128668023?s=400&v=4" width="200px;" height="200px;" alt="한승연"/>
 <h3><b>한승연</b></h3></a></td>
   </tbody>
 </table>
