@@ -20,8 +20,8 @@
 ![rtl](https://img.shields.io/badge/testing%20library-323330?style=for-the-badge&logo=testing-library&logoColor=red)
 
 ### Deploy
-![aws](https://img.shields.io/badge/Amazon_AWS S3-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
-![cloud](https://img.shields.io/badge/Amazon_AWS Cloud-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
+![aws](https://img.shields.io/badge/Amazon_AWS_S3-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![cloud](https://img.shields.io/badge/Amazon_AWS_Cloud-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
 
 ### ETC
 ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white)
