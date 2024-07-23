@@ -4,6 +4,29 @@
 * FE 강준우
 * FE 한승연
 
+### Cowork Tools
+![github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
+![actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+![slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)
+![notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white)
+![figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
+
+### Development
+![react](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![js](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white)
+
+### Test
+![jest](	https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white)
+![rtl](https://img.shields.io/badge/testing%20library-323330?style=for-the-badge&logo=testing-library&logoColor=red)
+
+### Deploy
+![aws]()
+![cloud]()
+
+### ETC
+
+
+
 ### 협업 전략
 * Backlog
   * Product Backlog는 마일스톤으로 설정함
