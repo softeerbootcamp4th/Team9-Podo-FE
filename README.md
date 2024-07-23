@@ -1,8 +1,18 @@
 # 못말리는 현기차팀 FrontEnd
 
-### 팀원 소개
-* FE 강준우
-* FE 한승연
+### 👥 팀원 소개
+<table >
+  <tbody>
+      <td align="center">
+        <a href="https://github.com/jw0097">
+            <img src="https://avatars.githubusercontent.com/u/76507017?v=4" width="200px;" height="200px;" alt="강준우"/>
+<h3><b>강준우</b></h3></a></td>
+        <td align="center">
+        <a href="https://github.com/leve68">
+            <img src="" width="200px;" height="200px;" alt="김성현"/>
+<h3><b>한승연</b></h3></a></td>
+  </tbody>
+</table>
 
 ### Cowork Tools
 ![github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
