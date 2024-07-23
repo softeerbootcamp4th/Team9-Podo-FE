@@ -20,11 +20,16 @@
 ![rtl](https://img.shields.io/badge/testing%20library-323330?style=for-the-badge&logo=testing-library&logoColor=red)
 
 ### Deploy
-![aws]()
-![cloud]()
+![aws](https://img.shields.io/badge/Amazon_AWS S3-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![cloud](https://img.shields.io/badge/Amazon_AWS Cloud-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
 
 ### ETC
-
+![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white)
+![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
+![Prettier](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)
+![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
+![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
+![MSW](https://img.shields.io/badge/MSW-FF4500?style=for-the-badge)
 
 
 ### 협업 전략
