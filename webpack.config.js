@@ -2,7 +2,6 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
 const { prototype } = require("events");
 
 module.exports = {
@@ -29,8 +28,9 @@ module.exports = {
         ],
       },
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        test: /\.css?$/,
+        exclude: [],
+        use: ["style-loader", "css-loader", "postcss-loader"],
       },
     ],
   },
@@ -45,7 +45,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "style.css",
     }),
-    new CleanWebpackPlugin(),
   ],
   devServer: {
     port: 8000,
