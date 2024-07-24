@@ -60,13 +60,14 @@
 
 ## 그라운드 룰
 * 메시지를 확인했다면 최소한 이모지를 사용해서 반응함
+* 매일 데일리 스크럼을 통해 진행상황을 공유함
 * 스크럼 내용은 기록으로 남김
 * 금요일 오전에 main에 dev를 merge함
 
 ## 기획/디자인
 [Figma](https://www.figma.com/design/OKDklxTfqRuOKwFiXpwwqi/Handoff_%EB%AA%BB%EB%A7%90%EB%A6%AC%EB%8A%94-%ED%98%84%EA%B8%B0%EC%B0%A8~?node-id=0-1&t=UF1RvsAkEytBC7cD-0)
 
-## components architecture diagram
+## Components Architecture Diagram
 ![Softeer4th_Podo](https://github.com/user-attachments/assets/d731dc36-81d1-412b-b97c-23fa21964333)
 [LucidChart](https://lucid.app/lucidchart/54de6901-4a2c-4e7f-9be6-e04ce897e22b/edit?viewport_loc=-4141%2C-2304%2C7416%2C3874%2C0_0&invitationId=inv_1efdb6e5-bc22-4187-98b5-ce5c579189e2)
 
