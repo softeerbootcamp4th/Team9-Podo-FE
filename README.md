@@ -68,7 +68,7 @@
 [Figma](https://www.figma.com/design/OKDklxTfqRuOKwFiXpwwqi/Handoff_%EB%AA%BB%EB%A7%90%EB%A6%AC%EB%8A%94-%ED%98%84%EA%B8%B0%EC%B0%A8~?node-id=0-1&t=UF1RvsAkEytBC7cD-0)
 
 ## Components Architecture Diagram
-![Softeer4th_Podo](https://github.com/user-attachments/assets/d731dc36-81d1-412b-b97c-23fa21964333)
+![Softeer4th_Podo (1)](https://github.com/user-attachments/assets/42a2e4c2-4f54-4f7a-bea8-a7386def340a)
 [LucidChart](https://lucid.app/lucidchart/54de6901-4a2c-4e7f-9be6-e04ce897e22b/edit?viewport_loc=-4141%2C-2304%2C7416%2C3874%2C0_0&invitationId=inv_1efdb6e5-bc22-4187-98b5-ce5c579189e2)
 
 ## Route
