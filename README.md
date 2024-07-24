@@ -71,6 +71,23 @@
 ![Softeer4th_Podo](https://github.com/user-attachments/assets/d731dc36-81d1-412b-b97c-23fa21964333)
 [LucidChart](https://lucid.app/lucidchart/54de6901-4a2c-4e7f-9be6-e04ce897e22b/edit?viewport_loc=-4141%2C-2304%2C7416%2C3874%2C0_0&invitationId=inv_1efdb6e5-bc22-4187-98b5-ce5c579189e2)
 
+## Route
+
+| Page | path | children |
+| --- | --- | --- |
+| Main | / |  |
+| Event1 | /event1 | quiz1 |
+|  |  | quiz2 |
+|  |  | quiz3 |
+|  |  | quiz4 |
+| Event1Result | /event1/result |  |
+| Event2 | /event2 | quiz1 |
+|  |  | quiz2 |
+|  |  | quiz3 |
+|  |  | quiz4 |
+| Event2Result | /event2/result |  |
+| AuthModal | /auth-modal |  |
+
 ## Issue Template
 ```
 ## 구현 기능
