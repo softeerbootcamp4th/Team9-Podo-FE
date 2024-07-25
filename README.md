@@ -8,6 +8,7 @@
 5. [Components Architecture Diagram](#Components-Architecture-Diagram)
 6. [Route](#Route)
 7. [링크 모음](#링크-모음)
+8. [주요 개발 사항](#주요-개발-사항)
 
 ## 👥 팀원 소개
 <table >
@@ -142,6 +143,10 @@ feature/{feature-name}
 | Event2Result | /event2/result |  |
 | AuthModal | /auth-modal |  |
 
+## 주요 개발 사항
+- Bundler 설정
+- SEO 적용
+- TDD
 
 ## 링크 모음
 ### 기획/디자인
