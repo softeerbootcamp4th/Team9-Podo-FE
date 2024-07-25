@@ -7,7 +7,7 @@
 4. [📖 그라운드 룰](#📖-그라운드-룰)
 5. [Components Architecture Diagram](#Components-Architecture-Diagram)
 6. [Route](#Route)
-7. [ETC](#ETC)
+7. [링크 모음](#링크-모음)
 
 ## 👥 팀원 소개
 <table >
@@ -142,7 +142,7 @@ feature/{feature-name}
 | AuthModal | /auth-modal |  |
 
 
-## ETC
+## 링크 모음
 ### 기획/디자인
 [Figma](https://www.figma.com/design/OKDklxTfqRuOKwFiXpwwqi/Handoff_%EB%AA%BB%EB%A7%90%EB%A6%AC%EB%8A%94-%ED%98%84%EA%B8%B0%EC%B0%A8~?node-id=0-1&t=UF1RvsAkEytBC7cD-0)
 
