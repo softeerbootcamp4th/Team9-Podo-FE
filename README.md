@@ -119,6 +119,7 @@ feature/{feature-name}
 * 스크럼 내용은 기록으로 남김
 * PR은 merge하기 전 서로 리뷰함
 * Commit은 Issue task의 작업 크기를 넘지 않도록 함
+* 프로젝트 진행 중, Component Architecture에 수정사항이 생기면 lucid chart에도 수정 사항을 반영함
 
 ## Components Architecture Diagram
 ![Softeer4th_Podo (1)](https://github.com/user-attachments/assets/42a2e4c2-4f54-4f7a-bea8-a7386def340a)
