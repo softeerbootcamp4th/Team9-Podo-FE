@@ -7,8 +7,8 @@
 4. [📖 그라운드 룰](#📖-그라운드-룰)
 5. [Components Architecture Diagram](#Components-Architecture-Diagram)
 6. [Route](#Route)
-7. [링크 모음](#링크-모음)
-8. [주요 개발 사항](#주요-개발-사항)
+7. [주요 개발 사항](#주요-개발-사항)
+8. [링크 모음](#링크-모음)
 
 ## 👥 팀원 소개
 <table >
@@ -113,13 +113,13 @@ feature/{feature-name}
 ```
 
 ## 📖 그라운드 룰
-* 메시지를 확인했다면 최소한 이모지를 사용해서 반응함
-* 매일 10시 데일리 스크럼을 통해 진행상황을 공유하고 Sprint Backlog를 업데이트함
 * 월요일 오전에 Product Backlog를 마일스톤으로 작성함
+* 매일 10시 데일리 스크럼을 통해 진행상황을 공유하고 Sprint Backlog를 업데이트함
 * 금요일 오전에 main에 dev를 merge함
 * 스크럼 내용은 기록으로 남김
 * PR은 merge하기 전 서로 리뷰함
 * Commit은 Issue task의 작업 크기를 넘지 않도록 함
+* 메시지를 확인했다면 최소한 이모지를 사용해서 반응함
 * 프로젝트 진행 중, Component Architecture에 수정사항이 생기면 lucid chart에도 수정 사항을 반영함
 
 ## Components Architecture Diagram
