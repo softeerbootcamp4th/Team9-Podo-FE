@@ -3,14 +3,17 @@ const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { prototype } = require("events");
+const { devtools } = require("globals");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/index.jsx",
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname + "/build"),
+    path: path.resolve(__dirname, "/build"),
+    publicPath: "/",
   },
-  mode: "none",
+  mode: "development",
+  devtool: "eval",
   module: {
     rules: [
       {
@@ -34,6 +37,9 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    extensions: [".js", ".jsx"], // 확장자 목록에 .jsx 추가
+  },
   plugins: [
     new HtmlWebPackPlugin({
       template: "./public/index.html", // public/index.html 파일을 읽는다.
@@ -48,5 +54,7 @@ module.exports = {
   ],
   devServer: {
     port: 8000,
+    historyApiFallback: true,
+    open: true,
   },
 };
