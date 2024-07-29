@@ -3,9 +3,9 @@ import Button from "../../components/Button";
 
 const MainPage = () => {
   return (
-    <div className="flex-center h-screen w-screen">
+    <div className="h-screen w-screen flex-center">
       <Button
-        size="small"
+        size="long"
         isEnabled={true}
         onClick={() => {}}
         defaultText="참여하기"

@@ -23,9 +23,7 @@ const Button = ({
       case "big":
         return "h-[16.375rem] w-[15.625rem]";
       case "long":
-        return "w-60 h-20";
-      default:
-        return "";
+        return "h-[6.25rem] w-[94rem]";
     }
   };
   const getEnabledClasses = () => {
@@ -36,16 +34,30 @@ const Button = ({
         return "bg-secondary";
     }
   };
+  const getMoveDestination = () => {
+    switch (size) {
+      case "small":
+        return "group-hover:translate-x-[30rem]";
+      case "big":
+        return "group-hover:translate-x-[30rem]";
+      case "long":
+        return "group-hover:translate-x-[100rem]";
+    }
+  };
 
   return (
     <button
-      className={`flex-center ${getSizeClasses()} rounded-3xl ${getEnabledClasses()}`}
+      className={`relative flex-center ${getSizeClasses()} rounded-3xl ${getEnabledClasses()} group overflow-hidden`}
       onClick={onClick}
     >
       <p className="font-kia-signature text-title-3">
         {isEnabled ? defaultText : disabledText}
       </p>
-      <img src={car} alt="" />
+      <img
+        src={car}
+        alt="car"
+        className={`absolute ${size === "big" ? "bottom-2" : "top-2"} -left-28 h-[5.875rem] w-[13.5rem] transition-transform duration-300 ${getMoveDestination()}`}
+      />
     </button>
   );
 };
