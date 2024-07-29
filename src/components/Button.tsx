@@ -32,6 +32,14 @@ const CAR_POSITION = {
   long: "top-2",
 };
 
+/**
+ * @param size 버튼 크기
+ * @param onClick 클릭 시 실행할 콜백 함수
+ * @param defaultText 활성화 상태일 때 표시할 텍스트
+ * @param disabledText 비활성화 상태일 때 표시할 텍스트
+ * @param isEnabled 활성화 상태인지
+ * @returns 버튼 컴포넌트
+ */
 const Button = ({
   size,
   onClick,
