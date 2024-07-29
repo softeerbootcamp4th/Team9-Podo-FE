@@ -9,6 +9,29 @@ interface ButtonInterface {
   disabledText?: string;
 }
 
+const SIZE_CLASSES = {
+  small: "h-20 w-[22.5rem]",
+  big: "h-[16.375rem] w-[15.625rem]",
+  long: "h-[6.25rem] w-[94rem]",
+};
+
+const ENABLED_CLASSES = {
+  true: "bg-primary text-gray-950",
+  false: "bg-secondary text-gray-300 pointer-events-none",
+};
+
+const MOVE_DESTINATIONS = {
+  small: "group-hover:translate-x-[30rem]",
+  big: "group-hover:translate-x-[30rem]",
+  long: "group-hover:translate-x-[100rem]",
+};
+
+const CAR_POSITION = {
+  small: "top-2",
+  big: "bottom-2",
+  long: "top-2",
+};
+
 const Button = ({
   size,
   onClick,
@@ -16,50 +39,26 @@ const Button = ({
   disabledText,
   isEnabled,
 }: ButtonInterface) => {
-  const getSizeClasses = () => {
-    switch (size) {
-      case "small":
-        return "h-20 w-[22.5rem]";
-      case "big":
-        return "h-[16.375rem] w-[15.625rem]";
-      case "long":
-        return "h-[6.25rem] w-[94rem]";
-    }
-  };
-  const getEnabledClasses = () => {
-    switch (isEnabled) {
-      case true:
-        return "bg-primary text-gray-950";
-      case false:
-        return "bg-secondary text-gray-300 pointer-events-none";
-    }
-  };
-  const getMoveDestination = () => {
-    switch (size) {
-      case "small":
-        return "group-hover:translate-x-[30rem]";
-      case "big":
-        return "group-hover:translate-x-[30rem]";
-      case "long":
-        return "group-hover:translate-x-[100rem]";
-    }
-  };
+  const sizeClasses = SIZE_CLASSES[size];
+  const enabledClasses = ENABLED_CLASSES[`${isEnabled}`];
+  const moveDestination = MOVE_DESTINATIONS[size];
+  const carPosition = CAR_POSITION[size];
 
   return (
     <button
-      className={`relative flex-center ${getSizeClasses()} rounded-3xl ${getEnabledClasses()} group overflow-hidden`}
+      className={`relative flex-center ${sizeClasses} rounded-3xl ${enabledClasses} group overflow-hidden`}
       onClick={onClick}
     >
       <p className="font-kia-signature text-title-3">
         {isEnabled ? defaultText : disabledText}
       </p>
-      {isEnabled ? (
+      {isEnabled && (
         <img
           src={car}
           alt="car"
-          className={`absolute ${size === "big" ? "bottom-2" : "top-2"} -left-28 h-[5.875rem] w-[13.5rem] transition-transform duration-300 ${getMoveDestination()}`}
+          className={`absolute ${carPosition} -left-28 h-[5.875rem] w-[13.5rem] transition-transform duration-300 ${moveDestination}`}
         />
-      ) : null}
+      )}
     </button>
   );
 };
