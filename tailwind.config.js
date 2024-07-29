@@ -40,5 +40,13 @@ module.exports = {
       },
     },
   },
-  plugins: ["prettier-plugin-tailwindcss"],
+  plugins: [
+    ({ addUtilities }) => {
+      addUtilities({
+        ".flex-center": {
+          "@apply flex justify-center items-center": "",
+        },
+      });
+    },
+  ],
 };
