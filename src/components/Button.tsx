@@ -29,9 +29,9 @@ const Button = ({
   const getEnabledClasses = () => {
     switch (isEnabled) {
       case true:
-        return "bg-primary";
+        return "bg-primary text-gray-950";
       case false:
-        return "bg-secondary";
+        return "bg-secondary text-gray-300 pointer-events-none";
     }
   };
   const getMoveDestination = () => {
@@ -53,11 +53,13 @@ const Button = ({
       <p className="font-kia-signature text-title-3">
         {isEnabled ? defaultText : disabledText}
       </p>
-      <img
-        src={car}
-        alt="car"
-        className={`absolute ${size === "big" ? "bottom-2" : "top-2"} -left-28 h-[5.875rem] w-[13.5rem] transition-transform duration-300 ${getMoveDestination()}`}
-      />
+      {isEnabled ? (
+        <img
+          src={car}
+          alt="car"
+          className={`absolute ${size === "big" ? "bottom-2" : "top-2"} -left-28 h-[5.875rem] w-[13.5rem] transition-transform duration-300 ${getMoveDestination()}`}
+        />
+      ) : null}
     </button>
   );
 };
