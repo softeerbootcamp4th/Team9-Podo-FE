@@ -1968,6 +1968,13 @@
     "@storybook/global" "^5.0.0"
     ts-dedent "^2.0.0"
 
+"@storybook/addon-styling-webpack@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-styling-webpack/-/addon-styling-webpack-1.0.0.tgz#a4d0d449b8e76135565bdc4745f9d0420edd2420"
+  integrity sha512-jo1kzn7pi+NA+LZxrWoRvW6w7dXIKY/BjTG80XX2uU92lIKT+X1k/9vYk/0KPVK3Bsf4tO6ToAuqIRyOk7MHtg==
+  dependencies:
+    "@storybook/node-logger" "^8.0.0-alpha.10"
+
 "@storybook/addon-toolbars@8.2.6":
   version "8.2.6"
   resolved "https://registry.yarnpkg.com/@storybook/addon-toolbars/-/addon-toolbars-8.2.6.tgz#0eb98ee352ee6a81f98a63c9e4afc20fd2585f26"
@@ -2134,6 +2141,11 @@
   version "8.2.6"
   resolved "https://registry.yarnpkg.com/@storybook/manager-api/-/manager-api-8.2.6.tgz#87172bcac1deb5378246deb96d68c1d3357ff58e"
   integrity sha512-uv36h/b5RhlajWtEg4cVPBYV8gZs6juux0nIE+6G9i7vt8Ild6gM9tW1KNabgZcaHFiyWJYCNWxJZoKjgUmXDg==
+
+"@storybook/node-logger@^8.0.0-alpha.10":
+  version "8.2.6"
+  resolved "https://registry.yarnpkg.com/@storybook/node-logger/-/node-logger-8.2.6.tgz#f7582b23efc7b4d7a5c32061afa1c17cf82ff442"
+  integrity sha512-HWMDll5QNXgPdNmgqglCt93N57hQMvZaCjvpGvNv0MJk5TmP1BgjIV+WITmt6JVCaT5LEY6lDZpZdAN2f4w4PA==
 
 "@storybook/preset-react-webpack@8.2.6":
   version "8.2.6"
@@ -4954,6 +4966,7 @@ file-loader@^6.2.0:
   dependencies:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
+
 filesize@^10.0.12:
   version "10.1.4"
   resolved "https://registry.yarnpkg.com/filesize/-/filesize-10.1.4.tgz#184f256063a201f08b6e6b3cc47d21b60f5b8d89"
@@ -6598,11 +6611,7 @@ json-stable-stringify-without-jsonify@^1.0.1:
   resolved "https://registry.npmjs.org/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz"
   integrity sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==
 
-<<<<<<< HEAD
-json5@^2.1.2, json5@^2.2.3:
-=======
-json5@^2.2.2, json5@^2.2.3:
->>>>>>> feature/storybook-settings
+json5@^2.1.2, json5@^2.2.2, json5@^2.2.3:
   version "2.2.3"
   resolved "https://registry.npmjs.org/json5/-/json5-2.2.3.tgz"
   integrity sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==
@@ -6692,6 +6701,7 @@ loader-utils@^2.0.0:
     big.js "^5.2.2"
     emojis-list "^3.0.0"
     json5 "^2.1.2"
+
 locate-path@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-3.0.0.tgz#dbec3b3ab759758071b58fe59fc41871af21400e"
