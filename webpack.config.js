@@ -6,16 +6,17 @@ const { prototype } = require("events");
 const { devtools } = require("globals");
 
 module.exports = {
-  entry: "./src/index.jsx",
+  entry: "./src/index.tsx",
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "/build"),
+    path: path.resolve(__dirname, "build"),
     publicPath: "/",
   },
   mode: "development",
   devtool: "eval",
   module: {
     rules: [
+      { test: /\.tsx?/, use: ["babel-loader"] },
       {
         test: /\.(js|jsx)$/,
         exclude: "/node_modules",
@@ -38,7 +39,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".js", ".jsx"], // 확장자 목록에 .jsx 추가
+    extensions: [".js", ".jsx", ".ts", ".tsx"], // 확장자 목록에 .jsx 추가
   },
   plugins: [
     new HtmlWebPackPlugin({

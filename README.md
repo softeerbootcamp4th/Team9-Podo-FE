@@ -123,7 +123,7 @@ feature/{feature-name}
 * 프로젝트 진행 중, Component Architecture에 수정사항이 생기면 lucid chart에도 수정 사항을 반영함
 
 ## Components Architecture Diagram
-![Softeer4th_Podo (1)](https://github.com/user-attachments/assets/42a2e4c2-4f54-4f7a-bea8-a7386def340a)
+![Softeer4th_Podo](https://github.com/user-attachments/assets/648c3bba-690e-4742-b689-7106508da049)
 [LucidChart](https://lucid.app/lucidchart/54de6901-4a2c-4e7f-9be6-e04ce897e22b/edit?viewport_loc=-4141%2C-2304%2C7416%2C3874%2C0_0&invitationId=inv_1efdb6e5-bc22-4187-98b5-ce5c579189e2)
 
 ## Route

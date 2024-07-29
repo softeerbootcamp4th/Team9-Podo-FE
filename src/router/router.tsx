@@ -3,7 +3,7 @@ import MainPage from "../pages/mainPage/MainPage";
 import FCFSEventPage from "../pages/FCFSEventPage/FCFSEventPage";
 import FCFSEventResultPage from "../pages/FCFSEventResultPage/FCFSEventResultPage";
 import RandomEventPage from "../pages/randomEventPage/RandomEventPage";
-import RandomEventResultPage from "../pages/randomEventResultPage/randomEventResultPage";
+import RandomEventResultPage from "../pages/randomEventResultPage/RandomEventResultPage";
 import AuthModal from "../pages/authModal/AuthModal";
 import React from "react";
 export const router = createBrowserRouter([
