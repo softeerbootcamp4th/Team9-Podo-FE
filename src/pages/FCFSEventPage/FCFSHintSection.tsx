@@ -1,6 +1,6 @@
 import React from "react";
 
-const HintSection = () => {
+const FCFSHintSection = () => {
   return (
     <div>
       <div>Hint1</div>
@@ -18,4 +18,4 @@ const HintSection = () => {
   );
 };
 
-export default HintSection;
+export default FCFSHintSection;

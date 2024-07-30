@@ -1,11 +1,11 @@
 import React from "react";
 
-interface QuizInterface {
+interface FCFSQuizInterface {
   question: String;
   optionList: Array<String>;
 }
 
-const QuizSection = ({ question, optionList }: QuizInterface) => {
+const FCFSQuizSection = ({ question, optionList }: FCFSQuizInterface) => {
   return (
     <div>
       <div>오늘의 퀴즈</div>
@@ -21,4 +21,4 @@ const QuizSection = ({ question, optionList }: QuizInterface) => {
   );
 };
 
-export default QuizSection;
+export default FCFSQuizSection;
