@@ -1,10 +1,17 @@
 import React from "react";
 import home from "../assets/svg/Home.png";
+import { useNavigate } from "react-router";
 
 const HomeButton = () => {
+  const navigate = useNavigate();
+
+  const onClickHandler = () => {
+    navigate("/");
+  };
+
   return (
-    <button className="flex-col gap-1 flex-center">
-      <img src={home} alt="" />
+    <button className="flex-col gap-1 flex-center" onClick={onClickHandler}>
+      <img src={home} alt="home" />
       <p>홈으로</p>
     </button>
   );
