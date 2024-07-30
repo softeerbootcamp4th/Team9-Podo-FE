@@ -2,21 +2,27 @@ import React from "react";
 import car from "../../../assets/images/whiteRight.png"; // car 이미지 경로
 
 interface ProgressBarInterface {
-  quizIndex: number;
+  currentIndex: number;
   maxIndex: number;
 }
 
-const ProgressBar = ({ quizIndex, maxIndex }: ProgressBarInterface) => {
-  const progressPercentage = (quizIndex / maxIndex) * 100;
+/**
+ * 퀴즈 진행 상황을 나타내는 컴포넌트
+ * @param currentIndex 현재 인덱스
+ * @param maxIndex 최대 인덱스
+ * @returns 컴포넌트
+ */
+const ProgressBar = ({ currentIndex, maxIndex }: ProgressBarInterface) => {
+  const progressPercentage = (currentIndex / maxIndex) * 100;
   const progressWidth = `${progressPercentage}%`;
 
   return (
     <div
       role="progressbar"
-      className="relative flex h-1.5 w-[94rem] bg-gray-900"
+      className="relative flex h-1.5 w-[94rem] items-center rounded-[0.625rem] bg-gray-900 p-0.5"
     >
       <div
-        className="h-1.5 bg-[#FFA800]"
+        className="h-full rounded-[0.625rem] bg-[#FFA800]"
         style={{ width: progressWidth }}
       ></div>
       <img

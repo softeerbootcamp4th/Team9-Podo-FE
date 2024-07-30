@@ -11,7 +11,7 @@ export default {
 
 export const Main = {
   args: {
-    quizIndex: 0,
+    currentIndex: 0,
     maxIndex: 4,
   },
 };
