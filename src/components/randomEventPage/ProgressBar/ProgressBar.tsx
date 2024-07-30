@@ -19,7 +19,7 @@ const ProgressBar = ({ currentIndex, maxIndex }: ProgressBarInterface) => {
   return (
     <div
       role="progressbar"
-      className="relative flex h-1.5 w-[94rem] items-center rounded-[0.625rem] bg-gray-900 p-0.5"
+      className="relative mt-[6.25rem] flex h-1.5 w-[94rem] items-center rounded-[0.625rem] bg-gray-900 p-0.5"
     >
       <div
         className="h-full rounded-[0.625rem] bg-[#FFA800]"
