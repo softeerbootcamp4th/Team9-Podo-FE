@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router";
-import ProgressBar from "./ProgressBar/ProgressBar";
+import ProgressBar from "../../components/randomEventPage/ProgressBar/ProgressBar";
 
 const RandomEventPage = () => {
   return (
