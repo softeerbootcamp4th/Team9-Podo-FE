@@ -1,10 +1,11 @@
 import React from "react";
 import { Outlet } from "react-router";
+import ProgressBar from "./ProgressBar";
 
 const RandomEventPage = () => {
   return (
     <div>
-      <div>Progress Bar</div>
+      <ProgressBar />
       <Outlet /> {/*RandomQuizSection*/}
     </div>
   );
