@@ -1,8 +1,20 @@
 import React from "react";
-import HomeButton from "../../components/HomeButton";
+import LandingScreen from "./LandingScreen";
+import NavigationBar from "./NavigationBar";
+import MainScreen from "./MainScreen";
+import NotificationScreen from "./NotificationScreen";
+import InfoScreen from "./InfoScreen";
 
 const MainPage = () => {
-  return <div className="h-screen w-screen flex-center">MainPage</div>;
+  return (
+    <div>
+      <LandingScreen />
+      <NavigationBar />
+      <MainScreen />
+      <InfoScreen />
+      <NotificationScreen />
+    </div>
+  );
 };
 
 export default MainPage;
