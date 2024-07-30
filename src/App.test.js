@@ -1,6 +1,8 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
-import App from "./App.tsx";
+import React from "react";
+import App from "./App.jsx";
 test("App", () => {
   render(<App />);
+
+  screen.getByText("MainPage");
 });
