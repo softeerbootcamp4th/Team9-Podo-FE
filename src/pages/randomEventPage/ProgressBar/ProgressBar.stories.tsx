@@ -1,5 +1,4 @@
 import React from "react";
-import { MemoryRouter } from "react-router";
 import ProgressBar from "./ProgressBar";
 
 export default {
@@ -13,6 +12,6 @@ export default {
 export const Main = {
   args: {
     quizIndex: 0,
-    maxIndex: 3,
+    maxIndex: 4,
   },
 };
