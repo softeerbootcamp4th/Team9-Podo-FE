@@ -56,6 +56,7 @@ const Button = ({
     <button
       className={`relative flex-center ${sizeClasses} rounded-3xl ${enabledClasses} group overflow-hidden`}
       onClick={onClick}
+      disabled={!isEnabled}
     >
       <p className="font-kia-signature text-title-3">
         {isEnabled ? defaultText : disabledText}
