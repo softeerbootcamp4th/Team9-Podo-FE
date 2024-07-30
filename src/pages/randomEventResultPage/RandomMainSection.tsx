@@ -1,7 +1,7 @@
 import React from "react";
 
 interface RandomMainInterface {
-  driverType: "1" | "2" | "3" | "4";
+  description: string;
   scenarioList: Array<ScenarioInterface>;
 }
 
@@ -11,10 +11,10 @@ interface ScenarioInterface {
   content: string;
 }
 
-const RandomMainSection = () => {
-  const driverType = "1";
-  const scenarioList = [{ img: "path", title: "title", content: "content" }];
-
+const RandomMainSection = ({
+  description,
+  scenarioList,
+}: RandomMainInterface) => {
   return (
     <div>
       <div>
@@ -22,7 +22,7 @@ const RandomMainSection = () => {
         <div>공유하기</div>
       </div>
       <div>
-        <div>{driverType}</div>
+        <div>{description}</div>
         <div>
           {scenarioList.map((scenario) => (
             <div>
