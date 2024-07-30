@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import RefreshButton from "../assets/svg/RefreshButton";
+import RefreshButton from "../../../assets/svg/RefreshButton";
 
 interface AuthTooltipProps {
   isAuth: boolean;
