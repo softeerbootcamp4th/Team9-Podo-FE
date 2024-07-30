@@ -1,13 +1,7 @@
-import { expect, userEvent } from "@storybook/test";
 import React from "react";
+import { render, screen, waitFor } from "@testing-library/react";
+import { expect, userEvent } from "@storybook/test";
 import HomeButton from "./HomeButton";
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 
 describe("HomeButton Component", () => {

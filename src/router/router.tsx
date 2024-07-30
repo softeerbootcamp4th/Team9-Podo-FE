@@ -1,3 +1,4 @@
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import MainPage from "../pages/mainPage/MainPage";
 import FCFSEventPage from "../pages/FCFSEventPage/FCFSEventPage";
@@ -5,7 +6,6 @@ import FCFSEventResultPage from "../pages/FCFSEventResultPage/FCFSEventResultPag
 import RandomEventPage from "../pages/randomEventPage/RandomEventPage";
 import RandomEventResultPage from "../pages/randomEventResultPage/RandomEventResultPage";
 import AuthModal from "../pages/authModal/AuthModal";
-import React from "react";
 export const router = createBrowserRouter([
   {
     path: "/",

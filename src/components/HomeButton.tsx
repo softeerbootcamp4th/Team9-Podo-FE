@@ -1,6 +1,6 @@
 import React from "react";
-import home from "../assets/svg/Home.png";
 import { useNavigate } from "react-router";
+import home from "../assets/svg/Home.png";
 
 const HomeButton = () => {
   const navigate = useNavigate();
