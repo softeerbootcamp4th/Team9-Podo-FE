@@ -1,7 +1,7 @@
 import React from "react";
 
 interface RefreshButtonProps {
-  onClick: (event: React.MouseEvent) => void;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 const RefreshButton = ({ onClick }: RefreshButtonProps) => {
