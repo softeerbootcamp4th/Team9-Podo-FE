@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 
-interface FCFSResultInterface {
-  isWinner: boolean;
-}
-
-const FCFSEventResultPage = ({ isWinner }: FCFSResultInterface) => {
+const FCFSEventResultPage = () => {
   const [isResultVisible, setIsResultVisible] = useState(false);
+  const isWinner = false;
 
   return (
     <div>
