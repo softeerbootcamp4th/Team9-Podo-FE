@@ -5,7 +5,7 @@ const RandomEventPage = () => {
   return (
     <div>
       <div>Progress Bar</div>
-      <Outlet /> {/*QuizSection*/}
+      <Outlet /> {/*RandomQuizSection*/}
     </div>
   );
 };

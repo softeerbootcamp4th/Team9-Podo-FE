@@ -1,5 +1,5 @@
 import React from "react";
-import Timer from "../Timer";
+import Timer from "./Timer";
 import EventHeader from "../../../components/mainPage/MainScreen/EventHeader";
 import EventFooter from "../../../components/mainPage/MainScreen/EventFooter";
 
