@@ -30,4 +30,11 @@ describe("AuthTooltip Component", () => {
     const leftTimer = screen.getByRole("timer");
     expect(leftTimer).toHaveTextContent("59:59");
   });
+
+  test("isAuth가 false이면 Authtooltip이 화면에 표시되지 않는다.", () => {
+    render(<AuthTooltip isAuth={false} />);
+
+    const leftTimer = screen.queryByRole("timer");
+    expect(leftTimer).not.toBeInTheDocument();
+  });
 });
