@@ -13,7 +13,7 @@ const OutsideDescriptionItem = ({
 }: OutsideDescriptionItemProps) => {
   return (
     <>
-      <img>{img}</img>
+      <img />
       <div>{title}</div>
       <div>{description}</div>
     </>

@@ -22,7 +22,9 @@ module.exports = {
         tertiary: "#FF5C5C",
       },
       fontFamily: {
-        "kia-signature": ["Kia Signature", "sans-serif"],
+        "kia-signature": ["Kia-Signature-Regular", "sans-serif"],
+        "kia-signature-bold": ["Kia-Signature-Bold", "sans-serif"],
+        "kia-signature-light": ["Kia-Signature-Light", "sans-serif"],
       },
       fontSize: {
         "title-2": ["2rem", "140%"],

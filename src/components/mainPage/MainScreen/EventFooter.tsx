@@ -20,7 +20,12 @@ const EventFooter = ({
 }: EventFooterProps) => {
   return (
     <>
-      <Button onClick={onClick} size={size} isEnabled={true} defaultText="" />
+      <Button
+        onClick={onClick}
+        size={size}
+        isEnabled={true}
+        defaultText="참여하기"
+      />
     </>
   );
 };

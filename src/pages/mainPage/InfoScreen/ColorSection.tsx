@@ -15,7 +15,7 @@ interface NameItemProps {
 }
 
 const CarImg = ({ img }: CarImgProps) => {
-  return <img>{img}</img>;
+  return <img />;
 };
 
 const PalleteItem = ({ color, active }: PalleteItemProps) => {

@@ -5,7 +5,7 @@ const InsideSection = () => {
   return (
     <>
       <div>Header</div>
-      <img>car image</img>
+      <img />
       <div>guide</div>
       <GuideItem title="d" description="d" />
     </>

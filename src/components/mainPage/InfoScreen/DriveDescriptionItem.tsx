@@ -13,7 +13,7 @@ const DriveDescriptionItem = ({
 }: DriveDescriptionItemProps) => {
   return (
     <>
-      <img>{img}</img>
+      <img />
       <div>{title}</div>
       <div>{description}</div>
     </>

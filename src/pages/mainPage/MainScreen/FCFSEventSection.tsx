@@ -8,7 +8,7 @@ const FCFSEventSection = () => {
     <>
       <EventHeader title="event" description="desc" />
       <Timer />
-      <img>coffee img</img>
+      <img />
       <EventFooter
         eventInfo={{ title: "title", description: "des", option: Object }}
         buttonInfo={{ size: "small", onClick: () => {}, isEnabled: true }}

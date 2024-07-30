@@ -6,7 +6,7 @@ const RandomEventSection = () => {
   return (
     <>
       <EventHeader title="event" description="desc" />
-      <img>img</img>
+      <img />
       <EventFooter
         eventInfo={{ title: "title", description: "des", option: Object }}
         buttonInfo={{ size: "small", onClick: () => {}, isEnabled: true }}

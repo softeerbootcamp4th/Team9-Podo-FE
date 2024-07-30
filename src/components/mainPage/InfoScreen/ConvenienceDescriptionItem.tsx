@@ -13,7 +13,7 @@ const ConvenienceDescriptionItem = ({
 }: ConvenienceDescriptionItemProps) => {
   return (
     <>
-      <img>{img}</img>
+      <img />
       <div>{title}</div>
       <div>{description}</div>
     </>

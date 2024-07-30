@@ -18,7 +18,9 @@ const AuthTooltip = ({ isAuth }: AuthTooltipProps) => {
             본인인증 만료시간
           </div>
           <div className="gap-2 flex-center">
-            <span className="text-center text-body-2-bold">{leftTime}</span>
+            <span className="font-kia-signature-bold text-center text-body-2-bold">
+              {leftTime}
+            </span>
             <RefreshButton onClick={() => setLeftTime("59:59")}></RefreshButton>
           </div>
         </div>
