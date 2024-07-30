@@ -30,6 +30,11 @@ const RandomQuizSection = () => {
       question: "What is the capital of France?",
       optionList: ["London", "Berlin", "Madrid", "Paris"],
     },
+    {
+      background: "path/to/image1.jpg",
+      question: "What is 2+2?",
+      optionList: ["3", "4", "5", "6"],
+    },
   ];
   const index = quizIndex ? parseInt(quizIndex, 10) : 0;
   const quiz = quizList[index];
