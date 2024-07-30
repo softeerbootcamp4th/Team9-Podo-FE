@@ -5,7 +5,7 @@ const OutsideSection = () => {
   return (
     <>
       <div>header</div>
-      <img>mainImage</img>
+      <img />
       <OutsideDescriptionItem title="dd" description="dd" img="ss" />
       <OutsideDescriptionItem title="dd" description="dd" img="ss" />
       <OutsideDescriptionItem title="dd" description="dd" img="ss" />

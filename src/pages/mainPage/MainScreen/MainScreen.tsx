@@ -7,7 +7,7 @@ const MainScreen = () => {
   return (
     <>
       <EventSelectSection />
-      <img></img>
+      <img />
       <FCFSEventSection />
       <RandomEventSection />
     </>

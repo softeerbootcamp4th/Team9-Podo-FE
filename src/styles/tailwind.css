@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Kia-Signature-Regular";
+  src: url(../assets/fonts/KiaSignatureFixRegular.ttf);
+}
+
+@font-face {
+  font-family: "Kia-Signature-Bold";
+  src: url(../assets/fonts/KiaSignatureFixBold.ttf);
+}
+
+@font-face {
+  font-family: "Kia-Signature-Light";
+  src: url(../assets/fonts/KiaSignatureFixLight.ttf);
+}

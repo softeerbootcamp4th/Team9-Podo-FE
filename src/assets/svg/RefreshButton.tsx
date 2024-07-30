@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 
 interface RefreshButtonProps {
   onClick: MouseEventHandler<HTMLButtonElement>;

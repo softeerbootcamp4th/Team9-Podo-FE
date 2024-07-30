@@ -5,10 +5,7 @@ const LandingScreen = () => {
     <>
       <video>landingVideo</video>
       <h2>title</h2>
-      <img>image</img>
-      <img>glow image</img>
-      <img>glow image</img>
-      <img>glow image</img>
+      <img />
     </>
   );
 };

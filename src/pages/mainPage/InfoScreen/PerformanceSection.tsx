@@ -5,7 +5,7 @@ const PerformanceSection = () => {
   return (
     <>
       <div>Header</div>
-      <img>car</img>
+      <img />
       <PerformanceDescriptionItem title="dd" info={[{}, {}]} footer="dd" />
     </>
   );
