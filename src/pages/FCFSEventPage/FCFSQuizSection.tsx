@@ -2,7 +2,7 @@ import React from "react";
 
 interface FCFSQuizInterface {
   question: String;
-  optionList: Array<String>;
+  optionList: Array<string>;
 }
 
 const FCFSQuizSection = ({ question, optionList }: FCFSQuizInterface) => {
