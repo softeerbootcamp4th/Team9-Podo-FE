@@ -6,7 +6,7 @@ interface ProgressBarInterface {
 }
 
 const ProgressBar = ({ quizIndex, maxIndex }: ProgressBarInterface) => {
-  return <div></div>;
+  return <div role="progressbar"></div>;
 };
 
 export default ProgressBar;
