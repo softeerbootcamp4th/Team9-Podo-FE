@@ -1,12 +1,12 @@
 import React from "react";
 import { Outlet } from "react-router";
-import HintSection from "./HintSection";
+import FCFSHintSection from "./FCFSHintSection";
 
 const FCFSEventPage = () => {
   return (
     <div>
-      <Outlet /> {/*QuizSection*/}
-      <HintSection />
+      <Outlet /> {/*FCFSQuizSection*/}
+      <FCFSHintSection />
     </div>
   );
 };
