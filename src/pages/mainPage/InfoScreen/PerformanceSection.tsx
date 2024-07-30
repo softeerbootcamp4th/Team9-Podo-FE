@@ -1,5 +1,5 @@
 import React from "react";
-import PerformanceDescriptionItem from "./PerformanceDescriptionItem";
+import PerformanceDescriptionItem from "../../../components/mainPage/InfoScreen/PerformanceDescriptionItem";
 
 const PerformanceSection = () => {
   return (

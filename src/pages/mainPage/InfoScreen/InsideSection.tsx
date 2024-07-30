@@ -1,5 +1,5 @@
 import React from "react";
-import GuideItem from "./GuideItem";
+import GuideItem from "../../../components/mainPage/InfoScreen/GuideItem";
 
 const InsideSection = () => {
   return (

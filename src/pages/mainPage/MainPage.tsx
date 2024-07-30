@@ -1,7 +1,7 @@
 import React from "react";
-import LandingScreen from "./LandingScreen";
-import NavigationBar from "./NavigationBar";
-import MainScreen from "./MainScreen";
+import LandingScreen from "./LandingScreen/LandingScreen";
+import NavigationBar from "./NavigationBar/NavigationBar";
+import MainScreen from "./MainScreen/MainScreen";
 import NotificationScreen from "./NotificationScreen";
 import InfoScreen from "./InfoScreen";
 

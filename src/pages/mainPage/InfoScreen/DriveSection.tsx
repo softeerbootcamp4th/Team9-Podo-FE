@@ -1,5 +1,5 @@
 import React from "react";
-import DriveDescriptionItem from "./DriveDescriptionItem";
+import DriveDescriptionItem from "../../../components/mainPage/InfoScreen/DriveDescriptionItem";
 
 const DriveSection = () => {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import EventSelectOptions from "./EventSelectOptions";
+import EventSelectOptions from "../../../components/mainPage/MainScreen/EventSelectOptions";
 
 const EventSelectSection = () => {
   return (

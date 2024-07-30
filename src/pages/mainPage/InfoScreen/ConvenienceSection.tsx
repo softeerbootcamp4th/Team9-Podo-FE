@@ -1,4 +1,5 @@
 import React from "react";
+import ConvenienceDescriptionItem from "../../../components/mainPage/InfoScreen/ConvenienceDescriptionItem";
 
 const ConvenienceSection = () => {
   return (

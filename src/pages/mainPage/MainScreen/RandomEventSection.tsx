@@ -1,6 +1,6 @@
 import React from "react";
-import EventHeader from "./EventHeader";
-import EventFooter from "./EventFooter";
+import EventHeader from "../../../components/mainPage/MainScreen/EventHeader";
+import EventFooter from "../../../components/mainPage/MainScreen/EventFooter";
 
 const RandomEventSection = () => {
   return (

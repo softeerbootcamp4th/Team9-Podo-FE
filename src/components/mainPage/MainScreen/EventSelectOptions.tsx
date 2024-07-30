@@ -1,5 +1,5 @@
 import React, { MouseEvent, MouseEventHandler } from "react";
-import Button from "../../components/common/Button/Button";
+import Button from "../../common/Button/Button";
 
 interface EventSelectOptionsProps {
   title: string;

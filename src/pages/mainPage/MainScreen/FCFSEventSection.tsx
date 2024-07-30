@@ -1,7 +1,7 @@
 import React from "react";
-import Timer from "./Timer";
-import EventHeader from "./EventHeader";
-import EventFooter from "./EventFooter";
+import Timer from "../Timer";
+import EventHeader from "../../../components/mainPage/MainScreen/EventHeader";
+import EventFooter from "../../../components/mainPage/MainScreen/EventFooter";
 
 const FCFSEventSection = () => {
   return (

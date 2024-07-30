@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from "react";
-import Button from "../../components/common/Button/Button";
+import Button from "../../common/Button/Button";
 
 interface EventFooterProps {
   eventInfo: {

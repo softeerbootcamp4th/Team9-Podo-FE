@@ -1,5 +1,5 @@
 import React from "react";
-import OutsideDescriptionItem from "./OutsideDescriptionItem";
+import OutsideDescriptionItem from "../../../components/mainPage/InfoScreen/OutsideDescriptionItem";
 
 const OutsideSection = () => {
   return (
