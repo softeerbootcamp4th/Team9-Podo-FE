@@ -13,6 +13,14 @@ const STATE_CLASSES = {
   unselected: "bg-opacity-5 opacity-50",
 };
 
+/**
+ * 운전자 유형 테스트 선택지
+ * @param label 선택지 A,B
+ * @param content 내용
+ * @param state default, selected, unselected
+ * @param onClick onClick 함수
+ * @returns
+ */
 const Option = ({ label, content, state, onClick }: OptionInterface) => {
   const stateClasses = STATE_CLASSES[state];
   return (
