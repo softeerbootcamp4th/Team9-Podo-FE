@@ -1,23 +1,19 @@
 import React from "react";
+import { QuizInfo } from "../../types/FCFSEvent";
 
-interface FCFSQuizInterface {
-  question: String;
-  optionList: Array<string>;
-}
-
-const FCFSQuizSection = ({ question, optionList }: FCFSQuizInterface) => {
+const FCFSQuizSection = ({ quizInfo }: QuizInfo) => {
   return (
-    <div>
-      <div>오늘의 퀴즈</div>
-      <p>{question}</p>
-      <ol>
+    <>
+      <header role="banner">오늘의 퀴즈</header>
+      <h2>{quizInfo.question}</h2>
+      {/* <ol>
         {optionList.map((option, index) => (
           <li key={index}>{option}</li>
         ))}
-      </ol>
+      </ol> */}
       <button>Submit</button>
       <div>error toast</div>
-    </div>
+    </>
   );
 };
 

@@ -1,4 +1,6 @@
-export const quizInfo = {
+import { QuizInfo } from "../../types/FCFSEvent";
+
+export const quizInfo: QuizInfo = {
   question: "질문 1",
   choice1: "답안 1",
   choice2: "답안 2",
