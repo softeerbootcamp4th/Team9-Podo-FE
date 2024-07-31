@@ -20,5 +20,6 @@ export const Main = {
   args: {
     label: "A.",
     content: "당장 앞지르고 달려나간다",
+    state: "default",
   },
 };
