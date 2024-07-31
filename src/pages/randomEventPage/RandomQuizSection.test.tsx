@@ -31,7 +31,7 @@ describe("RandomQuizSection", () => {
 
     await userEvent.click(button);
 
-    await waitFor(() => {
+    waitFor(() => {
       expect(
         screen.getByText("메뉴얼을 정독하며 이 버튼, 저 버튼 눌러본다."), //두 번째 질문의 1번 선택지
       ).toBeInTheDocument();
@@ -44,7 +44,7 @@ describe("RandomQuizSection", () => {
 
     await userEvent.click(button);
 
-    await waitFor(() => {
+    waitFor(() => {
       expect(screen.getByText("당신의 운잔자 유형은?")).toBeInTheDocument(); //결과 페이지의 header
     });
   });
