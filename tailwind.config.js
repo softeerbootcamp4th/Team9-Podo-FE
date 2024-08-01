@@ -40,6 +40,10 @@ module.exports = {
         bold: 700,
         regular: 400,
       },
+      spacing: {
+        500: "1rem",
+        800: "2rem",
+      },
     },
   },
   plugins: [
