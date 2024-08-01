@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: 20.15.0
           cache: yarn
-      - run: yarn install --frozen-lockfile
+      - run: yarn install #--frozen-lockfile 설정 변경으로 인한 오류 해결을 위한 임시 조치
       
       #- name: Set Environment Variables
       #  run: | 
