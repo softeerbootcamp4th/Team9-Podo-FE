@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { QuizInfo } from "../../types/FCFSEvent";
 import { useNavigate } from "react-router";
+import Button from "../../components/common/Button/Button";
 
 interface FCFSQuizSectionProps {
   quizInfo: QuizInfo;
@@ -8,8 +9,8 @@ interface FCFSQuizSectionProps {
 
 // tailwind constant
 const IS_SELECTED = {
-  true: "",
-  false: "",
+  true: "bg-white/20",
+  false: "bg-white/5",
 };
 
 /**
@@ -23,7 +24,7 @@ const IS_SELECTED = {
 const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
   const navigate = useNavigate();
 
-  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [selectedIndex, setSelectedIndex] = useState(1);
 
   const choices = [
     quizInfo.choice1,
@@ -37,6 +38,7 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
   // 선택지 클릭 핸들러
   const handleChoiceClick = (index: number) => {
     setSelectedIndex(index);
+    console.log(selectedIndex);
   };
 
   // 제출버튼 클릭 핸들러
@@ -51,21 +53,57 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
 
   return (
     <>
-      <header role="banner">오늘의 퀴즈</header>
-      <h2>{question}</h2>
-      <ol>
-        {choices.map((choice, index) => (
-          <li
-            className={IS_SELECTED[`${index === selectedIndex}`]}
-            key={choice}
-            onClick={() => handleChoiceClick(index)}
+      <div className="flex-col gap-[4rem] bg-gray-800 flex-center">
+        <div className="gap-700 flex-col flex-center">
+          <header
+            className="p-500 px-800 h-[4.125rem] w-[12rem] rounded-[12rem] border text-center font-kia-signature-bold text-title-3 flex-center"
+            style={{
+              backgroundImage:
+                "linear-gradient(#fff, #fff), linear-gradient(93.7deg, #505861 0%, #4B7C83 33.5%, #1B3F72 66.5%, #F2F2F2 100%)",
+              backgroundOrigin: "border-box",
+              backgroundClip: "padding-box, border-box, text",
+              border: "1px solid transparent",
+            }}
+            role="banner"
           >
-            {choice}
-          </li>
-        ))}
-      </ol>
-      <button onClick={handleSubmitClick}>Submit</button>
-      <div>error toast</div>
+            <span
+              style={{
+                backgroundImage:
+                  "linear-gradient(93.7deg, #505861 0%, #4B7C83 33.5%, #1B3F72 66.5%, #F2F2F2 100%)",
+                backgroundClip: "text",
+                color: "transparent",
+              }}
+            >
+              오늘의 퀴즈
+            </span>
+          </header>
+          <h2 className="font-kia-signature-bold text-title-2 text-gray-50">
+            {question}
+          </h2>
+        </div>
+        <ol className="gap-800 flex">
+          {choices.map((choice, index) => (
+            <li
+              className={
+                IS_SELECTED[`${index === selectedIndex}`] +
+                " p-500 px-800 border-white/18 flex h-[5.75rem] w-[22rem] items-center justify-start rounded-[2rem] border bg-white/5 font-kia-signature-bold text-title-4 text-gray-50 hover:bg-white/20"
+              }
+              key={choice}
+              onClick={() => handleChoiceClick(index)}
+            >
+              {index + 1}. {choice}
+            </li>
+          ))}
+        </ol>
+        <Button
+          isEnabled={true}
+          size="small"
+          defaultText="답변 제출"
+          disabledText=""
+          onClick={() => handleSubmitClick()}
+        />
+      </div>
+      {/* <div>error toast</div> */}
     </>
   );
 };
