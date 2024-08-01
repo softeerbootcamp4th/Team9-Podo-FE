@@ -5,7 +5,7 @@ import FCFSEventResultPage from "../pages/FCFSEventResultPage/FCFSEventResultPag
 import RandomEventPage from "../pages/randomEventPage/RandomEventPage";
 import RandomEventResultPage from "../pages/randomEventResultPage/RandomEventResultPage";
 import AuthModal from "../pages/authModal/AuthModal";
-import React from "react";
+import RandomQuizSection from "../pages/randomEventPage/RandomQuizSection";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -14,24 +14,6 @@ export const router = createBrowserRouter([
   {
     path: "/event1",
     element: <FCFSEventPage />,
-    children: [
-      {
-        path: "quiz1",
-        element: <></>,
-      },
-      {
-        path: "quiz2",
-        element: <></>,
-      },
-      {
-        path: "quiz3",
-        element: <></>,
-      },
-      {
-        path: "quiz4",
-        element: <></>,
-      },
-    ],
   },
   {
     path: "/event1/result",
@@ -42,20 +24,8 @@ export const router = createBrowserRouter([
     element: <RandomEventPage />,
     children: [
       {
-        path: "quiz1",
-        element: <></>,
-      },
-      {
-        path: "quiz2",
-        element: <></>,
-      },
-      {
-        path: "quiz3",
-        element: <></>,
-      },
-      {
-        path: "quiz4",
-        element: <></>,
+        path: ":quizIndex",
+        element: <RandomQuizSection />,
       },
     ],
   },

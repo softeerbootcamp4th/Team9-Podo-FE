@@ -148,7 +148,9 @@ const config = {
   testEnvironment: "jsdom",
 
   // Options that will be passed to the testEnvironment
-  // testEnvironmentOptions: {},
+  testEnvironmentOptions: {
+    customExportConditions: [""],
+  },
 
   // Adds a location field to test results
   // testLocationInResults: false,
@@ -163,6 +165,7 @@ const config = {
   // testPathIgnorePatterns: [
   //   "/node_modules/"
   // ],
+  setupFiles: ["./jest.polyfills.js"],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
@@ -172,7 +175,7 @@ const config = {
 
   // This option allows use of a custom test runner
   // testRunner: "jest-circus/runner",
-
+  setupFilesAfterEnv: ["<rootDir>/setupTests.ts"],
   // A map from regular expressions to paths to transformers
   // transform: undefined,
 
