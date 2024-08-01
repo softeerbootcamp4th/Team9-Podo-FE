@@ -23,14 +23,23 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
     quizInfo.choice4,
   ];
 
+  const { answer, question } = quizInfo;
+
   const handleChoiceClick = (index: number) => {
     setSelectedIndex(index);
+  };
+
+  const handleSubmitClick = () => {
+    if (selectedIndex + 1 === parseInt(answer)) {
+      navigate("/event1/result");
+      console.log("changed");
+    }
   };
 
   return (
     <>
       <header role="banner">오늘의 퀴즈</header>
-      <h2>{quizInfo.question}</h2>
+      <h2>{question}</h2>
       <ol>
         {choices.map((choice, index) => (
           <li
@@ -42,7 +51,7 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
           </li>
         ))}
       </ol>
-      <button onClick={() => navigate("/event1/result")}>Submit</button>
+      <button onClick={handleSubmitClick}>Submit</button>
       <div>error toast</div>
     </>
   );
