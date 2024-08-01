@@ -22,14 +22,14 @@ const RandomQuizSection = () => {
   const { quizInfo, onClick } = useOutletContext<RandomQuizSectionInterface>();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
-  const onClickHandler = (index: number) => {
-    onClick();
+  const onClickHandler = async (index: number) => {
     setSelectedIndex(index);
+    await onClick();
+    setSelectedIndex(null);
   };
 
   return (
     <div role="region" className="flex flex-col items-center">
-      <img src={quizInfo.background} alt={quizInfo.background} />
       <p>{quizInfo.question}</p>
       <div className="flex flex-row">
         {quizInfo.optionList.map((option, index) => (
