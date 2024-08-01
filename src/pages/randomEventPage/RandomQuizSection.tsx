@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Option from "../../components/randomEventPage/Option/Option";
 import { useOutletContext } from "react-router";
 
@@ -18,20 +18,38 @@ interface OptionInterface {
   content: string;
 }
 
+const ANIMATION_CLASS = {
+  next: "opacity-0 translate-x-[40rem]",
+  current: "",
+  prev: "opacity-0 -translate-x-[40rem]",
+};
+
 const RandomQuizSection = () => {
   const { quizInfo, onClick } = useOutletContext<RandomQuizSectionInterface>();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [animationClass, setAnimationClass] = useState("");
 
   const onClickHandler = async (index: number) => {
+    setAnimationClass(ANIMATION_CLASS.prev);
     setSelectedIndex(index);
-    await onClick();
-    setSelectedIndex(null);
+
+    await onClick(); //페이지 이동
   };
+
+  useEffect(() => {
+    setSelectedIndex(null);
+    setAnimationClass(ANIMATION_CLASS.next);
+    const timeout = setTimeout(() => {
+      setAnimationClass(ANIMATION_CLASS.current);
+    }, 200);
+
+    return () => clearTimeout(timeout);
+  }, [quizInfo]);
 
   return (
     <div
       role="region"
-      className="flex h-[50rem] flex-col items-center justify-around"
+      className={`flex h-[50rem] flex-col items-center justify-around transition-all duration-[500ms] ease-in-out ${animationClass}`}
     >
       <p className="w-[43rem] break-keep text-center font-kia-signature text-title-2 text-white">
         {quizInfo.question}
