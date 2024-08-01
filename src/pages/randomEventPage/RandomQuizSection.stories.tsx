@@ -1,24 +1,21 @@
 import React from "react";
 import RandomQuizSection from "./RandomQuizSection";
+import { fn } from "@storybook/test";
+
+export const ActionsData = {
+  onClick: fn(),
+};
 
 export default {
   component: RandomQuizSection,
   title: "RandomQuizSection",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
-  args: {},
+  args: {
+    ...ActionsData,
+  },
 };
 
 export const Main = {
-  args: {
-    quizIndex: 0,
-    selectedIndex: null,
-  },
-};
-
-export const WithSelectedOption = {
-  args: {
-    quizIndex: 0,
-    selectedIndex: 0,
-  },
+  args: {},
 };

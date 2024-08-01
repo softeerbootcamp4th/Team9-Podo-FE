@@ -19,20 +19,22 @@ const ProgressBar = ({ currentIndex, maxIndex }: ProgressBarInterface) => {
   return (
     <div
       role="progressbar"
-      className="relative mt-[6.25rem] flex h-1.5 w-[94rem] items-center rounded-[0.625rem] bg-gray-900 p-0.5"
+      className="flex h-[6.625rem] flex-col items-center justify-end"
     >
-      <div
-        className="h-full rounded-[0.625rem] bg-[#FFA800]"
-        style={{ width: progressWidth }}
-      ></div>
-      <img
-        src={car}
-        alt="자동차"
-        className="absolute bottom-2.5 h-[4.375rem] w-40 transform"
-        style={{
-          left: `calc(${progressWidth} - 5rem)`,
-        }}
-      />
+      <div className="relative mt-[6.25rem] flex h-1.5 w-[94rem] items-center rounded-[0.625rem] bg-gray-900 p-0.5">
+        <div
+          className="h-full rounded-[0.625rem] bg-[#FFA800] transition-all duration-[400ms] ease-in-out"
+          style={{ width: progressWidth }}
+        ></div>
+        <img
+          src={car}
+          alt="자동차"
+          className="absolute bottom-2.5 h-[4.375rem] w-40 transform transition-all duration-[400ms] ease-in-out"
+          style={{
+            left: `calc(${progressWidth} - 5rem)`,
+          }}
+        />
+      </div>
     </div>
   );
 };

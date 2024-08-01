@@ -1,33 +1,61 @@
-import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import React, { useEffect, useState } from "react";
 import Option from "../../components/randomEventPage/Option/Option";
-import { quizList } from "../../constants/RandomEventData";
+import { useOutletContext } from "react-router";
+
+interface RandomQuizSectionInterface {
+  quizInfo: QuizInfoInterface;
+  onClick: Function;
+}
+
+interface QuizInfoInterface {
+  background: string;
+  question: string;
+  optionList: Array<OptionInterface>;
+}
+
+interface OptionInterface {
+  label: string;
+  content: string;
+}
+
+const ANIMATION_CLASS = {
+  next: "opacity-0 translate-x-[40rem]",
+  current: "",
+  prev: "opacity-0 -translate-x-[40rem]",
+};
 
 const RandomQuizSection = () => {
-  const { quizIndex } = useParams();
-  const navigate = useNavigate();
-
-  const currentIndex = quizIndex ? parseInt(quizIndex, 10) : 0;
-  const quiz = quizList[currentIndex];
-
+  const { quizInfo, onClick } = useOutletContext<RandomQuizSectionInterface>();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const onClickHandler = (index: number) => {
+  const [animationClass, setAnimationClass] = useState("");
+
+  const onClickHandler = async (index: number) => {
+    setAnimationClass(ANIMATION_CLASS.prev);
     setSelectedIndex(index);
-    const nextQuizIndex = currentIndex + 1;
-    if (nextQuizIndex < 4) {
-      // 예시로 총 4개의 퀴즈가 있다고 가정
-      navigate(`/event2/${nextQuizIndex}`);
-    } else {
-      navigate("/event2/result"); // 결과 페이지로 이동
-    }
+
+    await onClick(); //페이지 이동
   };
 
+  useEffect(() => {
+    setSelectedIndex(null);
+    setAnimationClass(ANIMATION_CLASS.next);
+    const timeout = setTimeout(() => {
+      setAnimationClass(ANIMATION_CLASS.current);
+    }, 200);
+
+    return () => clearTimeout(timeout);
+  }, [quizInfo]);
+
   return (
-    <div role="region">
-      <img src={quiz.background} alt="" />
-      <p>{quiz.question}</p>
-      <div>
-        {quiz.optionList.map((option, index) => (
+    <div
+      role="region"
+      className={`flex h-[50rem] flex-col items-center justify-around transition-all duration-[500ms] ease-in-out ${animationClass}`}
+    >
+      <p className="w-[43rem] break-keep text-center font-kia-signature text-title-2 text-white">
+        {quizInfo.question}
+      </p>
+      <div className="flex flex-row gap-8">
+        {quizInfo.optionList.map((option, index) => (
           <Option
             key={index}
             label={option.label}
