@@ -1,15 +1,21 @@
-import type { Preview } from "@storybook/react";
 import "../src/styles/tailwind.css";
+import { initialize, mswLoader } from "msw-storybook-addon";
 
-const preview: Preview = {
+// Initialize MSW
+initialize();
+
+//👇 Configures Storybook to log the actions( onArchiveTask and onPinTask ) in the UI.
+/** @type { import('@storybook/react').Preview } */
+const preview = {
   parameters: {
     controls: {
       matchers: {
         color: /(background|color)$/i,
-        date: /Date$/i,
+        date: /Date$/,
       },
     },
   },
+  loaders: [mswLoader],
 };
 
 export default preview;
