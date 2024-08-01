@@ -1,51 +1,66 @@
+// RandomQuizSection.test.tsx
+
 import React from "react";
-import { MemoryRouter, Route, Routes } from "react-router";
-import { render, screen, waitFor } from "@testing-library/react";
-import { expect } from "@storybook/test";
+import { render, screen, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import RandomQuizSection from "./RandomQuizSection";
-import RandomEventResultPage from "../randomEventResultPage/RandomEventResultPage";
+import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 
-const renderWithRouter = (initialPath: string) => {
-  return render(
-    <MemoryRouter initialEntries={[initialPath]}>
-      <Routes>
-        <Route path="/event2/:quizIndex" element={<RandomQuizSection />} />
-        <Route path="/event2/result" element={<RandomEventResultPage />} />
-      </Routes>
-    </MemoryRouter>,
-  );
+// useOutletContext를 모킹합니다.
+jest.mock("react-router", () => ({
+  ...jest.requireActual("react-router"),
+  useOutletContext: jest.fn(),
+}));
+
+const mockQuizInfo = {
+  background: "background.jpg",
+  question: "가장 좋아하는 색깔은 무엇인가요?",
+  optionList: [
+    { label: "Option1", content: "빨강" },
+    { label: "Option2", content: "파랑" },
+  ],
 };
 
 describe("RandomQuizSection", () => {
-  test("RandomQuizSection 은 올바르게 랜더링되어야 한다.", () => {
-    renderWithRouter("/event2/0");
+  const mockOnClick = jest.fn();
 
-    const option = screen.getByRole("region");
-    expect(option).toBeInTheDocument();
-  });
-
-  test("Option 클릭 시 quizIndex 가 1 늘어나서 페이지가 움직여야 한다.", async () => {
-    renderWithRouter("/event2/0");
-    const button = screen.getByText("당장 앞지르고 빨리 달려나간다."); //첫 번째 질문의 1번 선택지
-
-    await userEvent.click(button);
-
-    waitFor(() => {
-      expect(
-        screen.getByText("메뉴얼을 정독하며 이 버튼, 저 버튼 눌러본다."), //두 번째 질문의 1번 선택지
-      ).toBeInTheDocument();
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.requireMock("react-router").useOutletContext.mockReturnValue({
+      quizInfo: mockQuizInfo,
+      onClick: mockOnClick,
     });
   });
 
-  test("마지막 quizIndex에서는 Option 클릭 시 RandomEventResultPage 로 이동해야 한다.", async () => {
-    renderWithRouter("/event2/3");
-    const button = screen.getByText("연비, 성능, 옵션 등을 꼼꼼하게 따져본다."); //마지막 질문의 1번 선택지
+  test("퀴즈 정보가 올바르게 렌더링 되어야 한다", () => {
+    render(
+      <MemoryRouter>
+        <RandomQuizSection />
+      </MemoryRouter>,
+    );
 
-    await userEvent.click(button);
+    expect(screen.getByAltText("background.jpg")).toBeInTheDocument();
 
-    waitFor(() => {
-      expect(screen.getByText("당신의 운잔자 유형은?")).toBeInTheDocument(); //결과 페이지의 header
+    expect(
+      screen.getByText("가장 좋아하는 색깔은 무엇인가요?"),
+    ).toBeInTheDocument();
+
+    mockQuizInfo.optionList.forEach((option) => {
+      expect(screen.getByText(option.content)).toBeInTheDocument();
     });
+  });
+
+  test("옵션 클릭 시 onClick 핸들러가 호출되어야 한다", async () => {
+    render(
+      <MemoryRouter>
+        <RandomQuizSection />
+      </MemoryRouter>,
+    );
+
+    const optionButton = screen.getByText("빨강");
+    await userEvent.click(optionButton);
+
+    expect(mockOnClick).toHaveBeenCalled();
   });
 });

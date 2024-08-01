@@ -1,9 +1,10 @@
 import React, { MouseEventHandler, useState } from "react";
 import Option from "../../components/randomEventPage/Option/Option";
+import { useOutletContext } from "react-router";
 
 interface RandomQuizSectionInterface {
   quizInfo: QuizInfoInterface;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick: Function;
 }
 
 interface QuizInfoInterface {
@@ -17,23 +18,20 @@ interface OptionInterface {
   content: string;
 }
 
-const RandomQuizSection = ({
-  quizInfo,
-  onClick,
-}: RandomQuizSectionInterface) => {
+const RandomQuizSection = () => {
+  const { quizInfo, onClick } = useOutletContext<RandomQuizSectionInterface>();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const onClickHandler = (index: number) => {
+    onClick();
     setSelectedIndex(index);
-
-    onClick;
   };
 
   return (
-    <div role="region">
-      <img src={quizInfo.background} alt="" />
+    <div role="region" className="flex flex-col items-center">
+      <img src={quizInfo.background} alt={quizInfo.background} />
       <p>{quizInfo.question}</p>
-      <div>
+      <div className="flex flex-row">
         {quizInfo.optionList.map((option, index) => (
           <Option
             key={index}

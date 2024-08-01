@@ -17,14 +17,5 @@ export default {
 };
 
 export const Main = {
-  args: {
-    quizInfo: {
-      background: "img",
-      question: "질문",
-      optionList: [
-        { label: "A.", content: "당장 앞지르고 달려나간다", state: "default" },
-        { label: "B.", content: "당장 앞지르고 달려나간다", state: "default" },
-      ],
-    },
-  },
+  args: {},
 };
