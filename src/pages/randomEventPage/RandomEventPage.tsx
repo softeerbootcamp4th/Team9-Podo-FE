@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, useNavigate, useParams } from "react-router";
 import ProgressBar from "../../components/randomEventPage/ProgressBar/ProgressBar";
 import { quizList } from "../../constants/RandomEventData";
@@ -8,7 +8,7 @@ const RandomEventPage = () => {
   const { quizIndex } = useParams();
 
   const currentIndex = quizIndex ? parseInt(quizIndex, 10) : 0;
-  const maxIndex = quizList.length;
+  const maxIndex = quizList.length - 1;
   const quizInfo = quizList[currentIndex];
 
   const handleClick = () => {
@@ -23,7 +23,7 @@ const RandomEventPage = () => {
         }
 
         resolve();
-      }, 1000);
+      }, 200);
     });
   };
 

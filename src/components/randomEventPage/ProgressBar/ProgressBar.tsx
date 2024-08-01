@@ -23,13 +23,13 @@ const ProgressBar = ({ currentIndex, maxIndex }: ProgressBarInterface) => {
     >
       <div className="relative mt-[6.25rem] flex h-1.5 w-[94rem] items-center rounded-[0.625rem] bg-gray-900 p-0.5">
         <div
-          className="h-full rounded-[0.625rem] bg-[#FFA800]"
+          className="h-full rounded-[0.625rem] bg-[#FFA800] transition-all duration-[800ms] ease-in-out"
           style={{ width: progressWidth }}
         ></div>
         <img
           src={car}
           alt="자동차"
-          className="absolute bottom-2.5 h-[4.375rem] w-40 transform"
+          className="absolute bottom-2.5 h-[4.375rem] w-40 transform transition-all duration-[800ms] ease-in-out"
           style={{
             left: `calc(${progressWidth} - 5rem)`,
           }}

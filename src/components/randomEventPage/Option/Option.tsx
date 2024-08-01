@@ -26,7 +26,7 @@ const Option = ({ label, content, state, onClick }: OptionInterface) => {
   return (
     <button
       onClick={onClick}
-      className={`h-[40rem] w-[46rem] rounded-[2rem] border-2 border-white border-opacity-15 bg-white font-kia-signature text-white ${stateClasses} gap-16 backdrop-blur-lg hover:bg-opacity-20`}
+      className={`h-[40rem] w-[46rem] rounded-[2rem] border-2 border-white border-opacity-15 bg-white font-kia-signature text-white ${stateClasses} gap-16 text-title-4 backdrop-blur-lg hover:bg-opacity-20`}
     >
       <p>{label}</p>
       <p>{content}</p>
