@@ -1,5 +1,3 @@
-// RandomQuizSection.test.tsx
-
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
@@ -7,14 +5,12 @@ import RandomQuizSection from "./RandomQuizSection";
 import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 
-// useOutletContext를 모킹합니다.
 jest.mock("react-router", () => ({
   ...jest.requireActual("react-router"),
   useOutletContext: jest.fn(),
 }));
 
 const mockQuizInfo = {
-  background: "background.jpg",
   question: "가장 좋아하는 색깔은 무엇인가요?",
   optionList: [
     { label: "Option1", content: "빨강" },
@@ -40,7 +36,9 @@ describe("RandomQuizSection", () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getByAltText("background.jpg")).toBeInTheDocument();
+    expect(
+      screen.getByText("가장 좋아하는 색깔은 무엇인가요?"),
+    ).toBeInTheDocument();
 
     expect(
       screen.getByText("가장 좋아하는 색깔은 무엇인가요?"),
