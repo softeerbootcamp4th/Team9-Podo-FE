@@ -17,7 +17,7 @@ interface OptionInterface {
 export const quizList: Array<RandomQuizInterface> = [
   {
     background: img0,
-    question: "마음은 급한데, 앞차가 너무 천천히 간다면... 당신의 선택은?",
+    question: "Q1. 마음은 급한데, 앞차가 너무 천천히 간다면... 당신의 선택은?",
     optionList: [
       {
         label: "A.",
@@ -31,7 +31,7 @@ export const quizList: Array<RandomQuizInterface> = [
   },
   {
     background: img1,
-    question: "새로운 차를 산 당신, 처음 하는 행동은?",
+    question: "Q2. 새로운 차를 산 당신, 처음 하는 행동은?",
     optionList: [
       {
         label: "A.",
@@ -45,7 +45,7 @@ export const quizList: Array<RandomQuizInterface> = [
   },
   {
     background: img2,
-    question: "날시 좋은 주말, 휴일을 보내는 장신의 선택은?",
+    question: "Q3. 날시 좋은 주말, 휴일을 보내는 당신의 선택은?",
     optionList: [
       {
         label: "A.",
@@ -60,7 +60,7 @@ export const quizList: Array<RandomQuizInterface> = [
   },
   {
     background: img3,
-    question: "나는 첫 차를 고를 때...",
+    question: "Q4. 나는 첫 차를 고를 때...",
     optionList: [
       {
         label: "A.",
