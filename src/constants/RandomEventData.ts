@@ -1,3 +1,8 @@
+import img0 from "../assets/images/random0.png";
+import img1 from "../assets/images/random1.png";
+import img2 from "../assets/images/random2.png";
+import img3 from "../assets/images/random3.png";
+
 interface RandomQuizInterface {
   background: string;
   question: string;
@@ -11,7 +16,7 @@ interface OptionInterface {
 
 export const quizList: Array<RandomQuizInterface> = [
   {
-    background: "path/to/image1.jpg",
+    background: img0,
     question: "마음은 급한데, 앞차가 너무 천천히 간다면... 당신의 선택은?",
     optionList: [
       {
@@ -25,7 +30,7 @@ export const quizList: Array<RandomQuizInterface> = [
     ],
   },
   {
-    background: "path/to/image2.jpg",
+    background: img1,
     question: "새로운 차를 산 당신, 처음 하는 행동은?",
     optionList: [
       {
@@ -39,7 +44,7 @@ export const quizList: Array<RandomQuizInterface> = [
     ],
   },
   {
-    background: "path/to/image1.jpg",
+    background: img2,
     question: "날시 좋은 주말, 휴일을 보내는 장신의 선택은?",
     optionList: [
       {
@@ -54,7 +59,7 @@ export const quizList: Array<RandomQuizInterface> = [
     ],
   },
   {
-    background: "path/to/image2.jpg",
+    background: img3,
     question: "나는 첫 차를 고를 때...",
     optionList: [
       {
