@@ -36,7 +36,7 @@ const RandomQuizSection = () => {
       <p className="w-[43rem] break-keep text-center font-kia-signature text-title-2 text-white">
         {quizInfo.question}
       </p>
-      <div className="flex flex-row">
+      <div className="flex flex-row gap-8">
         {quizInfo.optionList.map((option, index) => (
           <Option
             key={index}

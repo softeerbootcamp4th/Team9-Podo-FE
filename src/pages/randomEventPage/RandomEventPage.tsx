@@ -29,8 +29,12 @@ const RandomEventPage = () => {
 
   return (
     <div
-      className="h-screen w-screen"
-      style={{ backgroundImage: `url(${quizInfo.background})` }}
+      className="h-screen w-screen bg-cover bg-center bg-no-repeat"
+      style={{
+        background: `
+          linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 50%, #000 100%),
+          url(${quizInfo.background})`,
+      }}
     >
       <ProgressBar currentIndex={currentIndex} maxIndex={maxIndex} />
       <Outlet context={{ quizInfo, onClick: handleClick }} />
