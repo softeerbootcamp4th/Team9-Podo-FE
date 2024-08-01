@@ -29,7 +29,7 @@ const RandomEventPage = () => {
 
   return (
     <div
-      className=""
+      className="h-screen w-screen"
       style={{ backgroundImage: `url(${quizInfo.background})` }}
     >
       <ProgressBar currentIndex={currentIndex} maxIndex={maxIndex} />

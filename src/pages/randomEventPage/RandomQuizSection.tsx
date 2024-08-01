@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState } from "react";
+import React, { useState } from "react";
 import Option from "../../components/randomEventPage/Option/Option";
 import { useOutletContext } from "react-router";
 
@@ -29,8 +29,13 @@ const RandomQuizSection = () => {
   };
 
   return (
-    <div role="region" className="flex flex-col items-center">
-      <p>{quizInfo.question}</p>
+    <div
+      role="region"
+      className="flex h-[50rem] flex-col items-center justify-around"
+    >
+      <p className="w-[43rem] break-keep text-center font-kia-signature text-title-2 text-white">
+        {quizInfo.question}
+      </p>
       <div className="flex flex-row">
         {quizInfo.optionList.map((option, index) => (
           <Option
