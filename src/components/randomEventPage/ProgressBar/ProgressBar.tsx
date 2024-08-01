@@ -17,11 +17,11 @@ const ProgressBar = ({ currentIndex, maxIndex }: ProgressBarInterface) => {
   const progressWidth = `${progressPercentage}%`;
 
   return (
-    <div className="flex h-[6.625rem] flex-col items-center justify-end">
-      <div
-        role="progressbar"
-        className="relative mt-[6.25rem] flex h-1.5 w-[94rem] items-center rounded-[0.625rem] bg-gray-900 p-0.5"
-      >
+    <div
+      role="progressbar"
+      className="flex h-[6.625rem] flex-col items-center justify-end"
+    >
+      <div className="relative mt-[6.25rem] flex h-1.5 w-[94rem] items-center rounded-[0.625rem] bg-gray-900 p-0.5">
         <div
           className="h-full rounded-[0.625rem] bg-[#FFA800]"
           style={{ width: progressWidth }}
