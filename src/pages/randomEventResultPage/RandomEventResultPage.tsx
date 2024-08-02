@@ -3,7 +3,7 @@ import RandomMainSection from "./RandomMainSection";
 import RandomExpectations from "./RandomExpectations";
 
 const RandomEventResultPage = () => {
-  const driverType = "1";
+  const driverType = "다이나믹한 모험가";
   const description = "description";
   const scenarioList = [{ img: "path", title: "title", content: "content" }];
 
