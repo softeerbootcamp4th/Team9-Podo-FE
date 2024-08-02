@@ -7,8 +7,8 @@ import { quizInfo } from "../../mocks/data/FCFSEvent";
 const FCFSEventPage = () => {
   return (
     <div>
-      <FCFSQuizSection quizInfo={quizInfo} />
-      <FCFSHintSection />
+      {/* <FCFSQuizSection quizInfo={quizInfo} /> */}
+      <FCFSHintSection isShow={true} />
     </div>
   );
 };
