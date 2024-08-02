@@ -1,12 +1,13 @@
 import type { Meta } from "@storybook/react";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import FCFSEventPage from "./FCFSEventPage";
+import FCFSQuizSection from "./FCFSQuizSection";
 import { ReactNode } from "react";
+import { quizInfo } from "../../mocks/data/FCFSEvent";
 
-const meta: Meta<typeof FCFSEventPage> = {
-  component: FCFSEventPage,
-  title: "FCFSEventPage",
+const meta: Meta<typeof FCFSQuizSection> = {
+  component: FCFSQuizSection,
+  title: "FCFSQuizSection",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   decorators: [
@@ -16,7 +17,9 @@ const meta: Meta<typeof FCFSEventPage> = {
       </BrowserRouter>
     ),
   ],
-  args: {},
+  args: {
+    quizInfo: quizInfo,
+  },
 };
 
 export const Default = {
