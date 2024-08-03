@@ -2,18 +2,15 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { prototype } = require("events");
-const { devtools } = require("globals");
 
 module.exports = {
   entry: "./src/index.tsx",
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "build"),
-    publicPath: "/",
+    publicPath: "",
+    clean: true,
   },
-  mode: "development",
-  devtool: "eval",
   module: {
     rules: [
       { test: /\.tsx?/, use: ["babel-loader"] },
@@ -70,9 +67,4 @@ module.exports = {
       filename: "style.css",
     }),
   ],
-  devServer: {
-    port: 8000,
-    historyApiFallback: true,
-    open: true,
-  },
 };
