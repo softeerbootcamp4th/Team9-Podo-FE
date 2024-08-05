@@ -11,5 +11,7 @@ export default {
 export const Main = {
   args: {
     content: "content",
+    position: "bottom",
+    value: 4,
   },
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import Toast from "../../../components/common/Toast/Toast";
 
 const RandomExpectations = () => {
   return (
@@ -12,13 +13,11 @@ const RandomExpectations = () => {
           placeholder="최소 20자 이상 입력하세요."
           className="ml-8 h-[12.25rem] w-[77.25rem] resize-none bg-gray-950"
         ></textarea>
-        <button className="h-[15.375rem] w-[12.25rem] rounded-[1.75rem] bg-primary text-gray-950 flex-center">
+        <button className="h-[15.375rem] w-[12.25rem] rounded-[1.75rem] bg-primary font-kia-signature-bold text-title-3 text-gray-950 flex-center">
           참여하기
         </button>
       </div>
-      <div className="absolute bottom-4 left-1/2 h-fit w-fit -translate-x-1/2 rounded-3xl bg-tertiary px-6 py-3 font-kia-signature-bold text-body-1-bold text-gray-50">
-        error toast
-      </div>
+      <Toast content="error msg" position="bottom" value={4} />
     </div>
   );
 };
