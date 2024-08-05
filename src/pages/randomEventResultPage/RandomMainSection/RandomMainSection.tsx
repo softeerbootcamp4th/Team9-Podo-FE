@@ -25,12 +25,30 @@ const RandomMainSection = ({
   const appContext = useAppContext();
   const { isAuth, isRandomEnd } = appContext;
 
+  const handleRetry = () => {
+    //다시하기
+  };
+
+  const handleShare = () => {
+    //공유 링크 복사
+  };
+
+  const onClickHandler = () => {
+    if (isAuth) {
+      //이벤트 참여 백에 전달
+    } else {
+      //본인인증 모달
+      //본인인증 대기
+    }
+    //기대평 작성창
+  };
+
   return (
     <div className="w-[94rem]">
       <div className="relative flex h-[36.25rem] w-[94rem] flex-col gap-6 rounded-[2.5rem] border-white border-opacity-15 bg-white bg-opacity-10 p-10 backdrop-blur-lg">
         <div className="absolute right-0 flex gap-8">
-          <div>다시하기</div>
-          <div>공유하기</div>
+          <button onClick={handleRetry}>다시하기</button>
+          <button onClick={handleShare}>공유하기</button>
         </div>
         <div className="flex font-kia-signature-bold text-title-3">
           {description.map((item, index) => (
@@ -72,7 +90,7 @@ const RandomMainSection = ({
         </p>
         <Button
           size="long"
-          onClick={() => {}}
+          onClick={onClickHandler}
           defaultText={
             isAuth ? "이벤트 참여하기" : "본인인증하고 이벤트 참여하기"
           }
