@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../../../components/common/Button/Button";
+import { useAppContext } from "../../../providers/AppProvider";
 
 interface RandomMainInterface {
   description: Array<string>;
@@ -16,6 +17,9 @@ const RandomMainSection = ({
   description,
   scenarioList,
 }: RandomMainInterface) => {
+  const appContext = useAppContext();
+  const { isAuth, isRandomEnd } = appContext;
+
   return (
     <div className="w-[94rem]">
       <div className="relative flex h-[36.25rem] w-[94rem] flex-col gap-6 rounded-[2.5rem] border-white border-opacity-15 bg-white bg-opacity-10 p-10 backdrop-blur-lg">
@@ -48,7 +52,11 @@ const RandomMainSection = ({
       </div>
       <div className="mt-9 flex flex-col gap-4">
         <p className="font-kia-signature text-gray-200 flex-center">
-          이벤트 응모하고 시그니엘 숙박권 받자!!
+          이벤트 응모하고&nbsp;
+          <span className="font-kia-signature-bold text-gray-50">
+            {"시그니엘 숙박권"}
+          </span>
+          &nbsp;받자!!
         </p>
         <Button
           size="long"
