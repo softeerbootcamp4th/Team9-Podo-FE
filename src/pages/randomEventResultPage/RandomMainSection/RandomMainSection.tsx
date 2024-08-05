@@ -3,8 +3,13 @@ import Button from "../../../components/common/Button/Button";
 import { useAppContext } from "../../../providers/AppProvider";
 
 interface RandomMainInterface {
-  description: Array<string>;
+  description: Array<DescriptionInterface>;
   scenarioList: Array<ScenarioInterface>;
+}
+
+interface DescriptionInterface {
+  content: string;
+  highlited: boolean;
 }
 
 interface ScenarioInterface {
@@ -27,8 +32,15 @@ const RandomMainSection = ({
           <div>다시하기</div>
           <div>공유하기</div>
         </div>
-        <div className="font-kia-signature-bold text-title-3 text-gray-400">
-          {description}
+        <div className="flex font-kia-signature-bold text-title-3">
+          {description.map((item, index) => (
+            <span
+              key={index}
+              className={`${item.highlited ? "text-gray-50" : "text-gray-400"}`}
+            >
+              {item.content}&nbsp;
+            </span>
+          ))}
         </div>
         <hr className="h-[1px] bg-gray-400" />
         <div className="flex gap-6">
@@ -61,9 +73,11 @@ const RandomMainSection = ({
         <Button
           size="long"
           onClick={() => {}}
-          defaultText="본인인증하고 이벤트 참여하기"
+          defaultText={
+            isAuth ? "이벤트 참여하기" : "본인인증하고 이벤트 참여하기"
+          }
           disabledText="이벤트 참여 완료"
-          isEnabled={true}
+          isEnabled={!isRandomEnd}
         ></Button>
       </div>
     </div>

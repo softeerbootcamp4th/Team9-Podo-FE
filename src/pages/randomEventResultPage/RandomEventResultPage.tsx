@@ -5,10 +5,10 @@ import RandomExpectations from "./RandomExpectations";
 const RandomEventResultPage = () => {
   const driverType = "다이나믹한 모험가";
   const description = [
-    "복잡한 도심 속 ",
-    "안전하고 즐거운 주행경험",
-    "을 제공하는 ",
-    "The 2025 셀토스",
+    { content: "복잡한 도심 속 ", highlited: false },
+    { content: "안전하고 즐거운 주행경험", highlited: true },
+    { content: "을 제공하는 ", highlited: false },
+    { content: "The 2025 셀토스 ", highlited: true },
   ];
   const scenarioList = [
     {
