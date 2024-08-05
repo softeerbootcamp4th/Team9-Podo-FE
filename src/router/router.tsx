@@ -1,3 +1,4 @@
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import MainPage from "../pages/mainPage/MainPage";
 import FCFSEventPage from "../pages/FCFSEventPage/FCFSEventPage";
