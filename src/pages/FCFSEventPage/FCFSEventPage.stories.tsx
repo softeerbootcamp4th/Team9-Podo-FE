@@ -1,8 +1,7 @@
-import type { Meta } from "@storybook/react";
 import React from "react";
+import type { Meta } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
 import FCFSEventPage from "./FCFSEventPage";
-import { ReactNode } from "react";
 import { http, HttpResponse } from "msw";
 import { quizInfo } from "../../mocks/data/FCFSEvent";
 
