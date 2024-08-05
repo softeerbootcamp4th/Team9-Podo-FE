@@ -33,7 +33,7 @@ const RandomMainSection = ({
         <hr className="h-[1px] bg-gray-400" />
         <div className="flex gap-6">
           {scenarioList.map((scenario, index) => (
-            <div className="flex flex-col gap-3">
+            <div key={index} className="flex flex-col gap-3">
               <p className="font-kia-signature-bold text-body-1-bold text-gray-50">{`${index + 1}.`}</p>
               <img
                 src={scenario.img}
