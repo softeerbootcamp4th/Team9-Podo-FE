@@ -53,10 +53,10 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
 
   return (
     <>
-      <div className="flex-col gap-[4rem] bg-gray-800 flex-center">
-        <div className="gap-700 flex-col flex-center">
+      <div className="flex-col gap-[4rem] flex-center">
+        <div className="flex-col gap-700 flex-center">
           <header
-            className="p-500 px-800 h-[4.125rem] w-[12rem] rounded-[12rem] border text-center font-kia-signature-bold text-title-3 flex-center"
+            className="h-[4.125rem] w-[12rem] rounded-[12rem] border p-500 px-800 text-center font-kia-signature-bold text-title-3 flex-center"
             style={{
               backgroundImage:
                 "linear-gradient(#fff, #fff), linear-gradient(93.7deg, #505861 0%, #4B7C83 33.5%, #1B3F72 66.5%, #F2F2F2 100%)",
@@ -81,12 +81,12 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
             {question}
           </h2>
         </div>
-        <ol className="gap-800 flex">
+        <ol className="flex gap-800">
           {choices.map((choice, index) => (
             <li
               className={
                 IS_SELECTED[`${index === selectedIndex}`] +
-                " p-500 px-800 border-white/18 flex h-[5.75rem] w-[22rem] items-center justify-start rounded-[2rem] border bg-white/5 font-kia-signature-bold text-title-4 text-gray-50 hover:bg-white/20"
+                " border-white/18 flex h-[5.75rem] w-[22rem] items-center justify-start rounded-[2rem] border bg-white/5 p-500 px-800 font-kia-signature-bold text-title-4 text-gray-50 hover:bg-white/20"
               }
               key={choice}
               onClick={() => handleChoiceClick(index)}
