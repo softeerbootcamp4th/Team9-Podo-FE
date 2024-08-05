@@ -5,8 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "jest",
-    "build": "webpack",
-    "start": "webpack-dev-server --hot",
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack-dev-server --hot --config webpack.dev.js",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
