@@ -1,14 +1,32 @@
+import React from "react";
+import { StoryFn, StoryContext } from "@storybook/react";
 import RandomMainSection from "./RandomMainSection";
+import { AppProvider } from "../../../providers/AppProvider";
 
 export default {
   component: RandomMainSection,
   title: "RandomMainSection",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
+  decorators: [
+    (Story: StoryFn, context: StoryContext) => {
+      return (
+        <AppProvider>
+          <Story {...context} />
+        </AppProvider>
+      );
+    },
+  ],
+  argTypes: {
+    isAuth: { control: "boolean" },
+    isFCFSEnd: { control: "boolean" },
+  },
 };
 
 export const Main = {
   args: {
+    isAuth: false,
+    isFCFSEnd: false,
     description: [
       "복잡한 도심 속 ",
       "안전하고 즐거운 주행경험",
