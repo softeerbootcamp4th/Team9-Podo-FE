@@ -1,6 +1,6 @@
 import React from "react";
 import RandomMainSection from "./RandomMainSection/RandomMainSection";
-import RandomExpectations from "./RandomExpectations";
+import RandomExpectations from "./RandomExpectations/RandomExpectations";
 
 const RandomEventResultPage = () => {
   const driverType = "다이나믹한 모험가";
