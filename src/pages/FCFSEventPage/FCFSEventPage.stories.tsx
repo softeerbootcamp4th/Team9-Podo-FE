@@ -3,6 +3,8 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import FCFSEventPage from "./FCFSEventPage";
 import { ReactNode } from "react";
+import { http, HttpResponse } from "msw";
+import { quizInfo } from "../../mocks/data/FCFSEvent";
 
 const meta: Meta<typeof FCFSEventPage> = {
   component: FCFSEventPage,
@@ -20,7 +22,15 @@ const meta: Meta<typeof FCFSEventPage> = {
 };
 
 export const Default = {
-  args: {},
+  parameters: {
+    msw: {
+      handlers: [
+        http.get("http://localhost:5000/v1/quiz", () => {
+          return HttpResponse.json(quizInfo);
+        }),
+      ],
+    },
+  },
 };
 
 export default meta;

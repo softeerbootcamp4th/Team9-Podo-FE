@@ -24,28 +24,21 @@ const IS_SELECTED = {
 const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
   const navigate = useNavigate();
 
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
-  const choices = [
-    quizInfo.choice1,
-    quizInfo.choice2,
-    quizInfo.choice3,
-    quizInfo.choice4,
-  ];
+  const { choice1, choice2, choice3, choice4, answer, question } = quizInfo;
 
-  const { answer, question } = quizInfo;
+  const choices = [choice1, choice2, choice3, choice4];
 
   // 선택지 클릭 핸들러
   const handleChoiceClick = (index: number) => {
     setSelectedIndex(index);
-    console.log(selectedIndex);
   };
 
   // 제출버튼 클릭 핸들러
   const handleSubmitClick = () => {
     if (selectedIndex + 1 === parseInt(answer)) {
       navigate("/event1/result");
-      console.log("changed");
     } else {
       // 에러 토스트 추후 처리
     }
@@ -84,10 +77,7 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
         <ol className="flex gap-800">
           {choices.map((choice, index) => (
             <li
-              className={
-                IS_SELECTED[`${index === selectedIndex}`] +
-                " border-white/18 flex h-[5.75rem] w-[22rem] items-center justify-start rounded-[2rem] border bg-white/5 p-500 px-800 font-kia-signature-bold text-title-4 text-gray-50 hover:bg-white/20"
-              }
+              className={` ${selectedIndex === index ? "bg-white/20" : "bg-white/10"} flex h-[5.75rem] w-[22rem] items-center justify-start rounded-[2rem] border border-white/15 px-800 font-kia-signature-bold text-title-4 text-gray-50 hover:bg-white/20`}
               key={choice}
               onClick={() => handleChoiceClick(index)}
             >

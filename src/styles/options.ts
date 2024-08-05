@@ -1,3 +1,4 @@
 export const FCFSHintOptions = {
-  duration: 500,
+  duration: 300,
+  fill: "forwards",
 };

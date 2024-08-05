@@ -1,9 +1,9 @@
 export const fadeInUp = [
-  { transform: "translateY(-1055px)" },
-  { transform: "translateY(-348px)" },
+  { transform: "translateY(0px)" },
+  { transform: "translateY(-90%)" },
 ];
 
 export const fadeOutDown = [
-  { transform: "translateY(-348px)" },
-  { transform: "translateY(-1055px)" },
+  { transform: "translateY(-90%)" },
+  { transform: "translateY(0px)" },
 ];
