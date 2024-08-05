@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../../../components/common/Button/Button";
 
 const RandomExpectations = () => {
   return (
