@@ -47,6 +47,15 @@ module.exports = {
         700: "1.5rem",
         800: "2rem",
       },
+      keyframes: {
+        moveText: {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(16rem)" },
+        },
+      },
+      animation: {
+        moveText: "moveText 1s linear forwards",
+      },
     },
   },
   plugins: [
@@ -54,6 +63,13 @@ module.exports = {
       addUtilities({
         ".flex-center": {
           "@apply flex justify-center items-center": "",
+        },
+      });
+    },
+    ({ addUtilities }) => {
+      addUtilities({
+        ".text-glow-white": {
+          textShadow: "0px 0px 10px #FFF, 0px 0px 20px #FFF, 0px 0px 30px #FFF",
         },
       });
     },
