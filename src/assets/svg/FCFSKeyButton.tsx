@@ -2,12 +2,15 @@ import React, { MouseEventHandler } from "react";
 
 interface FCFSKeyButtonProps {
   onClick: MouseEventHandler<SVGSVGElement>;
+  className: string;
 }
 
-const FCFSKeyButton = ({ onClick }: FCFSKeyButtonProps) => {
+const FCFSKeyButton = ({ onClick, className }: FCFSKeyButtonProps) => {
   return (
     <svg
-      className="absolute bottom-0"
+      role="button"
+      aria-label="car-key"
+      className={className}
       width="92"
       height="92"
       viewBox="0 0 92 92"
@@ -25,8 +28,8 @@ const FCFSKeyButton = ({ onClick }: FCFSKeyButtonProps) => {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(46 46) rotate(90) scale(46)"
         >
-          <stop stop-color="#A3B5C7" />
-          <stop offset="1" stop-color="#A3B5C7" stop-opacity="0" />
+          <stop stopColor="#A3B5C7" />
+          <stop offset="1" stopColor="#A3B5C7" stopOpacity="0" />
         </radialGradient>
       </defs>
     </svg>
