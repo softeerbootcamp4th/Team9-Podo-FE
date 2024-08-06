@@ -10,16 +10,16 @@ import { FCFSHintOptions } from "../../styles/options";
 const FCFSEventPage = () => {
   const [quizInfo, setQuizInfo] = useState<QuizInfo | null>(null);
 
-  const { elementRef, startAnimation, stopAnimation } = useAnimation({
-    startKeyframes: fadeInUp,
-    cancelKeyframes: fadeOutDown,
-    options: FCFSHintOptions,
-  });
+  const { elementRef, startAnimation, stopAnimation } =
+    useAnimation<HTMLDivElement>({
+      startKeyframes: fadeInUp,
+      cancelKeyframes: fadeOutDown,
+      options: FCFSHintOptions,
+    });
 
   useEffect(() => {
     try {
       fetchData();
-      console.log(quizInfo);
     } catch (error) {
       console.error(error);
     }
