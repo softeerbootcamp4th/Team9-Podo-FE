@@ -7,7 +7,7 @@ import {
   fadeOptions,
   FCFSWinOptions,
 } from "../../styles/options";
-import { fadeIn, fadeOut, moveRight } from "../../styles/keyframes";
+import { fadeIn, fadeOut, carMoveRight } from "../../styles/keyframes";
 
 Element.prototype.animate = jest.fn();
 
@@ -34,7 +34,7 @@ describe("FCFSEventResultPage Component", () => {
 
     const carImage = await screen.findByRole("img", { name: "seltos-car" });
 
-    expect(carImage.animate).toHaveBeenCalledWith(moveRight, FCFSWinOptions);
+    expect(carImage.animate).toHaveBeenCalledWith(carMoveRight, FCFSWinOptions);
   });
 
   test("차 키를 누르면 당첨 확인 문구가 페이드 아웃되고, 이벤트 2 참여하기 버튼이 페이드 인 되어야 한다.", async () => {

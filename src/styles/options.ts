@@ -17,3 +17,8 @@ export const bothFadeOptions = {
   duration: 500,
   fill: "both" as FillMode,
 };
+
+export const glowOptions = {
+  duration: 1000,
+  iterations: Infinity,
+};

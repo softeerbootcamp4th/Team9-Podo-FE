@@ -4,7 +4,12 @@ import FCFSKey from "../../assets/images/FCFSKey.png";
 import FCFSKeyButton from "../../assets/svg/FCFSKeyButton";
 import { fetchFCFSResult } from "../../api/fetch";
 import useAnimation from "../../hooks/useAnimation";
-import { fadeDown, fadeIn, fadeOut, moveRight } from "../../styles/keyframes";
+import {
+  fadeDown,
+  fadeIn,
+  fadeOut,
+  carMoveRight,
+} from "../../styles/keyframes";
 import {
   bothFadeOptions,
   fadeOptions,
@@ -24,7 +29,7 @@ const FCFSEventResultPage = () => {
   // 차 애니메이션
   const { elementRef: carRef, startAnimation: carStartAnimation } =
     useAnimation<HTMLImageElement>({
-      startKeyframes: moveRight,
+      startKeyframes: carMoveRight,
       options: FCFSWinOptions,
     });
 
@@ -73,7 +78,7 @@ const FCFSEventResultPage = () => {
     <div className="relative flex h-screen w-screen flex-col items-center justify-start overflow-hidden bg-black">
       {!isResultVisible && (
         <header
-          className="gradient-border mt-12 h-[4.125rem] w-[12rem] rounded-[12rem] border p-500 px-800 text-center font-kia-signature-bold text-title-3 flex-center"
+          className="mt-12 h-[4.125rem] w-[12rem] rounded-[12rem] border p-500 px-800 text-center font-kia-signature-bold text-title-3 flex-center gradient-border"
           role="banner"
         >
           <span className="gradient-text">오늘의 퀴즈</span>

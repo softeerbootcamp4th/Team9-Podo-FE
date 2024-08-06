@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "../../utils/test-utils";
 import FCFSEventPage from "./FCFSEventPage";
 import { userEvent } from "@storybook/test";
-import { fadeInUp, fadeOutDown } from "../../styles/keyframes";
+import { showUp, goDown } from "../../styles/keyframes";
 import { FCFSHintOptions } from "../../styles/options";
 
 Element.prototype.animate = jest.fn();
@@ -25,10 +25,7 @@ describe("FCFSEventPage Component", () => {
     const hintContainer = screen.getByRole("dialog");
     await userEvent.hover(hintContainer);
 
-    expect(hintContainer.animate).toHaveBeenCalledWith(
-      fadeInUp,
-      FCFSHintOptions,
-    );
+    expect(hintContainer.animate).toHaveBeenCalledWith(showUp, FCFSHintOptions);
   });
 
   // test("힌트 화면에서 마우스가 빠져나오면 힌트가 원래대로 돌아가야 한다.", async () => {
@@ -40,7 +37,7 @@ describe("FCFSEventPage Component", () => {
   //   await userEvent.unhover(hintContainer);
 
   //   expect(hintContainer.animate).toHaveBeenCalledWith(
-  //     fadeOutDown,
+  //     goDown,
   //     FCFSHintOptions,
   //   );
   // });

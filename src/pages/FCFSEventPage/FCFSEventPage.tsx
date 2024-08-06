@@ -4,7 +4,7 @@ import FCFSQuizSection from "./FCFSQuizSection";
 import { fetchFCFSQuizInfo } from "../../api/fetch";
 import { QuizInfo } from "../../types/FCFSEvent";
 import useAnimation from "../../hooks/useAnimation";
-import { fadeInUp, fadeOutDown } from "../../styles/keyframes";
+import { showUp, goDown } from "../../styles/keyframes";
 import { FCFSHintOptions } from "../../styles/options";
 
 const FCFSEventPage = () => {
@@ -12,8 +12,8 @@ const FCFSEventPage = () => {
 
   const { elementRef, startAnimation, stopAnimation } =
     useAnimation<HTMLDivElement>({
-      startKeyframes: fadeInUp,
-      cancelKeyframes: fadeOutDown,
+      startKeyframes: showUp,
+      cancelKeyframes: goDown,
       options: FCFSHintOptions,
     });
 
