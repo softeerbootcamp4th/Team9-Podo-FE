@@ -1,7 +1,7 @@
 import React, { MouseEventHandler } from "react";
 
 interface RefreshButtonProps {
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick: MouseEventHandler<SVGSVGElement>;
 }
 
 const RefreshButton = ({ onClick }: RefreshButtonProps) => {
