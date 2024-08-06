@@ -5,13 +5,20 @@ interface RouletteInterface {
   targetText: string;
 }
 
+/**
+ * 룰렛이 돌며 약 5초 뒤 targetText가 표시됨
+ * 현재 4개의 요소만 자연스럽게 표시됨 => 시간 조절 부분이 하드코딩되어있음
+ * @param textList 돌아갈 텍스트
+ * @param targetText 마지막에 뜨는 텍스트
+ * @returns
+ */
 const Roulette = ({ textList, targetText }: RouletteInterface) => {
   const [duration, setDuration] = useState(0.2);
   const [delay, setDelay] = useState(0.1);
   const [showType, setShowType] = useState(false);
 
   useEffect(() => {
-    if (duration > 0.9) {
+    if (duration > 0.7) {
       const timeoutId = setTimeout(
         () => {
           setShowType(true);
