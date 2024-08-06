@@ -49,26 +49,10 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
       <div className="flex-col gap-[4rem] flex-center">
         <div className="flex-col gap-700 flex-center">
           <header
-            className="h-[4.125rem] w-[12rem] rounded-[12rem] border p-500 px-800 text-center font-kia-signature-bold text-title-3 flex-center"
-            style={{
-              backgroundImage:
-                "linear-gradient(#fff, #fff), linear-gradient(93.7deg, #505861 0%, #4B7C83 33.5%, #1B3F72 66.5%, #F2F2F2 100%)",
-              backgroundOrigin: "border-box",
-              backgroundClip: "padding-box, border-box, text",
-              border: "1px solid transparent",
-            }}
+            className="gradient-border h-[4.125rem] w-[12rem] rounded-[12rem] border p-500 px-800 text-center font-kia-signature-bold text-title-3 flex-center"
             role="banner"
           >
-            <span
-              style={{
-                backgroundImage:
-                  "linear-gradient(93.7deg, #505861 0%, #4B7C83 33.5%, #1B3F72 66.5%, #F2F2F2 100%)",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              오늘의 퀴즈
-            </span>
+            <span className="gradient-text">오늘의 퀴즈</span>
           </header>
           <h2 className="font-kia-signature-bold text-title-2 text-gray-50">
             {question}
