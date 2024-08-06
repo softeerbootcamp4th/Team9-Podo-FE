@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RandomMainSection from "./RandomMainSection/RandomMainSection";
 import RandomExpectations from "./RandomExpectations/RandomExpectations";
 import { useAppContext } from "../../providers/AppProvider";
@@ -41,10 +41,6 @@ const RandomEventResultPage = () => {
     },
   ];
 
-  const [isRouletteEnd, setIsRouletteEnd] = useState(false);
-  const appContext = useAppContext();
-  const { isAuth } = appContext;
-
   const ROULETTE_END_CONTAINER_CLASSES = {
     true: "justify-start",
     false: "justify-center",
@@ -55,13 +51,35 @@ const RandomEventResultPage = () => {
     false: "gap-6",
   };
 
+  const [isRouletteEnd, setIsRouletteEnd] = useState(false);
+  const [animation, setAnimation] = useState(false);
+  const appContext = useAppContext();
+  const { isAuth } = appContext;
+
   const headerStyle = ROULETTE_END_HEADER_CLASSES[`${isRouletteEnd}`];
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setIsRouletteEnd(true);
+    }, 6000);
+
+    const animationTimeout = setTimeout(() => {
+      setAnimation(true);
+    }, 5000);
+
+    return () => {
+      clearTimeout(timeoutId);
+      clearTimeout(animationTimeout);
+    };
+  }, []);
 
   return (
     <div
-      className={`flex h-screen w-screen flex-col items-center ${ROULETTE_END_CONTAINER_CLASSES[`${isRouletteEnd}`]} gap-16 overflow-scroll bg-black`}
+      className={`flex h-screen w-screen flex-col items-center ${ROULETTE_END_CONTAINER_CLASSES[`${isRouletteEnd}`]} gap-16 overflow-scroll bg-black transition-all duration-300`}
     >
-      <div className={`flex w-[36.5rem] flex-col items-center ${headerStyle}`}>
+      <div
+        className={`relative flex w-[36.5rem] flex-col items-center ${headerStyle}`}
+      >
         <p className="text-center font-kia-signature-bold text-title-3 text-gray-50">
           당신의 운전자 유형은?
         </p>
@@ -70,14 +88,20 @@ const RandomEventResultPage = () => {
           targetText={driverType}
         ></Roulette>
       </div>
-      {!isRouletteEnd && <img src={car} alt="자동차" />}
+      {!isRouletteEnd && (
+        <img
+          src={car}
+          alt="자동차"
+          className={`${animation ? "animate-fadeOut" : ""}`}
+        />
+      )}
       {isRouletteEnd && (
         <RandomMainSection
           description={description}
           scenarioList={scenarioList}
         />
       )}
-      {isRouletteEnd && <RandomExpectations />}
+      {isRouletteEnd && isAuth && <RandomExpectations />}
     </div>
   );
 };

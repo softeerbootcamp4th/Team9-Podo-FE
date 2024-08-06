@@ -44,7 +44,7 @@ const RandomMainSection = ({
   };
 
   return (
-    <div className="w-[94rem]">
+    <div className="animate-moveSection w-[94rem]">
       <div className="relative flex h-[36.25rem] w-[94rem] flex-col gap-6 rounded-[2.5rem] border-white border-opacity-15 bg-white bg-opacity-10 p-10 backdrop-blur-lg">
         <div className="absolute right-0 flex gap-8">
           <button onClick={handleRetry}>다시하기</button>

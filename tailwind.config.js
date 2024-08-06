@@ -52,9 +52,19 @@ module.exports = {
           "0%": { transform: "translateY(0)" },
           "100%": { transform: "translateY(16rem)" },
         },
+        moveSection: {
+          "0%": { transform: "translateY(100rem)" },
+          "100%": { transform: "translateY(0)" },
+        },
+        fadeOut: {
+          "0%": { opacity: "100" },
+          "100%": { opacity: "0" },
+        },
       },
       animation: {
         moveText: "moveText 1s linear forwards",
+        moveSection: "moveSection 1s ease-out",
+        fadeOut: "fadeOut 1s ease-out forwards",
       },
     },
   },
