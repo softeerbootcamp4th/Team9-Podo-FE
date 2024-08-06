@@ -13,6 +13,16 @@ const RandomExpectations = () => {
 
   const onClickHandler = () => {
     if (expectation.length < 20) setError("short");
+    else if (
+      expectation === "부적절한 답변/부적절한 답변/부적절한 답변/부적절한 답변"
+    )
+      //test를 위한 임시 부적절한 답변
+      setError("inappropriate");
+    else {
+      setError(null);
+      //exeption State 백에 전달
+      setExpectation("");
+    }
     setToastKey((current) => current + 1);
   };
 
@@ -31,7 +41,7 @@ const RandomExpectations = () => {
           onChange={handleTextArea}
           value={expectation}
           placeholder="최소 20자 이상 입력하세요."
-          className="ml-8 h-[12.25rem] w-[77.25rem] resize-none bg-gray-950"
+          className="ml-8 h-[12.25rem] w-[77.25rem] resize-none border-none bg-gray-950 text-gray-50 outline-none"
         ></textarea>
         <button
           onClick={onClickHandler}

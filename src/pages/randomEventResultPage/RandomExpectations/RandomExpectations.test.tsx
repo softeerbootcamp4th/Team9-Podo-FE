@@ -37,7 +37,10 @@ describe("RandomExpectations", () => {
     const textBox = screen.getByRole("textbox");
     const button = screen.getByRole("button", { name: "참여하기" });
 
-    await userEvent.type(textBox, "부적절한 답변");
+    await userEvent.type(
+      textBox,
+      "부적절한 답변/부적절한 답변/부적절한 답변/부적절한 답변",
+    );
     await userEvent.click(button);
 
     expect(screen.getByText(ERROR_MSG.inappropriate)).toBeInTheDocument();
