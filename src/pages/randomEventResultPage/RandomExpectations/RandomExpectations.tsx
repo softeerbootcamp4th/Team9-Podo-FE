@@ -1,7 +1,25 @@
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
 import Toast from "../../../components/common/Toast/Toast";
 
+const ERROR_MSG = {
+  short: "20자 이상 답변을 작성해주세요.",
+  inappropriate: "부적절한 답변입니다. 다시 작성해주세요.",
+};
+
 const RandomExpectations = () => {
+  const [error, setError] = useState<"short" | "inappropriate" | null>(null);
+  const [expectation, setExpectation] = useState<string>("");
+  const [toastKey, setToastKey] = useState(0);
+
+  const onClickHandler = () => {
+    if (expectation.length < 20) setError("short");
+    setToastKey((current) => current + 1);
+  };
+
+  const handleTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setExpectation(e.target.value);
+  };
+
   return (
     <div className="relative w-[94rem]">
       <hr className="h-[1px] bg-gray-400" />
@@ -10,14 +28,28 @@ const RandomExpectations = () => {
       </p>
       <div className="h-[16.875rem] gap-5 rounded-[2.5rem] bg-gray-950 flex-center">
         <textarea
+          onChange={handleTextArea}
+          value={expectation}
           placeholder="최소 20자 이상 입력하세요."
           className="ml-8 h-[12.25rem] w-[77.25rem] resize-none bg-gray-950"
         ></textarea>
-        <button className="h-[15.375rem] w-[12.25rem] rounded-[1.75rem] bg-primary font-kia-signature-bold text-title-3 text-gray-950 flex-center">
+        <button
+          onClick={onClickHandler}
+          className="h-[15.375rem] w-[12.25rem] rounded-[1.75rem] bg-primary font-kia-signature-bold text-title-3 text-gray-950 flex-center"
+        >
           참여하기
         </button>
       </div>
-      <Toast content="error msg" position="bottom" value={4} />
+      {error && (
+        <Toast
+          key={toastKey}
+          content={ERROR_MSG[`${error}`]}
+          position="bottom"
+          value={4}
+          delay={4000}
+          duration={1000}
+        />
+      )}
     </div>
   );
 };
