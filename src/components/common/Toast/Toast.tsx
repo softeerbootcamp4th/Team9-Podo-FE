@@ -7,7 +7,7 @@ interface ToastInterface {
 }
 
 const Toast = ({ content, position, value }: ToastInterface) => {
-  const positionStyle = `${position}-${value}`;
+  const positionStyle = `${position}-${value}`; //작동안함 => 직접 테일윈드에 작성한 적이 있는 스타일은 적용됨
 
   return (
     <div
