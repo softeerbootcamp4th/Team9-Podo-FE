@@ -6,6 +6,7 @@ import { QuizInfo } from "../../types/FCFSEvent";
 import useAnimation from "../../hooks/useAnimation";
 import { showUp, goDown } from "../../styles/keyframes";
 import { FCFSHintOptions } from "../../styles/options";
+import Glow from "../../components/common/Glow/Glow";
 
 const FCFSEventPage = () => {
   const [quizInfo, setQuizInfo] = useState<QuizInfo | null>(null);
@@ -32,7 +33,10 @@ const FCFSEventPage = () => {
 
   return (
     <div className="relative flex h-screen w-screen flex-col items-center overflow-hidden bg-black">
-      <div className="flex flex-grow flex-col items-center justify-center">
+      <div className="z-10">
+        <Glow />
+      </div>
+      <div className="z-20 flex flex-grow flex-col items-center justify-center">
         {quizInfo && <FCFSQuizSection quizInfo={quizInfo} />}
         <FCFSHintSection
           ref={elementRef}

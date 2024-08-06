@@ -19,6 +19,7 @@ import Button from "../../components/common/Button/Button";
 import { useNavigate } from "react-router";
 import FCFSNoticeBanner from "../../assets/svg/FCFSNoticeBanner";
 import { NOTICE } from "../../constants/FCFSEventResultData";
+import Glow from "../../components/common/Glow/Glow";
 
 const FCFSEventResultPage = () => {
   const navigate = useNavigate();
@@ -76,9 +77,12 @@ const FCFSEventResultPage = () => {
 
   return (
     <div className="relative flex h-screen w-screen flex-col items-center justify-start overflow-hidden bg-black">
+      <div>
+        <Glow />
+      </div>
       {!isResultVisible && (
         <header
-          className="mt-12 h-[4.125rem] w-[12rem] rounded-[12rem] border p-500 px-800 text-center font-kia-signature-bold text-title-3 flex-center gradient-border"
+          className="z-10 mt-12 h-[4.125rem] w-[12rem] rounded-[12rem] border p-500 px-800 text-center font-kia-signature-bold text-title-3 flex-center gradient-border"
           role="banner"
         >
           <span className="gradient-text">오늘의 퀴즈</span>
@@ -98,7 +102,7 @@ const FCFSEventResultPage = () => {
           <div ref={buttonRef} className="absolute top-[32rem] mt-[4.5rem]">
             <Button
               size="small"
-              onClick={() => navigate("/event2")}
+              onClick={() => navigate("/event2/0")}
               defaultText="EVENT2 참여하러 가기"
               disabledText=""
               isEnabled={true}

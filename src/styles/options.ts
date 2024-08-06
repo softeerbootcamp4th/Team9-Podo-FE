@@ -20,5 +20,6 @@ export const bothFadeOptions = {
 
 export const glowOptions = {
   duration: 1000,
+  direction: "alternate" as PlaybackDirection,
   iterations: Infinity,
 };

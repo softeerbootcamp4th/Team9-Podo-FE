@@ -18,7 +18,7 @@ const FCFSNoticeBanner = ({ className }: FCFSNoticeBannerProps) => {
         <path
           d="M0 79.587V708C0 732.301 19.6995 752 44 752H949C973.301 752 993 732.301 993 708V80.5942C993 59.4248 977.922 41.2107 957.058 37.6306C573.329 -28.2137 204.591 6.06347 34.725 37.1926C14.3484 40.9267 0 58.8711 0 79.587Z"
           fill="black"
-          fill-opacity="0.2"
+          fillOpacity="0.2"
         />
       </g>
       <defs>
@@ -29,9 +29,9 @@ const FCFSNoticeBanner = ({ className }: FCFSNoticeBannerProps) => {
           width="1025"
           height="784"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feGaussianBlur in="BackgroundImageFix" stdDeviation="8" />
           <feComposite
             in2="SourceAlpha"

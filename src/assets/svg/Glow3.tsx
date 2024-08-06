@@ -1,8 +1,15 @@
-import React from "react";
+import React, { ComponentPropsWithRef, ForwardedRef, forwardRef } from "react";
 
-const Glow3 = () => {
+interface GlowProps extends ComponentPropsWithRef<"svg"> {}
+
+const Glow3 = (
+  { className, ...attributes }: GlowProps,
+  ref: ForwardedRef<SVGSVGElement>,
+) => {
   return (
     <svg
+      className={className}
+      role="img"
       aria-label="glow-effect"
       width="1326"
       height="1256"
@@ -18,7 +25,7 @@ const Glow3 = () => {
           ry="549.138"
           transform="matrix(0.963744 0.266827 -0.381866 0.924217 350.394 -23.9995)"
           fill="url(#paint0_radial_2046_989)"
-          fill-opacity="0.6"
+          fillOpacity="0.6"
         />
       </g>
       <defs>
@@ -29,9 +36,9 @@ const Glow3 = () => {
           width="1325.3"
           height="1255.66"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -51,12 +58,12 @@ const Glow3 = () => {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(541.589 549.138) rotate(90) scale(549.138 541.589)"
         >
-          <stop stop-color="#1B3F72" />
-          <stop offset="1" stop-color="#111B1D" />
+          <stop stopColor="#1B3F72" />
+          <stop offset="1" stopColor="#111B1D" />
         </radialGradient>
       </defs>
     </svg>
   );
 };
 
-export default Glow3;
+export default forwardRef(Glow3);

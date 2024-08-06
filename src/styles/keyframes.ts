@@ -20,10 +20,9 @@ export const fadeDown = [
  * Glow 컴포넌트 반짝이는 효과
  */
 export const randomGlow = [
-  { filter: `brightness(${Math.random() * 0.1 + 0.9})` },
-  { filter: `brightness(${Math.random() * 0.1 + 0.9})` },
+  { filter: `brightness(0.9)` },
+  { filter: `brightness(1.2)` },
 ];
-
 /**
  * 선착순 퀴즈 힌트 컴포넌트 위로 올라오는 효과
  */

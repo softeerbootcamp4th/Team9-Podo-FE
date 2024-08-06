@@ -6,7 +6,7 @@ interface UseAnimationProps {
   options: KeyframeAnimationOptions;
 }
 
-const useAnimation = <T extends HTMLElement>({
+const useAnimation = <T extends Element>({
   startKeyframes,
   cancelKeyframes = [],
   options,
