@@ -3,6 +3,14 @@ import RandomMainSection from "./RandomMainSection/RandomMainSection";
 import RandomExpectations from "./RandomExpectations/RandomExpectations";
 import { useAppContext } from "../../providers/AppProvider";
 import car from "../../assets/images/mainCar.png";
+import Roulette from "../../components/randomEventPage/Roulette/Roulette";
+
+const DRIVER_TYPE_LIST = [
+  "안전을 최우선시하는 베스트 드라이버",
+  "호기심 많은 얼리어답터",
+  "감각적인 트렌드 세터",
+  "다이나믹한 모험가",
+];
 
 const RandomEventResultPage = () => {
   const driverType = "다이나믹한 모험가";
@@ -41,7 +49,10 @@ const RandomEventResultPage = () => {
     <div className="h-screen w-screen flex-col bg-black flex-center">
       <div className="flex w-[36.5rem] flex-col items-center gap-6">
         <p>당신의 운잔자 유형은?</p>
-        <div>{driverType}</div>
+        <Roulette
+          textList={DRIVER_TYPE_LIST}
+          targetText={driverType}
+        ></Roulette>
       </div>
       <img src={car} alt="자동차" />
       {isRouletteEnd && (
