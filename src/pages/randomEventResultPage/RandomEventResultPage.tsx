@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import RandomMainSection from "./RandomMainSection/RandomMainSection";
 import RandomExpectations from "./RandomExpectations/RandomExpectations";
+import { useAppContext } from "../../providers/AppProvider";
+import car from "../../assets/images/mainCar.png";
 
 const RandomEventResultPage = () => {
   const driverType = "다이나믹한 모험가";
@@ -31,18 +33,24 @@ const RandomEventResultPage = () => {
     },
   ];
 
+  const [isRouletteEnd, setIsRouletteEnd] = useState(false);
+  const appContext = useAppContext();
+  const { isAuth } = appContext;
+
   return (
-    <div>
-      <div>
+    <div className="h-screen w-screen flex-col bg-black flex-center">
+      <div className="flex w-[36.5rem] flex-col items-center gap-6">
         <p>당신의 운잔자 유형은?</p>
         <div>{driverType}</div>
       </div>
-      <img src="" alt="자동차" />
-      <RandomMainSection
-        description={description}
-        scenarioList={scenarioList}
-      />
-      <RandomExpectations />
+      <img src={car} alt="자동차" />
+      {isRouletteEnd && (
+        <RandomMainSection
+          description={description}
+          scenarioList={scenarioList}
+        />
+      )}
+      {isRouletteEnd && isAuth && <RandomExpectations />}
     </div>
   );
 };
