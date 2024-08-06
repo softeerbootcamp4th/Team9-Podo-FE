@@ -6,11 +6,20 @@ interface RouletteInterface {
 }
 
 const Roulette = ({ textList, targetText }: RouletteInterface) => {
-  const [duration, setDuration] = useState(0.4);
-  const [delay, setDelay] = useState(0.2);
+  const [duration, setDuration] = useState(0.2);
+  const [delay, setDelay] = useState(0.1);
+  const [showType, setShowType] = useState(false);
 
   useEffect(() => {
-    console.log("hi");
+    if (duration > 0.9) {
+      const timeoutId = setTimeout(
+        () => {
+          setShowType(true);
+        },
+        duration * 2.1 * 1000,
+      );
+      return () => clearTimeout(timeoutId);
+    }
 
     const intervalId = setInterval(
       () => {
@@ -32,7 +41,9 @@ const Roulette = ({ textList, targetText }: RouletteInterface) => {
       }}
     >
       <div className="relative h-full w-full overflow-hidden rounded-full bg-gray-950 px-10 py-6 flex-center">
-        <p className="text-glow-white font-kia-signature-bold text-title-2">
+        <p
+          className={`text-glow-white font-kia-signature-bold text-title-2 transition duration-700 ${showType ? "" : "-translate-y-16"}`}
+        >
           {targetText}
         </p>
         {textList.map((text, index) => (
