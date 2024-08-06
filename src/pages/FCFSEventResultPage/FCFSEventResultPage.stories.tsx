@@ -1,13 +1,13 @@
 import React from "react";
 import type { Meta } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import FCFSEventPage from "./FCFSEventPage";
+import FCFSEventResultPage from "./FCFSEventResultPage";
 import { http, HttpResponse } from "msw";
 import { quizInfo } from "../../mocks/data/FCFSEvent";
 
-const meta: Meta<typeof FCFSEventPage> = {
-  component: FCFSEventPage,
-  title: "FCFSEventPage",
+const meta: Meta<typeof FCFSEventResultPage> = {
+  component: FCFSEventResultPage,
+  title: "FCFSEventResultPage",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   decorators: [
