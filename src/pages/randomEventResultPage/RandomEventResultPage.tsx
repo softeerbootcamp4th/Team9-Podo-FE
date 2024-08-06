@@ -45,23 +45,39 @@ const RandomEventResultPage = () => {
   const appContext = useAppContext();
   const { isAuth } = appContext;
 
+  const ROULETTE_END_CONTAINER_CLASSES = {
+    true: "justify-start",
+    false: "justify-center",
+  };
+
+  const ROULETTE_END_HEADER_CLASSES = {
+    true: "mt-[4.5rem] gap-4",
+    false: "gap-6",
+  };
+
+  const headerStyle = ROULETTE_END_HEADER_CLASSES[`${isRouletteEnd}`];
+
   return (
-    <div className="h-screen w-screen flex-col bg-black flex-center">
-      <div className="flex w-[36.5rem] flex-col items-center gap-6">
-        <p>당신의 운잔자 유형은?</p>
+    <div
+      className={`flex h-screen w-screen flex-col items-center ${ROULETTE_END_CONTAINER_CLASSES[`${isRouletteEnd}`]} gap-16 overflow-scroll bg-black`}
+    >
+      <div className={`flex w-[36.5rem] flex-col items-center ${headerStyle}`}>
+        <p className="text-center font-kia-signature-bold text-title-3 text-gray-50">
+          당신의 운전자 유형은?
+        </p>
         <Roulette
           textList={DRIVER_TYPE_LIST}
           targetText={driverType}
         ></Roulette>
       </div>
-      <img src={car} alt="자동차" />
+      {!isRouletteEnd && <img src={car} alt="자동차" />}
       {isRouletteEnd && (
         <RandomMainSection
           description={description}
           scenarioList={scenarioList}
         />
       )}
-      {isRouletteEnd && isAuth && <RandomExpectations />}
+      {isRouletteEnd && <RandomExpectations />}
     </div>
   );
 };
