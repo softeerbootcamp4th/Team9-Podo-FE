@@ -29,7 +29,7 @@ const RandomEventPage = () => {
 
   return (
     <div
-      className="h-screen w-screen bg-cover bg-center bg-no-repeat"
+      className="flex h-screen w-screen flex-col justify-between bg-cover bg-center bg-no-repeat"
       style={{
         background: `
           linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 50%, #000 100%),

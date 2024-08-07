@@ -47,6 +47,30 @@ module.exports = {
         700: "1.5rem",
         800: "2rem",
       },
+      keyframes: {
+        moveText: {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(16rem)" },
+        },
+        moveSection: {
+          "0%": { transform: "translateY(100rem)" },
+          "100%": { transform: "translateY(0)" },
+        },
+        fadeNextPage: {
+          "0%": { opacity: "1", transform: "translateX(0)" },
+          "100%": { opacity: "0", transform: "translateX(40rem)" },
+        },
+        fadeOut: {
+          "0%": { opacity: "100" },
+          "100%": { opacity: "0" },
+        },
+      },
+      animation: {
+        moveText: "moveText 1s linear forwards",
+        moveSection: "moveSection 1s ease-out",
+        fadeNextPage: "fadeTranslate 0.5s ease-out",
+        fadeOut: "fadeOut 1s ease-out forwards",
+      },
     },
   },
   plugins: [
@@ -67,6 +91,13 @@ module.exports = {
             "linear-gradient(93.7deg, #505861 0%, #4B7C83 33.5%, #1B3F72 66.5%, #F2F2F2 100%)",
           "background-clip": "text",
           color: "transparent",
+        },
+      });
+    },
+    ({ addUtilities }) => {
+      addUtilities({
+        ".text-glow-white": {
+          textShadow: "0px 0px 10px #FFF, 0px 0px 20px #FFF, 0px 0px 30px #FFF",
         },
       });
     },
