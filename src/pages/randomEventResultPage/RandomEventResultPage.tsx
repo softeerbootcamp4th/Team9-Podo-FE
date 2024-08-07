@@ -16,32 +16,32 @@ const RandomEventResultPage = () => {
   ];
   const scenarioList = [
     {
-      img: "path",
+      image: "path",
       title: "차로 이탈 시 경고 / 자동 조항 보조",
-      content:
+      subtitle:
         "정신 없이 바쁜 일상 속에서도 셀토스는 일정 속도 이상 주행 중 방향지시등 스위치 조작 없이 차로 이탈 시 경고 및 자동 조향 보조 기능으로 사용자의 안전을 지켜줍니다.",
     },
     {
-      img: "path",
+      image: "path",
       title: "원격 제어 주차 및 출차",
-      content:
+      subtitle:
         "원격 제어를 통한 주차 및 출차 기능으로 사용자가 좁은 골목길에서도 걱정없이 주차 할 수 있게 돕습니다. ",
     },
     {
-      img: "path",
+      image: "path",
       title: "네비게이션 기반 크루즈 컨트롤",
-      content:
+      subtitle:
         "네비게이션 기반 크루즈 컨트롤을 통해 고속도로 주행 시, 도로 상황에 맞춰 안전한 속도로 주행하도록 도와줍니다.",
     },
   ];
 
   const ROULETTE_END_CONTAINER_CLASSES = {
-    true: "justify-start",
+    true: "justify-end",
     false: "justify-center",
   };
 
   const ROULETTE_END_HEADER_CLASSES = {
-    true: "mt-[4.5rem] gap-4",
+    true: "gap-4",
     false: "gap-6",
   };
 
@@ -68,11 +68,9 @@ const RandomEventResultPage = () => {
   }, []);
 
   return (
-    <div
-      className={`flex h-screen w-screen flex-col items-center ${ROULETTE_END_CONTAINER_CLASSES[`${isRouletteEnd}`]} gap-16 overflow-scroll bg-black transition-all duration-300`}
-    >
+    <div className="relative flex flex-col items-center">
       <div
-        className={`relative flex w-[36.5rem] flex-col items-center ${headerStyle}`}
+        className={`absolute flex w-[36.5rem] flex-col items-center transition-all duration-500 ${headerStyle}`}
       >
         <p className="text-center font-kia-signature-bold text-title-3 text-gray-50">
           당신의 운전자 유형은?
@@ -82,20 +80,24 @@ const RandomEventResultPage = () => {
           targetText={driverType}
         ></Roulette>
       </div>
-      {!isRouletteEnd && (
-        <img
-          src={car}
-          alt="자동차"
-          className={`${animation ? "animate-fadeOut" : ""}`}
-        />
-      )}
-      {isRouletteEnd && (
-        <RandomMainSection
-          description={description}
-          scenarioList={scenarioList}
-        />
-      )}
-      {isRouletteEnd && isAuth && <RandomExpectations />}
+      <div
+        className={`flex h-screen w-screen flex-col items-center ${ROULETTE_END_CONTAINER_CLASSES[`${isRouletteEnd}`]} gap-16 overflow-scroll bg-black transition-all duration-300`}
+      >
+        {!isRouletteEnd && (
+          <img
+            src={car}
+            alt="자동차"
+            className={`${animation ? "animate-fadeOut" : ""}`}
+          />
+        )}
+        {isRouletteEnd && (
+          <RandomMainSection
+            description={description}
+            scenarioList={scenarioList}
+          />
+        )}
+        {isRouletteEnd && isAuth && <RandomExpectations />}
+      </div>
     </div>
   );
 };

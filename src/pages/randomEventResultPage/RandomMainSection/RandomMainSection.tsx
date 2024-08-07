@@ -13,9 +13,9 @@ interface DescriptionInterface {
 }
 
 interface ScenarioInterface {
-  img: string;
+  image: string;
   title: string;
-  content: string;
+  subtitle: string;
 }
 
 const RandomMainSection = ({
@@ -66,7 +66,7 @@ const RandomMainSection = ({
             <div key={index} className="flex flex-col gap-3">
               <p className="font-kia-signature-bold text-body-1-bold text-gray-50">{`${index + 1}.`}</p>
               <img
-                src={scenario.img}
+                src={scenario.image}
                 alt="시나리오"
                 className="h-[15.25rem] w-[28.75rem] rounded-xl"
               />
@@ -74,7 +74,7 @@ const RandomMainSection = ({
                 {scenario.title}
               </p>
               <p className="w-[26rem] font-kia-signature text-body-1-regular text-gray-300">
-                {scenario.content}
+                {scenario.subtitle}
               </p>
             </div>
           ))}
