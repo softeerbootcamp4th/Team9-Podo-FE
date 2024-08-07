@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAppContext } from "../../providers/AppProvider";
 import RandomMainSection from "./RandomMainSection/RandomMainSection";
 import RandomExpectations from "./RandomExpectations/RandomExpectations";
@@ -36,21 +36,28 @@ const RandomEventResultPage = () => {
   ];
 
   const ROULETTE_END_CONTAINER_CLASSES = {
-    true: "justify-end",
+    true: "justify-start pt-[16rem]",
     false: "justify-center",
   };
 
   const ROULETTE_END_HEADER_CLASSES = {
-    true: "gap-4",
-    false: "gap-6",
+    true: "gap-4 top-12",
+    false: "gap-6 top-[16rem]",
   };
 
   const [isRouletteEnd, setIsRouletteEnd] = useState(false);
   const [animation, setAnimation] = useState(false);
   const appContext = useAppContext();
   const { isAuth } = appContext;
+  const randomExpectationsRef = useRef<HTMLDivElement>(null);
 
   const headerStyle = ROULETTE_END_HEADER_CLASSES[`${isRouletteEnd}`];
+  const EX_ANSWER = {
+    answer1: "A",
+    answer2: "A",
+    answer3: "A",
+    answer4: "A",
+  };
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -61,42 +68,69 @@ const RandomEventResultPage = () => {
       setAnimation(true);
     }, 5000);
 
+    const fetchData = async () => {
+      const response = await postAnswers(EX_ANSWER);
+
+      console.log(response);
+    };
+
+    fetchData();
+
     return () => {
       clearTimeout(timeoutId);
       clearTimeout(animationTimeout);
     };
   }, []);
 
+  const postAnswers = async (answers: any): Promise<any> => {
+    fetch("http://13.124.183.61:8081/v1/quiz")
+      .then((response) => response.json()) // JSON 응답을 받기
+      .then((data) => console.log(data)) // 성공적으로 응답을 받은 경우 처리
+      .catch((error) => console.error("Error:", error)); // 오류가 발생한 경우 처리
+  };
+
+  useEffect(() => {
+    if (isAuth && randomExpectationsRef.current) {
+      // RandomExpectations 요소로 스크롤
+      randomExpectationsRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [isAuth]);
+
   return (
-    <div className="relative flex flex-col items-center">
+    <div className="flex flex-col items-center transition-all duration-500">
       <div
-        className={`absolute flex w-[36.5rem] flex-col items-center transition-all duration-500 ${headerStyle}`}
+        className={`relative flex h-screen w-screen flex-col items-center ${ROULETTE_END_CONTAINER_CLASSES[`${isRouletteEnd}`]} gap-16 overflow-scroll bg-black transition-all duration-300`}
       >
-        <p className="text-center font-kia-signature-bold text-title-3 text-gray-50">
-          당신의 운전자 유형은?
-        </p>
-        <Roulette
-          textList={DRIVER_TYPE_LIST}
-          targetText={driverType}
-        ></Roulette>
-      </div>
-      <div
-        className={`flex h-screen w-screen flex-col items-center ${ROULETTE_END_CONTAINER_CLASSES[`${isRouletteEnd}`]} gap-16 overflow-scroll bg-black transition-all duration-300`}
-      >
-        {!isRouletteEnd && (
-          <img
-            src={car}
-            alt="자동차"
-            className={`${animation ? "animate-fadeOut" : ""}`}
-          />
-        )}
+        <div
+          className={`absolute flex w-[36.5rem] flex-col items-center duration-500 ${headerStyle}`}
+        >
+          <p className="text-center font-kia-signature-bold text-title-3 text-gray-50">
+            당신의 운전자 유형은?
+          </p>
+          <Roulette
+            textList={DRIVER_TYPE_LIST}
+            targetText={driverType}
+          ></Roulette>
+          {!isRouletteEnd && (
+            <img
+              src={car}
+              alt="자동차"
+              className={`${animation ? "animate-fadeOut" : ""}`}
+            />
+          )}
+        </div>
         {isRouletteEnd && (
-          <RandomMainSection
-            description={description}
-            scenarioList={scenarioList}
-          />
+          <div className="animate-moveSection">
+            <RandomMainSection
+              description={description}
+              scenarioList={scenarioList}
+            />
+            {isAuth && <RandomExpectations ref={randomExpectationsRef} />}
+          </div>
         )}
-        {isRouletteEnd && isAuth && <RandomExpectations />}
       </div>
     </div>
   );
