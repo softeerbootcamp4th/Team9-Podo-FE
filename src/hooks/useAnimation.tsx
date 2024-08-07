@@ -2,16 +2,16 @@ import React, { useRef } from "react";
 
 interface UseAnimationProps {
   startKeyframes: Keyframe[];
-  cancelKeyframes: Keyframe[];
+  cancelKeyframes?: Keyframe[];
   options: KeyframeAnimationOptions;
 }
 
-const useAnimation = ({
+const useAnimation = <T extends Element>({
   startKeyframes,
-  cancelKeyframes,
+  cancelKeyframes = [],
   options,
 }: UseAnimationProps) => {
-  const elementRef = useRef<HTMLDivElement | null>(null);
+  const elementRef = useRef<T | null>(null);
   const animationRef = useRef<Animation | null>(null);
 
   const startAnimation = () => {

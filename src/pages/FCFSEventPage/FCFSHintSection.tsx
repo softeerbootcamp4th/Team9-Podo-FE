@@ -83,16 +83,7 @@ const GasolineInfo = ({ title, value }: GasolineInfo) => {
   return (
     <>
       <div className="m-800 flex-col gap-500 flex-center">
-        <div
-          style={{
-            backgroundImage:
-              "linear-gradient(#000, #000), linear-gradient(93.7deg, #505861 0%, #4B7C83 33.5%, #1B3F72 66.5%, #F2F2F2 100%)",
-            backgroundOrigin: "border-box",
-            backgroundClip: "padding-box, border-box, text",
-            border: "1px solid transparent",
-          }}
-          className="rounded-[12rem] border p-2 px-3 font-kia-signature-bold text-body-2-bold text-gray-100"
-        >
+        <div className="gradient-border rounded-[12rem] border p-2 px-3 font-kia-signature-bold text-body-2-bold text-gray-100">
           {title}
         </div>
         <div className="flex justify-between gap-600">
@@ -147,8 +138,9 @@ const FCFSHintSection = (
 ) => {
   return (
     <>
-      <div className="absolute bottom-16 font-kia-signature-bold text-title-4 text-white">
-        마우스를 올리면 힌트가 나와요
+      <div className="absolute bottom-16 flex-col font-kia-signature-bold text-title-4 text-white flex-center">
+        <p>마우스를 올리면 힌트가 나와요</p>
+        <p>▼</p>
       </div>
       <div
         role="dialog"

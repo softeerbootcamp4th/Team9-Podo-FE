@@ -55,6 +55,19 @@ module.exports = {
         ".flex-center": {
           "@apply flex justify-center items-center": "",
         },
+        ".gradient-border": {
+          "background-image":
+            "linear-gradient(#fff, #fff), linear-gradient(93.7deg, #505861 0%, #4B7C83 33.5%, #1B3F72 66.5%, #F2F2F2 100%)",
+          "background-origin": "border-box",
+          "background-clip": "padding-box, border-box",
+          border: "1px solid transparent",
+        },
+        ".gradient-text": {
+          "background-image":
+            "linear-gradient(93.7deg, #505861 0%, #4B7C83 33.5%, #1B3F72 66.5%, #F2F2F2 100%)",
+          "background-clip": "text",
+          color: "transparent",
+        },
       });
     },
   ],

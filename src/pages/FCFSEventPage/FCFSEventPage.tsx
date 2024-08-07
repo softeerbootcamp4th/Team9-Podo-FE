@@ -4,22 +4,23 @@ import FCFSQuizSection from "./FCFSQuizSection";
 import { fetchFCFSQuizInfo } from "../../api/fetch";
 import { QuizInfo } from "../../types/FCFSEvent";
 import useAnimation from "../../hooks/useAnimation";
-import { fadeInUp, fadeOutDown } from "../../styles/keyframes";
+import { showUp, goDown } from "../../styles/keyframes";
 import { FCFSHintOptions } from "../../styles/options";
+import Glow from "../../components/common/Glow/Glow";
 
 const FCFSEventPage = () => {
   const [quizInfo, setQuizInfo] = useState<QuizInfo | null>(null);
 
-  const { elementRef, startAnimation, stopAnimation } = useAnimation({
-    startKeyframes: fadeInUp,
-    cancelKeyframes: fadeOutDown,
-    options: FCFSHintOptions,
-  });
+  const { elementRef, startAnimation, stopAnimation } =
+    useAnimation<HTMLDivElement>({
+      startKeyframes: showUp,
+      cancelKeyframes: goDown,
+      options: FCFSHintOptions,
+    });
 
   useEffect(() => {
     try {
       fetchData();
-      console.log(quizInfo);
     } catch (error) {
       console.error(error);
     }
@@ -32,7 +33,10 @@ const FCFSEventPage = () => {
 
   return (
     <div className="relative flex h-screen w-screen flex-col items-center overflow-hidden bg-black">
-      <div className="flex flex-grow flex-col items-center justify-center">
+      <div className="z-10">
+        <Glow />
+      </div>
+      <div className="z-20 flex flex-grow flex-col items-center justify-center">
         {quizInfo && <FCFSQuizSection quizInfo={quizInfo} />}
         <FCFSHintSection
           ref={elementRef}

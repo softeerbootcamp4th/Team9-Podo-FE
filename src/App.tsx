@@ -6,7 +6,7 @@ import { AppProvider } from "./providers/AppProvider";
 const App = () => {
   return (
     <AppProvider>
-      <RouterProvider router={router}></RouterProvider>;
+      <RouterProvider router={router}></RouterProvider>
     </AppProvider>
   );
 };

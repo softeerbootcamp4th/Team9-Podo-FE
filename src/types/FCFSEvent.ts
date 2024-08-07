@@ -6,3 +6,7 @@ export interface QuizInfo {
   choice4: string;
   answer: string;
 }
+
+export interface FCFSResult {
+  response: string | number;
+}

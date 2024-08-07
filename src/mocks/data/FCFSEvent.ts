@@ -9,3 +9,11 @@ export const quizInfo: QuizInfo = {
   choice4: "스페이스 블랙",
   answer: "1",
 };
+
+export const FCFSSuccessResult = {
+  response: 5,
+};
+
+export const FCFSFailResult = {
+  response: "failed",
+};

@@ -1,8 +1,25 @@
 export const FCFSHintOptions = {
   duration: 300,
-  fill: "forwards",
+  fill: "forwards" as FillMode,
 };
 
-export const FCFSWinOptions = {};
+export const FCFSWinOptions = {
+  duration: 500,
+  fill: "forwards" as FillMode,
+};
 
-export const fadeOptions = {};
+export const fadeOptions = {
+  duration: 500,
+  fill: "forwards" as FillMode,
+};
+
+export const bothFadeOptions = {
+  duration: 500,
+  fill: "both" as FillMode,
+};
+
+export const glowOptions = {
+  duration: 1000,
+  direction: "alternate" as PlaybackDirection,
+  iterations: Infinity,
+};
