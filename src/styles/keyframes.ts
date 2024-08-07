@@ -28,14 +28,14 @@ export const randomGlow = [
  */
 export const showUp = [
   { transform: "translateY(0px)" },
-  { transform: "translateY(-90%)" },
+  { transform: "translateY(-102%)" },
 ];
 
 /**
  * 선착순 퀴즈 힌트 컴포넌트 아래로 내려가는
  */
 export const goDown = [
-  { transform: "translateY(-90%)" },
+  { transform: "translateY(-102%)" },
   { transform: "translateY(0px)" },
 ];
 

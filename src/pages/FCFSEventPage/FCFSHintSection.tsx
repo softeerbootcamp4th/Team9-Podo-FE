@@ -83,7 +83,7 @@ const GasolineInfo = ({ title, value }: GasolineInfo) => {
   return (
     <>
       <div className="m-800 flex-col gap-500 flex-center">
-        <div className="gradient-border rounded-[12rem] border p-2 px-3 font-kia-signature-bold text-body-2-bold text-gray-100">
+        <div className="rounded-[12rem] border p-2 px-3 font-kia-signature-bold text-body-2-bold text-gray-100 gradient-border">
           {title}
         </div>
         <div className="flex justify-between gap-600">
@@ -147,7 +147,7 @@ const FCFSHintSection = (
         ref={ref}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
-        className="absolute -bottom-2/3 grid h-[44.5rem] w-[86rem] grid-cols-4 grid-rows-4 gap-4 rounded-[2.75rem] bg-white/10 p-700 backdrop-blur-sm"
+        className="absolute -bottom-[43rem] grid h-[44.5rem] w-[86rem] grid-cols-4 grid-rows-4 gap-4 rounded-[2.75rem] bg-white/10 p-700 backdrop-blur-sm"
       >
         {hintInfo.map(({ id, content, img, grid }, index) => {
           return (
@@ -184,6 +184,7 @@ const FCFSHintSection = (
             })}
           </div>
         </div>
+        <div className="h-6 w-screen bg-white">ddddd</div>
       </div>
     </>
   );
