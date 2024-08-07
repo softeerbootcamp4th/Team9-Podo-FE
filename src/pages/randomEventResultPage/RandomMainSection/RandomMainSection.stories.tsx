@@ -1,7 +1,7 @@
 import React from "react";
 import { StoryFn, StoryContext } from "@storybook/react";
-import RandomMainSection from "./RandomMainSection";
 import { AppProvider } from "../../../providers/AppProvider";
+import RandomMainSection from "./RandomMainSection";
 
 export default {
   component: RandomMainSection,

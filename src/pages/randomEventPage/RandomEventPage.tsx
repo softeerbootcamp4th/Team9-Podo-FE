@@ -1,22 +1,22 @@
 import React, { useEffect } from "react";
 import { Outlet, useNavigate, useParams } from "react-router";
 import ProgressBar from "../../components/randomEventPage/ProgressBar/ProgressBar";
-import { quizList } from "../../constants/RandomEventData";
+import { QUIZ_LIST } from "../../constants/RandomEventData";
 
 const RandomEventPage = () => {
   const navigate = useNavigate();
   const { quizIndex } = useParams();
 
   const currentIndex = quizIndex ? parseInt(quizIndex, 10) : 0;
-  const maxIndex = quizList.length - 1;
-  const quizInfo = quizList[currentIndex];
+  const maxIndex = QUIZ_LIST.length - 1;
+  const quizInfo = QUIZ_LIST[currentIndex];
 
   const handleClick = () => {
     return new Promise<void>((resolve) => {
       setTimeout(() => {
         const nextQuizIndex = currentIndex + 1;
 
-        if (nextQuizIndex < quizList.length) {
+        if (nextQuizIndex < QUIZ_LIST.length) {
           navigate(`/event2/${nextQuizIndex}`);
         } else {
           navigate("/event2/result");

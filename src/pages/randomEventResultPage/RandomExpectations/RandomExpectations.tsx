@@ -1,10 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import Toast from "../../../components/common/Toast/Toast";
-
-const ERROR_MSG = {
-  short: "20자 이상 답변을 작성해주세요.",
-  inappropriate: "부적절한 답변입니다. 다시 작성해주세요.",
-};
+import { ERROR_MSG } from "../../../constants/RandomEventData";
 
 const RandomExpectations = () => {
   const [error, setError] = useState<"short" | "inappropriate" | null>(null);

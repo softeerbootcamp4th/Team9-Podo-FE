@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import Toast from "./Toast";
 import { expect } from "@storybook/test";
+import Toast from "./Toast";
 
 describe("Toast Component", () => {
   test("토스트는 올바르게 랜더링 되어야 한다.", async () => {

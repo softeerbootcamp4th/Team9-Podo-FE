@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useAppContext } from "../../providers/AppProvider";
 import RandomMainSection from "./RandomMainSection/RandomMainSection";
 import RandomExpectations from "./RandomExpectations/RandomExpectations";
-import { useAppContext } from "../../providers/AppProvider";
-import car from "../../assets/images/mainCar.png";
 import Roulette from "../../components/randomEventPage/Roulette/Roulette";
-
-const DRIVER_TYPE_LIST = [
-  "안전을 최우선시하는 베스트 드라이버",
-  "호기심 많은 얼리어답터",
-  "감각적인 트렌드 세터",
-  "다이나믹한 모험가",
-];
+import car from "../../assets/images/mainCar.png";
+import { DRIVER_TYPE_LIST } from "../../constants/RandomEventData";
 
 const RandomEventResultPage = () => {
   const driverType = "다이나믹한 모험가";

@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
-import Button from "./Button";
 import { expect } from "@storybook/test";
+import Button from "./Button";
 
 test("버튼이 활성화 되어 있을 때 누를 수 있다", async () => {
   const handleClick = jest.fn();

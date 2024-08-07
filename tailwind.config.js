@@ -56,10 +56,6 @@ module.exports = {
           "0%": { transform: "translateY(100rem)" },
           "100%": { transform: "translateY(0)" },
         },
-        fadeNextPage: {
-          "0%": { opacity: "1", transform: "translateX(0)" },
-          "100%": { opacity: "0", transform: "translateX(40rem)" },
-        },
         fadeOut: {
           "0%": { opacity: "100" },
           "100%": { opacity: "0" },
@@ -68,7 +64,6 @@ module.exports = {
       animation: {
         moveText: "moveText 1s linear forwards",
         moveSection: "moveSection 1s ease-out",
-        fadeNextPage: "fadeTranslate 0.5s ease-out",
         fadeOut: "fadeOut 1s ease-out forwards",
       },
     },

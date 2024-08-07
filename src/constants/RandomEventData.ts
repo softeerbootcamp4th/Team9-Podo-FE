@@ -14,7 +14,7 @@ interface OptionInterface {
   content: string;
 }
 
-export const quizList: Array<RandomQuizInterface> = [
+export const QUIZ_LIST: Array<RandomQuizInterface> = [
   {
     background: img0,
     question: "Q1. 마음은 급한데, 앞차가 너무 천천히 간다면... 당신의 선택은?",
@@ -73,3 +73,20 @@ export const quizList: Array<RandomQuizInterface> = [
     ],
   },
 ];
+
+export const DRIVER_TYPE_LIST: Array<string> = [
+  "안전을 최우선시하는 베스트 드라이버",
+  "호기심 많은 얼리어답터",
+  "감각적인 트렌드 세터",
+  "다이나믹한 모험가",
+];
+
+interface ErrorMessageInterface {
+  short: string;
+  inappropriate: string;
+}
+
+export const ERROR_MSG: ErrorMessageInterface = {
+  short: "20자 이상 답변을 작성해주세요.",
+  inappropriate: "부적절한 답변입니다. 다시 작성해주세요.",
+};

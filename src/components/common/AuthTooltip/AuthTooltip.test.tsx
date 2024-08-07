@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import AuthTooltip from "./AuthTooltip";
 import { expect } from "@storybook/test";
 import userEvent from "@testing-library/user-event";
+import AuthTooltip from "./AuthTooltip";
 
 describe("AuthTooltip Component", () => {
   test("isAuth가 true면 AuthTooltip이 화면에 표시되어야 한다.", () => {

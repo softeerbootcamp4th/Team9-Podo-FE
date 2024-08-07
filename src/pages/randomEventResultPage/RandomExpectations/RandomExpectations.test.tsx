@@ -1,13 +1,9 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { expect } from "@storybook/test";
-import RandomExpectations from "./RandomExpectations";
 import userEvent from "@testing-library/user-event";
-
-const ERROR_MSG = {
-  short: "20자 이상 답변을 작성해주세요.",
-  inappropriate: "부적절한 답변입니다. 다시 작성해주세요.",
-};
+import RandomExpectations from "./RandomExpectations";
+import { ERROR_MSG } from "../../../constants/RandomEventData";
 
 describe("RandomExpectations", () => {
   test("RandomExpectations 는 올바르게 랜더링되어야 한다. ", () => {
