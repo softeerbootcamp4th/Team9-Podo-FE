@@ -20,7 +20,7 @@ interface OptionInterface {
 
 const ANIMATION_CLASS = {
   next: "opacity-0 translate-x-[40rem]",
-  current: "",
+  current: "opacity-100",
   prev: "opacity-0 -translate-x-[40rem]",
 };
 
@@ -49,7 +49,7 @@ const RandomQuizSection = () => {
   return (
     <div
       role="region"
-      className={`animate-fadeNextPage flex h-full flex-col items-center justify-evenly transition-all duration-[500ms] ease-in-out ${animationClass}`}
+      className={`animate-fadeNextPage flex h-full flex-col items-center justify-evenly transition-all duration-[500ms] ease-in-out ${animationClass} opacity-0`}
     >
       <p className="w-[43rem] break-keep text-center font-kia-signature text-title-2 text-white">
         {quizInfo.question}
