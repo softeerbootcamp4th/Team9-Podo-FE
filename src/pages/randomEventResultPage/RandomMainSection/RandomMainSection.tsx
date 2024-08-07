@@ -33,20 +33,22 @@ const RandomMainSection = ({
     //공유 링크 복사
   };
 
+  const { setIsAuth } = useAppContext();
   const onClickHandler = () => {
     if (isAuth) {
       //이벤트 참여 백에 전달
     } else {
       //본인인증 모달
       //본인인증 대기
+      setIsAuth(true);
     }
     //기대평 작성창
   };
 
   return (
-    <div className="animate-moveSection w-[94rem]">
+    <div className="mb-24 w-[94rem]">
       <div className="relative flex h-[36.25rem] w-[94rem] flex-col gap-6 rounded-[2.5rem] border-white border-opacity-15 bg-white bg-opacity-10 p-10 backdrop-blur-lg">
-        <div className="absolute right-0 flex gap-8">
+        <div className="absolute right-0 top-3 flex gap-4 font-kia-signature-bold text-body-1-bold text-white">
           <button onClick={handleRetry}>다시하기</button>
           <button onClick={handleShare}>공유하기</button>
         </div>
