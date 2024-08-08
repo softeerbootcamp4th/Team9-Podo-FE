@@ -1,4 +1,8 @@
-import { PhoneAuthCheckForm, PhoneAuthRequestForm } from "../types/AuthModal";
+import {
+  PhoneAuthCheckForm,
+  PhoneAuthRequestForm,
+  PhoneAuthVerifyResult,
+} from "../types/AuthModal";
 import { FCFSResult, QuizInfo } from "../types/FCFSEvent";
 
 /**
@@ -47,9 +51,9 @@ export const postPhoneAuthRequest = async (
  * @param {PhoneAuthCheckForm} phoneAuthCheckForm - 이름, 전화번호, 인증번호 정보가 들어간 객체
  * @returns
  */
-export const postPhoneAuthCheckRequestTemp = async (
+export const postPhoneAuthCheckRequest = async (
   phoneAuthCheckForm: PhoneAuthCheckForm,
-): Promise<Object> => {
+): Promise<PhoneAuthVerifyResult> => {
   const response = await fetch("/verification/check", {
     method: "POST",
     body: JSON.stringify(phoneAuthCheckForm),

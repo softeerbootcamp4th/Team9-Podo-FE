@@ -1,11 +1,22 @@
-import React, { useState } from "react";
-import { PERSONAL_INFO_NOTICE } from "../../constants/AuthModal";
+import React, { MouseEvent, useState } from "react";
+import { MESSAGE, PERSONAL_INFO_NOTICE } from "../../constants/AuthModal";
 import Button from "../../components/common/Button/Button";
 import { useNavigate } from "react-router";
 import useInputs from "../../hooks/useInputs";
-import { PhoneAuthForm } from "../../types/AuthModal";
+import { verifyCodeCorrector } from "../../utils/auth";
+import { ErrorToastKey, PhoneAuthCheckForm } from "../../types/AuthModal";
+import {
+  postPhoneAuthCheckRequest,
+  postPhoneAuthRequest,
+} from "../../api/fetch";
+import {
+  phoneAutoHyphen,
+  validatePhoneNumber,
+  validateverificationCode,
+} from "../../utils/auth";
+import Toast from "../../components/common/Toast/Toast";
 
-const initialForm: PhoneAuthForm = {
+const initialForm: PhoneAuthCheckForm = {
   name: "",
   phoneNum: "",
   verificationCode: "",
@@ -13,10 +24,51 @@ const initialForm: PhoneAuthForm = {
 
 const AuthModal = () => {
   const [isButtonEnabled, setIsButtonEnabled] = useState(true);
+  const [reReuest, setReReuest] = useState(false);
+  const [toastKey, setToastKey] = useState<ErrorToastKey | null>(null);
+  const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
-  const { form, onChange, reset } = useInputs<PhoneAuthForm>(initialForm);
+  const { form, onChange, reset } = useInputs<PhoneAuthCheckForm>(initialForm);
   const { name, phoneNum, verificationCode } = form;
+
+  // 인증번호 요청 버튼 핸들러
+  const handleRequestPhoneAuthClick = async (
+    event: MouseEvent<HTMLButtonElement>,
+  ) => {
+    event.preventDefault();
+    if (validatePhoneNumber(phoneNum)) {
+      try {
+        setReReuest(true);
+        await postPhoneAuthRequest({ name, phoneNum });
+      } catch (error) {
+        throw new Error();
+      }
+    }
+  };
+
+  // 인증하기 버튼 핸들러
+  const handleReqeustPhoneAuthCheckClick = async (
+    event: MouseEvent<HTMLButtonElement>,
+  ) => {
+    event.preventDefault();
+    if (
+      validatePhoneNumber(phoneNum) &&
+      validateverificationCode(verificationCode)
+    ) {
+      try {
+        const response = await postPhoneAuthCheckRequest(form);
+        if (response.code === 200) {
+          navigate(-1);
+        } else {
+          setToastKey("AUTH_NUM_INCORRECT");
+          setIsError(true);
+        }
+      } catch (error) {
+        throw new Error();
+      }
+    }
+  };
 
   return (
     <div className="h-screen w-screen bg-black opacity-90 flex-center">
@@ -48,6 +100,7 @@ const AuthModal = () => {
             name="name"
             value={name}
             onChange={onChange}
+            maxLength={10}
             placeholder="이름"
           />
           <div className="flex gap-2">
@@ -57,10 +110,15 @@ const AuthModal = () => {
               name="phoneNum"
               value={phoneNum}
               onChange={onChange}
+              onInput={phoneAutoHyphen}
+              maxLength={13}
               placeholder="전화번호"
             />
-            <button className="h-full w-[6.5rem] rounded-lg bg-primary font-kia-signature-bold text-body-1-bold text-gray-950">
-              인증번호
+            <button
+              className="h-full w-[6.5rem] rounded-lg bg-primary font-kia-signature-bold text-body-1-bold text-gray-950"
+              onClick={handleRequestPhoneAuthClick}
+            >
+              {reReuest ? "재전송" : "인증번호"}
             </button>
           </div>
           <input
@@ -69,6 +127,8 @@ const AuthModal = () => {
             name="verificationCode"
             value={verificationCode}
             onChange={onChange}
+            onInput={verifyCodeCorrector}
+            maxLength={6}
             placeholder="인증번호"
           />
         </form>
@@ -88,14 +148,22 @@ const AuthModal = () => {
           </div>
         </div>
         <Button
-          onClick={() => {
-            navigate(-1);
-          }}
+          onClick={handleReqeustPhoneAuthCheckClick}
           isEnabled={isButtonEnabled}
           defaultText="인증하기"
           disabledText="인증하기"
           size="small"
         ></Button>
+        {isError && (
+          <Toast
+            key={toastKey}
+            content={MESSAGE[toastKey as ErrorToastKey]}
+            position="bottom"
+            value={4}
+            delay={4000}
+            duration={1000}
+          />
+        )}
         <div className="pt-700">
           <p className="relative pl-4 font-kia-signature text-body-2-regular text-gray-400 before:absolute before:left-0 before:content-['•']">
             본인인증은 60분간 유지되며, 이벤트 페이지 우측 상단의 새로고침
