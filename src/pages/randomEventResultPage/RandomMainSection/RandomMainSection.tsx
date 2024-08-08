@@ -12,7 +12,7 @@ interface RandomMainInterface {
 
 interface DescriptionInterface {
   content: string;
-  highlited: boolean;
+  highlighted: boolean;
 }
 
 interface ScenarioInterface {
@@ -26,16 +26,19 @@ const RandomMainSection = ({
   scenarioList,
 }: RandomMainInterface) => {
   const appContext = useAppContext();
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const { isAuth, isRandomEnd } = appContext;
   const [isCopied, setIsCopied] = useState(false);
 
   const handleRetry = () => {
-    //navigate("/event2/0");
+    navigate("/event2/0");
   };
 
   const handleShare = () => {
     if (isCopied) return;
+    const url = "https://example.com";
+    navigator.clipboard.writeText(url);
+
     setIsCopied(true);
 
     const CopiedTimeout = setTimeout(() => {
@@ -93,9 +96,9 @@ const RandomMainSection = ({
           {description.map((item, index) => (
             <span
               key={index}
-              className={`${item.highlited ? "text-gray-50" : "text-gray-400"}`}
+              className={`${item.highlighted ? "text-gray-50" : "text-gray-400"}`}
             >
-              {item.content}&nbsp;
+              {item.content}
             </span>
           ))}
         </div>
