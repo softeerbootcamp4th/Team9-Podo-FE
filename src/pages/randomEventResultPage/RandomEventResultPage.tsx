@@ -5,6 +5,27 @@ import RandomExpectations from "./RandomExpectations/RandomExpectations";
 import Roulette from "../../components/randomEventPage/Roulette/Roulette";
 import car from "../../assets/images/mainCar.png";
 import { DRIVER_TYPE_LIST } from "../../constants/RandomEventData";
+interface ApiResponse {
+  isSuccess: boolean;
+  code: number;
+  message: string;
+  result: {
+    result: string;
+    type: string;
+    description: string;
+    scenarioList: {
+      title: string;
+      subtitle: string;
+      image: string;
+    }[];
+  };
+}
+interface AnswerInterface {
+  answer1: string;
+  answer2: string;
+  answer3: string;
+  answer4: string;
+}
 
 const RandomEventResultPage = () => {
   const driverType = "다이나믹한 모험가";
@@ -59,6 +80,34 @@ const RandomEventResultPage = () => {
     answer4: "A",
   };
 
+  const postAnswers = async (
+    answers: AnswerInterface,
+  ): Promise<ApiResponse | null> => {
+    try {
+      const response = await fetch("/v1/lots/application", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Bearer eyJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiZGlyIn0..Wv4DNiAP2hL36vDs.AOwY0A-a8JH6lJWR9T_P3pTgB5o8JaMUwrehYQjpCD1uFhs3aFoWJ-wDLgnX5Jx_YT6dHfJPIXbpG3Oycammh6VQH97U2UtNChPr_t3F9ILqbXAaBcMoWYUx0YqtbgVbOybS6FTMDp7QGhXRZNzXz06gQi46AqbTPOTnVUDICYHHqRq_3efphiRNjTu4JP2OFKq9jIunoLNHCcPZFFidVBafs9R4Z9nEPD-W__uuZOuG111wD4vqjBdshkxs46Y.UyhO03YoDwLvAMmPXHV70g",
+        },
+        body: JSON.stringify(answers),
+      });
+
+      console.log(response);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error posting answers:", error);
+      return null;
+    }
+  };
+
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setIsRouletteEnd(true);
@@ -81,13 +130,6 @@ const RandomEventResultPage = () => {
       clearTimeout(animationTimeout);
     };
   }, []);
-
-  const postAnswers = async (answers: any): Promise<any> => {
-    fetch("http://13.124.183.61:8081/v1/quiz")
-      .then((response) => response.json()) // JSON 응답을 받기
-      .then((data) => console.log(data)) // 성공적으로 응답을 받은 경우 처리
-      .catch((error) => console.error("Error:", error)); // 오류가 발생한 경우 처리
-  };
 
   useEffect(() => {
     if (isAuth && randomExpectationsRef.current) {
