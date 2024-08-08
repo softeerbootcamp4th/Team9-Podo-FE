@@ -8,5 +8,11 @@ module.exports = merge(common, {
     port: 8000,
     historyApiFallback: true,
     open: true,
+    proxy: [
+      {
+        context: ["/verification"],
+        target: "http://3.38.151.69:8080",
+      },
+    ],
   },
 });
