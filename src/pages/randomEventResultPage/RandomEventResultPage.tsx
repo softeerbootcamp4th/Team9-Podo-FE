@@ -1,46 +1,41 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router";
 import { useAppContext } from "../../providers/AppProvider";
 import RandomMainSection from "./RandomMainSection/RandomMainSection";
 import RandomExpectations from "./RandomExpectations/RandomExpectations";
 import Roulette from "../../components/randomEventPage/Roulette/Roulette";
 import car from "../../assets/images/mainCar.png";
 import { DRIVER_TYPE_LIST } from "../../constants/RandomEventData";
-
-interface ApiResponse {
-  isSuccess: boolean;
-  code: number;
-  message: string;
-  result: {
-    result: string;
-    type: string;
-    description: string;
-    scenarioList: {
-      title: string;
-      subtitle: string;
-      image: string;
-    }[];
-  };
-}
-interface AnswerInterface {
-  answer1: string;
-  answer2: string;
-  answer3: string;
-  answer4: string;
-}
-
-interface DescriptionInterface {
-  content: string;
-  highlighted: boolean;
-}
-
-const EX_ANSWER = {
-  answer1: "A",
-  answer2: "A",
-  answer3: "A",
-  answer4: "A",
-};
+import {
+  AnswerInterface,
+  DescriptionInterface,
+  RandomQuizResponseInterface,
+} from "../../types/RandomEvent";
 
 const RandomEventResultPage = () => {
+  const appContext = useAppContext();
+  const { isAuth } = appContext;
+  const location = useLocation();
+  const answer = location.state;
+
+  const [isRouletteEnd, setIsRouletteEnd] = useState(false);
+  const [animation, setAnimation] = useState(false);
+  const [resultData, setResultData] =
+    useState<RandomQuizResponseInterface | null>(null);
+  const randomExpectationsRef = useRef<HTMLDivElement>(null);
+
+  const ROULETTE_END_CONTAINER_CLASSES = {
+    true: "justify-start pt-[16rem]",
+    false: "justify-center",
+  };
+
+  const ROULETTE_END_HEADER_CLASSES = {
+    true: "gap-4 top-12",
+    false: "gap-6 top-[16rem]",
+  };
+
+  const headerStyle = ROULETTE_END_HEADER_CLASSES[`${isRouletteEnd}`];
+
   const getDescription = (description: string): DescriptionInterface[] => {
     const newDes = description.split("/");
     let newDiscription: DescriptionInterface[] = [];
@@ -62,28 +57,9 @@ const RandomEventResultPage = () => {
     return newDiscription;
   };
 
-  const ROULETTE_END_CONTAINER_CLASSES = {
-    true: "justify-start pt-[16rem]",
-    false: "justify-center",
-  };
-
-  const ROULETTE_END_HEADER_CLASSES = {
-    true: "gap-4 top-12",
-    false: "gap-6 top-[16rem]",
-  };
-
-  const [isRouletteEnd, setIsRouletteEnd] = useState(false);
-  const [animation, setAnimation] = useState(false);
-  const appContext = useAppContext();
-  const { isAuth } = appContext;
-  const randomExpectationsRef = useRef<HTMLDivElement>(null);
-  const [resultData, setResultData] = useState<ApiResponse | null>(null);
-
-  const headerStyle = ROULETTE_END_HEADER_CLASSES[`${isRouletteEnd}`];
-
   const postAnswers = async (
     answers: AnswerInterface,
-  ): Promise<ApiResponse | null> => {
+  ): Promise<RandomQuizResponseInterface | null> => {
     try {
       const response = await fetch("/v1/lots/application", {
         method: "POST",
@@ -117,7 +93,8 @@ const RandomEventResultPage = () => {
     }, 5000);
 
     const fetchData = async () => {
-      const response = await postAnswers(EX_ANSWER);
+      console.log(answer);
+      const response = await postAnswers(answer);
 
       console.log(response!.result);
 

@@ -4,22 +4,7 @@ import Button from "../../../components/common/Button/Button";
 import reset from "../../../assets/images/reset.png";
 import share from "../../../assets/images/share.png";
 import { useNavigate } from "react-router";
-
-interface RandomMainInterface {
-  description: Array<DescriptionInterface>;
-  scenarioList: Array<ScenarioInterface>;
-}
-
-interface DescriptionInterface {
-  content: string;
-  highlighted: boolean;
-}
-
-interface ScenarioInterface {
-  image: string;
-  title: string;
-  subtitle: string;
-}
+import { RandomMainInterface } from "../../../types/RandomEvent";
 
 const RandomMainSection = ({
   description,
