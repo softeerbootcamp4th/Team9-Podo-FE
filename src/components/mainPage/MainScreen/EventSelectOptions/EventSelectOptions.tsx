@@ -1,5 +1,5 @@
 import React, { MouseEvent, MouseEventHandler } from "react";
-import Button from "../../common/Button/Button";
+import Button from "../../../common/Button/Button";
 
 interface EventSelectOptionsProps {
   title: string;
@@ -8,6 +8,7 @@ interface EventSelectOptionsProps {
   buttonInfo: {
     onClick: MouseEventHandler<HTMLButtonElement>;
     size: "big" | "small" | "long";
+    isEnabled: boolean;
   };
 }
 
@@ -15,16 +16,9 @@ const EventSelectOptions = ({
   title,
   description,
   img,
-  buttonInfo: { onClick, size },
+  buttonInfo: { size, onClick, isEnabled },
 }: EventSelectOptionsProps) => {
-  return (
-    <>
-      <div>{title}</div>
-      <div>{description}</div>
-      <img src={img} alt="" />
-      <Button onClick={onClick} size={size} isEnabled={true} defaultText="" />
-    </>
-  );
+  return <></>;
 };
 
 export default EventSelectOptions;
