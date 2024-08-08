@@ -1,6 +1,8 @@
 import React from "react";
 import { useAppContext } from "../../../providers/AppProvider";
 import Button from "../../../components/common/Button/Button";
+import reset from "../../../assets/images/reset.png";
+import share from "../../../assets/images/share.png";
 
 interface RandomMainInterface {
   description: Array<DescriptionInterface>;
@@ -48,9 +50,14 @@ const RandomMainSection = ({
   return (
     <div className="mb-24 w-[94rem]">
       <div className="relative flex h-[36.25rem] w-[94rem] flex-col gap-6 rounded-[2.5rem] border-white border-opacity-15 bg-white bg-opacity-10 p-10 backdrop-blur-lg">
-        <div className="absolute right-0 top-3 flex gap-4 font-kia-signature-bold text-body-1-bold text-white">
-          <button onClick={handleRetry}>다시하기</button>
-          <button onClick={handleShare}>공유하기</button>
+        <div className="absolute -top-10 right-0 flex gap-4 font-kia-signature-bold text-body-1-bold text-white">
+          <button onClick={handleRetry} className="flex gap-2">
+            <img src={reset} alt="다시하기"></img>다시하기
+          </button>
+          <button onClick={handleShare} className="flex gap-2">
+            <img src={share} alt="공유하기" />
+            공유하기
+          </button>
         </div>
         <div className="flex font-kia-signature-bold text-title-3">
           {description.map((item, index) => (
