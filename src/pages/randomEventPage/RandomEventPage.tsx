@@ -20,7 +20,7 @@ const RandomEventPage = () => {
 
   const handleClick = (newAnswer: AnswerInterface) => {
     setAnswer(newAnswer);
-    console.log(newAnswer);
+
     setTimeout(() => {
       const nextQuizIndex = currentIndex + 1;
 

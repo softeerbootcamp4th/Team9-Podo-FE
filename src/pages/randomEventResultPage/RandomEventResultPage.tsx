@@ -14,15 +14,15 @@ import {
 
 const RandomEventResultPage = () => {
   const appContext = useAppContext();
-  const { isAuth } = appContext;
   const location = useLocation();
-  const answer = location.state;
-
   const [isRouletteEnd, setIsRouletteEnd] = useState(false);
   const [animation, setAnimation] = useState(false);
   const [resultData, setResultData] =
     useState<RandomQuizResponseInterface | null>(null);
   const randomExpectationsRef = useRef<HTMLDivElement>(null);
+
+  const { isAuth } = appContext;
+  const answer = location.state;
 
   const ROULETTE_END_CONTAINER_CLASSES = {
     true: "justify-start pt-[16rem]",
@@ -37,10 +37,10 @@ const RandomEventResultPage = () => {
   const headerStyle = ROULETTE_END_HEADER_CLASSES[`${isRouletteEnd}`];
 
   const getDescription = (description: string): DescriptionInterface[] => {
-    const newDes = description.split("/");
+    const descriptionList = description.split("/");
     let newDiscription: DescriptionInterface[] = [];
 
-    newDes.forEach((element) => {
+    descriptionList.forEach((element) => {
       if (element[0] === "h") {
         newDiscription.push({
           content: element.substring(1),
@@ -92,22 +92,21 @@ const RandomEventResultPage = () => {
       setAnimation(true);
     }, 5000);
 
-    const fetchData = async () => {
-      console.log(answer);
-      const response = await postAnswers(answer);
-
-      console.log(response!.result);
-
-      setResultData(response);
-    };
-
-    fetchData();
-
     return () => {
       clearTimeout(timeoutId);
       clearTimeout(animationTimeout);
     };
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await postAnswers(answer);
+
+      setResultData(response);
+    };
+
+    fetchData();
+  });
 
   useEffect(() => {
     if (isAuth && randomExpectationsRef.current) {

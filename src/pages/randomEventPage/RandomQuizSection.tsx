@@ -6,17 +6,17 @@ import {
   RandomQuizSectionInterface,
 } from "../../types/RandomEvent";
 
-const ANIMATION_CLASS = {
-  next: "opacity-0 translate-x-[40rem]",
-  current: "opacity-100",
-  prev: "opacity-0 -translate-x-[40rem]",
-};
-
 const RandomQuizSection = () => {
   const { quizInfo, answer, currentIndex, onClick } =
     useOutletContext<RandomQuizSectionInterface>();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [animationClass, setAnimationClass] = useState("");
+
+  const ANIMATION_CLASS = {
+    next: "opacity-0 translate-x-[40rem]",
+    current: "opacity-100",
+    prev: "opacity-0 -translate-x-[40rem]",
+  };
 
   const onClickHandler = (index: number) => {
     setAnimationClass(ANIMATION_CLASS.prev);
