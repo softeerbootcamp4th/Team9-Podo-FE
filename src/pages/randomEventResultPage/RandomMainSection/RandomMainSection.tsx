@@ -1,22 +1,23 @@
 import React, { useState } from "react";
 import { useAppContext } from "../../../providers/AppProvider";
+import { useNavigate } from "react-router";
 import Button from "../../../components/common/Button/Button";
 import reset from "../../../assets/images/reset.png";
 import share from "../../../assets/images/share.png";
-import { useNavigate } from "react-router";
 import { RandomMainInterface } from "../../../types/RandomEvent";
+import Tooltip from "../../../components/randomEventPage/Tooltip/Tooltip";
 
 const RandomMainSection = ({
   description,
   scenarioList,
 }: RandomMainInterface) => {
   const appContext = useAppContext();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const { isAuth, isRandomEnd } = appContext;
   const [isCopied, setIsCopied] = useState(false);
 
   const handleRetry = () => {
-    navigate("/event2/0");
+    //navigate("/event2/0");
   };
 
   const handleShare = () => {
@@ -49,25 +50,10 @@ const RandomMainSection = ({
     <div className="mb-24 w-[94rem]">
       <div className="relative flex h-[36.25rem] w-[94rem] flex-col gap-6 rounded-[2.5rem] border-white border-opacity-15 bg-white bg-opacity-10 p-10 backdrop-blur-lg">
         <div className="absolute -top-10 right-0 flex gap-4 font-kia-signature-bold text-body-1-bold text-white">
-          <div
-            className={`absolute -top-[4.5rem] right-0 text-nowrap rounded-full bg-[#4B7C83] px-6 py-3 transition-opacity duration-200 flex-center ${isCopied ? "opacity-100" : "animate-fadeOut"}`}
-          >
-            클립보드에 URL이 복사되었습니다
-            <div
-              style={{
-                position: "absolute",
-                transform: "rotate(90deg)",
-                top: "50%",
-                left: "80%",
-                border: "solid transparent",
-                borderTopColor: "#4B7C83",
-                borderWidth: "20px",
-                marginLeft: "-20px",
-                pointerEvents: "none",
-                content: '""',
-              }}
-            ></div>
-          </div>
+          <Tooltip
+            content="클립보드에 URL이 복사되었습니다"
+            isVisible={isCopied}
+          />
 
           <button onClick={handleRetry} className="flex gap-2">
             <img src={reset} alt="다시하기"></img>다시하기
