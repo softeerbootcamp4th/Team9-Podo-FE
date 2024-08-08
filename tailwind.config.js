@@ -57,8 +57,8 @@ module.exports = {
           "100%": { transform: "translateY(0)" },
         },
         fadeOut: {
-          "0%": { opacity: "100" },
-          "100%": { opacity: "0" },
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0", display: "none" },
         },
       },
       animation: {
