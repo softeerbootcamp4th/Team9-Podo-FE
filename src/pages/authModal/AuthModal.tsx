@@ -8,7 +8,7 @@ const AuthModal = () => {
       <form>
         <input type="text" placeholder="이름" />
         <div>
-          <input type="number" placeholder="전화번호" />
+          <input type="text" placeholder="전화번호" />
           <button>인증번호</button>
         </div>
         <input type="number" placeholder="인증번호" />
