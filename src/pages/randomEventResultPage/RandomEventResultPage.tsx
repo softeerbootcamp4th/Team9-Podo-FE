@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router";
 import { useAppContext } from "../../providers/AppProvider";
+import { postEvent2Answers } from "../../api/post";
 import RandomMainSection from "./RandomMainSection/RandomMainSection";
 import RandomExpectations from "./RandomExpectations/RandomExpectations";
 import Roulette from "../../components/randomEventPage/Roulette/Roulette";
 import car from "../../assets/images/mainCar.png";
 import { DRIVER_TYPE_LIST } from "../../constants/RandomEventData";
 import {
-  AnswerInterface,
   DescriptionInterface,
   RandomQuizResponseInterface,
 } from "../../types/RandomEvent";
@@ -57,32 +57,6 @@ const RandomEventResultPage = () => {
     return newDiscription;
   };
 
-  const postAnswers = async (
-    answers: AnswerInterface,
-  ): Promise<RandomQuizResponseInterface | null> => {
-    try {
-      const response = await fetch("/v1/lots/application", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiZGlyIn0..Wv4DNiAP2hL36vDs.AOwY0A-a8JH6lJWR9T_P3pTgB5o8JaMUwrehYQjpCD1uFhs3aFoWJ-wDLgnX5Jx_YT6dHfJPIXbpG3Oycammh6VQH97U2UtNChPr_t3F9ILqbXAaBcMoWYUx0YqtbgVbOybS6FTMDp7QGhXRZNzXz06gQi46AqbTPOTnVUDICYHHqRq_3efphiRNjTu4JP2OFKq9jIunoLNHCcPZFFidVBafs9R4Z9nEPD-W__uuZOuG111wD4vqjBdshkxs46Y.UyhO03YoDwLvAMmPXHV70g",
-        },
-        body: JSON.stringify(answers),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Error posting answers:", error);
-      return null;
-    }
-  };
-
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setIsRouletteEnd(true);
@@ -100,7 +74,7 @@ const RandomEventResultPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await postAnswers(answer);
+      const response = await postEvent2Answers(answer);
 
       setResultData(response);
     };
