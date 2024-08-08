@@ -13,7 +13,7 @@ describe("AuthModal Component 렌더링 및 입력 테스트", () => {
     const phoneNumberInput = screen.getByPlaceholderText("전화번호");
     expect(phoneNumberInput).toBeInTheDocument();
 
-    const authButton = screen.getByRole("button", { name: "인증하기" });
+    const authButton = screen.getByRole("button", { name: "인증하기 car" });
     expect(authButton).toBeInTheDocument();
   });
 

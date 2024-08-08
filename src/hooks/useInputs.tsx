@@ -17,7 +17,8 @@ import React, { ChangeEvent, useState } from "react";
  *       <input name="name" placeholder="이름" onChange={onChange} value={name} />
  *     </div>
  *   );
- * }; */
+ * };
+ * */
 const useInputs = <T extends Object>(initialForm: T) => {
   const [form, setForm] = useState(initialForm);
 
