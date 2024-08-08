@@ -12,12 +12,12 @@ const RandomMainSection = ({
   scenarioList,
 }: RandomMainInterface) => {
   const appContext = useAppContext();
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const { isAuth, isRandomEnd } = appContext;
   const [isCopied, setIsCopied] = useState(false);
 
   const handleRetry = () => {
-    //navigate("/event2/0");
+    navigate("/event2/0");
   };
 
   const handleShare = () => {
@@ -79,7 +79,7 @@ const RandomMainSection = ({
             <div key={index} className="flex flex-col gap-3">
               <p className="font-kia-signature-bold text-body-1-bold text-gray-50">{`${index + 1}.`}</p>
               <img
-                src={scenario.image}
+                src={`http://${scenario.image}`}
                 alt="시나리오"
                 className="h-[15.25rem] w-[28.75rem] rounded-xl"
               />

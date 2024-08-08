@@ -80,7 +80,7 @@ const RandomEventResultPage = () => {
     };
 
     fetchData();
-  });
+  }, []);
 
   useEffect(() => {
     if (isAuth && randomExpectationsRef.current) {

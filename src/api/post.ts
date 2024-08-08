@@ -7,7 +7,7 @@ export const postEvent2Answers = async (
   answers: AnswerInterface,
 ): Promise<RandomQuizResponseInterface | null> => {
   try {
-    const response = await fetch("/v1/lots/application", {
+    const response = await fetch("/lots/type", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
