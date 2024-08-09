@@ -59,14 +59,24 @@ module.exports = {
           "100%": { transform: "translateY(0)" },
         },
         fadeOut: {
-          "0%": { opacity: "1" },
-          "100%": { opacity: "0", display: "none" },
+          "0%": { opacity: "100" },
+          "100%": { opacity: "0" },
+        },
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "100" },
+        },
+        moveLanding: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-160rem)", display: "none" },
         },
       },
       animation: {
         moveText: "moveText 1s linear forwards",
         moveSection: "moveSection 1s ease-out",
         fadeOut: "fadeOut 1s ease-out forwards",
+        fadeIn: "fadeIn 1s ease-out forwards",
+        moveLanding: "moveLanding 0.5s linear 0.1s forwards",
       },
     },
   },

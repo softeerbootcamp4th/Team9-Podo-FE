@@ -9,7 +9,7 @@ import useAnimation from "../../../hooks/useAnimation";
 
 const EventSelectSection = () => {
   const [isLanding, setIsLanding] = useState(true);
-  const [animation, setAnimation] = useState(false);
+
   const { elementRef: landingCarRef, startAnimation: landingCarAnimation } =
     useAnimation<HTMLImageElement>({
       startKeyframes: [
@@ -18,11 +18,17 @@ const EventSelectSection = () => {
       ],
       options: { duration: 500, fill: "forwards", delay: 100 },
     });
-  const { elementRef: mainCarRef, startAnimation: mainCarAnimation } =
-    useAnimation<HTMLImageElement>({
-      startKeyframes: [{ opacity: "0" }, { opacity: "100" }],
-      options: { duration: 2000, fill: "forwards", delay: 1000 },
-    });
+  const {
+    elementRef: mainCarRef,
+    startAnimation: mainCarAnimation,
+    stopAnimation: mainCarStopAnimation,
+  } = useAnimation<HTMLImageElement>({
+    startKeyframes: [{ opacity: "0" }, { opacity: "100" }],
+    options: { duration: 2000, fill: "forwards", delay: 1000 },
+    cancelKeyframes: [{ opacity: "100" }, { opacity: "0" }],
+    cancelOptions: { duration: 200, fill: "forwards" },
+  });
+
   const { elementRef: titleRef, startAnimation: titleAnimation } =
     useAnimation<HTMLDivElement>({
       startKeyframes: [{ opacity: "0" }, { opacity: "100" }],
@@ -42,6 +48,7 @@ const EventSelectSection = () => {
 
     const landingTimeout = setTimeout(() => {
       setIsLanding(false);
+      mainCarStopAnimation();
     }, 4000);
 
     return () => clearTimeout(landingTimeout);
@@ -49,23 +56,12 @@ const EventSelectSection = () => {
 
   return (
     <div className="relative h-screen w-screen snap-start flex-col flex-center">
-      {isLanding && (
-        <div className="absolute z-10 h-screen w-screen bg-black">
-          <div className="-z-10 overflow-hidden opacity-0" ref={bgRef}>
-            <Glow />
-          </div>
-          <img
-            src={landingCar}
-            alt=""
-            className="absolute -bottom-96 -right-1/2 h-[64rem] w-[150rem]"
-            ref={landingCarRef}
-          />
+      <div className="absolute -z-20 h-screen w-screen bg-black">
+        <div className="-z-10 overflow-hidden opacity-0" ref={bgRef}>
+          <Glow />
         </div>
-      )}
-      <div className="absolute -z-20 h-screen w-screen bg-black"></div>
-      <div className="-z-10 overflow-hidden">
-        <Glow />
       </div>
+
       <div
         className={`${!isLanding ? "top-12" : "top-52"} absolute z-10 flex flex-col items-center justify-start gap-[9rem] transition-all duration-500`}
       >
@@ -83,28 +79,39 @@ const EventSelectSection = () => {
             </p>
           </div>
         </div>
-        <img
-          src={mainCar}
-          alt=""
-          className={`${isLanding ? "" : "hidden"} opacity-0`} //페이드 아웃 구현필요
-          ref={mainCarRef}
-        />
       </div>
+      <img
+        src={mainCar}
+        alt=""
+        className={`absolute top-96 z-10 opacity-0`}
+        ref={mainCarRef}
+      />
 
-      <div className="h-full w-full flex-center">
-        <EventSelectOptions
-          title="event 1."
-          description={`매일 선착순 100명! \n퀴즈 풀고 스타벅스 커피 받아가자!`}
-          img={e1Gift}
-          buttonInfo={{ size: "small", isEnabled: true, onClick: () => {} }}
+      {isLanding && (
+        <img
+          src={landingCar}
+          alt=""
+          className="absolute -bottom-96 -right-1/2 h-[64rem] w-[150rem]"
+          ref={landingCarRef}
         />
-        <EventSelectOptions
-          title="event 2."
-          description={`내 운전자 유형에 맞는 셀토스 라이프스타일 추천받고,\n 시그니엘 숙박권 당첨의 기회!`}
-          img={e2Gift}
-          buttonInfo={{ size: "small", isEnabled: true, onClick: () => {} }}
-        />
-      </div>
+      )}
+
+      {!isLanding && (
+        <div className="animate-fadeIn h-full w-full flex-center">
+          <EventSelectOptions
+            title="event 1."
+            description={`매일 선착순 100명! \n퀴즈 풀고 스타벅스 커피 받아가자!`}
+            img={e1Gift}
+            buttonInfo={{ size: "small", isEnabled: true, onClick: () => {} }}
+          />
+          <EventSelectOptions
+            title="event 2."
+            description={`내 운전자 유형에 맞는 셀토스 라이프스타일 추천받고,\n 시그니엘 숙박권 당첨의 기회!`}
+            img={e2Gift}
+            buttonInfo={{ size: "small", isEnabled: true, onClick: () => {} }}
+          />
+        </div>
+      )}
     </div>
   );
 };
