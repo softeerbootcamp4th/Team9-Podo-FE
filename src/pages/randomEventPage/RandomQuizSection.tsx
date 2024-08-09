@@ -1,39 +1,53 @@
 import React, { useEffect, useState } from "react";
 import { useOutletContext } from "react-router";
 import Option from "../../components/randomEventPage/Option/Option";
-
-interface RandomQuizSectionInterface {
-  quizInfo: QuizInfoInterface;
-  onClick: Function;
-}
-
-interface QuizInfoInterface {
-  background: string;
-  question: string;
-  optionList: Array<OptionInterface>;
-}
-
-interface OptionInterface {
-  label: string;
-  content: string;
-}
-
-const ANIMATION_CLASS = {
-  next: "opacity-0 translate-x-[40rem]",
-  current: "opacity-100",
-  prev: "opacity-0 -translate-x-[40rem]",
-};
+import {
+  AnswerInterface,
+  RandomQuizSectionInterface,
+} from "../../types/RandomEvent";
 
 const RandomQuizSection = () => {
-  const { quizInfo, onClick } = useOutletContext<RandomQuizSectionInterface>();
+  const { quizInfo, answer, currentIndex, onClick } =
+    useOutletContext<RandomQuizSectionInterface>();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [animationClass, setAnimationClass] = useState("");
 
-  const onClickHandler = async (index: number) => {
+  const ANIMATION_CLASS = {
+    next: "opacity-0 translate-x-[40rem]",
+    current: "opacity-100",
+    prev: "opacity-0 -translate-x-[40rem]",
+  };
+
+  const onClickHandler = (index: number) => {
     setAnimationClass(ANIMATION_CLASS.prev);
     setSelectedIndex(index);
 
-    await onClick(); //페이지 이동
+    if (index === 0) {
+      onClick(handleAnswerChange("A"));
+    } else if (index === 1) {
+      onClick(handleAnswerChange("B"));
+    }
+  };
+
+  const handleAnswerChange = (newAnswer: string) => {
+    const updatedAnswer: AnswerInterface = { ...answer };
+
+    switch (currentIndex) {
+      case 0:
+        updatedAnswer.answer1 = newAnswer;
+        break;
+      case 1:
+        updatedAnswer.answer2 = newAnswer;
+        break;
+      case 2:
+        updatedAnswer.answer3 = newAnswer;
+        break;
+      case 3:
+        updatedAnswer.answer4 = newAnswer;
+        break;
+    }
+
+    return updatedAnswer;
   };
 
   useEffect(() => {

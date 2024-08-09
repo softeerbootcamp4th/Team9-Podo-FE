@@ -10,6 +10,14 @@ module.exports = merge(common, {
     open: true,
     proxy: [
       {
+        context: ["/v1"],
+        target: "http://3.38.151.69:8080",
+      },
+      {
+        context: ["/lots"],
+        target: "http://3.38.151.69:8080",
+      },
+      {
         context: ["/verification"],
         target: "http://3.38.151.69:8080",
       },

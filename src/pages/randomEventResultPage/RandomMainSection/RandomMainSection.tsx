@@ -1,36 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAppContext } from "../../../providers/AppProvider";
+import { useNavigate } from "react-router";
 import Button from "../../../components/common/Button/Button";
-
-interface RandomMainInterface {
-  description: Array<DescriptionInterface>;
-  scenarioList: Array<ScenarioInterface>;
-}
-
-interface DescriptionInterface {
-  content: string;
-  highlited: boolean;
-}
-
-interface ScenarioInterface {
-  image: string;
-  title: string;
-  subtitle: string;
-}
+import reset from "../../../assets/images/reset.png";
+import share from "../../../assets/images/share.png";
+import { RandomMainInterface } from "../../../types/RandomEvent";
+import Tooltip from "../../../components/randomEventPage/Tooltip/Tooltip";
 
 const RandomMainSection = ({
   description,
   scenarioList,
 }: RandomMainInterface) => {
   const appContext = useAppContext();
+  const navigate = useNavigate();
   const { isAuth, isRandomEnd } = appContext;
+  const [isCopied, setIsCopied] = useState(false);
 
   const handleRetry = () => {
-    //다시하기
+    navigate("/event2/0");
   };
 
   const handleShare = () => {
-    //공유 링크 복사
+    if (isCopied) return;
+    const url = "https://example.com";
+    navigator.clipboard.writeText(url);
+
+    setIsCopied(true);
+
+    const CopiedTimeout = setTimeout(() => {
+      setIsCopied(false);
+    }, 4000);
+
+    return () => clearTimeout(CopiedTimeout);
   };
 
   const { setIsAuth } = useAppContext();
@@ -48,17 +49,27 @@ const RandomMainSection = ({
   return (
     <div className="mb-24 w-[94rem]">
       <div className="relative flex h-[36.25rem] w-[94rem] flex-col gap-6 rounded-[2.5rem] border-white border-opacity-15 bg-white bg-opacity-10 p-10 backdrop-blur-lg">
-        <div className="absolute right-0 top-3 flex gap-4 font-kia-signature-bold text-body-1-bold text-white">
-          <button onClick={handleRetry}>다시하기</button>
-          <button onClick={handleShare}>공유하기</button>
+        <div className="absolute -top-10 right-0 flex gap-4 font-kia-signature-bold text-body-1-bold text-white">
+          <Tooltip
+            content="클립보드에 URL이 복사되었습니다"
+            isVisible={isCopied}
+          />
+
+          <button onClick={handleRetry} className="flex gap-2">
+            <img src={reset} alt="다시하기"></img>다시하기
+          </button>
+          <button onClick={handleShare} className="flex gap-2">
+            <img src={share} alt="공유하기" />
+            공유하기
+          </button>
         </div>
         <div className="flex font-kia-signature-bold text-title-3">
           {description.map((item, index) => (
             <span
               key={index}
-              className={`${item.highlited ? "text-gray-50" : "text-gray-400"}`}
+              className={`${item.highlighted ? "text-gray-50" : "text-gray-400"}`}
             >
-              {item.content}&nbsp;
+              {item.content}
             </span>
           ))}
         </div>
@@ -68,7 +79,7 @@ const RandomMainSection = ({
             <div key={index} className="flex flex-col gap-3">
               <p className="font-kia-signature-bold text-body-1-bold text-gray-50">{`${index + 1}.`}</p>
               <img
-                src={scenario.image}
+                src={`http://${scenario.image}`}
                 alt="시나리오"
                 className="h-[15.25rem] w-[28.75rem] rounded-xl"
               />
@@ -97,7 +108,7 @@ const RandomMainSection = ({
             isAuth ? "이벤트 참여하기" : "본인인증하고 이벤트 참여하기"
           }
           disabledText="이벤트 참여 완료"
-          isEnabled={!isRandomEnd}
+          isEnabled={!isRandomEnd && !isAuth}
         ></Button>
       </div>
     </div>
