@@ -15,9 +15,6 @@ interface UseAnimationProps {
  * @param {KeyframeAnimationOptions} props.options - 시작 시 적용할 keyframe 배열
  * @returns
  * @example
- * import React from 'react';
- * import { useAnimation } from './src/hooks/useAnimation';
- *
  * const AnimatedComponent = () => {
  *   const { elementRef, startAnimation } = useAnimation({
  *     startKeyframes: [

@@ -143,48 +143,52 @@ const FCFSHintSection = (
         <p>▼</p>
       </div>
       <div
-        role="dialog"
+        className="absolute -bottom-[43rem] h-[44.5rem] w-[86rem]"
         ref={ref}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
-        className="absolute -bottom-[43rem] grid h-[44.5rem] w-[86rem] grid-cols-4 grid-rows-4 gap-4 rounded-[2.75rem] bg-white/10 p-700 backdrop-blur-sm"
       >
-        {hintInfo.map(({ id, content, img, grid }, index) => {
-          return (
-            <div role="listitem" key={id} className={`${grid}`}>
-              <div
-                style={{ backgroundImage: `url(${img})` }}
-                className="h-full w-full rounded-[1.25rem] bg-cover bg-center font-kia-signature-bold text-title-4 text-white flex-center"
-              >
-                {content}
+        <div
+          role="dialog"
+          className="grid h-full grid-cols-4 grid-rows-4 gap-4 rounded-[2.75rem] bg-white/10 p-700 backdrop-blur-sm"
+        >
+          {hintInfo.map(({ id, content, img, grid }, index) => {
+            return (
+              <div role="listitem" key={id} className={`${grid}`}>
+                <div
+                  style={{ backgroundImage: `url(${img})` }}
+                  className="h-full w-full rounded-[1.25rem] bg-cover bg-center font-kia-signature-bold text-title-4 text-white flex-center"
+                >
+                  {content}
+                </div>
               </div>
-            </div>
-          );
-        })}
-        <div className="col-start-4 col-end-5 row-start-1 row-end-5 rounded-[1.25rem] bg-gradient-to-b from-black to-gray-300">
-          <div
-            style={{ backgroundImage: `url(${hint7})` }}
-            className="h-full w-full bg-contain bg-bottom bg-no-repeat"
-            role="listitem"
-          >
-            {gasolineInfo.map(({ id, title, value }, index) => {
-              if (index === 0)
-                return (
-                  <div key={id}>
-                    <GasolineInfo id={id} title={title} value={value} />
-                    <div className="flex-center">
-                      <hr className="w-4/5 bg-gray-500" />
+            );
+          })}
+          <div className="col-start-4 col-end-5 row-start-1 row-end-5 rounded-[1.25rem] bg-gradient-to-b from-black to-gray-300">
+            <div
+              style={{ backgroundImage: `url(${hint7})` }}
+              className="h-full w-full bg-contain bg-bottom bg-no-repeat"
+              role="listitem"
+            >
+              {gasolineInfo.map(({ id, title, value }, index) => {
+                if (index === 0)
+                  return (
+                    <div key={id}>
+                      <GasolineInfo id={id} title={title} value={value} />
+                      <div className="flex-center">
+                        <hr className="w-4/5 bg-gray-500" />
+                      </div>
                     </div>
-                  </div>
-                );
-              else
-                return (
-                  <GasolineInfo key={8} id={id} title={title} value={value} />
-                );
-            })}
+                  );
+                else
+                  return (
+                    <GasolineInfo key={8} id={id} title={title} value={value} />
+                  );
+              })}
+            </div>
           </div>
         </div>
-        <div className="h-6 w-screen bg-white">ddddd</div>
+        <div className="h-[30rem] w-full bg-transparent"></div>
       </div>
     </>
   );

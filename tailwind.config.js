@@ -46,6 +46,8 @@ module.exports = {
         600: "1.25rem",
         700: "1.5rem",
         800: "2rem",
+        900: "2.25rem",
+        1000: "2.5rem",
       },
       keyframes: {
         moveText: {
