@@ -9,7 +9,7 @@ export const phoneAutoHyphen = (event: ChangeEvent<HTMLInputElement>) => {
 
 export const validatePhoneNumber = (
   phoneNum: string,
-  animation: () => void,
+  animation: () => void = () => {},
 ) => {
   const phonePattern = /^\d{3}-\d{4}-\d{4}$/;
   return phonePattern.test(phoneNum) ? true : (animation(), false);
@@ -21,7 +21,7 @@ export const verifyCodeCorrector = (event: ChangeEvent<HTMLInputElement>) => {
 
 export const validateverificationCode = (
   verificationCode: string,
-  animation: () => void,
+  animation: () => void = () => {},
 ) => {
   const verificationCodePattern = /^\d{6}$/;
   return verificationCodePattern.test(verificationCode)
@@ -29,6 +29,9 @@ export const validateverificationCode = (
     : (animation(), false);
 };
 
-export const validateName = (name: string, animation: () => void) => {
+export const validateName = (
+  name: string,
+  animation: () => void = () => {},
+) => {
   return name.length !== 0 ? true : (animation(), false);
 };

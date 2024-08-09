@@ -26,7 +26,7 @@ const initialForm: PhoneAuthCheckForm = {
 };
 
 const AuthModal = () => {
-  const [isButtonEnabled, setIsButtonEnabled] = useState(true);
+  const [isAgree, setIsAgree] = useState("-1"); // 0이면 동의, 1이면 미동의
   const [reRequesst, setReRequesst] = useState(false);
   const [toastKey, setToastKey] = useState<ErrorToastKey | null>(null);
   const [isError, setIsError] = useState(false);
@@ -100,7 +100,7 @@ const AuthModal = () => {
 
   return (
     <div className="h-screen w-screen bg-black opacity-90 flex-center">
-      <div className="h-[52.75rem] w-[35.25rem] flex-col rounded-[2rem] bg-white/20 p-6 px-8 text-white flex-center">
+      <div className="relative h-[52.75rem] w-[35.25rem] flex-col rounded-[2rem] bg-white/20 p-6 px-8 text-white flex-center">
         <div className="pb-700 font-kia-signature-bold text-title-2">
           개인정보 수집, 이용에 대한 동의
         </div>
@@ -172,15 +172,36 @@ const AuthModal = () => {
             참여하실 수 없습니다.
           </p>
           <div className="gap-1000 pt-700 flex-center">
-            동의
-            <input type="radio" value="" />
-            미동의
-            <input type="radio" value="" />
+            <label>
+              동의
+              <input
+                type="radio"
+                value="0"
+                checked={isAgree === "0"}
+                onChange={(event) => setIsAgree(event.target.value)}
+                name="agree"
+              />
+            </label>
+            <label>
+              미동의
+              <input
+                type="radio"
+                value="1"
+                checked={isAgree === "1"}
+                onChange={(event) => setIsAgree(event.target.value)}
+                name="disagree"
+              />
+            </label>
           </div>
         </div>
         <Button
           onClick={handleReqeustPhoneAuthCheckClick}
-          isEnabled={isButtonEnabled}
+          isEnabled={
+            isAgree === "0" &&
+            validateName(name) &&
+            validatePhoneNumber(phoneNum) &&
+            validateverificationCode(verificationCode)
+          }
           defaultText="인증하기"
           disabledText="인증하기"
           size="small"
@@ -190,7 +211,7 @@ const AuthModal = () => {
             key={toastKey}
             content={MESSAGE[toastKey as ErrorToastKey]}
             position="bottom"
-            value={4}
+            value={6}
             delay={4000}
             duration={1000}
           />

@@ -2,7 +2,7 @@ import { PhoneAuthVerifyResult } from "../../types/AuthModal";
 
 export const phoneAuthCheckResult: PhoneAuthVerifyResult = {
   isSuccess: true,
-  code: 200,
+  code: 400,
   message: "요청에 성공했습니다.",
   result: {
     accessToken:
