@@ -3,7 +3,7 @@ import { MESSAGE, PERSONAL_INFO_NOTICE } from "../../constants/AuthModal";
 import Button from "../../components/common/Button/Button";
 import { useNavigate } from "react-router";
 import useInputs from "../../hooks/useInputs";
-import { verifyCodeCorrector } from "../../utils/auth";
+import { validateName, verifyCodeCorrector } from "../../utils/auth";
 import { ErrorToastKey, PhoneAuthCheckForm } from "../../types/AuthModal";
 import {
   postPhoneAuthCheckRequest,
@@ -15,6 +15,9 @@ import {
   validateverificationCode,
 } from "../../utils/auth";
 import Toast from "../../components/common/Toast/Toast";
+import useAnimation from "../../hooks/useAnimation";
+import { shakeHorizontal } from "../../styles/keyframes";
+import { shakeInputOptions } from "../../styles/options";
 
 const initialForm: PhoneAuthCheckForm = {
   name: "",
@@ -24,9 +27,30 @@ const initialForm: PhoneAuthCheckForm = {
 
 const AuthModal = () => {
   const [isButtonEnabled, setIsButtonEnabled] = useState(true);
-  const [reReuest, setReReuest] = useState(false);
+  const [reRequesst, setReRequesst] = useState(false);
   const [toastKey, setToastKey] = useState<ErrorToastKey | null>(null);
   const [isError, setIsError] = useState(false);
+
+  const { elementRef: nameRef, startAnimation: nameStartAnimation } =
+    useAnimation<HTMLInputElement>({
+      startKeyframes: shakeHorizontal,
+      options: shakeInputOptions,
+    });
+
+  const { elementRef: phoneNumRef, startAnimation: phoneNumStartAnimation } =
+    useAnimation<HTMLInputElement>({
+      startKeyframes: shakeHorizontal,
+      options: shakeInputOptions,
+    });
+
+  const {
+    elementRef: verfiyCodeRef,
+    startAnimation: verfiyCodeStartAnimation,
+  } = useAnimation<HTMLInputElement>({
+    startKeyframes: shakeHorizontal,
+    options: shakeInputOptions,
+  });
+
   const navigate = useNavigate();
 
   const { form, onChange, reset } = useInputs<PhoneAuthCheckForm>(initialForm);
@@ -37,9 +61,12 @@ const AuthModal = () => {
     event: MouseEvent<HTMLButtonElement>,
   ) => {
     event.preventDefault();
-    if (validatePhoneNumber(phoneNum)) {
+    if (
+      validateName(name, nameStartAnimation) &&
+      validatePhoneNumber(phoneNum, phoneNumStartAnimation)
+    ) {
       try {
-        setReReuest(true);
+        setReRequesst(true);
         await postPhoneAuthRequest({ name, phoneNum });
       } catch (error) {
         throw new Error();
@@ -53,8 +80,9 @@ const AuthModal = () => {
   ) => {
     event.preventDefault();
     if (
-      validatePhoneNumber(phoneNum) &&
-      validateverificationCode(verificationCode)
+      validateName(name, nameStartAnimation) &&
+      validatePhoneNumber(phoneNum, phoneNumStartAnimation) &&
+      validateverificationCode(verificationCode, verfiyCodeStartAnimation)
     ) {
       try {
         const response = await postPhoneAuthCheckRequest(form);
@@ -95,6 +123,7 @@ const AuthModal = () => {
             개인정보 입력
           </div>
           <input
+            ref={nameRef}
             className="h-[3.375rem] w-full rounded-lg border border-white/15 bg-white/10 p-500 font-kia-signature text-body-1-regular text-gray-50 placeholder:font-kia-signature placeholder:text-body-1-regular placeholder:text-gray-400"
             type="text"
             name="name"
@@ -105,6 +134,7 @@ const AuthModal = () => {
           />
           <div className="flex gap-2">
             <input
+              ref={phoneNumRef}
               className="h-[3.375rem] w-[24rem] rounded-lg border border-white/15 bg-white/10 p-500 font-kia-signature text-body-1-regular text-gray-50 placeholder:font-kia-signature placeholder:text-body-1-regular placeholder:text-gray-400"
               type="text"
               name="phoneNum"
@@ -118,10 +148,11 @@ const AuthModal = () => {
               className="h-full w-[6.5rem] rounded-lg bg-primary font-kia-signature-bold text-body-1-bold text-gray-950"
               onClick={handleRequestPhoneAuthClick}
             >
-              {reReuest ? "재전송" : "인증번호"}
+              {reRequesst ? "재전송" : "인증번호"}
             </button>
           </div>
           <input
+            ref={verfiyCodeRef}
             className="h-[3.375rem] w-full rounded-lg border border-white/15 bg-white/10 p-500 font-kia-signature text-body-1-regular text-gray-50 placeholder:font-kia-signature placeholder:text-body-1-regular placeholder:text-gray-400"
             type="text"
             name="verificationCode"
