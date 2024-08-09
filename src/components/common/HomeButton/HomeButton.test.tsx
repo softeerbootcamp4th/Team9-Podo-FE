@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import { expect, userEvent } from "@storybook/test";
-import HomeButton from "./HomeButton";
 import { MemoryRouter } from "react-router";
+import HomeButton from "./HomeButton";
 
 describe("HomeButton Component", () => {
   test("should ", async () => {

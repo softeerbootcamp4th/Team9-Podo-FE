@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import ProgressBar from "./ProgressBar";
 import { expect } from "@storybook/test";
+import ProgressBar from "./ProgressBar";
 
 describe("ProgressBar Component", () => {
   test("ProgressBar는 올바르게 랜더링되어야 한다", () => {

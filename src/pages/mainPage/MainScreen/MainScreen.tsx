@@ -6,10 +6,12 @@ import RandomEventSection from "./RandomEventSection";
 const MainScreen = () => {
   return (
     <>
-      <EventSelectSection />
-      <img />
-      <FCFSEventSection />
-      <RandomEventSection />
+      <div className="h-screen w-screen snap-y snap-mandatory overflow-scroll scroll-smooth">
+        <EventSelectSection />
+        <img />
+        <FCFSEventSection />
+        <RandomEventSection />
+      </div>
     </>
   );
 };

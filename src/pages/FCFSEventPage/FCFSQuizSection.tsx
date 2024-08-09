@@ -24,28 +24,21 @@ const IS_SELECTED = {
 const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
   const navigate = useNavigate();
 
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
-  const choices = [
-    quizInfo.choice1,
-    quizInfo.choice2,
-    quizInfo.choice3,
-    quizInfo.choice4,
-  ];
+  const { choice1, choice2, choice3, choice4, answer, question } = quizInfo;
 
-  const { answer, question } = quizInfo;
+  const choices = [choice1, choice2, choice3, choice4];
 
   // 선택지 클릭 핸들러
   const handleChoiceClick = (index: number) => {
     setSelectedIndex(index);
-    console.log(selectedIndex);
   };
 
   // 제출버튼 클릭 핸들러
   const handleSubmitClick = () => {
     if (selectedIndex + 1 === parseInt(answer)) {
       navigate("/event1/result");
-      console.log("changed");
     } else {
       // 에러 토스트 추후 처리
     }
@@ -53,41 +46,22 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
 
   return (
     <>
-      <div className="flex-col gap-[4rem] bg-gray-800 flex-center">
-        <div className="gap-700 flex-col flex-center">
+      <div className="flex-col gap-[4rem] flex-center">
+        <div className="flex-col gap-700 flex-center">
           <header
-            className="p-500 px-800 h-[4.125rem] w-[12rem] rounded-[12rem] border text-center font-kia-signature-bold text-title-3 flex-center"
-            style={{
-              backgroundImage:
-                "linear-gradient(#fff, #fff), linear-gradient(93.7deg, #505861 0%, #4B7C83 33.5%, #1B3F72 66.5%, #F2F2F2 100%)",
-              backgroundOrigin: "border-box",
-              backgroundClip: "padding-box, border-box, text",
-              border: "1px solid transparent",
-            }}
+            className="gradient-border h-[4.125rem] w-[12rem] rounded-[12rem] border p-500 px-800 text-center font-kia-signature-bold text-title-3 flex-center"
             role="banner"
           >
-            <span
-              style={{
-                backgroundImage:
-                  "linear-gradient(93.7deg, #505861 0%, #4B7C83 33.5%, #1B3F72 66.5%, #F2F2F2 100%)",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              오늘의 퀴즈
-            </span>
+            <span className="gradient-text">오늘의 퀴즈</span>
           </header>
           <h2 className="font-kia-signature-bold text-title-2 text-gray-50">
             {question}
           </h2>
         </div>
-        <ol className="gap-800 flex">
+        <ol className="flex gap-800">
           {choices.map((choice, index) => (
             <li
-              className={
-                IS_SELECTED[`${index === selectedIndex}`] +
-                " p-500 px-800 border-white/18 flex h-[5.75rem] w-[22rem] items-center justify-start rounded-[2rem] border bg-white/5 font-kia-signature-bold text-title-4 text-gray-50 hover:bg-white/20"
-              }
+              className={` ${selectedIndex === index ? "bg-white/20" : "bg-white/10"} flex h-[5.75rem] w-[22rem] items-center justify-start rounded-[2rem] border border-white/15 px-800 font-kia-signature-bold text-title-4 text-gray-50 hover:bg-white/20`}
               key={choice}
               onClick={() => handleChoiceClick(index)}
             >

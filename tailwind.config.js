@@ -46,6 +46,27 @@ module.exports = {
         600: "1.25rem",
         700: "1.5rem",
         800: "2rem",
+        900: "2.25rem",
+        1000: "2.5rem",
+      },
+      keyframes: {
+        moveText: {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(16rem)" },
+        },
+        moveSection: {
+          "0%": { transform: "translateY(100rem)" },
+          "100%": { transform: "translateY(0)" },
+        },
+        fadeOut: {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0", display: "none" },
+        },
+      },
+      animation: {
+        moveText: "moveText 1s linear forwards",
+        moveSection: "moveSection 1s ease-out",
+        fadeOut: "fadeOut 1s ease-out forwards",
       },
     },
   },
@@ -54,6 +75,26 @@ module.exports = {
       addUtilities({
         ".flex-center": {
           "@apply flex justify-center items-center": "",
+        },
+        ".gradient-border": {
+          "background-image":
+            "linear-gradient(#fff, #fff), linear-gradient(93.7deg, #505861 0%, #4B7C83 33.5%, #1B3F72 66.5%, #F2F2F2 100%)",
+          "background-origin": "border-box",
+          "background-clip": "padding-box, border-box",
+          border: "1px solid transparent",
+        },
+        ".gradient-text": {
+          "background-image":
+            "linear-gradient(93.7deg, #505861 0%, #4B7C83 33.5%, #1B3F72 66.5%, #F2F2F2 100%)",
+          "background-clip": "text",
+          color: "transparent",
+        },
+      });
+    },
+    ({ addUtilities }) => {
+      addUtilities({
+        ".text-glow-white": {
+          textShadow: "0px 0px 10px #FFF, 0px 0px 20px #FFF, 0px 0px 30px #FFF",
         },
       });
     },

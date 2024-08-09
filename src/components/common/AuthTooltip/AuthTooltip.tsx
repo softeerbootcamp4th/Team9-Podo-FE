@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RefreshButton from "../../../assets/svg/RefreshButton";
+import useTimer from "../../../hooks/useTimer";
 
 interface AuthTooltipProps {
   isAuth: boolean;
 }
 
 const AuthTooltip = ({ isAuth }: AuthTooltipProps) => {
-  const [leftTime, setLeftTime] = useState("59:00");
+  const initialTime = 60 * 60 * 1000 - 1000;
+
+  const { reset, minutes, second } = useTimer(initialTime);
+
   return (
     <>
       {isAuth ? (
@@ -18,10 +22,10 @@ const AuthTooltip = ({ isAuth }: AuthTooltipProps) => {
             본인인증 만료시간
           </div>
           <div className="gap-2 flex-center">
-            <span className="font-kia-signature-bold text-center text-body-2-bold">
-              {leftTime}
+            <span className="text-center font-kia-signature-bold text-body-2-bold">
+              {minutes} : {second}
             </span>
-            <RefreshButton onClick={() => setLeftTime("59:59")}></RefreshButton>
+            <RefreshButton onClick={reset}></RefreshButton>
           </div>
         </div>
       ) : (

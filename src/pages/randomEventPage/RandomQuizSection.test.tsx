@@ -1,9 +1,8 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import RandomQuizSection from "./RandomQuizSection";
-import { MemoryRouter } from "react-router-dom";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
+import RandomQuizSection from "./RandomQuizSection";
 
 jest.mock("react-router", () => ({
   ...jest.requireActual("react-router"),

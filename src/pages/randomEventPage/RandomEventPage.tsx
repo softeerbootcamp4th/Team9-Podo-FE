@@ -1,35 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate, useParams } from "react-router";
 import ProgressBar from "../../components/randomEventPage/ProgressBar/ProgressBar";
-import { quizList } from "../../constants/RandomEventData";
+import { QUIZ_LIST } from "../../constants/RandomEventData";
+import { AnswerInterface } from "../../types/RandomEvent";
 
 const RandomEventPage = () => {
   const navigate = useNavigate();
   const { quizIndex } = useParams();
+  const [answer, setAnswer] = useState<AnswerInterface>({
+    answer1: "",
+    answer2: "",
+    answer3: "",
+    answer4: "",
+  });
 
   const currentIndex = quizIndex ? parseInt(quizIndex, 10) : 0;
-  const maxIndex = quizList.length - 1;
-  const quizInfo = quizList[currentIndex];
+  const maxIndex = QUIZ_LIST.length - 1;
+  const quizInfo = QUIZ_LIST[currentIndex];
 
-  const handleClick = () => {
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {
-        const nextQuizIndex = currentIndex + 1;
+  const handleClick = (newAnswer: AnswerInterface) => {
+    setAnswer(newAnswer);
 
-        if (nextQuizIndex < quizList.length) {
-          navigate(`/event2/${nextQuizIndex}`);
-        } else {
-          navigate("/event2/result");
-        }
+    setTimeout(() => {
+      const nextQuizIndex = currentIndex + 1;
 
-        resolve();
-      }, 200);
-    });
+      if (nextQuizIndex < QUIZ_LIST.length) {
+        navigate(`/event2/${nextQuizIndex}`);
+      } else {
+        navigate("/event2/result", { state: newAnswer });
+      }
+    }, 200);
   };
 
   return (
     <div
-      className="h-screen w-screen bg-cover bg-center bg-no-repeat"
+      className="flex h-screen w-screen flex-col justify-between bg-cover bg-center bg-no-repeat"
       style={{
         background: `
           linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 50%, #000 100%),
@@ -37,7 +42,14 @@ const RandomEventPage = () => {
       }}
     >
       <ProgressBar currentIndex={currentIndex} maxIndex={maxIndex} />
-      <Outlet context={{ quizInfo, onClick: handleClick }} />
+      <Outlet
+        context={{
+          quizInfo,
+          currentIndex,
+          answer,
+          onClick: handleClick,
+        }}
+      />
     </div>
   );
 };
