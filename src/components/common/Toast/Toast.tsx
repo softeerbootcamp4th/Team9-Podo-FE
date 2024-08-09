@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { className } from "../../../styles/tailwind";
+import { TailwindPosition } from "../../../types/tailwind";
 
 interface ToastInterface {
   content: string;
-  position: "bottom" | "top" | "-bottom" | "-top";
+  position: TailwindPosition;
   value: number;
   delay: number;
   duration: number;
@@ -37,12 +39,12 @@ const Toast = ({
     return null;
   }
 
-  const positionStyle = `${position}-${value}`; //작동안함 => 직접 테일윈드에 작성한 적이 있는 스타일은 적용됨
+  const positionStyle = className[position][value]; //작동안함 => 직접 테일윈드에 작성한 적이 있는 스타일은 적용됨
 
   return (
     <div
       role="dialog"
-      className={`absolute ${positionStyle} left-1/2 h-fit w-fit -translate-x-1/2 rounded-3xl bg-tertiary px-6 py-3 font-kia-signature-bold text-body-1-bold text-gray-50 transition-opacity duration-700 ${
+      className={`absolute z-10 ${positionStyle} left-1/2 h-fit w-fit -translate-x-1/2 rounded-3xl bg-tertiary px-6 py-3 font-kia-signature-bold text-body-1-bold text-gray-50 transition-opacity duration-700 ${
         isVisible ? "opacity-100" : "opacity-0"
       } ${isDisable ? "hidden" : ""}`}
     >
