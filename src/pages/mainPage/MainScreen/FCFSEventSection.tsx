@@ -5,7 +5,7 @@ import EventFooter from "../../../components/mainPage/MainScreen/EventFooter";
 
 const FCFSEventSection = () => {
   return (
-    <>
+    <div className="h-screen w-screen snap-start flex-col bg-pink-100 flex-center">
       <EventHeader title="event" description="desc" />
       <Timer />
       <img />
@@ -13,7 +13,7 @@ const FCFSEventSection = () => {
         eventInfo={{ title: "title", description: "des", option: Object }}
         buttonInfo={{ size: "small", onClick: () => {}, isEnabled: true }}
       />
-    </>
+    </div>
   );
 };
 
