@@ -39,12 +39,12 @@ const Toast = ({
     return null;
   }
 
-  const positionStyle = className[position][value]; //작동안함 => 직접 테일윈드에 작성한 적이 있는 스타일은 적용됨
+  const positionStyle = className[position][value];
 
   return (
     <div
       role="dialog"
-      className={`absolute z-10 ${positionStyle} left-1/2 h-fit w-fit -translate-x-1/2 rounded-3xl bg-tertiary px-6 py-3 font-kia-signature-bold text-body-1-bold text-gray-50 transition-opacity duration-700 ${
+      className={`absolute z-10 ${positionStyle} left-1/2 h-fit w-fit -translate-x-1/2 whitespace-nowrap rounded-3xl bg-tertiary px-6 py-3 font-kia-signature-bold text-body-1-bold text-gray-50 transition-opacity duration-700 ${
         isVisible ? "opacity-100" : "opacity-0"
       } ${isDisable ? "hidden" : ""}`}
     >

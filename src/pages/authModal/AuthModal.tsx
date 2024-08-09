@@ -1,5 +1,9 @@
 import React, { MouseEvent, useState } from "react";
-import { MESSAGE, PERSONAL_INFO_NOTICE } from "../../constants/AuthModal";
+import {
+  AUTH_DELAY,
+  MESSAGE,
+  PERSONAL_INFO_NOTICE,
+} from "../../constants/AuthModal";
 import Button from "../../components/common/Button/Button";
 import { useNavigate } from "react-router";
 import useInputs from "../../hooks/useInputs";
@@ -18,6 +22,7 @@ import Toast from "../../components/common/Toast/Toast";
 import useAnimation from "../../hooks/useAnimation";
 import { shakeHorizontal } from "../../styles/keyframes";
 import { shakeInputOptions } from "../../styles/options";
+import useTimer from "../../hooks/useTimer";
 
 const initialForm: PhoneAuthCheckForm = {
   name: "",
@@ -28,8 +33,15 @@ const initialForm: PhoneAuthCheckForm = {
 const AuthModal = () => {
   const [isAgree, setIsAgree] = useState("-1"); // 0이면 동의, 1이면 미동의
   const [reRequesst, setReRequesst] = useState(false);
-  const [toastKey, setToastKey] = useState<ErrorToastKey | null>(null);
-  const [isError, setIsError] = useState(false);
+  const [toastKey, setToastKey] = useState(0);
+  const [isError, setIsError] = useState<ErrorToastKey | null>(null);
+
+  const { reset, minutes, second } = useTimer(AUTH_DELAY, () => {
+    if (reRequesst) {
+      setIsError("AUTH_NUM_EXPRIES");
+      setToastKey((current) => current + 1);
+    }
+  });
 
   const { elementRef: nameRef, startAnimation: nameStartAnimation } =
     useAnimation<HTMLInputElement>({
@@ -53,7 +65,7 @@ const AuthModal = () => {
 
   const navigate = useNavigate();
 
-  const { form, onChange, reset } = useInputs<PhoneAuthCheckForm>(initialForm);
+  const { form, onChange } = useInputs<PhoneAuthCheckForm>(initialForm);
   const { name, phoneNum, verificationCode } = form;
 
   // 인증번호 요청 버튼 핸들러
@@ -66,6 +78,7 @@ const AuthModal = () => {
       validatePhoneNumber(phoneNum, phoneNumStartAnimation)
     ) {
       try {
+        reset();
         setReRequesst(true);
         await postPhoneAuthRequest({ name, phoneNum });
       } catch (error) {
@@ -89,12 +102,12 @@ const AuthModal = () => {
         if (response.code === 200) {
           navigate(-1);
         } else {
-          setToastKey("AUTH_NUM_INCORRECT");
-          setIsError(true);
+          setIsError("AUTH_NUM_INCORRECT");
         }
       } catch (error) {
         throw new Error();
       }
+      setToastKey((current) => current + 1);
     }
   };
 
@@ -151,17 +164,24 @@ const AuthModal = () => {
               {reRequesst ? "재전송" : "인증번호"}
             </button>
           </div>
-          <input
-            ref={verfiyCodeRef}
-            className="h-[3.375rem] w-full rounded-lg border border-white/15 bg-white/10 p-500 font-kia-signature text-body-1-regular text-gray-50 placeholder:font-kia-signature placeholder:text-body-1-regular placeholder:text-gray-400"
-            type="text"
-            name="verificationCode"
-            value={verificationCode}
-            onChange={onChange}
-            onInput={verifyCodeCorrector}
-            maxLength={6}
-            placeholder="인증번호"
-          />
+          <div className="relative">
+            <input
+              ref={verfiyCodeRef}
+              className="h-[3.375rem] w-full rounded-lg border border-white/15 bg-white/10 p-500 font-kia-signature text-body-1-regular text-gray-50 placeholder:font-kia-signature placeholder:text-body-1-regular placeholder:text-gray-400"
+              type="text"
+              name="verificationCode"
+              value={verificationCode}
+              onChange={onChange}
+              onInput={verifyCodeCorrector}
+              maxLength={6}
+              placeholder="인증번호"
+            />
+            {reRequesst && (
+              <div className="absolute right-4 top-4 font-kia-signature text-body-1-regular text-gray-300">
+                {minutes}:{second}
+              </div>
+            )}
+          </div>
         </form>
         <div className="w-full py-700">
           <p className="font-kia-signature-bold text-title-4 text-gray-50">
@@ -209,7 +229,7 @@ const AuthModal = () => {
         {isError && (
           <Toast
             key={toastKey}
-            content={MESSAGE[toastKey as ErrorToastKey]}
+            content={MESSAGE[isError]}
             position="bottom"
             value={6}
             delay={4000}
