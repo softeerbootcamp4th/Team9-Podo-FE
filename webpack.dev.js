@@ -3,7 +3,7 @@ const common = require("./webpack.common.js");
 
 module.exports = merge(common, {
   mode: "development",
-  devtool: "eval",
+  devtool: "inline-source-map",
   devServer: {
     port: 8000,
     historyApiFallback: true,
@@ -15,6 +15,10 @@ module.exports = merge(common, {
       },
       {
         context: ["/lots"],
+        target: "http://3.38.151.69:8080",
+      },
+      {
+        context: ["/verification"],
         target: "http://3.38.151.69:8080",
       },
     ],
