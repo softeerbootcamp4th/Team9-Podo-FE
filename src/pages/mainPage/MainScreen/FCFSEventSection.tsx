@@ -1,11 +1,14 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import Timer from "./Timer";
 import EventHeader from "../../../components/mainPage/MainScreen/EventHeader";
 import EventFooter from "../../../components/mainPage/MainScreen/EventFooter";
 
-const FCFSEventSection = () => {
+const FCFSEventSection = forwardRef<HTMLDivElement>((props, ref) => {
   return (
-    <div className="h-screen w-screen snap-start flex-col bg-pink-100 flex-center">
+    <div
+      className="h-screen w-screen snap-start flex-col bg-pink-100 flex-center"
+      ref={ref}
+    >
       <EventHeader title="event" description="desc" />
       <Timer />
       <img />
@@ -15,6 +18,6 @@ const FCFSEventSection = () => {
       />
     </div>
   );
-};
+});
 
 export default FCFSEventSection;
