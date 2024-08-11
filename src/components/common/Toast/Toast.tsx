@@ -43,7 +43,7 @@ const Toast = ({
 
   return (
     <div
-      role="dialog"
+      role="alert"
       className={`absolute z-10 ${positionStyle} left-1/2 h-fit w-fit -translate-x-1/2 whitespace-nowrap rounded-3xl bg-tertiary px-6 py-3 font-kia-signature-bold text-body-1-bold text-gray-50 transition-opacity duration-700 ${
         isVisible ? "opacity-100" : "opacity-0"
       } ${isDisable ? "hidden" : ""}`}

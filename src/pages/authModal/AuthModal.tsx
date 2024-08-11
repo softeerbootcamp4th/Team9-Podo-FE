@@ -177,7 +177,10 @@ const AuthModal = () => {
               placeholder="인증번호"
             />
             {reRequesst && (
-              <div className="absolute right-4 top-4 font-kia-signature text-body-1-regular text-gray-300">
+              <div
+                role="timer"
+                className="absolute right-4 top-4 font-kia-signature text-body-1-regular text-gray-300"
+              >
                 {minutes}:{second}
               </div>
             )}
