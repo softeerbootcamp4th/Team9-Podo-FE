@@ -5,7 +5,6 @@ import InsideSection from "./InsideSection";
 const InfoScreen = () => {
   return (
     <div>
-      <InsideSection />
       <OutsideSection />
     </div>
   );

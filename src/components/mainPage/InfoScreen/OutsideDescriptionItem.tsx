@@ -12,11 +12,17 @@ const OutsideDescriptionItem = ({
   img,
 }: OutsideDescriptionItemProps) => {
   return (
-    <>
-      <img />
-      <div>{title}</div>
-      <div>{description}</div>
-    </>
+    <div>
+      <img className="h-[39.125rem] w-[95rem]" src={img} />
+      <div className="py-700">
+        <div className="mb-500 font-kia-signature-bold text-title-3 text-gray-950">
+          {title}
+        </div>
+        <div className="font-kia-signature text-body-1-regular text-gray-400">
+          {description}
+        </div>
+      </div>
+    </div>
   );
 };
 
