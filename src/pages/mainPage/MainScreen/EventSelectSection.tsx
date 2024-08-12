@@ -1,15 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
+import useAnimation from "../../../hooks/useAnimation";
 import EventSelectOptions from "../../../components/mainPage/MainScreen/EventSelectOptions/EventSelectOptions";
 import e1Gift from "../../../assets/images/e1Gift.png";
 import e2Gift from "../../../assets/images/e2Gift.png";
-import Glow from "../../../components/common/Glow/Glow";
 import mainCar from "../../../assets/images/mainCar.png";
 import landingCar from "../../../assets/images/landingCar.png";
-import useAnimation from "../../../hooks/useAnimation";
-import FCFSEventSection from "./FCFSEventSection";
-import RandomEventSection from "./RandomEventSection";
 
-const EventSelectSection = () => {
+interface EventSelectSectionInterface {
+  onFCFSClick: () => void;
+  onRandomClick: () => void;
+}
+
+const EventSelectSection = ({
+  onFCFSClick,
+  onRandomClick,
+}: EventSelectSectionInterface) => {
   const [isLanding, setIsLanding] = useState(true);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
