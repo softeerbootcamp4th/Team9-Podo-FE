@@ -43,9 +43,6 @@ const FCFSEventPage = () => {
           onMouseEnter={startAnimation}
           onMouseLeave={stopAnimation}
         />
-        {/* <div className="pt-[15.3rem] font-kia-signature-bold text-title-4 text-white">
-          마우스를 올리면 힌트가 나와요
-        </div> */}
       </div>
     </div>
   );

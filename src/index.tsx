@@ -6,22 +6,22 @@ import "./styles/tailwind.css";
 const rootElement = document.getElementById("root");
 if (!rootElement) throw new Error("Failed to find the root element");
 
-// async function enableMocking() {
-//   if (process.env.NODE_ENV === "development") {
-//     return;
-//   }
+async function enableMocking() {
+  if (process.env.NODE_ENV !== "development") {
+    return;
+  }
 
-//   const { worker } = await import("./mocks/browser");
+  const { worker } = await import("./mocks/browser");
+  console.log("start work");
+  // `worker.start()` returns a Promise that resolves
+  // once the Service Worker is up and ready to intercept requests.
+  return worker.start();
+}
 
-//   // `worker.start()` returns a Promise that resolves
-//   // once the Service Worker is up and ready to intercept requests.
-//   return worker.start();
-// }
+enableMocking().then(() => {
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(<App />);
+});
 
-// enableMocking().then(() => {
-//   const root = ReactDOM.createRoot(rootElement);
-//   root.render(<App />);
-// });
-
-const root = ReactDOM.createRoot(rootElement);
-root.render(<App />);
+// const root = ReactDOM.createRoot(rootElement);
+// root.render(<App />);

@@ -15,6 +15,6 @@ describe("Toast Component", () => {
       />,
     );
 
-    expect(screen.getByRole("dialog")).toHaveTextContent("content");
+    expect(screen.getByRole("alert")).toHaveTextContent("content");
   });
 });

@@ -1,9 +1,13 @@
 import React, { MouseEvent, useState } from "react";
-import { MESSAGE, PERSONAL_INFO_NOTICE } from "../../constants/AuthModal";
+import {
+  AUTH_DELAY,
+  MESSAGE,
+  PERSONAL_INFO_NOTICE,
+} from "../../constants/AuthModal";
 import Button from "../../components/common/Button/Button";
 import { useNavigate } from "react-router";
 import useInputs from "../../hooks/useInputs";
-import { verifyCodeCorrector } from "../../utils/auth";
+import { validateName, verifyCodeCorrector } from "../../utils/auth";
 import { ErrorToastKey, PhoneAuthCheckForm } from "../../types/AuthModal";
 import {
   postPhoneAuthCheckRequest,
@@ -15,6 +19,10 @@ import {
   validateverificationCode,
 } from "../../utils/auth";
 import Toast from "../../components/common/Toast/Toast";
+import useAnimation from "../../hooks/useAnimation";
+import { shakeHorizontal } from "../../styles/keyframes";
+import { shakeInputOptions } from "../../styles/options";
+import useTimer from "../../hooks/useTimer";
 
 const initialForm: PhoneAuthCheckForm = {
   name: "",
@@ -23,13 +31,41 @@ const initialForm: PhoneAuthCheckForm = {
 };
 
 const AuthModal = () => {
-  const [isButtonEnabled, setIsButtonEnabled] = useState(true);
-  const [reReuest, setReReuest] = useState(false);
-  const [toastKey, setToastKey] = useState<ErrorToastKey | null>(null);
-  const [isError, setIsError] = useState(false);
+  const [isAgree, setIsAgree] = useState("-1"); // 0이면 동의, 1이면 미동의
+  const [reRequesst, setReRequesst] = useState(false);
+  const [toastKey, setToastKey] = useState(0);
+  const [isError, setIsError] = useState<ErrorToastKey | null>(null);
+
+  const { reset, minutes, second } = useTimer(AUTH_DELAY, () => {
+    if (reRequesst) {
+      setIsError("AUTH_NUM_EXPRIES");
+      setToastKey((current) => current + 1);
+    }
+  });
+
+  const { elementRef: nameRef, startAnimation: nameStartAnimation } =
+    useAnimation<HTMLInputElement>({
+      startKeyframes: shakeHorizontal,
+      options: shakeInputOptions,
+    });
+
+  const { elementRef: phoneNumRef, startAnimation: phoneNumStartAnimation } =
+    useAnimation<HTMLInputElement>({
+      startKeyframes: shakeHorizontal,
+      options: shakeInputOptions,
+    });
+
+  const {
+    elementRef: verfiyCodeRef,
+    startAnimation: verfiyCodeStartAnimation,
+  } = useAnimation<HTMLInputElement>({
+    startKeyframes: shakeHorizontal,
+    options: shakeInputOptions,
+  });
+
   const navigate = useNavigate();
 
-  const { form, onChange, reset } = useInputs<PhoneAuthCheckForm>(initialForm);
+  const { form, onChange } = useInputs<PhoneAuthCheckForm>(initialForm);
   const { name, phoneNum, verificationCode } = form;
 
   // 인증번호 요청 버튼 핸들러
@@ -37,9 +73,13 @@ const AuthModal = () => {
     event: MouseEvent<HTMLButtonElement>,
   ) => {
     event.preventDefault();
-    if (validatePhoneNumber(phoneNum)) {
+    if (
+      validateName(name, nameStartAnimation) &&
+      validatePhoneNumber(phoneNum, phoneNumStartAnimation)
+    ) {
       try {
-        setReReuest(true);
+        reset();
+        setReRequesst(true);
         await postPhoneAuthRequest({ name, phoneNum });
       } catch (error) {
         throw new Error();
@@ -53,26 +93,27 @@ const AuthModal = () => {
   ) => {
     event.preventDefault();
     if (
-      validatePhoneNumber(phoneNum) &&
-      validateverificationCode(verificationCode)
+      validateName(name, nameStartAnimation) &&
+      validatePhoneNumber(phoneNum, phoneNumStartAnimation) &&
+      validateverificationCode(verificationCode, verfiyCodeStartAnimation)
     ) {
       try {
         const response = await postPhoneAuthCheckRequest(form);
         if (response.code === 200) {
           navigate(-1);
         } else {
-          setToastKey("AUTH_NUM_INCORRECT");
-          setIsError(true);
+          setIsError("AUTH_NUM_INCORRECT");
         }
       } catch (error) {
         throw new Error();
       }
+      setToastKey((current) => current + 1);
     }
   };
 
   return (
-    <div className="h-screen w-screen bg-black opacity-90 flex-center">
-      <div className="h-[52.75rem] w-[35.25rem] flex-col rounded-[2rem] bg-white/20 p-6 px-8 text-white flex-center">
+    <div className="absolute left-0 top-0 z-50 h-screen w-screen bg-black/90 flex-center">
+      <div className="relative h-[52.75rem] w-[35.25rem] flex-col rounded-[2rem] bg-gray-900 p-6 px-8 text-white flex-center">
         <div className="pb-700 font-kia-signature-bold text-title-2">
           개인정보 수집, 이용에 대한 동의
         </div>
@@ -95,6 +136,7 @@ const AuthModal = () => {
             개인정보 입력
           </div>
           <input
+            ref={nameRef}
             className="h-[3.375rem] w-full rounded-lg border border-white/15 bg-white/10 p-500 font-kia-signature text-body-1-regular text-gray-50 placeholder:font-kia-signature placeholder:text-body-1-regular placeholder:text-gray-400"
             type="text"
             name="name"
@@ -105,6 +147,7 @@ const AuthModal = () => {
           />
           <div className="flex gap-2">
             <input
+              ref={phoneNumRef}
               className="h-[3.375rem] w-[24rem] rounded-lg border border-white/15 bg-white/10 p-500 font-kia-signature text-body-1-regular text-gray-50 placeholder:font-kia-signature placeholder:text-body-1-regular placeholder:text-gray-400"
               type="text"
               name="phoneNum"
@@ -118,19 +161,30 @@ const AuthModal = () => {
               className="h-full w-[6.5rem] rounded-lg bg-primary font-kia-signature-bold text-body-1-bold text-gray-950"
               onClick={handleRequestPhoneAuthClick}
             >
-              {reReuest ? "재전송" : "인증번호"}
+              {reRequesst ? "재전송" : "인증번호"}
             </button>
           </div>
-          <input
-            className="h-[3.375rem] w-full rounded-lg border border-white/15 bg-white/10 p-500 font-kia-signature text-body-1-regular text-gray-50 placeholder:font-kia-signature placeholder:text-body-1-regular placeholder:text-gray-400"
-            type="text"
-            name="verificationCode"
-            value={verificationCode}
-            onChange={onChange}
-            onInput={verifyCodeCorrector}
-            maxLength={6}
-            placeholder="인증번호"
-          />
+          <div className="relative">
+            <input
+              ref={verfiyCodeRef}
+              className="h-[3.375rem] w-full rounded-lg border border-white/15 bg-white/10 p-500 font-kia-signature text-body-1-regular text-gray-50 placeholder:font-kia-signature placeholder:text-body-1-regular placeholder:text-gray-400"
+              type="text"
+              name="verificationCode"
+              value={verificationCode}
+              onChange={onChange}
+              onInput={verifyCodeCorrector}
+              maxLength={6}
+              placeholder="인증번호"
+            />
+            {reRequesst && (
+              <div
+                role="timer"
+                className="absolute right-4 top-4 font-kia-signature text-body-1-regular text-gray-300"
+              >
+                {minutes}:{second}
+              </div>
+            )}
+          </div>
         </form>
         <div className="w-full py-700">
           <p className="font-kia-signature-bold text-title-4 text-gray-50">
@@ -141,15 +195,36 @@ const AuthModal = () => {
             참여하실 수 없습니다.
           </p>
           <div className="gap-1000 pt-700 flex-center">
-            동의
-            <input type="radio" value="" />
-            미동의
-            <input type="radio" value="" />
+            <label>
+              동의
+              <input
+                type="radio"
+                value="0"
+                checked={isAgree === "0"}
+                onChange={(event) => setIsAgree(event.target.value)}
+                name="agree"
+              />
+            </label>
+            <label>
+              미동의
+              <input
+                type="radio"
+                value="1"
+                checked={isAgree === "1"}
+                onChange={(event) => setIsAgree(event.target.value)}
+                name="disagree"
+              />
+            </label>
           </div>
         </div>
         <Button
           onClick={handleReqeustPhoneAuthCheckClick}
-          isEnabled={isButtonEnabled}
+          isEnabled={
+            isAgree === "0" &&
+            validateName(name) &&
+            validatePhoneNumber(phoneNum) &&
+            validateverificationCode(verificationCode)
+          }
           defaultText="인증하기"
           disabledText="인증하기"
           size="small"
@@ -157,9 +232,9 @@ const AuthModal = () => {
         {isError && (
           <Toast
             key={toastKey}
-            content={MESSAGE[toastKey as ErrorToastKey]}
+            content={MESSAGE[isError]}
             position="bottom"
-            value={4}
+            value={6}
             delay={4000}
             duration={1000}
           />

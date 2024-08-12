@@ -23,3 +23,7 @@ export const glowOptions = {
   direction: "alternate" as PlaybackDirection,
   iterations: Infinity,
 };
+
+export const shakeInputOptions = {
+  duration: 1000,
+};
