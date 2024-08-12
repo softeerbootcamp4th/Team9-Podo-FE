@@ -32,7 +32,7 @@ const tips = [
 const FCFSEventSection = forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <div
-      className="h-screen w-screen snap-start flex-col flex-center"
+      className="h-screen w-screen snap-start flex-col transition-all duration-200 flex-center"
       ref={ref}
     >
       <EventHeader
@@ -44,7 +44,7 @@ const FCFSEventSection = forwardRef<HTMLDivElement>((props, ref) => {
         <img
           src={e1Gift}
           alt="Event"
-          className="h-[5.75rem] w-[3.375rem] -translate-y-36 translate-x-60"
+          className="pointer-events-none z-10 h-[5.75rem] w-[3.375rem] -translate-y-12 translate-x-60"
         />
       </div>
       <div className="h-[16.375rem] gap-4 text-gray-50 flex-center">

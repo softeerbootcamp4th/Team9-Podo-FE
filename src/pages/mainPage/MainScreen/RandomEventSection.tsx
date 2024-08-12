@@ -42,7 +42,7 @@ const RandomEventSection = forwardRef<HTMLDivElement>((props, ref) => {
 
   return (
     <div
-      className="h-screen w-screen snap-start flex-col flex-center"
+      className="h-screen w-screen snap-start flex-col transition-all duration-200 flex-center"
       ref={ref}
     >
       <EventHeader
