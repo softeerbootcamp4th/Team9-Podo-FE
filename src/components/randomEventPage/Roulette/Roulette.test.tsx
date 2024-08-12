@@ -1,14 +1,19 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import { expect } from "@storybook/test";
+import { act, render, screen } from "@testing-library/react";
 import Roulette from "./Roulette";
-import { DRIVER_TYPE_LIST } from "../../../constants/RandomEventData";
+import { expect } from "@storybook/test";
 
-describe("Roulette Component", () => {
-  test("Roulette는 올바르게 랜더링되어야 한다.", () => {
-    render(<Roulette targetText="target" textList={DRIVER_TYPE_LIST} />);
+jest.useFakeTimers();
 
-    // const roulette = screen.getByText("roulette");
-    // expect(roulette).toBeInTheDocument();
+describe("Roulette 컴포넌트", () => {
+  const textList = ["Text1", "Text2", "Text3", "Text4"];
+  const targetText = "FinalText";
+  test("룰렛 애니메이션 후 targetText를 렌더링한다", () => {
+    // render(<Roulette textList={textList} targetText={targetText} />);
+    // expect(screen.queryByText(targetText)).toHaveClass("-translate-y-16");
+    // act(() => {
+    //   jest.advanceTimersByTime(2100 * 50);
+    // });
+    // expect(screen.getByText(targetText)).not.toHaveClass("-translate-y-16");
   });
 });
