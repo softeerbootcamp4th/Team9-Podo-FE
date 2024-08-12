@@ -15,7 +15,7 @@ const FCFSEventPage = () => {
     useAnimation<HTMLDivElement>({
       startKeyframes: showUp,
       cancelKeyframes: goDown,
-      options: FCFSHintOptions,
+      startOptions: FCFSHintOptions,
     });
 
   useEffect(() => {
