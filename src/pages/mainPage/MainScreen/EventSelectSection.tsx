@@ -33,7 +33,7 @@ const EventSelectSection = () => {
         { transform: "translateX(0)" },
         { transform: "translateX(-160rem)", display: "none" },
       ],
-      options: { duration: 500, fill: "forwards", delay: 100 },
+      startOptions: { duration: 500, fill: "forwards", delay: 100 },
     });
   const {
     elementRef: mainCarRef,
@@ -41,7 +41,7 @@ const EventSelectSection = () => {
     stopAnimation: mainCarStopAnimation,
   } = useAnimation<HTMLImageElement>({
     startKeyframes: [{ opacity: "0" }, { opacity: "100" }],
-    options: { duration: 2000, fill: "forwards", delay: 1000 },
+    startOptions: { duration: 2000, fill: "forwards", delay: 1000 },
     cancelKeyframes: [{ opacity: "100" }, { opacity: "0" }],
     cancelOptions: { duration: 200, fill: "forwards" },
   });
@@ -49,12 +49,12 @@ const EventSelectSection = () => {
   const { elementRef: titleRef, startAnimation: titleAnimation } =
     useAnimation<HTMLDivElement>({
       startKeyframes: [{ opacity: "0" }, { opacity: "100" }],
-      options: { duration: 2000, fill: "forwards", delay: 600 },
+      startOptions: { duration: 2000, fill: "forwards", delay: 600 },
     });
   const { elementRef: bgRef, startAnimation: bgAnimation } =
     useAnimation<HTMLDivElement>({
       startKeyframes: [{ opacity: "0" }, { opacity: "100" }],
-      options: { duration: 4000, fill: "forwards", delay: 1000 },
+      startOptions: { duration: 4000, fill: "forwards", delay: 1000 },
     });
 
   useEffect(() => {
@@ -115,7 +115,7 @@ const EventSelectSection = () => {
         )}
 
         {!isLanding && (
-          <div className="animate-fadeIn h-full w-full flex-center">
+          <div className="h-full w-full animate-fadeIn flex-center">
             <EventSelectOptions
               title="event 1."
               description={`매일 선착순 100명! \n퀴즈 풀고 스타벅스 커피 받아가자!`}
