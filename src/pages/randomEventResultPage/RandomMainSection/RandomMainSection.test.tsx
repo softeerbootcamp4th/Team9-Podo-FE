@@ -39,6 +39,7 @@ const description = [
   { content: "을 제공하는", highlighted: false },
   { content: "The 2025 셀토스", highlighted: true },
 ];
+
 const scenarioList = [
   {
     image: "path",
@@ -114,10 +115,17 @@ describe("RandomMainSection", () => {
   //           description={description}
   //           scenarioList={scenarioList}
   //         />
+<<<<<<< HEAD
   //       </MockAppProvider>
   //     </AppProvider>,
   //   );
   //   expect(screen.getByText("이벤트 참여하기")).toBeInTheDocument();
+=======
+  //       </AppProvider>
+  //     </MockAppProvider>,
+  //   );
+  //   expect(screen.getByRole("button")).toHaveTextContent("이벤트 참여하기");
+>>>>>>> ac43fa7 (test: 테스트 코드 수정)
   // });
 
   // test("isAuth가 true, isRandomEnd가 true일 때 버튼은 비활성화 되어야 한다.", () => {
@@ -127,14 +135,24 @@ describe("RandomMainSection", () => {
   //   };
 
   //   render(
+<<<<<<< HEAD
   //     <AppProvider>
   //       <MockAppProvider value={initialValues}>
+=======
+  //     <MockAppProvider values={initialValues}>
+  //       <AppProvider>
+>>>>>>> ac43fa7 (test: 테스트 코드 수정)
   //         <RandomMainSection
   //           description={description}
   //           scenarioList={scenarioList}
   //         />
+<<<<<<< HEAD
   //       </MockAppProvider>
   //     </AppProvider>,
+=======
+  //       </AppProvider>
+  //     </MockAppProvider>,
+>>>>>>> ac43fa7 (test: 테스트 코드 수정)
   //   );
   //   expect(screen.getByRole("button")).toBeDisabled();
   // });

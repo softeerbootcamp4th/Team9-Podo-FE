@@ -3,26 +3,32 @@ import Glow1 from "../../../assets/svg/Glow1";
 import Glow2 from "../../../assets/svg/Glow2";
 import Glow3 from "../../../assets/svg/Glow3";
 import useAnimation from "../../../hooks/useAnimation";
-import { glowOptions } from "../../../styles/options";
-import { randomGlow } from "../../../styles/keyframes";
+import { glowFadeOptions, glowOptions } from "../../../styles/options";
+import { fadeIn, randomGlow } from "../../../styles/keyframes";
 
 const Glow = () => {
   const { elementRef: oneRef, startAnimation: oneAni } =
     useAnimation<SVGSVGElement>({
-      startKeyframes: randomGlow,
-      options: glowOptions,
+      startKeyframes: fadeIn,
+      startOptions: { ...glowFadeOptions, delay: 1000 },
+      afterStartKeyframes: randomGlow,
+      afterStartOptions: glowOptions,
     });
 
   const { elementRef: twoRef, startAnimation: twoAni } =
     useAnimation<SVGSVGElement>({
-      startKeyframes: randomGlow,
-      options: glowOptions,
+      startKeyframes: fadeIn,
+      startOptions: { ...glowFadeOptions, delay: 2000 },
+      afterStartKeyframes: randomGlow,
+      afterStartOptions: glowOptions,
     });
 
   const { elementRef: threeRef, startAnimation: threeAni } =
     useAnimation<SVGSVGElement>({
-      startKeyframes: randomGlow,
-      options: glowOptions,
+      startKeyframes: fadeIn,
+      startOptions: { ...glowFadeOptions, delay: 3000 },
+      afterStartKeyframes: randomGlow,
+      afterStartOptions: glowOptions,
     });
 
   useEffect(() => {
@@ -37,8 +43,8 @@ const Glow = () => {
         className="absolute -left-[17.625rem] top-[6.375rem]"
         ref={oneRef}
       />
-      <Glow2 className="absolute -top-[7rem] left-[20rem]" ref={twoRef} />
       <Glow3 className="absolute left-[52rem] top-[2rem]" ref={threeRef} />
+      <Glow2 className="absolute -top-[7rem] left-[20rem]" ref={twoRef} />
     </div>
   );
 };
