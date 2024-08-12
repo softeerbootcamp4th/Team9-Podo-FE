@@ -40,7 +40,7 @@ const FCFSEventSection = forwardRef<HTMLDivElement>((props, ref) => {
       />
       <Timer />
       <img src="" alt="Event" />
-      <div className="h-[16.375rem] w-full gap-4 text-gray-50 flex-center">
+      <div className="h-[16.375rem] gap-4 text-gray-50 flex-center">
         <div className="flex h-full w-[26.5rem] flex-col gap-4 text-body-1-regular">
           {periodInfo.map((info, index) => (
             <div
@@ -60,7 +60,7 @@ const FCFSEventSection = forwardRef<HTMLDivElement>((props, ref) => {
             {participationSteps.map((step, index) => (
               <div
                 key={index}
-                className="flex w-fit flex-col items-center justify-start gap-2"
+                className="flex w-[10rem] flex-col items-center justify-start gap-2"
               >
                 <p className="text-center text-body-2-bold">{step.step}</p>
                 <p className="whitespace-pre text-center text-body-1-bold">
