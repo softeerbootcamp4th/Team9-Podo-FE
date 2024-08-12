@@ -99,12 +99,12 @@ module.exports = {
           "background-clip": "text",
           color: "transparent",
         },
-      });
-    },
-    ({ addUtilities }) => {
-      addUtilities({
         ".text-glow-white": {
           textShadow: "0px 0px 10px #FFF, 0px 0px 20px #FFF, 0px 0px 30px #FFF",
+        },
+        ".text-glow-lightly": {
+          textShadow:
+            "0px 0px 200px #FFF, 0px 0px 60px #FFF, 0px 0px 30px #FFF",
         },
       });
     },

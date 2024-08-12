@@ -1,13 +1,18 @@
 import React from "react";
-import { getByRole, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import EventSelectOptions from "./EventSelectOptions";
 import { expect } from "@storybook/test";
 import userEvent from "@testing-library/user-event";
+
+const setHoveredIndex = jest.fn();
 
 describe("EventSelectOption Component", () => {
   test("EventSelectOption 은 올바르게 랜더링되어야 한다. ", () => {
     render(
       <EventSelectOptions
+        index={0}
+        hoverdIndex={null}
+        setHoveredIndex={setHoveredIndex}
         title="event 1."
         description={`매일 선착순 100명! \n퀴즈 풀고 스타벅스 커피 받아가자!`}
         img={""}
@@ -24,6 +29,9 @@ describe("EventSelectOption Component", () => {
 
     render(
       <EventSelectOptions
+        index={0}
+        hoverdIndex={null}
+        setHoveredIndex={setHoveredIndex}
         title="event 1."
         description={`매일 선착순 100명! \n퀴즈 풀고 스타벅스 커피 받아가자!`}
         img={""}
