@@ -31,28 +31,28 @@ const FCFSEventResultPage = () => {
   const { elementRef: carRef, startAnimation: carStartAnimation } =
     useAnimation<HTMLImageElement>({
       startKeyframes: carMoveRight,
-      options: FCFSWinOptions,
+      startOptions: FCFSWinOptions,
     });
 
   // 안내문구 애니메이션
   const { elementRef: textRef, startAnimation: textStartAnimation } =
     useAnimation<HTMLDivElement>({
       startKeyframes: fadeOut,
-      options: fadeOptions,
+      startOptions: fadeOptions,
     });
 
   // 키 애니메이션
   const { elementRef: keyRef, startAnimation: keyStartAnimation } =
     useAnimation<HTMLImageElement>({
       startKeyframes: fadeDown,
-      options: fadeOptions,
+      startOptions: fadeOptions,
     });
 
   // 이벤트 2 이동 에니메이션
   const { elementRef: buttonRef, startAnimation: buttonStartAnimation } =
     useAnimation<HTMLDivElement>({
       startKeyframes: fadeIn,
-      options: bothFadeOptions,
+      startOptions: bothFadeOptions,
     });
 
   const fetchData = async () => {

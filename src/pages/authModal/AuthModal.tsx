@@ -46,13 +46,13 @@ const AuthModal = () => {
   const { elementRef: nameRef, startAnimation: nameStartAnimation } =
     useAnimation<HTMLInputElement>({
       startKeyframes: shakeHorizontal,
-      options: shakeInputOptions,
+      startOptions: shakeInputOptions,
     });
 
   const { elementRef: phoneNumRef, startAnimation: phoneNumStartAnimation } =
     useAnimation<HTMLInputElement>({
       startKeyframes: shakeHorizontal,
-      options: shakeInputOptions,
+      startOptions: shakeInputOptions,
     });
 
   const {
@@ -60,7 +60,7 @@ const AuthModal = () => {
     startAnimation: verfiyCodeStartAnimation,
   } = useAnimation<HTMLInputElement>({
     startKeyframes: shakeHorizontal,
-    options: shakeInputOptions,
+    startOptions: shakeInputOptions,
   });
 
   const navigate = useNavigate();
