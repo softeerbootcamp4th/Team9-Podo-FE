@@ -8,33 +8,34 @@ const Glow2 = (
 ) => {
   return (
     <svg
-      role="img"
+      ref={ref}
       className={className}
+      role="img"
       aria-label="glow-effect"
-      width="1282"
-      height="1126"
-      viewBox="0 0 1282 1126"
+      width="1084"
+      height="1096"
+      viewBox="0 0 1326 1256"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g filter="url(#filter0_f_2046_988)">
+      <g filter="url(#filter0_f_2046_989)">
         <ellipse
-          cx="425.653"
-          cy="570.413"
-          rx="425.653"
-          ry="570.413"
-          transform="matrix(0.815659 -0.578533 0.726907 0.686736 -121 417.509)"
-          fill="url(#paint0_radial_2046_988)"
-          fillOpacity="0.5"
+          cx="541.589"
+          cy="549.138"
+          rx="541.589"
+          ry="549.138"
+          transform="matrix(0.963744 0.266827 -0.381866 0.924217 350.394 -23.9995)"
+          fill="url(#paint0_radial_2046_989)"
+          fillOpacity="0.6"
         />
       </g>
       <defs>
         <filter
-          id="filter0_f_2046_988"
-          x="0.0133057"
-          y="0.220215"
-          width="1281.62"
-          height="1125.51"
+          id="filter0_f_2046_989"
+          x="-0.000488281"
+          y="0.202637"
+          width="1325.3"
+          height="1255.66"
           filterUnits="userSpaceOnUse"
           colorInterpolationFilters="sRGB"
         >
@@ -47,18 +48,18 @@ const Glow2 = (
           />
           <feGaussianBlur
             stdDeviation="50"
-            result="effect1_foregroundBlur_2046_988"
+            result="effect1_foregroundBlur_2046_989"
           />
         </filter>
         <radialGradient
-          id="paint0_radial_2046_988"
+          id="paint0_radial_2046_989"
           cx="0"
           cy="0"
           r="1"
           gradientUnits="userSpaceOnUse"
-          gradientTransform="translate(425.653 570.413) rotate(90) scale(570.413 425.653)"
+          gradientTransform="translate(541.589 549.138) rotate(90) scale(549.138 541.589)"
         >
-          <stop stopColor="#F2F2F2" />
+          <stop stopColor="#1B3F72" />
           <stop offset="1" stopColor="#111B1D" />
         </radialGradient>
       </defs>

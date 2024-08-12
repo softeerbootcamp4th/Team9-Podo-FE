@@ -14,11 +14,6 @@ const RouterWithModal = () => {
 
   return (
     <>
-      {background && (
-        <Routes>
-          <Route path="/auth-modal" element={<AuthModal />} />
-        </Routes>
-      )}
       <Routes location={background || location}>
         <Route path="/" element={<MainPage />} />
         <Route path="/event1" element={<FCFSEventPage />} />
@@ -30,6 +25,11 @@ const RouterWithModal = () => {
         <Route path="/auth-modal" element={<AuthModal />} />
         <Route path="*" element={<h1>404</h1>} />
       </Routes>
+      {background && (
+        <Routes>
+          <Route path="/auth-modal" element={<AuthModal />} />
+        </Routes>
+      )}
     </>
   );
 };

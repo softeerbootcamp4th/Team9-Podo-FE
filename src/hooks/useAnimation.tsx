@@ -3,8 +3,10 @@ import React, { useRef } from "react";
 interface UseAnimationProps {
   startKeyframes: Keyframe[];
   cancelKeyframes?: Keyframe[];
-  options: KeyframeAnimationOptions;
+  afterStartKeyframes?: Keyframe[];
+  startOptions: KeyframeAnimationOptions;
   cancelOptions?: KeyframeAnimationOptions;
+  afterStartOptions?: KeyframeAnimationOptions;
 }
 
 /**
@@ -13,7 +15,10 @@ interface UseAnimationProps {
  * @param {Object} props - The properties object.
  * @param {Keyframe[]} props.startKeyframes - 시작 시 적용할 keyframe 배열
  * @param {Keyframe[]} props.cancelKeyframes - 종료 시 적용할 keyframe 배열
- * @param {KeyframeAnimationOptions} props.options - 시작 시 적용할 keyframe 배열
+ * @param {Keyframe[]} props.afterStartKeyframes - 시작 종료 시 적용할 keyframe 배열
+ * @param {KeyframeAnimationOptions} props.startOptions - 시작 시 적용할 keyframe 배열
+ * @param {KeyframeAnimationOptions} props.cancelOptions - 종료 시 적용할 keyframe 배열
+ * @param {KeyframeAnimationOptions} props.afterStartOptions - 시작 종료 시 적용할 keyframe 배열
  * @returns
  * @example
  * const AnimatedComponent = () => {
@@ -22,7 +27,7 @@ interface UseAnimationProps {
  *       { transform: 'translateX(0px)', opacity: 0 },
  *       { transform: 'translateX(100px)', opacity: 1 }
  *     ],
- *     options: { duration: 1000, fill: 'forwards' }
+ *     startOptions: { duration: 1000, fill: 'forwards' }
  *   });
  *
  *   return (
@@ -38,18 +43,24 @@ interface UseAnimationProps {
 const useAnimation = <T extends Element>({
   startKeyframes,
   cancelKeyframes = [],
-  options,
+  afterStartKeyframes = [],
+  startOptions,
   cancelOptions,
+  afterStartOptions,
 }: UseAnimationProps) => {
   const elementRef = useRef<T | null>(null);
   const animationRef = useRef<Animation | null>(null);
 
-  const startAnimation = () => {
+  const startAnimation = async () => {
     if (elementRef.current) {
       animationRef.current = elementRef.current.animate(
         startKeyframes,
-        options,
+        startOptions,
       );
+      if (animationRef.current && afterStartKeyframes) {
+        await animationRef.current.finished;
+        elementRef.current.animate(afterStartKeyframes, afterStartOptions);
+      }
     }
   };
 
@@ -57,7 +68,7 @@ const useAnimation = <T extends Element>({
     if (animationRef.current && elementRef.current) {
       animationRef.current = elementRef.current.animate(
         cancelKeyframes,
-        cancelOptions ?? options,
+        cancelOptions ?? startOptions,
       );
     }
   };

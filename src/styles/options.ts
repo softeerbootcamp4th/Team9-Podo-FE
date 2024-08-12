@@ -13,6 +13,11 @@ export const fadeOptions = {
   fill: "forwards" as FillMode,
 };
 
+export const glowFadeOptions = {
+  duration: 1000,
+  fill: "both" as FillMode,
+};
+
 export const bothFadeOptions = {
   duration: 500,
   fill: "both" as FillMode,
