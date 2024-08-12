@@ -1,11 +1,11 @@
 import React from "react";
 import EventSelectSection from "./EventSelectSection";
-import FCFSEventSection from "./FCFSEventSection";
-import RandomEventSection from "./RandomEventSection";
+import GlowBackground from "../../../components/common/GlowBackground/GlowBackground";
 
 const MainScreen = () => {
   return (
     <>
+      <GlowBackground />
       <EventSelectSection />
     </>
   );

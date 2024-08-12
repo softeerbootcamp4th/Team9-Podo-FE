@@ -5,7 +5,7 @@ import EventFooter from "../../../components/mainPage/MainScreen/EventFooter";
 const RandomEventSection = forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <div
-      className="h-screen w-screen snap-start flex-col bg-pink-200 flex-center"
+      className="h-screen w-screen snap-start flex-col flex-center"
       ref={ref}
     >
       <EventHeader title="event" description="desc" />
