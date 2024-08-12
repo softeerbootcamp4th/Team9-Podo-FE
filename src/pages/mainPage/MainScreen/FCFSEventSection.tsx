@@ -2,6 +2,7 @@ import React, { forwardRef } from "react";
 import Timer from "./Timer";
 import EventHeader from "../../../components/mainPage/MainScreen/EventHeader";
 import Button from "../../../components/common/Button/Button";
+import e1Gift from "../../../assets/images/e1Gift.png";
 
 const eventData = {
   title: "Event 1.",
@@ -38,8 +39,14 @@ const FCFSEventSection = forwardRef<HTMLDivElement>((props, ref) => {
         title={eventData.title}
         description={eventData.description}
       />
-      <Timer />
-      <img src="" alt="Event" />
+      <div className="flex h-[30rem] flex-col justify-between">
+        <Timer />
+        <img
+          src={e1Gift}
+          alt="Event"
+          className="h-[5.75rem] w-[3.375rem] -translate-y-36 translate-x-60"
+        />
+      </div>
       <div className="h-[16.375rem] gap-4 text-gray-50 flex-center">
         <div className="flex h-full w-[26.5rem] flex-col gap-4 text-body-1-regular">
           {periodInfo.map((info, index) => (

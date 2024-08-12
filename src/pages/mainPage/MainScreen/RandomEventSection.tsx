@@ -1,8 +1,14 @@
 import React, { forwardRef } from "react";
 import EventHeader from "../../../components/mainPage/MainScreen/EventHeader";
 import Button from "../../../components/common/Button/Button";
+import e2Gift1 from "../../../assets/images/e2Gift1.png";
+import e2Gift2 from "../../../assets/images/e2Gift2.png";
+import e2Gift3 from "../../../assets/images/e2Gift3.png";
+import Glow from "../../../components/common/Glow/Glow";
 
 const RandomEventSection = forwardRef<HTMLDivElement>((props, ref) => {
+  const images = [e2Gift1, e2Gift2, e2Gift3];
+
   const eventData = {
     title: "Event 2.",
     description: `내 운전자 유형에 맞는 셀토스 라이프스타일\n추천받고 경품 응모하기`,
@@ -43,7 +49,22 @@ const RandomEventSection = forwardRef<HTMLDivElement>((props, ref) => {
         title={eventData.title}
         description={eventData.description}
       />
-      <img />
+      <div className="flex h-[30rem]">
+        {images.map((src, index) => (
+          <img
+            key={index}
+            src={src}
+            alt={`Gift ${index + 1}`}
+            className="w-1/3"
+            style={{
+              maskImage:
+                "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
+            }}
+          />
+        ))}
+      </div>
       <div className="h-[16.375rem] gap-4 text-gray-50 flex-center">
         <div className="flex h-full w-[22rem] flex-col gap-4 text-body-1-regular">
           {periodInfo.map((info, index) => (
