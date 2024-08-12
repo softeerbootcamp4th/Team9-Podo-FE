@@ -23,14 +23,12 @@ const MainScreen = () => {
   return (
     <>
       <GlowBackground />
-      <div className="h-screen w-screen snap-y snap-mandatory overflow-scroll scroll-smooth">
-        <EventSelectSection
-          onFCFSClick={onFCFSClick}
-          onRandomClick={onRandomClick}
-        />
-        <FCFSEventSection ref={FCFSRef}></FCFSEventSection>
-        <RandomEventSection ref={RandomRef}></RandomEventSection>
-      </div>
+      <EventSelectSection
+        onFCFSClick={onFCFSClick}
+        onRandomClick={onRandomClick}
+      />
+      <FCFSEventSection ref={FCFSRef}></FCFSEventSection>
+      <RandomEventSection ref={RandomRef}></RandomEventSection>
     </>
   );
 };

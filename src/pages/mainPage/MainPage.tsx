@@ -6,7 +6,7 @@ import InfoScreen from "./InfoScreen/InfoScreen";
 
 const MainPage = () => {
   return (
-    <div>
+    <div className="h-screen w-screen snap-y snap-mandatory overflow-scroll scroll-smooth">
       <MainScreen />
       <InfoScreen />
       <NotificationScreen />

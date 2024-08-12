@@ -1,9 +1,11 @@
 import React from "react";
 import OutsideSection from "./OutsideSection";
+import InsideSection from "./InsideSection";
 
 const InfoScreen = () => {
   return (
-    <div className="h-screen w-screen snap-y snap-mandatory overflow-scroll scroll-smooth">
+    <div>
+      <InsideSection />
       <OutsideSection />
     </div>
   );
