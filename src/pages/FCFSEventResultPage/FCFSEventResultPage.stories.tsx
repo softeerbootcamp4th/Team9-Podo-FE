@@ -24,7 +24,7 @@ export const Default = {
   parameters: {
     msw: {
       handlers: [
-        http.get("http://localhost:5000/v1/quiz", () => {
+        http.get("/v1/quiz", () => {
           return HttpResponse.json(quizInfo);
         }),
       ],

@@ -15,7 +15,7 @@ describe("AuthTooltip Component", () => {
   test("isAuth가 true면 남은 시간이 MM:SS 형식으로 화면에 표시되어야 한다.", () => {
     render(<AuthTooltip isAuth={true} />);
 
-    const timeRegex = /(0[0-9]|[1-5][0-9]):([0-5][0-9])/;
+    const timeRegex = /(0[0-9]|[1-5][0-9])\s:\s([0-5][0-9])/;
 
     const leftTimer = screen.getByRole("timer");
     expect(leftTimer).toHaveTextContent(timeRegex);
@@ -28,7 +28,7 @@ describe("AuthTooltip Component", () => {
     await userEvent.click(refreshButton);
 
     const leftTimer = screen.getByRole("timer");
-    expect(leftTimer).toHaveTextContent("59:59");
+    expect(leftTimer).toHaveTextContent("59 : 59");
   });
 
   test("isAuth가 false이면 Authtooltip이 화면에 표시되지 않는다.", () => {

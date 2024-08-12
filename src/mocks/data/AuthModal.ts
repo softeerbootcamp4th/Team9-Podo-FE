@@ -10,3 +10,13 @@ export const phoneAuthCheckResult: PhoneAuthVerifyResult = {
     expireTime: 3600000,
   },
 };
+
+export const phoneAuthCheckFailResult: PhoneAuthVerifyResult = {
+  isSuccess: true,
+  code: 400,
+  message: "요청에 성공했습니다.",
+  result: {
+    accessToken: "",
+    expireTime: 0,
+  },
+};

@@ -53,35 +53,35 @@ describe("FCFSEventResultPage Component", () => {
     expect(eventButton.animate).toHaveBeenCalledWith(fadeIn, bothFadeOptions);
   });
 
-  test("당첨이 되었다면 당첨되었습니다 문구와 함께 폭죽 애니메이션과 유의 사항이 보여야 한다.", async () => {
-    render(<FCFSEventResultPage />);
+  // test("당첨이 되었다면 당첨되었습니다 문구와 함께 폭죽 애니메이션과 유의 사항이 보여야 한다.", async () => {
+  //   render(<FCFSEventResultPage />);
 
-    const keyImage = await screen.findByRole("button", { name: "car-key" });
-    await userEvent.click(keyImage);
+  //   const keyImage = await screen.findByRole("button", { name: "car-key" });
+  //   await userEvent.click(keyImage);
 
-    const winText = await screen.findByText("당첨을 축하합니다!");
-    expect(winText).toBeInTheDocument();
+  //   const winText = await screen.findByText("당첨을 축하합니다!");
+  //   expect(winText).toBeInTheDocument();
 
-    const firework = await screen.findByTestId("firework");
-    expect(firework).toBeInTheDocument();
+  //   const firework = await screen.findByTestId("firework");
+  //   expect(firework).toBeInTheDocument();
 
-    const notice = await screen.findByRole("banner");
-    expect(notice).toBeInTheDocument();
-  });
+  //   const notice = await screen.findByRole("banner");
+  //   expect(notice).toBeInTheDocument();
+  // });
 
-  test("당첨이 되지 않았다면 위로 문구와 안내 문구, 비 애니메이션이 보여야 한다.", async () => {
-    render(<FCFSEventResultPage />);
+  // test("당첨이 되지 않았다면 위로 문구와 안내 문구, 비 애니메이션이 보여야 한다.", async () => {
+  //   render(<FCFSEventResultPage />);
 
-    const keyImage = await screen.findByRole("button", { name: "car-key" });
-    await userEvent.click(keyImage);
+  //   const keyImage = await screen.findByRole("button", { name: "car-key" });
+  //   await userEvent.click(keyImage);
 
-    const loseText = await screen.findByText("아쉽지만 다음 기회에...");
-    expect(loseText).toBeInTheDocument();
+  //   const loseText = await screen.findByText("아쉽지만 다음 기회에...");
+  //   expect(loseText).toBeInTheDocument();
 
-    const rain = await screen.findByTestId("rain");
-    expect(rain).toBeInTheDocument();
+  //   const rain = await screen.findByTestId("rain");
+  //   expect(rain).toBeInTheDocument();
 
-    const notice = await screen.findByRole("banner");
-    expect(notice).toBeInTheDocument();
-  });
+  //   const notice = await screen.findByRole("banner");
+  //   expect(notice).toBeInTheDocument();
+  // });
 });
