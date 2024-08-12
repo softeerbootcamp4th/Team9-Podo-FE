@@ -1,4 +1,4 @@
-import React, { MouseEvent, MouseEventHandler } from "react";
+import React, { MouseEvent, MouseEventHandler, useState } from "react";
 import Button from "../../../common/Button/Button";
 
 interface EventSelectOptionsProps {
@@ -18,10 +18,23 @@ const EventSelectOptions = ({
   img,
   buttonInfo: { size, onClick, isEnabled },
 }: EventSelectOptionsProps) => {
+  const [hover, setHover] = useState(false);
+  const onMouseEnterHandler = () => {
+    setHover(true);
+  };
+  const onMouseLeaveHandler = () => {
+    setHover(false);
+  };
   return (
-    <div className="flex h-full w-1/2 flex-col items-center justify-around pb-10 pt-44 font-kia-signature-bold text-title-3 text-gray-50">
+    <div
+      onMouseEnter={onMouseEnterHandler}
+      onMouseLeave={onMouseLeaveHandler}
+      className="flex h-full w-1/2 flex-col items-center justify-around pb-10 pt-44 font-kia-signature-bold text-title-3 text-gray-50"
+    >
       <div className="flex-col gap-6 flex-center">
-        <div className="rounded-full bg-black bg-opacity-10 px-6 py-4 flex-center">
+        <div
+          className={`rounded-full bg-opacity-10 px-6 py-4 flex-center ${hover && "bg-white bg-opacity-100"}`}
+        >
           <span
             style={{
               background:

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import EventHeader from "../../../components/mainPage/MainScreen/EventHeader";
 import EventFooter from "../../../components/mainPage/MainScreen/EventFooter";
 
-const RandomEventSection = () => {
+const RandomEventSection = forwardRef<HTMLDivElement>((props, ref) => {
   return (
-    <div className="h-screen w-screen snap-start flex-col bg-pink-200 flex-center">
+    <div
+      className="h-screen w-screen snap-start flex-col bg-pink-200 flex-center"
+      ref={ref}
+    >
       <EventHeader title="event" description="desc" />
       <img />
       <EventFooter
@@ -13,6 +16,6 @@ const RandomEventSection = () => {
       />
     </div>
   );
-};
+});
 
 export default RandomEventSection;

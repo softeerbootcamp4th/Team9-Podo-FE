@@ -112,7 +112,7 @@ const RandomEventResultPage = () => {
             <img
               src={car}
               alt="자동차"
-              className={`${animation ? "animate-fadeOut" : ""}`}
+              className={`${animation && "animate-fadeOut"}`}
             />
           )}
         </div>

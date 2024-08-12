@@ -4,6 +4,7 @@ interface UseAnimationProps {
   startKeyframes: Keyframe[];
   cancelKeyframes?: Keyframe[];
   options: KeyframeAnimationOptions;
+  cancelOptions?: KeyframeAnimationOptions;
 }
 
 /**
@@ -38,6 +39,7 @@ const useAnimation = <T extends Element>({
   startKeyframes,
   cancelKeyframes = [],
   options,
+  cancelOptions,
 }: UseAnimationProps) => {
   const elementRef = useRef<T | null>(null);
   const animationRef = useRef<Animation | null>(null);
@@ -55,7 +57,7 @@ const useAnimation = <T extends Element>({
     if (animationRef.current && elementRef.current) {
       animationRef.current = elementRef.current.animate(
         cancelKeyframes,
-        options,
+        cancelOptions ?? options,
       );
     }
   };
