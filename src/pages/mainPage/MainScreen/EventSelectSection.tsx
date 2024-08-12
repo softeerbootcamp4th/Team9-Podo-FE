@@ -11,19 +11,18 @@ import RandomEventSection from "./RandomEventSection";
 
 const EventSelectSection = () => {
   const [isLanding, setIsLanding] = useState(true);
+  const [hoverdIndex, setHoverdIndex] = useState(null);
   const FCFSRef = useRef<HTMLDivElement | null>(null);
   const RandomRef = useRef<HTMLDivElement | null>(null);
 
   const onFCFSClick = () => {
     FCFSRef.current.scrollIntoView({
       behavior: "smooth",
-      block: "start",
     });
   };
   const onRandomClick = () => {
     RandomRef.current.scrollIntoView({
       behavior: "smooth",
-      block: "start",
     });
   };
 
@@ -33,7 +32,7 @@ const EventSelectSection = () => {
         { transform: "translateX(0)" },
         { transform: "translateX(-160rem)", display: "none" },
       ],
-      options: { duration: 500, fill: "forwards", delay: 100 },
+      startOptions: { duration: 500, fill: "forwards", delay: 100 },
     });
   const {
     elementRef: mainCarRef,
@@ -41,7 +40,7 @@ const EventSelectSection = () => {
     stopAnimation: mainCarStopAnimation,
   } = useAnimation<HTMLImageElement>({
     startKeyframes: [{ opacity: "0" }, { opacity: "100" }],
-    options: { duration: 2000, fill: "forwards", delay: 1000 },
+    startOptions: { duration: 2000, fill: "forwards", delay: 1000 },
     cancelKeyframes: [{ opacity: "100" }, { opacity: "0" }],
     cancelOptions: { duration: 200, fill: "forwards" },
   });
@@ -49,19 +48,13 @@ const EventSelectSection = () => {
   const { elementRef: titleRef, startAnimation: titleAnimation } =
     useAnimation<HTMLDivElement>({
       startKeyframes: [{ opacity: "0" }, { opacity: "100" }],
-      options: { duration: 2000, fill: "forwards", delay: 600 },
-    });
-  const { elementRef: bgRef, startAnimation: bgAnimation } =
-    useAnimation<HTMLDivElement>({
-      startKeyframes: [{ opacity: "0" }, { opacity: "100" }],
-      options: { duration: 4000, fill: "forwards", delay: 1000 },
+      startOptions: { duration: 2000, fill: "forwards", delay: 600 },
     });
 
   useEffect(() => {
     landingCarAnimation();
     mainCarAnimation();
     titleAnimation();
-    bgAnimation();
 
     const landingTimeout = setTimeout(() => {
       setIsLanding(false);
@@ -74,12 +67,6 @@ const EventSelectSection = () => {
   return (
     <div className="h-screen w-screen snap-y snap-mandatory overflow-scroll scroll-smooth">
       <div className="relative h-screen w-screen snap-start flex-col flex-center">
-        <div className="absolute -z-20 h-screen w-screen bg-black">
-          <div className="-z-10 overflow-hidden opacity-0" ref={bgRef}>
-            <Glow />
-          </div>
-        </div>
-
         <div
           className={`${!isLanding ? "top-12" : "top-52"} absolute z-10 flex flex-col items-center justify-start gap-[9rem] transition-all duration-500`}
         >
@@ -101,7 +88,7 @@ const EventSelectSection = () => {
         <img
           src={mainCar}
           alt=""
-          className={`absolute top-96 z-10 opacity-0`}
+          className={`absolute top-96 opacity-0`}
           ref={mainCarRef}
         />
 
@@ -115,8 +102,11 @@ const EventSelectSection = () => {
         )}
 
         {!isLanding && (
-          <div className="animate-fadeIn h-full w-full flex-center">
+          <div className="h-full w-full animate-fadeIn flex-center">
             <EventSelectOptions
+              index={0}
+              hoverdIndex={hoverdIndex}
+              setHoverdIndex={setHoverdIndex}
               title="event 1."
               description={`매일 선착순 100명! \n퀴즈 풀고 스타벅스 커피 받아가자!`}
               img={e1Gift}
@@ -127,6 +117,9 @@ const EventSelectSection = () => {
               }}
             />
             <EventSelectOptions
+              index={1}
+              hoverdIndex={hoverdIndex}
+              setHoverdIndex={setHoverdIndex}
               title="event 2."
               description={`내 운전자 유형에 맞는 셀토스 라이프스타일 추천받고,\n 시그니엘 숙박권 당첨의 기회!`}
               img={e2Gift}
