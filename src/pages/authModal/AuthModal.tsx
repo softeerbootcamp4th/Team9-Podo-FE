@@ -112,8 +112,8 @@ const AuthModal = () => {
   };
 
   return (
-    <div className="h-screen w-screen bg-black opacity-90 flex-center">
-      <div className="relative h-[52.75rem] w-[35.25rem] flex-col rounded-[2rem] bg-white/20 p-6 px-8 text-white flex-center">
+    <div className="absolute left-0 top-0 z-50 h-screen w-screen bg-black/90 flex-center">
+      <div className="relative h-[52.75rem] w-[35.25rem] flex-col rounded-[2rem] bg-gray-900 p-6 px-8 text-white flex-center">
         <div className="pb-700 font-kia-signature-bold text-title-2">
           개인정보 수집, 이용에 대한 동의
         </div>
