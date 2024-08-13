@@ -1,53 +1,23 @@
-import React from "react";
-
-interface CarImgProps {
-  img: string;
-}
-
-interface PalleteItemProps {
-  color: string;
-  active: boolean;
-}
-
-interface NameItemProps {
-  name: string;
-  egName: string;
-}
-
-const CarImg = ({ img }: CarImgProps) => {
-  return <img />;
-};
-
-const PalleteItem = ({ color, active }: PalleteItemProps) => {
-  return (
-    <>
-      <div>{color}</div>
-    </>
-  );
-};
-
-const NameItem = ({ name, egName }: NameItemProps) => {
-  return (
-    <>
-      <div>{name}</div>
-      <div>{egName}</div>
-    </>
-  );
-};
+import React, { useEffect, useRef, useState } from "react";
+import white from "../../../assets/images/colorSnowWhitePearl.png";
+import blue from "../../../assets/images/colorDarkOceanBlue.png";
+import green from "../../../assets/images/colorGrean.png";
+import gray from "../../../assets/images/colorGravityGray.png";
+import black from "../../../assets/images/colorFusionBlack.png";
 
 const ColorSection = () => {
   return (
-    <>
-      <div>
-        <CarImg img="img" />
-      </div>
-      <div>
-        <PalleteItem color="red" active={false} />
-      </div>
-      <div>
-        <NameItem name="ss" egName="sss" />
-      </div>
-    </>
+    <div className="relative flex snap-start flex-col items-center bg-white">
+      <img src={white} alt="" />
+
+      <img src={blue} alt="" />
+
+      <img src={green} alt="" />
+
+      <img src={gray} alt="" />
+
+      <img src={black} alt="" />
+    </div>
   );
 };
 
