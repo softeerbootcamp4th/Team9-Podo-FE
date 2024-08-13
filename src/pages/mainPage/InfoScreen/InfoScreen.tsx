@@ -3,6 +3,7 @@ import OutsideSection from "./OutsideSection";
 import InsideSection from "./InsideSection";
 import VideoSection from "./VideoSection";
 import DriveSection from "./DriveSection";
+import ConvenienceSection from "./ConvenienceSection";
 
 const InfoScreen = () => {
   return (
@@ -10,6 +11,7 @@ const InfoScreen = () => {
       <VideoSection />
       <OutsideSection />
       <DriveSection />
+      <ConvenienceSection />
     </div>
   );
 };
