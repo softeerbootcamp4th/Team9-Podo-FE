@@ -1,11 +1,12 @@
 import React from "react";
 import OutsideSection from "./OutsideSection";
 import InsideSection from "./InsideSection";
+import VideoSection from "./VideoSection";
 
 const InfoScreen = () => {
   return (
     <div>
-      <InsideSection />
+      <VideoSection />
       <OutsideSection />
     </div>
   );
