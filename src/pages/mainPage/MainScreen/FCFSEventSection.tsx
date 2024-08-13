@@ -1,8 +1,12 @@
-import React, { forwardRef } from "react";
+import React, { ComponentPropsWithRef, ForwardedRef, forwardRef } from "react";
 import Timer from "./Timer";
 import EventHeader from "../../../components/mainPage/MainScreen/EventHeader";
 import Button from "../../../components/common/Button/Button";
 import e1Gift from "../../../assets/images/e1Gift.png";
+
+interface FCFSEventSectionProps {
+  isVisible: boolean;
+}
 
 const eventData = {
   title: "Event 1.",
@@ -29,10 +33,13 @@ const tips = [
   { text: "Tip! 본인인증을 미리 해두면 빠른 이벤트 참여가 가능해요" },
 ];
 
-const FCFSEventSection = forwardRef<HTMLDivElement>((props, ref) => {
+const FCFSEventSection = (
+  { isVisible }: FCFSEventSectionProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) => {
   return (
     <div
-      className="h-screen w-screen snap-start flex-col transition-all duration-200 flex-center"
+      className={`h-screen w-screen snap-start flex-col transition-all duration-200 flex-center ${!isVisible && "opacity-0"}`}
       ref={ref}
     >
       <EventHeader
@@ -101,6 +108,6 @@ const FCFSEventSection = forwardRef<HTMLDivElement>((props, ref) => {
       </div>
     </div>
   );
-});
+};
 
-export default FCFSEventSection;
+export default forwardRef(FCFSEventSection);

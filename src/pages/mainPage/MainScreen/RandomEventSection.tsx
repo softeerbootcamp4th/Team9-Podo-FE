@@ -1,12 +1,18 @@
-import React, { forwardRef } from "react";
+import React, { ForwardedRef, forwardRef } from "react";
 import EventHeader from "../../../components/mainPage/MainScreen/EventHeader";
 import Button from "../../../components/common/Button/Button";
 import e2Gift1 from "../../../assets/images/e2Gift1.png";
 import e2Gift2 from "../../../assets/images/e2Gift2.png";
 import e2Gift3 from "../../../assets/images/e2Gift3.png";
-import Glow from "../../../components/common/Glow/Glow";
 
-const RandomEventSection = forwardRef<HTMLDivElement>((props, ref) => {
+interface RandomEventSectionProps {
+  isVisible: boolean;
+}
+
+const RandomEventSection = (
+  { isVisible }: RandomEventSectionProps,
+  ref: ForwardedRef<HTMLDivElement>,
+) => {
   const images = [e2Gift1, e2Gift2, e2Gift3];
 
   const eventData = {
@@ -42,7 +48,7 @@ const RandomEventSection = forwardRef<HTMLDivElement>((props, ref) => {
 
   return (
     <div
-      className="h-screen w-screen snap-start flex-col transition-all duration-200 flex-center"
+      className={`h-screen w-screen snap-start flex-col transition-all duration-200 flex-center ${!isVisible && "opacity-0"}`}
       ref={ref}
     >
       <EventHeader
@@ -108,6 +114,6 @@ const RandomEventSection = forwardRef<HTMLDivElement>((props, ref) => {
       </div>
     </div>
   );
-});
+};
 
-export default RandomEventSection;
+export default forwardRef(RandomEventSection);

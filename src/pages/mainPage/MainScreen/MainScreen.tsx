@@ -83,7 +83,6 @@ const MainScreen = () => {
       imageObserver.observe(sectionElement);
     }
 
-    //성능 저하의 원인이 될 수 있음..
     return () => {
       fadeElements.forEach((element) => {
         if (element) {
@@ -112,8 +111,14 @@ const MainScreen = () => {
         }`}
       />
       <div ref={SectionRef}>
-        <FCFSEventSection ref={FCFSRef}></FCFSEventSection>
-        <RandomEventSection ref={RandomRef}></RandomEventSection>
+        <FCFSEventSection
+          ref={FCFSRef}
+          isVisible={isSectionVisible.fcfs}
+        ></FCFSEventSection>
+        <RandomEventSection
+          ref={RandomRef}
+          isVisible={isSectionVisible.random}
+        ></RandomEventSection>
       </div>
     </>
   );
