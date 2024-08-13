@@ -37,7 +37,9 @@ const ConvenienceSection = () => {
       ref={divRef}
       className="flex h-screen w-screen snap-start items-center overflow-scroll bg-white"
     >
-      <div className="flex h-[7.625rem] w-1/2 shrink-0 flex-col items-center">
+      <div
+        className={`flex h-[7.625rem] w-1/2 shrink-0 flex-col items-center ${isInView ? "opacity-100" : "opacity-0"} transition-opacity duration-[1000ms]`}
+      >
         <div className="flex flex-col gap-600">
           <div className="h-[2.75rem] w-fit shrink-0 self-start rounded-[6.25rem] px-500 py-300 font-kia-signature text-title-4 text-gray-400 flex-center gradient-border">
             편의
