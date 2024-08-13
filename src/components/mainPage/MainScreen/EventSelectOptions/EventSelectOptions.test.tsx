@@ -11,7 +11,7 @@ describe("EventSelectOption Component", () => {
     render(
       <EventSelectOptions
         index={0}
-        hoverdIndex={null}
+        hoveredIndex={null}
         setHoveredIndex={setHoveredIndex}
         title="event 1."
         description={`매일 선착순 100명! \n퀴즈 풀고 스타벅스 커피 받아가자!`}
@@ -30,7 +30,7 @@ describe("EventSelectOption Component", () => {
     render(
       <EventSelectOptions
         index={0}
-        hoverdIndex={null}
+        hoveredIndex={null}
         setHoveredIndex={setHoveredIndex}
         title="event 1."
         description={`매일 선착순 100명! \n퀴즈 풀고 스타벅스 커피 받아가자!`}
