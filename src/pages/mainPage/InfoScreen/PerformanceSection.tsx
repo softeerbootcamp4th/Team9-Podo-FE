@@ -3,7 +3,7 @@ import PerformanceDescriptionItem from "../../../components/mainPage/InfoScreen/
 
 const PerformanceSection = () => {
   return (
-    <>
+    <div className="h-screen w-screen snap-start">
       <div>Header</div>
       <img />
       {gasolineInfo.map(({ id, title, value }, index) => {
@@ -19,7 +19,7 @@ const PerformanceSection = () => {
         else
           return <GasolineInfo key={8} id={id} title={title} value={value} />;
       })}
-    </>
+    </div>
   );
 };
 
