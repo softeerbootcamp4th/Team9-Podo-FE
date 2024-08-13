@@ -53,7 +53,7 @@ const DriveSection = () => {
       <div className="mb-12 font-kia-signature-bold text-title-1 text-gray-950">
         차급을 뛰어 넘는 주행 경험
       </div>
-      <div className="op grid grid-cols-3 grid-rows-2 gap-x-[2rem] gap-y-[3.75rem]">
+      <div className="grid grid-cols-3 grid-rows-2 gap-x-[2rem] gap-y-[3.75rem]">
         {driveInfoData.map(({ key, title, image }, index) => (
           <DriveDescriptionItem
             key={key}

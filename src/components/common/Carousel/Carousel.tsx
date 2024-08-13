@@ -51,11 +51,24 @@ const Carousel = ({ items }: CarouselProps) => {
                 const index = itemRefs.current.indexOf(
                   event.currentTarget as HTMLDivElement,
                 );
-                setSelectedIndex(index);
-                itemRefs.current[index]?.scrollIntoView({
-                  behavior: "smooth",
-                  block: "center",
-                });
+                const targetElement = itemRefs.current[index];
+
+                if (targetElement) {
+                  const carouselContainer = targetElement.parentElement;
+
+                  if (carouselContainer) {
+                    const targetPosition =
+                      targetElement.offsetLeft - carouselContainer.offsetLeft;
+
+                    carouselContainer.scrollTo({
+                      top: 0,
+                      left: targetPosition,
+                      behavior: "smooth",
+                    });
+
+                    setSelectedIndex(index);
+                  }
+                }
               }}
               ref={(el) => (itemRefs.current[index] = el)}
               className={`flex-shrink-0 ${index === selectedIndex ? "opacity-100" : "opacity-30"} snap-center transition-opacity`}
