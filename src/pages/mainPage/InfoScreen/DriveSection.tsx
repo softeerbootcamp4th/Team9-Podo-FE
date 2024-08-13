@@ -1,13 +1,69 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DriveDescriptionItem from "../../../components/mainPage/InfoScreen/DriveDescriptionItem";
+import { driveInfoData } from "../../../constants/InfoData";
+
+const animationDelay = {
+  0: "delay-0",
+  1: "delay-[200ms]",
+  2: "delay-[400ms]",
+  3: "delay-[100ms]",
+  4: "delay-[300ms]",
+  5: "delay-[500ms]",
+};
 
 const DriveSection = () => {
+  const [isInView, setIsInView] = useState(false);
+  const divRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+          } else if (entry.intersectionRect.top !== 0) {
+            setIsInView(false);
+          }
+        });
+      },
+      {
+        threshold: 0.9,
+      },
+    );
+
+    if (divRef.current) {
+      observer.observe(divRef.current);
+    }
+
+    return () => {
+      if (divRef.current) {
+        observer.unobserve(divRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <>
-      <div>Header</div>
-      <div>guide</div>
-      <DriveDescriptionItem title="d" description="d" img="dd" />
-    </>
+    <div
+      ref={divRef}
+      className="flex h-screen w-screen snap-start flex-col items-center bg-white"
+    >
+      <div className="mb-600 mt-[5rem] h-[2.75rem] rounded-[6.25rem] px-500 py-300 font-kia-signature text-title-4 text-gray-400 flex-center gradient-border">
+        드라이빙
+      </div>
+      <div className="mb-12 font-kia-signature-bold text-title-1 text-gray-950">
+        차급을 뛰어 넘는 주행 경험
+      </div>
+      <div className="op grid grid-cols-3 grid-rows-2 gap-x-[2rem] gap-y-[3.75rem]">
+        {driveInfoData.map(({ key, title, image }, index) => (
+          <DriveDescriptionItem
+            key={key}
+            title={title}
+            img={image}
+            tailwind={`${isInView ? "opacity-100 scale-100" : "opacity-0 scale-90"} transition-all duration-[200ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)] origin-bottom-right ${animationDelay[index as keyof typeof animationDelay]} `}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 
