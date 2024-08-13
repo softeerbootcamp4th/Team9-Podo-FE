@@ -7,13 +7,10 @@ import Carousel from "../../../components/common/Carousel/Carousel";
 const OutsideSection = () => {
   const [isInView, setIsInView] = useState(false);
   const imgRef = useRef(null);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          console.log(entry);
-
           if (entry.isIntersecting) {
             setIsInView(true);
           } else if (entry.intersectionRect.top !== 0) {
