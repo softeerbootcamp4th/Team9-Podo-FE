@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import DriveDescriptionItem from "../../../components/mainPage/InfoScreen/DriveDescriptionItem";
 import { driveInfoData } from "../../../constants/InfoData";
+import useInView from "../../../hooks/useInView";
 
 const animationDelay = {
   0: "delay-0",
@@ -12,40 +13,12 @@ const animationDelay = {
 };
 
 const DriveSection = () => {
-  const [isInView, setIsInView] = useState(false);
+  const { isInView, elementRef } = useInView<HTMLDivElement>(0.9);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const divRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsInView(true);
-          } else if (entry.intersectionRect.top !== 0) {
-            setIsInView(false);
-          }
-        });
-      },
-      {
-        threshold: 0.9,
-      },
-    );
-
-    if (divRef.current) {
-      observer.observe(divRef.current);
-    }
-
-    return () => {
-      if (divRef.current) {
-        observer.unobserve(divRef.current);
-      }
-    };
-  }, []);
 
   return (
     <div
-      ref={divRef}
+      ref={elementRef}
       className="flex h-screen w-screen snap-start flex-col items-center bg-white flex-center"
     >
       <div className="mb-600 h-[2.75rem] rounded-[6.25rem] px-500 py-300 font-kia-signature text-title-4 text-gray-400 flex-center gradient-border">
