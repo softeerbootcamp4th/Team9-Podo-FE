@@ -10,6 +10,7 @@ import {
   RANDOM_PRIZE_INFO,
   RANDOM_STEPS,
 } from "../../../constants/EventData";
+import { useNavigate } from "react-router";
 
 interface RandomEventSectionProps {
   isVisible: boolean;
@@ -20,10 +21,11 @@ const RandomEventSection = (
   ref: ForwardedRef<HTMLDivElement>,
 ) => {
   const images = [e2Gift1, e2Gift2, e2Gift3];
+  const navigate = useNavigate();
 
   return (
     <div
-      className={`h-screen w-screen snap-start flex-col transition-all duration-200 flex-center ${!isVisible && "opacity-0"}`}
+      className={`flex h-screen w-screen snap-start snap-always flex-col items-center justify-around transition-all duration-200 ${!isVisible && "opacity-0"}`}
       ref={ref}
     >
       <EventHeader
@@ -81,7 +83,9 @@ const RandomEventSection = (
         </div>
 
         <Button
-          onClick={() => {}}
+          onClick={() => {
+            navigate("event2/0");
+          }}
           size="big"
           isEnabled={true}
           defaultText="참여하기"

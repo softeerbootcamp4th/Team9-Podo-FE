@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-interface UseAnimationProps {
+export interface UseAnimationProps {
   startKeyframes: Keyframe[];
   cancelKeyframes?: Keyframe[];
   afterStartKeyframes?: Keyframe[];
@@ -52,25 +52,27 @@ const useAnimation = <T extends Element>({
   const animationRef = useRef<Animation | null>(null);
 
   const startAnimation = async () => {
-    if (elementRef.current) {
-      animationRef.current = elementRef.current.animate(
-        startKeyframes,
-        startOptions,
-      );
-      if (animationRef.current && afterStartKeyframes && elementRef.current) {
-        await animationRef.current.finished;
-        elementRef.current.animate(afterStartKeyframes, afterStartOptions);
-      }
+    const element = elementRef.current;
+    if (!element) return;
+
+    const animation = element.animate(startKeyframes, startOptions);
+    animationRef.current = animation;
+
+    if (afterStartKeyframes.length > 0) {
+      await animation.finished;
+      element.animate(afterStartKeyframes, afterStartOptions);
     }
   };
 
   const stopAnimation = () => {
-    if (animationRef.current && elementRef.current) {
-      animationRef.current = elementRef.current.animate(
-        cancelKeyframes,
-        cancelOptions ?? startOptions,
-      );
-    }
+    const element = elementRef.current;
+    const animation = animationRef.current;
+    if (!element || !animation) return;
+
+    animationRef.current = element.animate(
+      cancelKeyframes,
+      cancelOptions ?? startOptions,
+    );
   };
 
   return { elementRef, animationRef, startAnimation, stopAnimation };
