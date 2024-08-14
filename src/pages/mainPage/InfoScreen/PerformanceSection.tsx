@@ -5,6 +5,7 @@ import {
   ENGINE_SPECS,
   PERFORMANCE,
 } from "../../../constants/InfoData";
+import useInView from "../../../hooks/\buseInView";
 
 interface SpecItemProps {
   value: string;
@@ -37,35 +38,7 @@ const EngineSpec = ({ title, specs, note }: EngineSpecProps) => (
 );
 
 const PerformanceSection = () => {
-  const [isInView, setIsInView] = useState(false);
-  const divRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsInView(true);
-          } else if (entry.intersectionRect.top !== 0) {
-            setIsInView(false);
-          }
-        });
-      },
-      {
-        threshold: 0.7,
-      },
-    );
-
-    if (divRef.current) {
-      observer.observe(divRef.current);
-    }
-
-    return () => {
-      if (divRef.current) {
-        observer.unobserve(divRef.current);
-      }
-    };
-  }, []);
+  const { isInView, divRef } = useInView<HTMLDivElement>(0.7);
 
   return (
     <div
