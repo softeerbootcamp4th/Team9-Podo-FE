@@ -118,7 +118,6 @@ const ColorSection = () => {
   const [clipPosition, setClipPosition] = useState(
     Array.from({ length: colorInfo.length }, () => 0),
   );
-  const [viewIndex, setViewIndex] = useState(0);
   const requestAnimationRef = useRef(0);
   const divRef = useRef<HTMLDivElement>(null);
 
