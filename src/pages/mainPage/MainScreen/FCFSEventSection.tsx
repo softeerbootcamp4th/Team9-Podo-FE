@@ -9,6 +9,7 @@ import {
   FCFS_PERIOD_INFO,
   FCFS_TIPS,
 } from "../../../constants/EventData";
+import { useNavigate } from "react-router";
 
 interface FCFSEventSectionProps {
   isVisible: boolean;
@@ -19,6 +20,7 @@ const FCFSEventSection = (
   { isVisible, onInfoClick }: FCFSEventSectionProps,
   ref: ForwardedRef<HTMLDivElement>,
 ) => {
+  const navigate = useNavigate();
   return (
     <div
       className={`h-screen w-screen snap-start flex-col transition-all duration-200 flex-center ${!isVisible && "opacity-0"}`}
@@ -85,7 +87,9 @@ const FCFSEventSection = (
           </div>
         </div>
         <Button
-          onClick={() => {}}
+          onClick={() => {
+            navigate("event1");
+          }}
           size="big"
           isEnabled={true}
           defaultText="참여하기"

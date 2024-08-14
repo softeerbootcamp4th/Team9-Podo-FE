@@ -10,6 +10,7 @@ import {
   RANDOM_PRIZE_INFO,
   RANDOM_STEPS,
 } from "../../../constants/EventData";
+import { useNavigate } from "react-router";
 
 interface RandomEventSectionProps {
   isVisible: boolean;
@@ -20,6 +21,7 @@ const RandomEventSection = (
   ref: ForwardedRef<HTMLDivElement>,
 ) => {
   const images = [e2Gift1, e2Gift2, e2Gift3];
+  const navigate = useNavigate();
 
   return (
     <div
@@ -81,7 +83,9 @@ const RandomEventSection = (
         </div>
 
         <Button
-          onClick={() => {}}
+          onClick={() => {
+            navigate("event2/0");
+          }}
           size="big"
           isEnabled={true}
           defaultText="참여하기"
