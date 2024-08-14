@@ -11,7 +11,10 @@ import { useEffect, useRef, useState } from "react";
  *   return <div ref={elementRef}>{isInView ? "In view" : "Out of view"}</div>;
  * };
  */
-const useInView = <T extends Element>(threshold: number) => {
+const useInView = <T extends Element>(
+  threshold: number,
+  onViewEscape?: () => void,
+) => {
   const [isInView, setIsInView] = useState(false);
   const elementRef = useRef<T>(null);
 
@@ -23,6 +26,7 @@ const useInView = <T extends Element>(threshold: number) => {
             setIsInView(true);
           } else if (entry.intersectionRect.top !== 0) {
             setIsInView(false);
+            if (onViewEscape) onViewEscape();
           }
         });
       },

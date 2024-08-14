@@ -125,3 +125,6 @@ export const ELECTRONIC_4WD = {
   description:
     "노면 및 주행 상황에 따라 구동력을 전후륜에 능동적으로 배분하여 안정적인 선회 및 우수한 주행 성능을 제공합니다.",
 };
+
+export const InsideGuideTextShowTime = 2000;
+export const InsideGuideTextAnimationTime = 500;
