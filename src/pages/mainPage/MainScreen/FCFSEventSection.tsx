@@ -12,10 +12,11 @@ import {
 
 interface FCFSEventSectionProps {
   isVisible: boolean;
+  onInfoClick: () => void;
 }
 
 const FCFSEventSection = (
-  { isVisible }: FCFSEventSectionProps,
+  { isVisible, onInfoClick }: FCFSEventSectionProps,
   ref: ForwardedRef<HTMLDivElement>,
 ) => {
   return (
@@ -72,7 +73,10 @@ const FCFSEventSection = (
                   {tip.TEXT}
                 </div>
                 {tip.BUTTON_TEXT && (
-                  <button className="text-body-2-regular text-gray-200">
+                  <button
+                    className="text-body-2-regular text-gray-200"
+                    onClick={onInfoClick}
+                  >
                     {tip.BUTTON_TEXT}
                   </button>
                 )}
