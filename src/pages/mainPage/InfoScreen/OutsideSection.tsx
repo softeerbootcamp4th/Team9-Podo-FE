@@ -3,37 +3,10 @@ import OutsideDescriptionItem from "../../../components/mainPage/InfoScreen/Outs
 import OutsideInfo from "../../../assets/images/OutsideInfo.png";
 import { outsideInfoData } from "../../../constants/InfoData";
 import Carousel from "../../../components/common/Carousel/Carousel";
+import useInView from "../../../hooks/useInView";
 
 const OutsideSection = () => {
-  const [isInView, setIsInView] = useState(false);
-  const imgRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsInView(true);
-          } else if (entry.intersectionRect.top !== 0) {
-            setIsInView(false);
-          }
-        });
-      },
-      {
-        threshold: 0.9,
-      },
-    );
-
-    if (imgRef.current) {
-      observer.observe(imgRef.current);
-    }
-
-    return () => {
-      if (imgRef.current) {
-        observer.unobserve(imgRef.current);
-      }
-    };
-  }, []);
+  const { isInView, elementRef } = useInView<HTMLImageElement>(0.9);
 
   return (
     <div className="flex w-screen snap-start flex-col items-center bg-white">
@@ -44,7 +17,7 @@ const OutsideSection = () => {
         역동적인 스타일에 미래적 감성을 더하다
       </div>
       <img
-        ref={imgRef}
+        ref={elementRef}
         src={OutsideInfo}
         alt="OutsideImage"
         className={`h-screen w-screen snap-start ${isInView ? "scale-100" : "scale-90"} mb- transition-transform duration-200`}

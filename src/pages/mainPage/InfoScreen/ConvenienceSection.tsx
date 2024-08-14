@@ -1,40 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import ConvenienceDescriptionItem from "../../../components/mainPage/InfoScreen/ConvenienceDescriptionItem";
 import { convenienceInfoData } from "../../../constants/InfoData";
+import useInView from "../../../hooks/useInView";
 
 const ConvenienceSection = () => {
-  const [isInView, setIsInView] = useState(false);
-  const divRef = useRef(null);
+  const { isInView, elementRef } = useInView<HTMLDivElement>(0.9);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsInView(true);
-          } else if (entry.intersectionRect.top !== 0) {
-            setIsInView(false);
-          }
-        });
-      },
-      {
-        threshold: 0.9,
-      },
-    );
-
-    if (divRef.current) {
-      observer.observe(divRef.current);
-    }
-
-    return () => {
-      if (divRef.current) {
-        observer.unobserve(divRef.current);
-      }
-    };
-  }, []);
   return (
     <div
-      ref={divRef}
+      ref={elementRef}
       className="flex h-screen w-screen snap-start items-center overflow-scroll bg-white"
     >
       <div
