@@ -77,11 +77,20 @@ const ColorPallete = ({ index, parentRef }: ColorPalleteProps) => {
     index: number,
   ) => {
     if (parentRef.current) {
+      const containerOffset = parentRef.current.offsetTop;
       const imageHeight = parentRef.current.offsetHeight / colorInfo.length;
       const imageOffset = (index + 1) * imageHeight;
       console.log(imageOffset);
-      parentRef.current.scrollTo({ top: imageOffset, behavior: "smooth" });
-      console.log(parentRef.current.scrollTop);
+      console.log("실제 콘테츠", parentRef.current.scrollHeight); // 실제 콘텐츠 높이
+      console.log("보이는 여역", parentRef.current.clientHeight); // 보이는 영역의 높이
+      console.log(parentRef.current);
+
+      parentRef.current.parentElement?.parentElement?.scrollTo({
+        top: imageOffset + containerOffset,
+        behavior: "smooth",
+      });
+
+      console.log(parentRef.current.offsetTop);
     }
   };
 
@@ -89,7 +98,7 @@ const ColorPallete = ({ index, parentRef }: ColorPalleteProps) => {
     <div className="relative left-1/2 top-[75%] z-[70] flex h-fit w-fit -translate-x-1/2 flex-col items-center gap-700">
       <div className="flex items-center gap-2.5 rounded-[6.25rem] bg-white/20 p-3">
         {colorInfo.map(({ rgb, key }, i) => {
-          if (i === 5) return <></>;
+          if (i === 5) return null;
           return (
             <div
               onClick={(e) => handleClick(e, parentRef, i)}
@@ -153,9 +162,9 @@ const ColorSection = () => {
   return (
     <div
       ref={divRef}
-      className="relative flex w-screen snap-start flex-col items-center bg-white"
+      className="flex w-screen snap-start flex-col items-center bg-white"
     >
-      {colorInfo.map(({ color, rgb, key }, index) => {
+      {colorInfo.map(({ color, key }, index) => {
         return (
           <div
             key={key}
