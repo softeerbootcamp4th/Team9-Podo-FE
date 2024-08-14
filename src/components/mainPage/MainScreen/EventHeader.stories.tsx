@@ -4,7 +4,7 @@ import EventHeader from "./EventHeader";
 
 export default {
   component: EventHeader,
-  title: "EventHeader",
+  title: "main/EventHeader",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   args: {},

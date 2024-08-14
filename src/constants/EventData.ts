@@ -1,3 +1,15 @@
+export const SELECT_DATA = {
+  EVENT_1: {
+    TITLE: "Event 1.",
+    DESCRIPTION: `매일 선착순 100명! \n퀴즈 풀고 스타벅스 커피 받아가자!`,
+  },
+  EVENT_2: {
+    TITLE: "Event 2.",
+    DESCRIPTION: `내 운전자 유형에 맞는 셀토스 라이프스타일 추천받고,\n 시그니엘 숙박권 당첨의 기회!`,
+  },
+  PAGE_TITLE: "The 2025 셀토스 출시 이벤트",
+};
+
 export const FCFS_EVENT_DATA = {
   TITLE: "Event 1.",
   DESCRIPTION: `소형 SUV 부문 압도적 판매량 1위!\nNo.1 셀토스가 매일 1시 선착순 100명에게 스타벅스 커피를 쏩니다!`,

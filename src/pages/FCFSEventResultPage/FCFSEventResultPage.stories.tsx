@@ -7,7 +7,7 @@ import { quizInfo } from "../../mocks/data/FCFSEvent";
 
 const meta: Meta<typeof FCFSEventResultPage> = {
   component: FCFSEventResultPage,
-  title: "FCFSEventResultPage",
+  title: "fcfs/FCFSEventResultPage",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   decorators: [

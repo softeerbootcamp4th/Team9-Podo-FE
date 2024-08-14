@@ -2,7 +2,7 @@ import RandomExpectations from "./RandomExpectations";
 
 export default {
   component: RandomExpectations,
-  title: "RandomExpectations",
+  title: "random/RandomExpectations",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   args: {},

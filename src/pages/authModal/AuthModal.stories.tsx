@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 
 const meta: Meta<typeof AuthModal> = {
   component: AuthModal,
-  title: "AuthModal",
+  title: "modal/AuthModal",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   decorators: [

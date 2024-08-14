@@ -7,7 +7,7 @@ const setHoverdIndex = fn();
 
 export default {
   component: EventSelectOptions,
-  title: "EventSelectOptions",
+  title: "main/EventSelectOptions",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   args: {},

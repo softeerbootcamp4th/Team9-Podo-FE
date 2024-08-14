@@ -5,7 +5,7 @@ import RandomMainSection from "./RandomMainSection";
 
 export default {
   component: RandomMainSection,
-  title: "RandomMainSection",
+  title: "random/RandomMainSection",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   decorators: [

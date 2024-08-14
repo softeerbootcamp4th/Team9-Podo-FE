@@ -2,7 +2,7 @@ import AuthTooltip from "./AuthTooltip";
 
 export default {
   component: AuthTooltip,
-  title: "AuthTooltip",
+  title: "common/AuthTooltip",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   args: {},

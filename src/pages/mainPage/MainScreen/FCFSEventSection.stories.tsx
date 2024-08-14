@@ -3,7 +3,7 @@ import FCFSEventSection from "./FCFSEventSection";
 
 export default {
   component: FCFSEventSection,
-  title: "FCFSEventSection",
+  title: "main/FCFSEventSection",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   args: {},

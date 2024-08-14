@@ -3,7 +3,7 @@ import FCFSHintSection from "./FCFSHintSection";
 
 const meta: Meta<typeof FCFSHintSection> = {
   component: FCFSHintSection,
-  title: "FCFSHintSection",
+  title: "fcfs/FCFSHintSection",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   args: {},

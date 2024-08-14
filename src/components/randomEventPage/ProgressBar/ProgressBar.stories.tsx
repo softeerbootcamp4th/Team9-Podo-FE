@@ -3,7 +3,7 @@ import ProgressBar from "./ProgressBar";
 
 export default {
   component: ProgressBar,
-  title: "ProgressBar",
+  title: "random/ProgressBar",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   args: {},

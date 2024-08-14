@@ -4,7 +4,7 @@ import HomeButton from "./HomeButton";
 
 export default {
   component: HomeButton,
-  title: "HomeButton",
+  title: "common/HomeButton",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
 };

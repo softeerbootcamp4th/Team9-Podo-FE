@@ -8,7 +8,7 @@ export const ActionsData = {
 
 export default {
   component: Button,
-  title: "Button",
+  title: "common/Button",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   args: {
