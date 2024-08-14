@@ -12,6 +12,7 @@ const InfoScreen = () => {
     <div>
       <VideoSection />
       <OutsideSection />
+      <InsideSection />
       <DriveSection />
       <ConvenienceSection />
       <ColorSection />

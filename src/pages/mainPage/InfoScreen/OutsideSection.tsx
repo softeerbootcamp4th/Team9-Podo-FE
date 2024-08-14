@@ -20,7 +20,7 @@ const OutsideSection = () => {
         ref={elementRef}
         src={OutsideInfo}
         alt="OutsideImage"
-        className={`h-screen w-screen snap-start ${isInView ? "scale-100" : "scale-90"} mb- transition-transform duration-200`}
+        className={`h-screen w-screen snap-start ${isInView ? "scale-100" : "scale-90"} transition-transform duration-200`}
       />
       <div className="pb-[8rem] pt-[5rem]">
         <Carousel
