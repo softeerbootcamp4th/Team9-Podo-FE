@@ -49,7 +49,7 @@ const VideoSection = () => {
       </video>
       <div
         ref={textRef}
-        className={`absolute top-[100vh] z-10 h-screen w-screen snap-start flex-col gap-500 bg-black/50 flex-center ${isShown ? "opacity-100" : "opacity-0"} transition-opacity duration-1000`}
+        className={`absolute top-[100vh] z-10 h-screen w-screen snap-start snap-always flex-col gap-500 bg-black/50 flex-center ${isShown ? "opacity-100" : "opacity-0"} transition-opacity duration-1000`}
       >
         <div className="font-kia-signature-bold text-8xl text-gray-100">
           The 2025 Seltos

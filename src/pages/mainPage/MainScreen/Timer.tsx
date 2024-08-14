@@ -14,7 +14,7 @@ const Timer = () => {
             padding: "1px",
           }}
         >
-          <div className="relative h-full w-full rounded-full bg-gray-700 flex-center">
+          <div className="relative h-full w-full rounded-full bg-gray-950 flex-center">
             {/* 타이머 텍스트 */}
             <span
               className="text-[8rem]"
