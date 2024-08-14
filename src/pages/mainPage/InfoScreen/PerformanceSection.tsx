@@ -38,12 +38,12 @@ const EngineSpec = ({ title, specs, note }: EngineSpecProps) => (
 );
 
 const PerformanceSection = () => {
-  const { isInView, divRef } = useInView<HTMLDivElement>(0.7);
+  const { isInView, elementRef } = useInView<HTMLDivElement>(0.7);
 
   return (
     <div
       className="flex h-screen w-screen snap-start items-center overflow-hidden bg-white pl-[10%] font-kia-signature"
-      ref={divRef}
+      ref={elementRef}
     >
       <div className="flex h-fit w-fit flex-col">
         <div className="flex flex-col gap-5">
