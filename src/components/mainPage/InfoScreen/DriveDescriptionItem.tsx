@@ -2,21 +2,24 @@ import React from "react";
 
 interface DriveDescriptionItemProps {
   title: string;
-  description: string;
   img: string;
+  tailwind: string;
 }
 
 const DriveDescriptionItem = ({
   title,
-  description,
   img,
+  tailwind,
 }: DriveDescriptionItemProps) => {
   return (
-    <>
-      <img />
-      <div>{title}</div>
-      <div>{description}</div>
-    </>
+    <div
+      className={`flex h-[20.875rem] w-[30rem] flex-col gap-700 flex-center ${tailwind}`}
+    >
+      <img src={img} alt={title} />
+      <div className="font-kia-signature-bold text-title-4 text-gray-950">
+        {title}
+      </div>
+    </div>
   );
 };
 
