@@ -80,17 +80,11 @@ const ColorPallete = ({ index, parentRef }: ColorPalleteProps) => {
       const containerOffset = parentRef.current.offsetTop;
       const imageHeight = parentRef.current.offsetHeight / colorInfo.length;
       const imageOffset = (index + 1) * imageHeight;
-      console.log(imageOffset);
-      console.log("실제 콘테츠", parentRef.current.scrollHeight); // 실제 콘텐츠 높이
-      console.log("보이는 여역", parentRef.current.clientHeight); // 보이는 영역의 높이
-      console.log(parentRef.current);
 
       parentRef.current.parentElement?.parentElement?.scrollTo({
         top: imageOffset + containerOffset,
         behavior: "smooth",
       });
-
-      console.log(parentRef.current.offsetTop);
     }
   };
 
