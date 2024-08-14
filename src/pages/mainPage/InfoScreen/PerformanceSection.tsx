@@ -1,5 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import carImg from "../../../assets/images/powerImg.png";
+import {
+  ELECTRONIC_4WD,
+  ENGINE_SPECS,
+  PERFORMANCE,
+} from "../../../constants/InfoData";
 
 interface SpecItemProps {
   value: string;
@@ -70,42 +75,33 @@ const PerformanceSection = () => {
       <div className="flex h-fit w-fit flex-col">
         <div className="flex flex-col gap-5">
           <div className="h-[2.75rem] w-fit rounded-[6.25rem] px-500 py-300 text-title-4 text-gray-400 flex-center gradient-border">
-            성능
+            {PERFORMANCE.title}
           </div>
           <div className="mb-12 font-kia-signature-bold text-title-1 text-gray-950">
-            도심에서 빛나는 강력한 주행 성능
+            {PERFORMANCE.subtitle}
           </div>
         </div>
         <div className="flex flex-col gap-6">
           <EngineSpec
-            title="1.6 가솔린 터보"
-            specs={[
-              { value: "198", label: "최고출력\nps / 6,000rpm" },
-              { value: "27.0", label: "최대토크\nkgf∙m / 1,600~45,00rpm" },
-              { value: "12.8", label: "복합연비\nkm/L" },
-            ]}
-            note="(2WD 16인치 타이어, 빌트인 캠 미장착 기준)"
+            title={ENGINE_SPECS.turbo_1_6.title}
+            specs={ENGINE_SPECS.turbo_1_6.specs}
+            note={ENGINE_SPECS.turbo_1_6.note}
           />
           <hr className="w-[56.5rem] border border-gray-300" />
 
           <EngineSpec
-            title="2.0 가솔린"
-            specs={[
-              { value: "149", label: "최고출력\nps / 6,000rpm" },
-              { value: "18.3", label: "최대토크\nkgf∙m / 1,600~45,00rpm" },
-              { value: "12.9", label: "복합연비\nkm/L" },
-            ]}
-            note="(2WD 16인치 타이어 기준)"
+            title={ENGINE_SPECS.gasoline_2_0.title}
+            specs={ENGINE_SPECS.gasoline_2_0.specs}
+            note={ENGINE_SPECS.gasoline_2_0.note}
           />
           <hr className="w-[56.5rem] border border-gray-300" />
 
           <div className="flex flex-col gap-4">
             <p className="text-title-4 font-semibold text-gray-950">
-              전자식 4WD
+              {ELECTRONIC_4WD.title}
             </p>
             <p className="text-body-1-regular text-gray-600">
-              노면 및 주행 상황에 따라 구동력을 전후륜에 능동적으로 배분하여
-              안정적인 선회 및 우수한 주행 성능을 제공합니다.
+              {ELECTRONIC_4WD.description}
             </p>
           </div>
         </div>

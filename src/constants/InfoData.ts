@@ -93,3 +93,35 @@ export const convenienceInfoData = [
       "주행/주차 중 전/후방 카메라를 통해 영상을 기록하고, 내비게이션 화면을 통해 영상을 확인하거나 스마트폰으로 전송할 수 있는 빌트인 영상기록 장치입니다.",
   },
 ];
+
+export const PERFORMANCE = {
+  title: "성능",
+  subtitle: "도심에서 빛나는 강력한 주행 성능",
+};
+
+export const ENGINE_SPECS = {
+  turbo_1_6: {
+    title: "1.6 가솔린 터보",
+    specs: [
+      { value: "198", label: "최고출력\nps / 6,000rpm" },
+      { value: "27.0", label: "최대토크\nkgf∙m / 1,600~45,00rpm" },
+      { value: "12.8", label: "복합연비\nkm/L" },
+    ],
+    note: "(2WD 16인치 타이어, 빌트인 캠 미장착 기준)",
+  },
+  gasoline_2_0: {
+    title: "2.0 가솔린",
+    specs: [
+      { value: "149", label: "최고출력\nps / 6,000rpm" },
+      { value: "18.3", label: "최대토크\nkgf∙m / 1,600~45,00rpm" },
+      { value: "12.9", label: "복합연비\nkm/L" },
+    ],
+    note: "(2WD 16인치 타이어 기준)",
+  },
+};
+
+export const ELECTRONIC_4WD = {
+  title: "전자식 4WD",
+  description:
+    "노면 및 주행 상황에 따라 구동력을 전후륜에 능동적으로 배분하여 안정적인 선회 및 우수한 주행 성능을 제공합니다.",
+};
