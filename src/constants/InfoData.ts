@@ -125,3 +125,34 @@ export const ELECTRONIC_4WD = {
   description:
     "노면 및 주행 상황에 따라 구동력을 전후륜에 능동적으로 배분하여 안정적인 선회 및 우수한 주행 성능을 제공합니다.",
 };
+
+export const INSIDE_INFO_DATA: Record<InsideInfo, InsideInfoData> = {
+  light: {
+    title: "엠비언트 라이트",
+    description:
+      "사운드에 따라 밝기가 변하는 무드조명을 도어 스피커와 크래쉬 패드 가니쉬에 적용하였습니다.",
+  },
+  dial: {
+    title: "전자식 변속 다이얼",
+    description:
+      "정교한 디테일이 돋보이는 다이럴 타입 전자식 변속기를 적용하여 편안한 그립감과 사용성을 동시에 제공합니다.",
+  },
+  display: {
+    title: "파노라마 디스플레이",
+    description:
+      "10.25인치 클러스터와 10.25인치 내비게이션이 통합된 파노라마 디스플레이를 적용하여 심플하고 하이테크한 실내 인테리어를 구현했습니다.",
+  },
+  blow: {
+    title: "애프터 블로우",
+    description:
+      "에어컨 작동 시 발생하는 응축수를 건조하여 냄새 발생을 사전에 방지하도록 해줍니다.",
+  },
+  headup: {
+    title: "컨바이너 헤드업 디스플레이",
+    description:
+      "운전석 전면 투명판에 주행에 필요한 각종 정보를 디스플레이하는 기능으로 주행 중 전방에서 눈을 떼지 않고도 다양한 정보를 인지할 수 있게 하여 안전 및 편의성을 향상시켜줍니다.",
+  },
+};
+
+export const InsideGuideTextShowTime = 2000;
+export const InsideGuideTextAnimationTime = 500;

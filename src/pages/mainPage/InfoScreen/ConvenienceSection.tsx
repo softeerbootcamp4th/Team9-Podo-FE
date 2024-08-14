@@ -4,7 +4,9 @@ import { convenienceInfoData } from "../../../constants/InfoData";
 import useInView from "../../../hooks/useInView";
 
 const ConvenienceSection = () => {
-  const { isInView, elementRef } = useInView<HTMLDivElement>(0.9);
+  const { isInView, elementRef } = useInView<HTMLDivElement>(0.5, () => {
+    elementRef.current?.scrollTo({ left: 0, behavior: "smooth" });
+  });
 
   return (
     <div
