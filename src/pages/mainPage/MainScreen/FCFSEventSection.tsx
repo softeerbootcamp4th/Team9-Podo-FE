@@ -1,4 +1,4 @@
-import React, { ForwardedRef, forwardRef } from "react";
+import React, { ForwardedRef, forwardRef, useState } from "react";
 import Timer from "./Timer";
 import EventHeader from "../../../components/mainPage/MainScreen/EventHeader";
 import Button from "../../../components/common/Button/Button";
@@ -10,6 +10,7 @@ import {
   FCFS_TIPS,
 } from "../../../constants/EventData";
 import { useNavigate } from "react-router";
+import { useAppContext } from "../../../providers/AppProvider";
 
 interface FCFSEventSectionProps {
   isVisible: boolean;
@@ -21,22 +22,24 @@ const FCFSEventSection = (
   ref: ForwardedRef<HTMLDivElement>,
 ) => {
   const navigate = useNavigate();
+  const { isAuth, isFCFSEnd } = useAppContext();
+
   return (
     <div
-      className={`h-screen w-screen snap-start flex-col transition-all duration-200 flex-center ${!isVisible && "opacity-0"}`}
+      className={`relative flex h-screen w-screen snap-start flex-col items-center justify-around transition-all duration-200 ${!isVisible && "opacity-0"}`}
       ref={ref}
     >
+      <img
+        src={e1Gift}
+        alt="Event"
+        className="pointer-events-none absolute z-10 h-[5.75rem] w-[3.375rem] translate-x-[16rem] translate-y-20"
+      />
       <EventHeader
         title={FCFS_EVENT_DATA.TITLE}
         description={FCFS_EVENT_DATA.DESCRIPTION}
       />
-      <div className="flex h-[30rem] flex-col justify-between">
+      <div className="flex min-h-[30rem] flex-1 flex-col items-end justify-between">
         <Timer />
-        <img
-          src={e1Gift}
-          alt="Event"
-          className="pointer-events-none z-10 h-[5.75rem] w-[3.375rem] -translate-y-12 translate-x-60"
-        />
       </div>
       <div className="h-[16.375rem] gap-4 text-gray-50 flex-center">
         <div className="flex h-full w-[26.5rem] flex-col gap-4 text-body-1-regular">
@@ -88,11 +91,12 @@ const FCFSEventSection = (
         </div>
         <Button
           onClick={() => {
-            navigate("event1");
+            isAuth ? navigate("event1") : navigate("auth-modal");
           }}
           size="big"
-          isEnabled={true}
-          defaultText="참여하기"
+          isEnabled={!isFCFSEnd}
+          defaultText={isAuth ? "퀴즈풀기" : "본인인증하고\n참여하기"}
+          disabledText={"이벤트가 마감되었습니다.\n다음 이벤트를 참여해주세요"}
         />
       </div>
     </div>

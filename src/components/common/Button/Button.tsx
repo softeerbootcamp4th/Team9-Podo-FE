@@ -58,7 +58,7 @@ const Button = ({
       onClick={onClick}
       disabled={!isEnabled}
     >
-      <p className="font-kia-signature-bold text-title-4">
+      <p className="whitespace-pre font-kia-signature-bold text-title-4">
         {isEnabled ? defaultText : disabledText}
       </p>
       {isEnabled && (
