@@ -13,6 +13,7 @@ const animationDelay = {
 
 const DriveSection = () => {
   const [isInView, setIsInView] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
   const divRef = useRef(null);
 
   useEffect(() => {
@@ -45,9 +46,9 @@ const DriveSection = () => {
   return (
     <div
       ref={divRef}
-      className="flex h-screen w-screen snap-start flex-col items-center bg-white"
+      className="flex h-screen w-screen snap-start flex-col items-center bg-white flex-center"
     >
-      <div className="mb-600 mt-[5rem] h-[2.75rem] rounded-[6.25rem] px-500 py-300 font-kia-signature text-title-4 text-gray-400 flex-center gradient-border">
+      <div className="mb-600 h-[2.75rem] rounded-[6.25rem] px-500 py-300 font-kia-signature text-title-4 text-gray-400 flex-center gradient-border">
         드라이빙
       </div>
       <div className="mb-12 font-kia-signature-bold text-title-1 text-gray-950">
