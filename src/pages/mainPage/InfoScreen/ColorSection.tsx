@@ -67,56 +67,17 @@ const ColorSection = () => {
       className="relative flex h-[600vh] w-screen snap-start flex-col items-center bg-white"
     >
       {colorInfo.map(({ color }, index) => {
-        if (index === 1) {
-          return (
-            <div
-              className={`sticky top-0 h-screen w-screen snap-start ${zIndex[index as keyof typeof zIndex]}`}
-              style={{
-                clipPath: `inset(0 0 ${clipPosition[index]}% 0)`,
-              }}
-            >
-              <img src={color} alt={color} className="h-full w-full" />
-            </div>
-          );
-        } else {
-          return (
-            <div
-              className={`sticky top-0 h-screen w-screen ${zIndex[index as keyof typeof zIndex]}`}
-              style={{
-                clipPath: `inset(0 0 ${clipPosition[index]}% 0)`,
-              }}
-            >
-              <img src={color} alt={color} className="h-full w-full" />
-            </div>
-          );
-        }
+        return (
+          <div
+            className={`sticky top-0 h-screen w-screen ${zIndex[index as keyof typeof zIndex]}`}
+            style={{
+              clipPath: `inset(0 0 ${clipPosition[index]}% 0)`,
+            }}
+          >
+            <img src={color} alt={color} className="h-full w-full" />
+          </div>
+        );
       })}
-
-      {/* {colorInfo.map(({ color }, index) => {
-        if (index === 0) {
-          return (
-            <div
-              ref={(el) => (divRefs.current[index] = el)}
-              className="absolute top-0 h-screen"
-              style={{
-                clipPath: `inset(0 0 ${-clipPosition}% 0)`,
-              }}
-            >
-              <img src={color} alt={color} className="h-full" />
-            </div>
-          );
-        } else {
-          return (
-            <div
-              ref={(el) => (divRefs.current[index] = el)}
-              className="h-screen"
-              style={{
-                clipPath: `inset(0 0 ${-clipPosition}% 0)`,
-              }}
-            ></div>
-          );
-        }
-      })} */}
     </div>
   );
 };
