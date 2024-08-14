@@ -5,7 +5,7 @@ import {
   ENGINE_SPECS,
   PERFORMANCE,
 } from "../../../constants/InfoData";
-import useInView from "../../../hooks/\buseInView";
+import useInView from "../../../hooks/useInView";
 
 interface SpecItemProps {
   value: string;
