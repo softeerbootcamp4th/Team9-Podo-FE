@@ -3,7 +3,7 @@ import PerformanceSection from "./PerformanceSection";
 
 export default {
   component: PerformanceSection,
-  title: "PerformanceSection",
+  title: "main/PerformanceSection",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   args: {},

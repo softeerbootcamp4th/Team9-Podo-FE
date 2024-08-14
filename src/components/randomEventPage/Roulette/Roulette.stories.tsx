@@ -4,7 +4,7 @@ import { DRIVER_TYPE_LIST } from "../../../constants/RandomEventData";
 
 export default {
   component: Roulette,
-  title: "Roulette",
+  title: "random/Roulette",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   args: {},

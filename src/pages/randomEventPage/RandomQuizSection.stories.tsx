@@ -3,7 +3,7 @@ import RandomQuizSection from "./RandomQuizSection";
 
 export default {
   component: RandomQuizSection,
-  title: "RandomQuizSection",
+  title: "random/RandomQuizSection",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   args: {},
