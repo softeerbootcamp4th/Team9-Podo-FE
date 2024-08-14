@@ -20,7 +20,6 @@ const VideoSection = () => {
     const textObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          console.log(entry);
           if (entry.isIntersecting) setIsShown(true);
           else setIsShown(false);
         });
