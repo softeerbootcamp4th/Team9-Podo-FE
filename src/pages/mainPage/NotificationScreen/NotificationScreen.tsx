@@ -3,8 +3,10 @@ import * as echarts from "echarts";
 import "echarts-wordcloud";
 import carMask from "../../../assets/images/wordcloud.png"; // Make sure this path is correct
 import Button from "../../../components/common/Button/Button";
+import { useNavigate } from "react-router";
 
 const NotificationScreen = () => {
+  const navigate = useNavigate();
   const data = [
     { name: "편안함", value: 100 },
     { name: "연비", value: 95 },
@@ -98,7 +100,9 @@ const NotificationScreen = () => {
         <WordCloud data={data} maskImage={carMask}></WordCloud>
         <Button
           size="small"
-          onClick={() => {}}
+          onClick={() => {
+            navigate("/event2/0");
+          }}
           defaultText="EVENT 2 참여하러 가기"
           disabledText="이벤트 참여 완료"
           isEnabled={true}
