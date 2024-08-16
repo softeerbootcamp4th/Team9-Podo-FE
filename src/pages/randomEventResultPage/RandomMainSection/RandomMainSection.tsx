@@ -6,8 +6,10 @@ import reset from "../../../assets/images/reset.png";
 import share from "../../../assets/images/share.png";
 import { RandomMainInterface } from "../../../types/RandomEvent";
 import Tooltip from "../../../components/randomEventPage/Tooltip/Tooltip";
+import { postRandomResult } from "../../../api/fetch";
 
 const RandomMainSection = ({
+  resultTypeId,
   description,
   scenarioList,
 }: RandomMainInterface) => {
@@ -38,6 +40,7 @@ const RandomMainSection = ({
   const onClickHandler = () => {
     if (isAuth) {
       //이벤트 참여 백에 전달
+      const shareUrl = postRandomResult(resultTypeId);
     } else {
       //본인인증 모달
       //본인인증 대기
