@@ -83,3 +83,23 @@ export const fetchWordCloudData = async (): Promise<
 
   return await response.json();
 };
+
+/**
+ * 기대평 등록 api
+ * @returns
+ */
+export const postComment = async (
+  comment: string,
+): Promise<ApiResponse<any>> => {
+  const response = await fetch("/v1/lots/comment", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization:
+        "Bearer eyJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiZGlyIn0..Wv4DNiAP2hL36vDs.AOwY0A-a8JH6lJWR9T_P3pTgB5o8JaMUwrehYQjpCD1uFhs3aFoWJ-wDLgnX5Jx_YT6dHfJPIXbpG3Oycammh6VQH97U2UtNChPr_t3F9ILqbXAaBcMoWYUx0YqtbgVbOybS6FTMDp7QGhXRZNzXz06gQi46AqbTPOTnVUDICYHHqRq_3efphiRNjTu4JP2OFKq9jIunoLNHCcPZFFidVBafs9R4Z9nEPD-W__uuZOuG111wD4vqjBdshkxs46Y.UyhO03YoDwLvAMmPXHV70g",
+    },
+    body: JSON.stringify({ comment: `${comment}` }),
+  });
+
+  return await response.json();
+};
