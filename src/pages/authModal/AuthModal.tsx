@@ -104,8 +104,10 @@ const AuthModal = () => {
       try {
         const response = await postPhoneAuthCheckRequest(form);
         if (response.code === 200) {
-          setIsAuth(true);
-          if (location.state.event) navigate(`/event${location.state.event}`);
+          if (location.state.event)
+            navigate(
+              `${location.state.event === 2 ? "/event2/result" : "/event1"}`,
+            );
         } else {
           setIsError("AUTH_NUM_INCORRECT");
         }

@@ -1,20 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppContext } from "../../../providers/AppProvider";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import Button from "../../../components/common/Button/Button";
 import reset from "../../../assets/images/reset.png";
 import share from "../../../assets/images/share.png";
 import { RandomMainInterface } from "../../../types/RandomEvent";
 import Tooltip from "../../../components/randomEventPage/Tooltip/Tooltip";
+import { postRandomResult } from "../../../api/fetch";
 
 const RandomMainSection = ({
+  resultTypeId,
   description,
   scenarioList,
 }: RandomMainInterface) => {
   const appContext = useAppContext();
   const navigate = useNavigate();
+  const location = useLocation();
+
   const { isAuth, isRandomEnd } = appContext;
   const [isCopied, setIsCopied] = useState(false);
+  const [shareUrl, setShareUrl] = useState("https://www.hyundaiseltos.site/");
 
   const handleRetry = () => {
     navigate("/event2/0");
@@ -22,8 +27,7 @@ const RandomMainSection = ({
 
   const handleShare = () => {
     if (isCopied) return;
-    const url = "https://example.com";
-    navigator.clipboard.writeText(url);
+    navigator.clipboard.writeText(shareUrl);
 
     setIsCopied(true);
 
@@ -34,16 +38,16 @@ const RandomMainSection = ({
     return () => clearTimeout(CopiedTimeout);
   };
 
-  const { setIsAuth } = useAppContext();
-  const onClickHandler = () => {
+  const onClickHandler = async () => {
     if (isAuth) {
-      //이벤트 참여 백에 전달
+      const myUrl = await postRandomResult(resultTypeId);
+
+      setShareUrl(myUrl.result.uniqueLink);
     } else {
-      //본인인증 모달
-      //본인인증 대기
-      setIsAuth(true);
+      navigate("/auth-modal", {
+        state: { background: location, event: 2 },
+      });
     }
-    //기대평 작성창
   };
 
   return (

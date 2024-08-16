@@ -1,6 +1,7 @@
 import React, { ChangeEvent, forwardRef, useState } from "react";
 import Toast from "../../../components/common/Toast/Toast";
 import { ERROR_MSG } from "../../../constants/RandomEventData";
+import { postComment } from "../../../api/fetch";
 
 const RandomExpectations = forwardRef<HTMLDivElement>((props, ref) => {
   const [error, setError] = useState<"short" | "inappropriate" | null>(null);
@@ -16,7 +17,7 @@ const RandomExpectations = forwardRef<HTMLDivElement>((props, ref) => {
       setError("inappropriate");
     else {
       setError(null);
-      //exeption State 백에 전달
+      postComment(expectation);
       setExpectation("");
     }
     setToastKey((current) => current + 1);
