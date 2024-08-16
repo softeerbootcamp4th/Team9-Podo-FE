@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { QuizInfo } from "../../types/FCFSEvent";
 import { useNavigate } from "react-router";
 import Button from "../../components/common/Button/Button";
+import { useAppContext } from "../../providers/AppProvider";
 
 interface FCFSQuizSectionProps {
   quizInfo: QuizInfo;
@@ -23,6 +24,7 @@ const IS_SELECTED = {
  */
 const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
   const navigate = useNavigate();
+  const { isAuth, setIsFCFSEnd } = useAppContext();
 
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
@@ -30,7 +32,7 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
 
   const choices = [choice1, choice2, choice3, choice4];
 
-  // 선택지 클릭 핸들러
+  // 선택지 클릭 핸들러sss
   const handleChoiceClick = (index: number) => {
     setSelectedIndex(index);
   };
@@ -38,6 +40,7 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
   // 제출버튼 클릭 핸들러
   const handleSubmitClick = () => {
     if (selectedIndex + 1 === parseInt(answer)) {
+      setIsFCFSEnd(true);
       navigate("/event1/result");
     } else {
       // 에러 토스트 추후 처리
@@ -67,7 +70,7 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
               key={choice}
               onClick={() => handleChoiceClick(index)}
             >
-              {index + 1}. {choice}
+              {choice}
             </li>
           ))}
         </ol>

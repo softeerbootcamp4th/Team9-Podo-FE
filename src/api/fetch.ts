@@ -1,4 +1,5 @@
 import {
+  AuthResult,
   PhoneAuthCheckForm,
   PhoneAuthRequestForm,
   PhoneAuthVerifyResult,
@@ -39,7 +40,7 @@ export const fetchFCFSResult = async (): Promise<FCFSResult<QuizResult>> => {
  */
 export const postPhoneAuthRequest = async (
   phoneAuthRequestForm: PhoneAuthRequestForm,
-): Promise<Object> => {
+): Promise<AuthResult> => {
   const response = await fetch("/verification/claim", {
     method: "POST",
     body: JSON.stringify(phoneAuthRequestForm),
