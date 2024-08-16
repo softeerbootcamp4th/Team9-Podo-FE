@@ -16,3 +16,21 @@
   font-family: "Kia-Signature-Light";
   src: url(../assets/fonts/KiaSignatureFixLight.ttf);
 }
+
+@media (max-width: 1200px), (max-height: 900px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 992px), (max-height: 700px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 768px), (max-height: 600px) {
+  html {
+    font-size: 8px;
+  }
+}
