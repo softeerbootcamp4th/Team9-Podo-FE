@@ -1,15 +1,16 @@
+import { ApiResponse } from "../types/api";
 import {
   PhoneAuthCheckForm,
   PhoneAuthRequestForm,
   PhoneAuthVerifyResult,
 } from "../types/AuthModal";
-import { FCFSResult, QuizInfo, QuizResult } from "../types/FCFSEvent";
+import { QuizInfo, QuizResult } from "../types/FCFSEvent";
 
 /**
  * 선착순 퀴즈 정보를 가져오는 api
  * @returns
  */
-export const fetchFCFSQuizInfo = async (): Promise<FCFSResult<QuizInfo>> => {
+export const fetchFCFSQuizInfo = async (): Promise<ApiResponse<QuizInfo>> => {
   const response = await fetch("/v1/quiz");
 
   return await response.json();
@@ -19,7 +20,7 @@ export const fetchFCFSQuizInfo = async (): Promise<FCFSResult<QuizInfo>> => {
  * 선착순 퀴즈 결과를 가져오는 api
  * @returns
  */
-export const fetchFCFSResult = async (): Promise<FCFSResult<QuizResult>> => {
+export const fetchFCFSResult = async (): Promise<ApiResponse<QuizResult>> => {
   const response = await fetch("/v1/quiz", {
     method: "POST",
     headers: {
