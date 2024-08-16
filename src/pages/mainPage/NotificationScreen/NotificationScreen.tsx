@@ -5,6 +5,7 @@ import carMask from "../../../assets/images/wordcloud.png"; // Make sure this pa
 import Button from "../../../components/common/Button/Button";
 import { useNavigate } from "react-router";
 import { EVENT_TERMS } from "../../../constants/EventData";
+import { fetchWordCloudData } from "../../../api/fetch";
 
 const NotificationScreen = () => {
   const navigate = useNavigate();
@@ -75,6 +76,19 @@ const NotificationScreen = () => {
     { name: "가속력", value: 2 },
     { name: "트렁크", value: 1 },
   ];
+
+  useEffect(() => {
+    try {
+      fetchData();
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+
+  const fetchData = async () => {
+    const quizData = await fetchWordCloudData();
+    fetchWordCloudData();
+  };
 
   return (
     <div className="snap-start flex-col flex-center">

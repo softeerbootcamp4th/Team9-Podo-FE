@@ -5,6 +5,7 @@ import {
   PhoneAuthVerifyResult,
 } from "../types/AuthModal";
 import { QuizInfo, QuizResult } from "../types/FCFSEvent";
+import { WordListResponse } from "../types/InfoScreen";
 
 /**
  * 선착순 퀴즈 정보를 가져오는 api
@@ -67,6 +68,17 @@ export const postPhoneAuthCheckRequest = async (
       "Content-Type": "application/json",
     },
   });
+
+  return await response.json();
+};
+/**
+ * wordCloud data를 가져오는 api
+ * @returns
+ */
+export const fetchWordCloudData = async (): Promise<
+  ApiResponse<WordListResponse>
+> => {
+  const response = await fetch("/lots/wordCloud");
 
   return await response.json();
 };
