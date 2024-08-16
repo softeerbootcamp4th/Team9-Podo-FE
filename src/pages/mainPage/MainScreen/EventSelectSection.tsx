@@ -72,18 +72,12 @@ const EventSelectSection = ({
         } absolute z-10 flex flex-col items-center justify-start gap-[9rem] transition-all duration-500`}
       >
         <div
-          className="w-[36.75rem] rounded-full p-[1px] font-kia-signature-bold text-title-4 text-gray-50 opacity-0"
-          style={{
-            background:
-              "linear-gradient(93.7deg, #505861 0%, #4B7C83 33.5%, #1B3F72 66.5%, #F2F2F2 100%)",
-          }}
           ref={titleRef}
+          className="before:gradient-mask relative w-[36.75rem] rounded-full opacity-0"
         >
-          <div className="relative h-full w-full overflow-hidden rounded-full bg-gray-900 px-10 py-6 flex-center">
-            <p className="font-kia-signature-bold text-title-2 text-glow-white">
-              {SELECT_DATA.PAGE_TITLE}
-            </p>
-          </div>
+          <p className="text-center font-kia-signature-bold text-title-2 text-glow-white">
+            The 2025 셀토스 출시 이벤트
+          </p>
         </div>
       </div>
 
