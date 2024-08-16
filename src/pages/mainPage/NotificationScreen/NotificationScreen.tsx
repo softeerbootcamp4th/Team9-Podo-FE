@@ -4,6 +4,7 @@ import "echarts-wordcloud";
 import carMask from "../../../assets/images/wordcloud.png"; // Make sure this path is correct
 import Button from "../../../components/common/Button/Button";
 import { useNavigate } from "react-router";
+import { EVENT_TERMS } from "../../../constants/EventData";
 
 const NotificationScreen = () => {
   const navigate = useNavigate();
@@ -73,17 +74,6 @@ const NotificationScreen = () => {
     { name: "충전소", value: 3 },
     { name: "가속력", value: 2 },
     { name: "트렁크", value: 1 },
-  ];
-  const EVENT_TERMS = [
-    "본 이벤트는 이름 및 전화번호에 대한 개인정보 수집 및 활용 동의를 진행한 고객만 참여할 수 있습니다.",
-    "비정상적이거나 불법적인 방법으로 이벤트에 참여한 것이 확인될 경우 당첨이 취소되며, 경품은 환수 조치될 수 있습니다.",
-    "본 이벤트는 현대자동차에 의해 사전 고지 없이 변경 및 취소될 수 있습니다.",
-    "당첨자 발표일과 경품 혜택은 현대자동차의 사정에 의해 사전 공지 없이 변경될 수 있으며, 경품 이미지는 연출된 사진으로 실제와 다를 수 있습니다.",
-    "5만 원 이상 경품에 대한 제세공과금은 현대자동차에서 부담합니다. 제세공과금 납부 및 신고를 위한 세부 내용은 대상자에 따라 개별 안내 됩니다.",
-    "이벤트 당첨 이후 개인정보 제공을 거부하거나 개별 안내를 거부하는 경우, 당첨이 취소될 수 있습니다.",
-    "이벤트 당첨자 발표 이후 3회 이상 유선 연락이 되지 않을 경우 당첨이 취소될 수 있습니다.",
-    "미성년자 당첨 시 법적 대리인의 동의 및 법정 대리인의 정보를 추가 요청드릴 수 있습니다.",
-    "이벤트 참여 관련 문의 사항은 seltosevent@kia.co.kr으로 문의해주세요.",
   ];
 
   return (
