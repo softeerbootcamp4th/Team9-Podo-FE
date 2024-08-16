@@ -41,7 +41,7 @@ const EventSelectOptions = ({
       >
         <div className="flex-col gap-6 flex-center">
           <div
-            className={`transiti rounded-full bg-opacity-10 px-6 py-4 transition-all duration-200 flex-center ${hoveredIndex === index && "bg-white bg-opacity-100"}`}
+            className={`rounded-full bg-opacity-10 px-6 py-4 transition-all duration-200 flex-center ${hoveredIndex === index ? "bg-white bg-opacity-100" : "bg-white/10"}`}
           >
             <span
               style={{

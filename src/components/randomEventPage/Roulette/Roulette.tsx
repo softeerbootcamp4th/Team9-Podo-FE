@@ -40,23 +40,17 @@ const Roulette = ({ textList, targetText }: RouletteInterface) => {
   }, [duration]);
 
   return (
-    <div
-      className="flex w-[36.75rem] items-center justify-center rounded-full p-[1px] font-kia-signature-bold text-title-4 text-gray-50"
-      style={{
-        background:
-          "linear-gradient(93.7deg, #505861 0%, #4B7C83 33.5%, #1B3F72 66.5%, #F2F2F2 100%)",
-      }}
-    >
-      <div className="relative h-full w-full overflow-hidden rounded-full bg-gray-950 px-10 py-6 flex-center">
+    <div className="before:gradient-mask relative flex w-[36.75rem] items-center justify-center font-kia-signature-bold text-title-4 text-gray-50 before:-inset-[0rem] before:content-none">
+      <div className="relative h-full w-full overflow-hidden px-10 py-6 flex-center">
         <p
-          className={`text-glow-white font-kia-signature-bold text-title-2 transition duration-700 ${showType ? "" : "-translate-y-16"}`}
+          className={`font-kia-signature-bold text-title-2 transition duration-700 text-glow-white ${showType ? "" : "-translate-y-16"}`}
         >
           {targetText}
         </p>
         {textList.map((text, index) => (
           <p
             key={index + duration * 3}
-            className={`text-glow-white animate-moveText absolute -top-16 font-kia-signature-bold text-title-2`}
+            className={`absolute -top-16 animate-moveText font-kia-signature-bold text-title-2 text-glow-white`}
             style={{
               animationName: "moveText",
               animationDuration: `${duration}s`,

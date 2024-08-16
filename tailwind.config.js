@@ -109,8 +109,7 @@ module.exports = {
         ".gradient-mask": {
           content: '""',
           position: "absolute",
-          inset: "-20px",
-          borderRadius: "50px",
+          borderRadius: "9999px",
           padding: "1px",
           background:
             "linear-gradient(45deg,  #505861 0%, #4B7C83 33.5%, #1B3F72 66.5%, #F2F2F2 100%)",

@@ -73,10 +73,10 @@ const EventSelectSection = ({
       >
         <div
           ref={titleRef}
-          className="before:gradient-mask relative w-[36.75rem] rounded-full opacity-0"
+          className="before:gradient-mask relative w-[36.75rem] opacity-0 before:-inset-[2rem] before:content-none"
         >
           <p className="text-center font-kia-signature-bold text-title-2 text-glow-white">
-            The 2025 셀토스 출시 이벤트
+            {SELECT_DATA.PAGE_TITLE}
           </p>
         </div>
       </div>

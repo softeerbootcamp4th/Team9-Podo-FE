@@ -83,8 +83,8 @@ const GasolineInfo = ({ title, value }: GasolineInfo) => {
   return (
     <>
       <div className="m-800 flex-col gap-500 flex-center">
-        <div className="rounded-[12rem] border p-2 px-3 font-kia-signature-bold text-body-2-bold text-gray-100 gradient-border">
-          {title}
+        <div className="before:gradient-mask relative font-kia-signature-bold text-body-2-bold text-gray-100 before:-inset-[0.5rem] before:content-none">
+          <span>{title}</span>
         </div>
         <div className="flex justify-between gap-600">
           <div className="flex flex-col items-center">
