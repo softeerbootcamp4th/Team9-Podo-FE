@@ -3,18 +3,7 @@ import img1 from "../assets/images/random1.png";
 import img2 from "../assets/images/random2.png";
 import img3 from "../assets/images/random3.png";
 
-interface RandomQuizInterface {
-  background: string;
-  question: string;
-  optionList: Array<OptionInterface>;
-}
-
-interface OptionInterface {
-  label: string;
-  content: string;
-}
-
-export const QUIZ_LIST: Array<RandomQuizInterface> = [
+export const QUIZ_LIST = [
   {
     background: img0,
     question: "Q1. 마음은 급한데, 앞차가 너무 천천히 간다면... 당신의 선택은?",
@@ -74,19 +63,14 @@ export const QUIZ_LIST: Array<RandomQuizInterface> = [
   },
 ];
 
-export const DRIVER_TYPE_LIST: Array<string> = [
+export const DRIVER_TYPE_LIST = [
   "안전을 최우선시하는 베스트 드라이버",
   "호기심 많은 얼리어답터",
   "감각적인 트렌드 세터",
   "다이나믹한 모험가",
 ];
 
-interface ErrorMessageInterface {
-  short: string;
-  inappropriate: string;
-}
-
-export const ERROR_MSG: ErrorMessageInterface = {
+export const ERROR_MSG = {
   short: "20자 이상 답변을 작성해주세요.",
   inappropriate: "부적절한 답변입니다. 다시 작성해주세요.",
 };

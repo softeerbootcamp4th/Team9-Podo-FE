@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ForwardedRef, forwardRef } from "react";
 import OutsideSection from "./OutsideSection";
 import InsideSection from "./InsideSection";
 import VideoSection from "./VideoSection";
@@ -7,9 +7,12 @@ import ConvenienceSection from "./ConvenienceSection";
 import ColorSection from "./ColorSection";
 import PerformanceSection from "./PerformanceSection";
 
-const InfoScreen = () => {
+const InfoScreen = (
+  props: React.HTMLProps<HTMLDivElement>,
+  ref: ForwardedRef<HTMLDivElement>,
+) => {
   return (
-    <div>
+    <div ref={ref}>
       <VideoSection />
       <OutsideSection />
       <InsideSection />
@@ -21,4 +24,4 @@ const InfoScreen = () => {
   );
 };
 
-export default InfoScreen;
+export default forwardRef(InfoScreen);

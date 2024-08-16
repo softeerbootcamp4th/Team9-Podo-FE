@@ -2,7 +2,7 @@ import Toast from "./Toast";
 
 export default {
   component: Toast,
-  title: "Toast",
+  title: "common/Toast",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   args: {},

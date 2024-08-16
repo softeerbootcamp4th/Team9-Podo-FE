@@ -1,9 +1,9 @@
 import React from "react";
-import RandomEventSection from "./RandomEventSection";
+import NotificationScreen from "./NotificationScreen";
 
 export default {
-  component: RandomEventSection,
-  title: "main/RandomEventSection",
+  component: NotificationScreen,
+  title: "main/NotificationScreen",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   args: {},

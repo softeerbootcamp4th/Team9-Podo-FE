@@ -1,11 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  ForwardedRef,
+  forwardRef,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import EventSelectSection from "./EventSelectSection";
 import GlowBackground from "../../../components/common/GlowBackground/GlowBackground";
 import FCFSEventSection from "./FCFSEventSection";
 import RandomEventSection from "./RandomEventSection";
 import mainCar from "../../../assets/images/mainCar.png";
 
-const MainScreen = () => {
+const MainScreen = (
+  props: React.HTMLProps<HTMLDivElement>,
+  ref: ForwardedRef<HTMLDivElement>,
+) => {
   const FCFSRef = useRef<HTMLDivElement>(null);
   const RandomRef = useRef<HTMLDivElement>(null);
   const SectionRef = useRef<HTMLDivElement>(null);
@@ -15,6 +24,14 @@ const MainScreen = () => {
     fcfs: false,
     random: false,
   });
+
+  const onInfoClick = () => {
+    if (ref) {
+      (ref as React.RefObject<HTMLDivElement>).current?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
 
   const onFCFSClick = () => {
     FCFSRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -114,6 +131,7 @@ const MainScreen = () => {
         <FCFSEventSection
           ref={FCFSRef}
           isVisible={isSectionVisible.fcfs}
+          onInfoClick={onInfoClick}
         ></FCFSEventSection>
         <RandomEventSection
           ref={RandomRef}
@@ -124,4 +142,4 @@ const MainScreen = () => {
   );
 };
 
-export default MainScreen;
+export default forwardRef(MainScreen);

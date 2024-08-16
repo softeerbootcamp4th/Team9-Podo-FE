@@ -1,47 +1,55 @@
 import React, { useEffect, useState } from "react";
-import useAnimation from "../../../hooks/useAnimation";
+import useAnimation, { UseAnimationProps } from "../../../hooks/useAnimation";
 import EventSelectOptions from "../../../components/mainPage/MainScreen/EventSelectOptions/EventSelectOptions";
 import e1Gift from "../../../assets/images/e1Gift.png";
 import e2Gift from "../../../assets/images/e2Gift.png";
 import mainCar from "../../../assets/images/mainCar.png";
 import landingCar from "../../../assets/images/landingCar.png";
+import { SELECT_DATA } from "../../../constants/EventData";
 
-interface EventSelectSectionInterface {
-  onFCFSClick: () => void;
-  onRandomClick: () => void;
-}
+const LANDING_CAR_ANIMATION_OPTIONS: UseAnimationProps = {
+  startKeyframes: [
+    { transform: "translateX(0)" },
+    { transform: "translateX(-160rem)", display: "none" },
+  ],
+  startOptions: { duration: 500, fill: "forwards", delay: 100 },
+};
+
+const MAIN_CAR_ANIMATION_OPTIONS: UseAnimationProps = {
+  startKeyframes: [{ opacity: "0" }, { opacity: "100" }],
+  startOptions: { duration: 2000, fill: "forwards", delay: 1000 },
+  cancelKeyframes: [{ opacity: "100" }, { opacity: "0" }],
+  cancelOptions: { duration: 200, fill: "forwards" },
+};
+
+const TITLE_ANIMATION_OPTIONS: UseAnimationProps = {
+  startKeyframes: [{ opacity: "0" }, { opacity: "100" }],
+  startOptions: { duration: 2000, fill: "forwards", delay: 600 },
+};
+
+const LANDING_TIMEOUT_DURATION = 4000;
 
 const EventSelectSection = ({
   onFCFSClick,
   onRandomClick,
-}: EventSelectSectionInterface) => {
+}: {
+  onFCFSClick: () => void;
+  onRandomClick: () => void;
+}) => {
   const [isLanding, setIsLanding] = useState(true);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const { elementRef: landingCarRef, startAnimation: landingCarAnimation } =
-    useAnimation<HTMLImageElement>({
-      startKeyframes: [
-        { transform: "translateX(0)" },
-        { transform: "translateX(-160rem)", display: "none" },
-      ],
-      startOptions: { duration: 500, fill: "forwards", delay: 100 },
-    });
+    useAnimation<HTMLImageElement>(LANDING_CAR_ANIMATION_OPTIONS);
+
   const {
     elementRef: mainCarRef,
     startAnimation: mainCarAnimation,
     stopAnimation: mainCarStopAnimation,
-  } = useAnimation<HTMLImageElement>({
-    startKeyframes: [{ opacity: "0" }, { opacity: "100" }],
-    startOptions: { duration: 2000, fill: "forwards", delay: 1000 },
-    cancelKeyframes: [{ opacity: "100" }, { opacity: "0" }],
-    cancelOptions: { duration: 200, fill: "forwards" },
-  });
+  } = useAnimation<HTMLImageElement>(MAIN_CAR_ANIMATION_OPTIONS);
 
   const { elementRef: titleRef, startAnimation: titleAnimation } =
-    useAnimation<HTMLDivElement>({
-      startKeyframes: [{ opacity: "0" }, { opacity: "100" }],
-      startOptions: { duration: 2000, fill: "forwards", delay: 600 },
-    });
+    useAnimation<HTMLDivElement>(TITLE_ANIMATION_OPTIONS);
 
   useEffect(() => {
     landingCarAnimation();
@@ -51,7 +59,7 @@ const EventSelectSection = ({
     const landingTimeout = setTimeout(() => {
       setIsLanding(false);
       mainCarStopAnimation();
-    }, 4000);
+    }, LANDING_TIMEOUT_DURATION);
 
     return () => clearTimeout(landingTimeout);
   }, []);
@@ -59,7 +67,9 @@ const EventSelectSection = ({
   return (
     <div className="relative h-screen w-screen snap-start flex-col flex-center">
       <div
-        className={`${!isLanding ? "top-12" : "top-52"} absolute z-10 flex flex-col items-center justify-start gap-[9rem] transition-all duration-500`}
+        className={`${
+          !isLanding ? "top-12" : "top-52"
+        } absolute z-10 flex flex-col items-center justify-start gap-[9rem] transition-all duration-500`}
       >
         <div
           ref={titleRef}
@@ -70,9 +80,10 @@ const EventSelectSection = ({
           </p>
         </div>
       </div>
+
       <img
         src={mainCar}
-        alt=""
+        alt="Main Car"
         className={`absolute top-96 opacity-0`}
         ref={mainCarRef}
       />
@@ -80,7 +91,7 @@ const EventSelectSection = ({
       {isLanding && (
         <img
           src={landingCar}
-          alt=""
+          alt="Landing Car"
           className="absolute -bottom-96 -right-1/2 h-[64rem] w-[150rem]"
           ref={landingCarRef}
         />
@@ -92,8 +103,8 @@ const EventSelectSection = ({
             index={0}
             hoveredIndex={hoveredIndex}
             setHoveredIndex={setHoveredIndex}
-            title="event 1."
-            description={`매일 선착순 100명! \n퀴즈 풀고 스타벅스 커피 받아가자!`}
+            title={SELECT_DATA.EVENT_1.TITLE}
+            description={SELECT_DATA.EVENT_1.DESCRIPTION}
             img={e1Gift}
             buttonInfo={{
               size: "small",
@@ -105,8 +116,8 @@ const EventSelectSection = ({
             index={1}
             hoveredIndex={hoveredIndex}
             setHoveredIndex={setHoveredIndex}
-            title="event 2."
-            description={`내 운전자 유형에 맞는 셀토스 라이프스타일 추천받고,\n 시그니엘 숙박권 당첨의 기회!`}
+            title={SELECT_DATA.EVENT_2.TITLE}
+            description={SELECT_DATA.EVENT_2.DESCRIPTION}
             img={e2Gift}
             buttonInfo={{
               size: "small",

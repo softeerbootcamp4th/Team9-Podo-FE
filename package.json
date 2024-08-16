@@ -72,6 +72,8 @@
     "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
+    "echarts": "^5.5.1",
+    "echarts-wordcloud": "^2.1.0",
     "react-router-dom": "^6.26.0"
   },
   "eslintConfig": {

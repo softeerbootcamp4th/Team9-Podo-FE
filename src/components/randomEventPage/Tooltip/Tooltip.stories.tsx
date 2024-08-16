@@ -3,7 +3,7 @@ import Tooltip from "./Tooltip";
 
 export default {
   component: Tooltip,
-  title: "Tooltip",
+  title: "random/Tooltip",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   args: {},

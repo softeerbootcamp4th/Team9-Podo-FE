@@ -6,7 +6,7 @@ import OutsideDescriptionItem from "../../mainPage/InfoScreen/OutsideDescription
 
 export default {
   component: Carousel,
-  title: "Carousel",
+  title: "main/Carousel",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
   args: {},
