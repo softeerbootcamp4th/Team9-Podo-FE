@@ -106,6 +106,18 @@ module.exports = {
           textShadow:
             "0px 0px 200px #FFF, 0px 0px 60px #FFF, 0px 0px 30px #FFF",
         },
+        ".gradient-mask": {
+          content: '""',
+          position: "absolute",
+          inset: "-20px",
+          borderRadius: "50px",
+          padding: "1px",
+          background:
+            "linear-gradient(45deg,  #505861 0%, #4B7C83 33.5%, #1B3F72 66.5%, #F2F2F2 100%)",
+          mask: "linear-gradient(#000 0 0) content-box, linear-gradient(#402d67 0 0)",
+          WebkitMaskComposite: "exclude",
+          maskComposite: "exclude",
+        },
       });
     },
   ],
