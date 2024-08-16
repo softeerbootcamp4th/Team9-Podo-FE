@@ -71,6 +71,7 @@ export const postPhoneAuthCheckRequest = async (
 
   return await response.json();
 };
+
 /**
  * wordCloud data를 가져오는 api
  * @returns
