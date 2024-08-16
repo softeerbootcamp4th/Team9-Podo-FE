@@ -1,4 +1,4 @@
-import { QuizInfo } from "../../types/FCFSEvent";
+import { QuizInfo, QuizResult } from "../../types/FCFSEvent";
 
 export const quizInfo: QuizInfo = {
   question:
@@ -10,10 +10,22 @@ export const quizInfo: QuizInfo = {
   answer: "1",
 };
 
-export const FCFSSuccessResult = {
-  response: 5,
+export const quizSuccessResult: QuizResult = {
+  success: true,
+  name: "string",
+  phoneNum: "01011111111",
+  grade: 6,
 };
 
-export const FCFSFailResult = {
+export const quizFailResult = {
   response: "failed",
+};
+
+export const FCFSSuccessResult = (data: QuizInfo | QuizResult) => {
+  return {
+    isSuccess: true,
+    code: 0,
+    message: "string",
+    result: data,
+  };
 };

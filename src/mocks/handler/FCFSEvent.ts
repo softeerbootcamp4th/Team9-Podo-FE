@@ -1,12 +1,16 @@
 import { http, HttpResponse } from "msw";
-import { FCFSFailResult, FCFSSuccessResult, quizInfo } from "../data/FCFSEvent";
+import {
+  FCFSSuccessResult,
+  quizInfo,
+  quizSuccessResult,
+} from "../data/FCFSEvent";
 
 const getQuizInfo = http.get("/v1/quiz", () => {
-  return HttpResponse.json(quizInfo);
+  return HttpResponse.json(FCFSSuccessResult(quizInfo));
 });
 
 const getFCFSResult = http.post("/v1/quiz", () => {
-  return HttpResponse.json(FCFSSuccessResult);
+  return HttpResponse.json(FCFSSuccessResult(quizSuccessResult));
 });
 
 export default [getQuizInfo, getFCFSResult];

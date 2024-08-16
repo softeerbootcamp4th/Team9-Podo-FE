@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import * as echarts from "echarts";
-import "echarts-wordcloud";
+// import "echarts-wordcloud";
 import carMask from "../../../assets/images/wordcloud.png"; // Make sure this path is correct
 import Button from "../../../components/common/Button/Button";
 import { useNavigate } from "react-router";

@@ -28,7 +28,7 @@ const FCFSEventPage = () => {
 
   const fetchData = async () => {
     const quizData = await fetchFCFSQuizInfo();
-    setQuizInfo(quizData);
+    setQuizInfo(quizData.result);
   };
 
   return (

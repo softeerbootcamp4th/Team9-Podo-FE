@@ -3,13 +3,13 @@ import {
   PhoneAuthRequestForm,
   PhoneAuthVerifyResult,
 } from "../types/AuthModal";
-import { FCFSResult, QuizInfo } from "../types/FCFSEvent";
+import { FCFSResult, QuizInfo, QuizResult } from "../types/FCFSEvent";
 
 /**
  * 선착순 퀴즈 정보를 가져오는 api
  * @returns
  */
-export const fetchFCFSQuizInfo = async (): Promise<QuizInfo> => {
+export const fetchFCFSQuizInfo = async (): Promise<FCFSResult<QuizInfo>> => {
   const response = await fetch("/v1/quiz");
 
   return await response.json();
@@ -19,9 +19,14 @@ export const fetchFCFSQuizInfo = async (): Promise<QuizInfo> => {
  * 선착순 퀴즈 결과를 가져오는 api
  * @returns
  */
-export const fetchFCFSResult = async (): Promise<FCFSResult> => {
+export const fetchFCFSResult = async (): Promise<FCFSResult<QuizResult>> => {
   const response = await fetch("/v1/quiz", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization:
+        "Bearer eyJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiZGlyIn0..Wv4DNiAP2hL36vDs.AOwY0A-a8JH6lJWR9T_P3pTgB5o8JaMUwrehYQjpCD1uFhs3aFoWJ-wDLgnX5Jx_YT6dHfJPIXbpG3Oycammh6VQH97U2UtNChPr_t3F9ILqbXAaBcMoWYUx0YqtbgVbOybS6FTMDp7QGhXRZNzXz06gQi46AqbTPOTnVUDICYHHqRq_3efphiRNjTu4JP2OFKq9jIunoLNHCcPZFFidVBafs9R4Z9nEPD-W__uuZOuG111wD4vqjBdshkxs46Y.UyhO03YoDwLvAMmPXHV70g",
+    },
   });
 
   return await response.json();

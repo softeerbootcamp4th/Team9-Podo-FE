@@ -5,7 +5,7 @@ import {
   PERSONAL_INFO_NOTICE,
 } from "../../constants/AuthModal";
 import Button from "../../components/common/Button/Button";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import useInputs from "../../hooks/useInputs";
 import { validateName, verifyCodeCorrector } from "../../utils/auth";
 import { ErrorToastKey, PhoneAuthCheckForm } from "../../types/AuthModal";
@@ -42,6 +42,8 @@ const AuthModal = () => {
       setToastKey((current) => current + 1);
     }
   });
+
+  const location = useLocation();
 
   const { elementRef: nameRef, startAnimation: nameStartAnimation } =
     useAnimation<HTMLInputElement>({
@@ -100,7 +102,7 @@ const AuthModal = () => {
       try {
         const response = await postPhoneAuthCheckRequest(form);
         if (response.code === 200) {
-          navigate(-1);
+          if (location.state.event) navigate(`/event${location.state.event}`);
         } else {
           setIsError("AUTH_NUM_INCORRECT");
         }

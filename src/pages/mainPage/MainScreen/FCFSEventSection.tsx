@@ -9,7 +9,7 @@ import {
   FCFS_PERIOD_INFO,
   FCFS_TIPS,
 } from "../../../constants/EventData";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useAppContext } from "../../../providers/AppProvider";
 
 interface FCFSEventSectionProps {
@@ -23,6 +23,7 @@ const FCFSEventSection = (
 ) => {
   const navigate = useNavigate();
   const { isAuth, isFCFSEnd } = useAppContext();
+  const location = useLocation();
 
   return (
     <div
@@ -91,7 +92,11 @@ const FCFSEventSection = (
         </div>
         <Button
           onClick={() => {
-            isAuth ? navigate("event1") : navigate("auth-modal");
+            isAuth
+              ? navigate("event1")
+              : navigate("auth-modal", {
+                  state: { background: location, event: 1 },
+                });
           }}
           size="big"
           isEnabled={!isFCFSEnd}

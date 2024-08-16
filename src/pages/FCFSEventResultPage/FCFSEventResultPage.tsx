@@ -57,7 +57,7 @@ const FCFSEventResultPage = () => {
 
   const fetchData = async () => {
     const quizData = await fetchFCFSResult();
-    if (Number.isInteger(quizData.response)) setIsWin(true);
+    if (Object.keys(quizData).length !== 0) setIsWin(true);
   };
 
   const handleButtonClick = () => {
