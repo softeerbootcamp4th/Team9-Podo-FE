@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from "react";
+import React, { MouseEvent, useContext, useState } from "react";
 import {
   AUTH_DELAY,
   MESSAGE,
@@ -23,6 +23,7 @@ import useAnimation from "../../hooks/useAnimation";
 import { shakeHorizontal } from "../../styles/keyframes";
 import { shakeInputOptions } from "../../styles/options";
 import useTimer from "../../hooks/useTimer";
+import { useAppContext } from "../../providers/AppProvider";
 
 const initialForm: PhoneAuthCheckForm = {
   name: "",
@@ -35,6 +36,7 @@ const AuthModal = () => {
   const [reRequesst, setReRequesst] = useState(false);
   const [toastKey, setToastKey] = useState(0);
   const [isError, setIsError] = useState<ErrorToastKey | null>(null);
+  const { setIsAuth } = useAppContext();
 
   const { reset, minutes, second } = useTimer(AUTH_DELAY, () => {
     if (reRequesst) {

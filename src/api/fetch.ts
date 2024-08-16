@@ -1,5 +1,6 @@
 import { ApiResponse } from "../types/api";
 import {
+  AuthResult,
   PhoneAuthCheckForm,
   PhoneAuthRequestForm,
   PhoneAuthVerifyResult,
@@ -42,7 +43,7 @@ export const fetchFCFSResult = async (): Promise<ApiResponse<QuizResult>> => {
  */
 export const postPhoneAuthRequest = async (
   phoneAuthRequestForm: PhoneAuthRequestForm,
-): Promise<Object> => {
+): Promise<AuthResult> => {
   const response = await fetch("/verification/claim", {
     method: "POST",
     body: JSON.stringify(phoneAuthRequestForm),

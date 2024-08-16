@@ -20,3 +20,10 @@ interface TokenInfo {
   accessToken: string;
   expireTime: number;
 }
+
+export interface AuthResult {
+  isSuccess: boolean;
+  code: number;
+  message: string;
+  result: string;
+}
