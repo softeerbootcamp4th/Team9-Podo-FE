@@ -15,8 +15,9 @@ const RandomMainSection = ({
 }: RandomMainInterface) => {
   const appContext = useAppContext();
   const navigate = useNavigate();
-  const { isAuth, isRandomEnd } = appContext;
+  const { isAuth, isRandomEnd, setIsAuth } = appContext;
   const [isCopied, setIsCopied] = useState(false);
+  const [shareUrl, setShareUrl] = useState("https://www.hyundaiseltos.site/");
 
   const handleRetry = () => {
     navigate("/event2/0");
@@ -24,8 +25,7 @@ const RandomMainSection = ({
 
   const handleShare = () => {
     if (isCopied) return;
-    const url = "https://example.com";
-    navigator.clipboard.writeText(url);
+    navigator.clipboard.writeText(shareUrl);
 
     setIsCopied(true);
 
@@ -36,17 +36,17 @@ const RandomMainSection = ({
     return () => clearTimeout(CopiedTimeout);
   };
 
-  const { setIsAuth } = useAppContext();
-  const onClickHandler = () => {
+  const onClickHandler = async () => {
     if (isAuth) {
-      //이벤트 참여 백에 전달
-      const shareUrl = postRandomResult(resultTypeId);
+      const myUrl = await postRandomResult(resultTypeId);
+
+      setShareUrl(myUrl.result.uniqueLink);
     } else {
-      //본인인증 모달
-      //본인인증 대기
+      navigate("auth-modal", {
+        state: { background: location, event: 1 },
+      });
       setIsAuth(true);
     }
-    //기대평 작성창
   };
 
   return (
