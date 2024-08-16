@@ -28,6 +28,7 @@ export interface RandomQuizResponseInterface {
   code: number;
   message: string;
   result: {
+    resultId: number;
     result: string;
     type: string;
     description: string;
@@ -45,6 +46,7 @@ export interface DescriptionInterface {
 }
 
 export interface RandomMainInterface {
+  resultTypeId: number;
   description: Array<DescriptionInterface>;
   scenarioList: Array<ScenarioInterface>;
 }
@@ -53,4 +55,8 @@ export interface ScenarioInterface {
   image: string;
   title: string;
   subtitle: string;
+}
+
+export interface SharedLinkInterface {
+  uniqueLink: string;
 }

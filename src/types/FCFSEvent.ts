@@ -13,10 +13,3 @@ export interface QuizResult {
   phoneNum: string;
   grade: number;
 }
-
-export interface FCFSResult<T extends QuizInfo | QuizResult> {
-  isSuccess: boolean;
-  code: number;
-  message: string;
-  result: T;
-}

@@ -119,6 +119,7 @@ const RandomEventResultPage = () => {
         {isRouletteEnd && (
           <div className="animate-moveSection">
             <RandomMainSection
+              resultTypeId={resultData.result.resultId}
               description={getDescription(resultData?.result.description)}
               scenarioList={resultData?.result.scenarioList}
             />
