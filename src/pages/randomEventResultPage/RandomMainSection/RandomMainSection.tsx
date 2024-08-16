@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAppContext } from "../../../providers/AppProvider";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import Button from "../../../components/common/Button/Button";
 import reset from "../../../assets/images/reset.png";
 import share from "../../../assets/images/share.png";
@@ -15,6 +15,8 @@ const RandomMainSection = ({
 }: RandomMainInterface) => {
   const appContext = useAppContext();
   const navigate = useNavigate();
+  const location = useLocation();
+
   const { isAuth, isRandomEnd, setIsAuth } = appContext;
   const [isCopied, setIsCopied] = useState(false);
   const [shareUrl, setShareUrl] = useState("https://www.hyundaiseltos.site/");
@@ -45,7 +47,6 @@ const RandomMainSection = ({
       navigate("auth-modal", {
         state: { background: location, event: 1 },
       });
-      setIsAuth(true);
     }
   };
 
