@@ -12,6 +12,7 @@ import Drive6 from "../assets/images/Drive6.png";
 import Convenience1 from "../assets/images/Convenience1.png";
 import Convenience2 from "../assets/images/Convenience2.png";
 import Convenience3 from "../assets/images/Convenience3.png";
+import { InsideInfo, InsideInfoData } from "../types/InfoScreen";
 
 export const outsideInfoData = [
   {

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import FCFSHintSection from "./FCFSHintSection";
-import FCFSQuizSection from "./FCFSQuizSection";
+import FCFSHintSection from "./FCFSHintSection/FCFSHintSection";
+import FCFSQuizSection from "./FCFSQuizSection/FCFSQuizSection";
 import { fetchFCFSQuizInfo } from "../../api/fetch";
 import { QuizInfo } from "../../types/FCFSEvent";
 import useAnimation from "../../hooks/useAnimation";

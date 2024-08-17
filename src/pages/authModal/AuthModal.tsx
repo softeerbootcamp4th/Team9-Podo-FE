@@ -36,7 +36,7 @@ const AuthModal = () => {
   const [reRequesst, setReRequesst] = useState(false);
   const [toastKey, setToastKey] = useState(0);
   const [isError, setIsError] = useState<ErrorToastKey | null>(null);
-  const { setIsAuth } = useAppContext();
+  const { isAuth, setIsAuth } = useAppContext();
 
   const { reset, minutes, second } = useTimer(AUTH_DELAY, () => {
     if (reRequesst) {
@@ -104,10 +104,10 @@ const AuthModal = () => {
       try {
         const response = await postPhoneAuthCheckRequest(form);
         if (response.code === 200) {
-          if (location.state.event)
-            navigate(
-              `${location.state.event === 2 ? "/event2/result" : "/event1"}`,
-            );
+          if (location.state.event) setIsAuth(true);
+          navigate(
+            `${location.state.event === 2 ? "/event2/result" : "/event1"}`,
+          );
         } else {
           setIsError("AUTH_NUM_INCORRECT");
         }
@@ -117,7 +117,7 @@ const AuthModal = () => {
       setToastKey((current) => current + 1);
     }
   };
-
+  if (isAuth) navigate(-1);
   return (
     <div className="absolute left-0 top-0 z-50 h-screen w-screen bg-black/90 flex-center">
       <div className="relative h-[52.75rem] w-[35.25rem] flex-col rounded-[2rem] bg-gray-900 p-6 px-8 text-white flex-center">

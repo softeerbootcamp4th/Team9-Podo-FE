@@ -1,11 +1,11 @@
 import React, { ComponentPropsWithRef, ForwardedRef, forwardRef } from "react";
-import hint1 from "../../assets/images/hint1.png";
-import hint2 from "../../assets/images/hint2.png";
-import hint3 from "../../assets/images/hint3.png";
-import hint4 from "../../assets/images/hint4.png";
-import hint5 from "../../assets/images/hint5.png";
-import hint6 from "../../assets/images/hint6.png";
-import hint7 from "../../assets/images/hint7.png";
+import hint1 from "../../../assets/images/hint1.png";
+import hint2 from "../../../assets/images/hint2.png";
+import hint3 from "../../../assets/images/hint3.png";
+import hint4 from "../../../assets/images/hint4.png";
+import hint5 from "../../../assets/images/hint5.png";
+import hint6 from "../../../assets/images/hint6.png";
+import hint7 from "../../../assets/images/hint7.png";
 
 interface FCFSHintSectionProps extends ComponentPropsWithRef<"div"> {}
 
@@ -83,7 +83,7 @@ const GasolineInfo = ({ title, value }: GasolineInfo) => {
   return (
     <>
       <div className="m-800 flex-col gap-500 flex-center">
-        <div className="before:gradient-mask relative font-kia-signature-bold text-body-2-bold text-gray-100 before:-inset-[0.5rem] before:content-none">
+        <div className="relative font-kia-signature-bold text-body-2-bold text-gray-100 before:-inset-[0.5rem] before:content-none before:gradient-mask">
           <span>{title}</span>
         </div>
         <div className="flex justify-between gap-600">

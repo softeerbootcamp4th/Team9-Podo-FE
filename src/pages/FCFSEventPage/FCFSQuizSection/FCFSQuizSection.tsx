@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { QuizInfo } from "../../types/FCFSEvent";
+import { QuizInfo } from "../../../types/FCFSEvent";
 import { useNavigate } from "react-router";
-import Button from "../../components/common/Button/Button";
-import { useAppContext } from "../../providers/AppProvider";
+import Button from "../../../components/common/Button/Button";
+import { useAppContext } from "../../../providers/AppProvider";
 
 interface FCFSQuizSectionProps {
   quizInfo: QuizInfo;
@@ -52,7 +52,7 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
       <div className="flex-col gap-[4rem] flex-center">
         <div className="flex-col gap-700 flex-center">
           <header
-            className="before:gradient-mask relative h-[4.125rem] w-[12rem] flex-center before:-inset-[0] before:content-none"
+            className="relative h-[4.125rem] w-[12rem] flex-center before:-inset-[0] before:content-none before:gradient-mask"
             role="banner"
           >
             <p className="text-center font-kia-signature-bold text-title-3 gradient-text">
