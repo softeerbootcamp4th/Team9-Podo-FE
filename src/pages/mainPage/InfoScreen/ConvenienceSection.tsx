@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import ConvenienceDescriptionItem from "../../../components/mainPage/InfoScreen/ConvenienceDescriptionItem";
+import ConvenienceDescriptionItem from "../../../components/mainPage/InfoScreen/ConvenienceDescriptionItem/ConvenienceDescriptionItem";
 import { convenienceInfoData } from "../../../constants/InfoData";
 import useInView from "../../../hooks/useInView";
 

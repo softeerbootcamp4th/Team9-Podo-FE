@@ -3,7 +3,7 @@ import React from "react";
 interface DriveDescriptionItemProps {
   title: string;
   img: string;
-  tailwind: string;
+  tailwind?: string;
 }
 
 const DriveDescriptionItem = ({

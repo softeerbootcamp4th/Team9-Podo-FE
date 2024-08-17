@@ -1,5 +1,5 @@
 import React from "react";
-import Guide from "../../../components/mainPage/InfoScreen/Guide";
+import Guide from "../../../components/mainPage/InfoScreen/InsideGuide/InsideGuide";
 import Interior from "../../../assets/images/Interior.png";
 import useInView from "../../../hooks/useInView";
 

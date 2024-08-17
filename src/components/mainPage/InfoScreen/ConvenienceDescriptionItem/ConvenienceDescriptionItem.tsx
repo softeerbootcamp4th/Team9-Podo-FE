@@ -4,7 +4,7 @@ interface ConvenienceDescriptionItemProps {
   title: string;
   description: string;
   img: string;
-  tailwind: string;
+  tailwind?: string;
 }
 
 const ConvenienceDescriptionItem = ({
