@@ -5,56 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import white from "../../../assets/images/colorSnowWhitePearl.png";
-import blue from "../../../assets/images/colorDarkOceanBlue.png";
-import green from "../../../assets/images/colorGrean.png";
-import gray from "../../../assets/images/colorGravityGray.png";
-import black from "../../../assets/images/colorFusionBlack.png";
-
-const colorInfo = [
-  {
-    key: 0,
-    color: white,
-    koTitle: "스노우 화이트 펄",
-    engTitle: "Snow White Pearl",
-    rgb: "bg-[#F2F2F2]",
-  },
-  {
-    key: 1,
-    color: blue,
-    koTitle: "다크 오션 블루",
-    engTitle: "Dark Ocean Blue",
-    rgb: "bg-[#1B3F72]",
-  },
-  {
-    key: 2,
-    color: green,
-    koTitle: "플루톤 블루",
-    engTitle: "Pluton Blue",
-    rgb: "bg-[#4B7C83]",
-  },
-  {
-    key: 3,
-    color: gray,
-    koTitle: "그레비티 그레이",
-    engTitle: "Gravity Gray",
-    rgb: "bg-[#292F35]",
-  },
-  {
-    key: 4,
-    color: black,
-    koTitle: "퓨전 블랙",
-    engTitle: "Fusion Black",
-    rgb: "bg-[#181818]",
-  },
-  {
-    key: 5,
-    color: black,
-    koTitle: "퓨전 블랙",
-    engTitle: "Fusion Black",
-    rgb: "bg-[#181818]",
-  },
-];
+import { colorInfoData } from "../../../../constants/InfoData";
 
 const zIndex = {
   0: "z-[60]",
@@ -78,9 +29,9 @@ const ColorPallete = ({ index, parentRef }: ColorPalleteProps) => {
   ) => {
     if (parentRef.current) {
       const containerOffset = parentRef.current.offsetTop;
-      const imageHeight = parentRef.current.offsetHeight / colorInfo.length;
+      const imageHeight = parentRef.current.offsetHeight / colorInfoData.length;
       const imageOffset = (index + 1) * imageHeight;
-
+      console.log(imageOffset + containerOffset);
       parentRef.current.parentElement?.parentElement?.scrollTo({
         top: imageOffset + containerOffset,
         behavior: "smooth",
@@ -90,25 +41,29 @@ const ColorPallete = ({ index, parentRef }: ColorPalleteProps) => {
 
   return (
     <div className="relative left-1/2 top-[75%] z-[70] flex h-fit w-fit -translate-x-1/2 flex-col items-center gap-700">
-      <div className="flex items-center gap-2.5 rounded-[6.25rem] bg-white/20 p-3">
-        {colorInfo.map(({ rgb, key }, i) => {
+      <nav
+        role="navigation"
+        className="flex items-center gap-2.5 rounded-[6.25rem] bg-white/20 p-3"
+      >
+        {colorInfoData.map(({ rgb, key }, i) => {
           if (i === 5) return null;
           return (
             <div
+              role="button"
               onClick={(e) => handleClick(e, parentRef, i)}
               key={key}
               className={`${rgb} ${index === i ? "h-800 w-800" : "h-500 w-500"} cursor-pointer rounded-[50%]`}
             ></div>
           );
         })}
-      </div>
+      </nav>
       <div className="flex flex-col items-center">
-        <div className="mb-2 font-kia-signature-bold text-4xl text-black/70">
-          {colorInfo[index].koTitle}
-        </div>
-        <div className="font-kia-signature text-xl text-black/20">
-          {colorInfo[index].engTitle}
-        </div>
+        <p className="mb-2 font-kia-signature-bold text-4xl text-black/70">
+          {colorInfoData[index].koTitle}
+        </p>
+        <p className="font-kia-signature text-xl text-black/20">
+          {colorInfoData[index].engTitle}
+        </p>
       </div>
     </div>
   );
@@ -116,7 +71,7 @@ const ColorPallete = ({ index, parentRef }: ColorPalleteProps) => {
 
 const ColorSection = () => {
   const [clipPosition, setClipPosition] = useState(
-    Array.from({ length: colorInfo.length }, () => 0),
+    Array.from({ length: colorInfoData.length }, () => 0),
   );
   const requestAnimationRef = useRef(0);
   const divRef = useRef<HTMLDivElement>(null);
@@ -130,9 +85,9 @@ const ColorSection = () => {
 
   const render = () => {
     if (divRef.current) {
-      const imageHeight = divRef.current.offsetHeight / colorInfo.length;
+      const imageHeight = divRef.current.offsetHeight / colorInfoData.length;
       const scrollPosition = -divRef.current.getBoundingClientRect().y;
-      const newClipPosition = colorInfo.map((_, index) => {
+      const newClipPosition = colorInfoData.map((_, index) => {
         const imageOffset = (index + 1) * imageHeight;
         if (
           imageOffset < scrollPosition &&
@@ -157,7 +112,7 @@ const ColorSection = () => {
       ref={divRef}
       className="flex w-screen snap-start flex-col items-center bg-white"
     >
-      {colorInfo.map(({ color, key }, index) => {
+      {colorInfoData.map(({ color, key }, index) => {
         return (
           <div
             key={key}

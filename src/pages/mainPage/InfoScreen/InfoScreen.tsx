@@ -4,7 +4,7 @@ import InsideSection from "./InsideSection";
 import VideoSection from "./VideoSection";
 import DriveSection from "./DriveSection";
 import ConvenienceSection from "./ConvenienceSection";
-import ColorSection from "./ColorSection";
+import ColorSection from "./ColorSection/ColorSection";
 import PerformanceSection from "./PerformanceSection";
 
 const InfoScreen = (
