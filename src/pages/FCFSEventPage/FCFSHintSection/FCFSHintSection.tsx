@@ -143,21 +143,21 @@ const FCFSHintSection = (
         <p>▼</p>
       </div>
       <div
+        role="dialog"
         className="absolute -bottom-[43rem] h-[44.5rem] w-[86rem]"
         ref={ref}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
-        <div
-          role="dialog"
-          className="grid h-full grid-cols-4 grid-rows-4 gap-4 rounded-[2.75rem] bg-white/10 p-700 backdrop-blur-sm"
-        >
+        <div className="grid h-full grid-cols-4 grid-rows-4 gap-4 rounded-[2.75rem] bg-white/10 p-700 backdrop-blur-sm">
           {hintInfo.map(({ id, content, img, grid }, index) => {
             return (
               <div role="listitem" key={id} className={`${grid}`}>
                 <div
-                  style={{ backgroundImage: `url(${img})` }}
-                  className="h-full w-full rounded-[1.25rem] bg-cover bg-center font-kia-signature-bold text-title-4 text-white flex-center"
+                  style={{
+                    backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.68) 49.5%, rgba(0, 0, 0, 0.00) 100%), url(${img})`,
+                  }}
+                  className="h-full w-full rounded-[1.25rem] bg-opacity-70 bg-cover bg-center font-kia-signature-bold text-title-4 text-white flex-center"
                 >
                   {content}
                 </div>

@@ -79,7 +79,7 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
               key={choice}
               onClick={() => handleChoiceClick(index)}
             >
-              {choice}
+              {index + 1}. {choice}
             </li>
           ))}
         </ol>
