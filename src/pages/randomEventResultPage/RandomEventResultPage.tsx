@@ -7,10 +7,8 @@ import RandomExpectations from "./RandomExpectations/RandomExpectations";
 import Roulette from "../../components/randomEventPage/Roulette/Roulette";
 import car from "../../assets/images/mainCar.png";
 import { DRIVER_TYPE_LIST } from "../../constants/RandomEventData";
-import {
-  DescriptionInterface,
-  RandomQuizResponseInterface,
-} from "../../types/RandomEvent";
+import { RandomQuizResponseInterface } from "../../types/RandomEvent";
+import { getDescriptionList } from "../../utils/util";
 
 const RandomEventResultPage = () => {
   const appContext = useAppContext();
@@ -35,27 +33,6 @@ const RandomEventResultPage = () => {
   };
 
   const headerStyle = ROULETTE_END_HEADER_CLASSES[`${isRouletteEnd}`];
-
-  const getDescription = (description: string): DescriptionInterface[] => {
-    const descriptionList = description.split("/");
-    let newDiscription: DescriptionInterface[] = [];
-
-    descriptionList.forEach((element) => {
-      if (element[0] === "h") {
-        newDiscription.push({
-          content: element.substring(1),
-          highlighted: true,
-        });
-      } else if (element[0] === "d") {
-        newDiscription.push({
-          content: element.substring(1),
-          highlighted: false,
-        });
-      }
-    });
-
-    return newDiscription;
-  };
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -120,7 +97,7 @@ const RandomEventResultPage = () => {
           <div className="animate-moveSection">
             <RandomMainSection
               resultTypeId={resultData.result.resultId}
-              description={getDescription(resultData?.result.description)}
+              description={getDescriptionList(resultData?.result.description)}
               scenarioList={resultData?.result.scenarioList}
             />
             {isAuth && <RandomExpectations ref={randomExpectationsRef} />}
