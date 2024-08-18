@@ -5,11 +5,11 @@ import React, {
   useRef,
   useState,
 } from "react";
-import EventSelectSection from "./EventSelectSection";
 import GlowBackground from "../../../components/common/GlowBackground/GlowBackground";
-import FCFSEventSection from "./FCFSEventSection";
-import RandomEventSection from "./RandomEventSection";
+import FCFSEventSection from "./FCFSEventSection/FCFSEventSection";
+import RandomEventSection from "./RandomEventSection/RandomEventSection";
 import mainCar from "../../../assets/images/mainCar.png";
+import EventSelectSection from "./EventSelectSection/EventSelectSection";
 
 const MainScreen = (
   props: React.HTMLProps<HTMLDivElement>,

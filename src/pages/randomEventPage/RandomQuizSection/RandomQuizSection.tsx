@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useOutletContext } from "react-router";
-import Option from "../../components/randomEventPage/Option/Option";
+import Option from "../../../components/randomEventPage/Option/Option";
 import {
   AnswerInterface,
   RandomQuizSectionInterface,
-} from "../../types/RandomEvent";
+} from "../../../types/RandomEvent";
 
 const RandomQuizSection = () => {
   const { quizInfo, answer, currentIndex, onClick } =

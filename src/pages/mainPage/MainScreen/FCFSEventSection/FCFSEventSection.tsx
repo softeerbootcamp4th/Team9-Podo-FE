@@ -1,16 +1,16 @@
 import React, { ForwardedRef, forwardRef, useState } from "react";
-import Timer from "./Timer";
-import EventHeader from "../../../components/mainPage/MainScreen/EventHeader";
-import Button from "../../../components/common/Button/Button";
+import Timer from "../../../../components/mainPage/MainScreen/Timer/Timer";
+import EventHeader from "../../../../components/mainPage/MainScreen/EventHeader/EventHeader";
+import Button from "../../../../components/common/Button/Button";
 import e1Gift from "../../../assets/images/e1Gift.png";
 import {
   FCFS_EVENT_DATA,
   FCFS_PARTICIPATION_STEPS,
   FCFS_PERIOD_INFO,
   FCFS_TIPS,
-} from "../../../constants/EventData";
+} from "../../../../constants/EventData";
 import { useLocation, useNavigate } from "react-router";
-import { useAppContext } from "../../../providers/AppProvider";
+import { useAppContext } from "../../../../providers/AppProvider";
 
 interface FCFSEventSectionProps {
   isVisible: boolean;

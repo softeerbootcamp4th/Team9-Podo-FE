@@ -1,6 +1,6 @@
 import React, { ForwardedRef, forwardRef } from "react";
-import EventHeader from "../../../components/mainPage/MainScreen/EventHeader";
-import Button from "../../../components/common/Button/Button";
+import EventHeader from "../../../../components/mainPage/MainScreen/EventHeader/EventHeader";
+import Button from "../../../../components/common/Button/Button";
 import e2Gift1 from "../../../assets/images/e2Gift1.png";
 import e2Gift2 from "../../../assets/images/e2Gift2.png";
 import e2Gift3 from "../../../assets/images/e2Gift3.png";
@@ -9,7 +9,7 @@ import {
   RANDOM_PERIOD_INFO,
   RANDOM_PRIZE_INFO,
   RANDOM_STEPS,
-} from "../../../constants/EventData";
+} from "../../../../constants/EventData";
 import { useNavigate } from "react-router";
 
 interface RandomEventSectionProps {
