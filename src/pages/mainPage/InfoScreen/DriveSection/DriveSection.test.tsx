@@ -27,9 +27,9 @@ describe("DriveSection component", () => {
     test(`${drive.title}의 정보를 담은 화면에 표시 되어야 한다.`, () => {
       render(<DriveSection />);
 
-      const koTitle = screen.getByText(drive.title);
+      const title = screen.getByText(drive.title);
 
-      expect(koTitle).toBeInTheDocument();
+      expect(title).toBeInTheDocument();
     });
   });
 

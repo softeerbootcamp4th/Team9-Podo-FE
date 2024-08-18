@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import OutsideDescriptionItem from "../../../components/mainPage/InfoScreen/OutsideDescriptionItem/OutsideDescriptionItem";
-import OutsideInfo from "../../../assets/images/OutsideInfo.png";
-import { outsideInfoData } from "../../../constants/InfoData";
-import Carousel from "../../../components/common/Carousel/Carousel";
-import useInView from "../../../hooks/useInView";
+import OutsideDescriptionItem from "../../../../components/mainPage/InfoScreen/OutsideDescriptionItem/OutsideDescriptionItem";
+import OutsideInfo from "../../../../assets/images/OutsideInfo.png";
+import { outsideInfoData } from "../../../../constants/InfoData";
+import Carousel from "../../../../components/common/Carousel/Carousel";
+import useInView from "../../../../hooks/useInView";
 
 const OutsideSection = () => {
   const { isInView, elementRef } = useInView<HTMLImageElement>(0.9);

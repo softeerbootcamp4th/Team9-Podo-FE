@@ -1,5 +1,5 @@
 import React, { ForwardedRef, forwardRef } from "react";
-import OutsideSection from "./OutsideSection";
+import OutsideSection from "./OutsideSection/OutsideSection";
 import InsideSection from "./InsideSection";
 import VideoSection from "./VideoSection";
 import DriveSection from "./DriveSection/DriveSection";
