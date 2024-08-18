@@ -1,10 +1,28 @@
-import React from "react";
-import { render, screen, waitFor } from "../../../utils/TestUtils";
+import React, { useContext } from "react";
+import { MockContext, render, screen, waitFor } from "../../../utils/TestUtils";
 import FCFSQuizSection from "./FCFSQuizSection";
 import { quizInfo } from "../../../mocks/data/FCFSEvent";
 import userEvent from "@testing-library/user-event";
+import { MESSAGE } from "../../../constants/FCFSEventResultData";
+
+jest.mock("../../../providers/AppProvider", () => ({
+  useAppContext: jest.fn().mockImplementation(() => {
+    return useContext(MockContext);
+  }),
+}));
+const navigate = jest.fn();
+
+jest.mock("react-router", () => ({
+  ...jest.requireActual("react-router"),
+  useNavigate: jest.fn(() => {
+    return navigate;
+  }),
+}));
 
 describe("FCFSQuizSection Component", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   test("'오늘의 퀴즈' 문구와 문제가 화면에 표시되어야 한다.", () => {
     render(<FCFSQuizSection quizInfo={quizInfo} />);
 
@@ -28,15 +46,10 @@ describe("FCFSQuizSection Component", () => {
     const quizChoices = screen.getAllByRole("listitem");
     const submitButton = screen.getByRole("button");
 
-    userEvent.click(quizChoices[0]);
-    userEvent.click(submitButton);
+    await userEvent.click(quizChoices[0]);
+    await userEvent.click(submitButton);
 
-    waitFor(() => {
-      const resultTitle = screen.findByText(
-        "The 2025 셀토스의 원격 스마트 보조 기능을 통해 당첨을 확인해보세요!",
-      );
-      expect(resultTitle).toBeInTheDocument();
-    });
+    expect(navigate).toHaveBeenCalledWith("/event1/result");
   });
 
   test("오답을 제출하면 결과를 알리는 화면으로 이동하지 않아야 한다.", async () => {
@@ -45,16 +58,32 @@ describe("FCFSQuizSection Component", () => {
     const quizChoices = screen.getAllByRole("listitem");
     const submitButton = screen.getByRole("button");
 
-    userEvent.click(quizChoices[1]);
-    userEvent.click(submitButton);
+    await userEvent.click(quizChoices[1]);
+    await userEvent.click(submitButton);
 
-    waitFor(() => {
-      const resultTitle = screen.findByText(
-        "The 2025 셀토스의 원격 스마트 보조 기능을 통해 당첨을 확인해보세요!",
-      );
-      expect(resultTitle).toBeInTheDocument();
-    });
+    expect(navigate).not.toHaveBeenCalled();
   });
 
-  test("오답을 누르면 하단에 오답을 알리는 토스트가 표시되어야 한다.", () => {});
+  test("오답을 누르면 하단에 오답을 알리는 토스트가 표시되어야 한다.", async () => {
+    render(<FCFSQuizSection quizInfo={quizInfo} />);
+
+    const quizChoices = screen.getAllByRole("listitem");
+    const submitButton = screen.getByRole("button");
+
+    await userEvent.click(quizChoices[1]);
+    await userEvent.click(submitButton);
+
+    const errorToast = await screen.findByText(MESSAGE.WRONG_ANSWER);
+    expect(errorToast).toBeInTheDocument();
+  });
+
+  test("정답을 선택하지 않고 제출버튼을 누르면 하단에 정답을 선택하지 않았음을 알리는 토스트가 표시되어야 한다.", async () => {
+    render(<FCFSQuizSection quizInfo={quizInfo} />);
+
+    const submitButton = screen.getByRole("button");
+    await userEvent.click(submitButton);
+
+    const errorToast = await screen.findByText(MESSAGE.NO_ANSWER);
+    expect(errorToast).toBeInTheDocument();
+  });
 });

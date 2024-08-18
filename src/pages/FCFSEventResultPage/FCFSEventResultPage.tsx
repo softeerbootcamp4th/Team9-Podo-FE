@@ -75,6 +75,10 @@ const FCFSEventResultPage = () => {
     }
   }, [isResultVisible, buttonStartAnimation]);
 
+  useEffect(() => {
+    console.log("print result");
+  }, []);
+
   return (
     <div className="relative flex h-screen w-screen flex-col items-center justify-start overflow-hidden bg-black">
       <div>
@@ -82,7 +86,7 @@ const FCFSEventResultPage = () => {
       </div>
       {!isResultVisible && (
         <header
-          className="before:gradient-mask relative z-10 mt-12 h-[4.125rem] w-[12rem] p-500 px-800 text-center font-kia-signature-bold text-title-3 flex-center before:-inset-[0rem] before:content-none"
+          className="relative z-10 mt-12 h-[4.125rem] w-[12rem] p-500 px-800 text-center font-kia-signature-bold text-title-3 flex-center before:-inset-[0rem] before:content-none before:gradient-mask"
           role="banner"
         >
           <span className="gradient-text">오늘의 퀴즈</span>

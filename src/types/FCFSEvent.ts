@@ -13,3 +13,5 @@ export interface QuizResult {
   phoneNum: string;
   grade: number;
 }
+
+export type ErrorToastKey = "WRONG_ANSWER" | "NO_ANSWER";

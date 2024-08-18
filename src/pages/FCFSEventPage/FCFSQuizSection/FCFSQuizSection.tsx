@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { QuizInfo } from "../../../types/FCFSEvent";
+import { ErrorToastKey, QuizInfo } from "../../../types/FCFSEvent";
 import { useNavigate } from "react-router";
 import Button from "../../../components/common/Button/Button";
 import { useAppContext } from "../../../providers/AppProvider";
+import Toast from "../../../components/common/Toast/Toast";
+import { MESSAGE } from "../../../constants/FCFSEventResultData";
 
 interface FCFSQuizSectionProps {
   quizInfo: QuizInfo;
@@ -27,7 +29,8 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
   const { isAuth, setIsFCFSEnd } = useAppContext();
 
   const [selectedIndex, setSelectedIndex] = useState(-1);
-
+  const [toastKey, setToastKey] = useState(0);
+  const [isError, setIsError] = useState<ErrorToastKey | null>(null);
   const { choice1, choice2, choice3, choice4, answer, question } = quizInfo;
 
   const choices = [choice1, choice2, choice3, choice4];
@@ -42,8 +45,14 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
     if (selectedIndex + 1 === parseInt(answer)) {
       setIsFCFSEnd(true);
       navigate("/event1/result");
+      console.log("clicked");
     } else {
-      // 에러 토스트 추후 처리
+      if (selectedIndex === -1) {
+        setIsError("NO_ANSWER");
+      } else {
+        setIsError("WRONG_ANSWER");
+      }
+      setToastKey((current) => current + 1);
     }
   };
 
@@ -74,13 +83,25 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
             </li>
           ))}
         </ol>
-        <Button
-          isEnabled={true}
-          size="small"
-          defaultText="답변 제출"
-          disabledText=""
-          onClick={() => handleSubmitClick()}
-        />
+        <div className="relative">
+          {isError && (
+            <Toast
+              key={toastKey}
+              content={MESSAGE[isError]}
+              position="-top"
+              value={14}
+              delay={4000}
+              duration={1000}
+            />
+          )}
+          <Button
+            isEnabled={true}
+            size="small"
+            defaultText="답변 제출"
+            disabledText=""
+            onClick={() => handleSubmitClick()}
+          />
+        </div>
       </div>
       {/* <div>error toast</div> */}
     </>
