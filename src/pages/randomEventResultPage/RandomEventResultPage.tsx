@@ -10,11 +10,24 @@ import { DRIVER_TYPE_LIST } from "../../constants/RandomEventData";
 import { RandomQuizResponseInterface } from "../../types/RandomEvent";
 import { getDescriptionList } from "../../utils/util";
 
+const ANIMATION_DURATION = 5000;
+const ROULETTE_END_DELAY = 6000;
+const HEADER_TEXT = "당신의 운전자 유형은?";
+
+const ROULETTE_END_CONTAINER_CLASSES = {
+  true: "justify-start pt-[16rem]",
+  false: "justify-center",
+};
+
+const ROULETTE_END_HEADER_CLASSES = {
+  true: "gap-4 top-12",
+  false: "gap-6 top-[16rem]",
+};
+
 const RandomEventResultPage = () => {
   const appContext = useAppContext();
   const location = useLocation();
-  const [isRouletteEnd, setIsRouletteEnd] = useState(false);
-  const [animation, setAnimation] = useState(false);
+  const [timeElapsed, setTimeElapsed] = useState(0);
   const [resultData, setResultData] =
     useState<RandomQuizResponseInterface | null>(null);
   const randomExpectationsRef = useRef<HTMLDivElement>(null);
@@ -22,37 +35,27 @@ const RandomEventResultPage = () => {
   const { isAuth } = appContext;
   const answer = location.state;
 
-  const ROULETTE_END_CONTAINER_CLASSES = {
-    true: "justify-start pt-[16rem]",
-    false: "justify-center",
-  };
+  const isRouletteEnd = timeElapsed >= ROULETTE_END_DELAY;
+  const animation = timeElapsed >= ANIMATION_DURATION;
 
-  const ROULETTE_END_HEADER_CLASSES = {
-    true: "gap-4 top-12",
-    false: "gap-6 top-[16rem]",
-  };
-
+  const containerStyle = ROULETTE_END_CONTAINER_CLASSES[`${isRouletteEnd}`];
   const headerStyle = ROULETTE_END_HEADER_CLASSES[`${isRouletteEnd}`];
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setIsRouletteEnd(true);
-    }, 6000);
+    const interval = setInterval(() => {
+      setTimeElapsed((prevTime) => prevTime + 1000);
+    }, 1000);
 
-    const animationTimeout = setTimeout(() => {
-      setAnimation(true);
-    }, 5000);
+    if (timeElapsed >= ROULETTE_END_DELAY) {
+      clearInterval(interval);
+    }
 
-    return () => {
-      clearTimeout(timeoutId);
-      clearTimeout(animationTimeout);
-    };
-  }, []);
+    return () => clearInterval(interval);
+  }, [timeElapsed]);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await postEvent2Answers(answer);
-
       setResultData(response);
     };
 
@@ -73,18 +76,18 @@ const RandomEventResultPage = () => {
   return (
     <div className="flex flex-col items-center transition-all duration-500">
       <div
-        className={`relative flex h-screen w-screen flex-col items-center ${ROULETTE_END_CONTAINER_CLASSES[`${isRouletteEnd}`]} gap-16 overflow-scroll bg-black transition-all duration-300`}
+        className={`relative flex h-screen w-screen flex-col items-center ${containerStyle} gap-16 overflow-scroll bg-black transition-all duration-300`}
       >
         <div
           className={`absolute flex w-[36.5rem] flex-col items-center duration-500 ${headerStyle}`}
         >
           <p className="text-center font-kia-signature-bold text-title-3 text-gray-50">
-            당신의 운전자 유형은?
+            {HEADER_TEXT}
           </p>
           <Roulette
             textList={DRIVER_TYPE_LIST}
             targetText={resultData?.result.type}
-          ></Roulette>
+          />
           {!isRouletteEnd && (
             <img
               src={car}
