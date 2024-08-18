@@ -1,7 +1,6 @@
 import React from "react";
 import InsideGuide from "./InsideGuide";
-import Interior from "../../../assets/images/Interior.png";
-import useInView from "../../../hooks/useInView";
+import Interior from "../../../../assets/images/Interior.png";
 
 const InsideSection = () => {
   return (

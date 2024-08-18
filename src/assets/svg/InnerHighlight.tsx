@@ -44,6 +44,7 @@ const InnerHighlight = ({
       <rect width="1920" height="1080" fill="black" fillOpacity="0.7" />
       <circle
         id="light"
+        data-testid="light"
         cx="1346"
         cy="586"
         r="46"
@@ -54,6 +55,7 @@ const InnerHighlight = ({
       />
       <circle
         id="dial"
+        data-testid="dial"
         cx="975"
         cy="740"
         r="46"
@@ -64,6 +66,7 @@ const InnerHighlight = ({
       />
       <circle
         id="display"
+        data-testid="display"
         cx="1125"
         cy="345"
         r="46"
@@ -74,6 +77,7 @@ const InnerHighlight = ({
       />
       <circle
         id="blow"
+        data-testid="blow"
         cx="1608"
         cy="376"
         r="46"
@@ -84,6 +88,7 @@ const InnerHighlight = ({
       />
       <circle
         id="headup"
+        data-testid="headup"
         cx="558"
         cy="156"
         r="46"

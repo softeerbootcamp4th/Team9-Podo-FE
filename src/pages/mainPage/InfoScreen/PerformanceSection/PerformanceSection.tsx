@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import carImg from "../../../assets/images/powerImg.png";
+import carImg from "../../../../assets/images/powerImg.png";
 import {
   ELECTRONIC_4WD,
   ENGINE_SPECS,
   PERFORMANCE,
-} from "../../../constants/InfoData";
-import useInView from "../../../hooks/useInView";
+} from "../../../../constants/InfoData";
+import useInView from "../../../../hooks/useInView";
 
 interface SpecItemProps {
   value: string;

@@ -1,12 +1,11 @@
 import React from "react";
-import PerformanceSection from "./PerformanceSection";
+import InsideSection from "./InsideSection";
 
 export default {
-  component: PerformanceSection,
-  title: "main/PerformanceSection",
+  component: InsideSection,
+  title: "main/Info/InsideSection",
   tags: ["autodocs"],
   excludeStories: /.*Data$/,
-  args: {},
 };
 
 export const Main = {

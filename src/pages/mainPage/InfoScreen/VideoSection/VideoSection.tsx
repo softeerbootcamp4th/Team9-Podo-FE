@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Video from "../../../assets/video/CarInfoVideo.mp4";
+import Video from "../../../../assets/video/CarInfoVideo.mp4";
 
 const VideoSection = () => {
   const [isShown, setIsShown] = useState(false);
@@ -10,6 +10,7 @@ const VideoSection = () => {
     const videoObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          console.log("video");
           if (entry.isIntersecting) videoRef.current?.play();
           else videoRef.current?.pause();
         });
@@ -20,8 +21,11 @@ const VideoSection = () => {
     const textObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) setIsShown(true);
-          else setIsShown(false);
+          console.log("text");
+          if (entry.isIntersecting) {
+            console.log("intersecting");
+            setIsShown(true);
+          } else setIsShown(false);
         });
       },
       { threshold: 1 },
@@ -34,11 +38,12 @@ const VideoSection = () => {
       if (videoRef.current) videoObserver.unobserve(videoRef.current);
       if (textRef.current) textObserver.unobserve(textRef.current);
     };
-  });
+  }, []);
 
   return (
     <div className="relative h-[200vh] w-screen bg-black">
       <video
+        role="video"
         ref={videoRef}
         playsInline
         autoPlay
@@ -48,6 +53,7 @@ const VideoSection = () => {
         <source src={Video} />
       </video>
       <div
+        role="banner"
         ref={textRef}
         className={`absolute top-[100vh] z-10 h-screen w-screen snap-start snap-always flex-col gap-500 bg-black/50 flex-center ${isShown ? "opacity-100" : "opacity-0"} transition-opacity duration-1000`}
       >

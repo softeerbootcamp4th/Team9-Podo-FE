@@ -1,11 +1,11 @@
 import React, { ForwardedRef, forwardRef } from "react";
 import OutsideSection from "./OutsideSection/OutsideSection";
-import InsideSection from "./InsideSection";
-import VideoSection from "./VideoSection";
+import InsideSection from "./InsideSection/InsideSection";
+import VideoSection from "./VideoSection/VideoSection";
 import DriveSection from "./DriveSection/DriveSection";
 import ConvenienceSection from "./ConvenienceSection/ConvenienceSection";
 import ColorSection from "./ColorSection/ColorSection";
-import PerformanceSection from "./PerformanceSection";
+import PerformanceSection from "./PerformanceSection/PerformanceSection";
 
 const InfoScreen = (
   props: React.HTMLProps<HTMLDivElement>,

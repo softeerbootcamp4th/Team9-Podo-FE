@@ -1,12 +1,12 @@
 import React, { forwardRef, useEffect, useState } from "react";
-import InnerHighlight from "../../../assets/svg/InnerHighlight";
-import useInView from "../../../hooks/useInView";
+import InnerHighlight from "../../../../assets/svg/InnerHighlight";
+import useInView from "../../../../hooks/useInView";
 import {
   INSIDE_INFO_DATA,
   InsideGuideTextAnimationTime,
   InsideGuideTextShowTime,
-} from "../../../constants/InfoData";
-import { InsideInfo } from "../../../types/InfoScreen";
+} from "../../../../constants/InfoData";
+import { InsideInfo } from "../../../../types/InfoScreen";
 
 const initialState: Record<InsideInfo, boolean> = {
   light: false,
@@ -17,7 +17,7 @@ const initialState: Record<InsideInfo, boolean> = {
 };
 
 const InsideGuide = () => {
-  const [showText, setShowText] = useState(true);
+  const [showText, setShowText] = useState(false);
   const [isAnimation, setIsAnimation] = useState(false);
   const [descriptionStates, setDescriptionStates] = useState(initialState);
   const [mouseInfo, setMouseInfo] = useState({ x: 0, y: 0 });
@@ -62,6 +62,7 @@ const InsideGuide = () => {
         if (descriptionStates[key as InsideInfo]) {
           return (
             <div
+              role="banner"
               key={key}
               style={{
                 top: `${mouseInfo.y + 80}px`,
