@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import useAnimation, { UseAnimationProps } from "../../../hooks/useAnimation";
-import EventSelectOptions from "../../../components/mainPage/MainScreen/EventSelectOptions/EventSelectOptions";
-import e1Gift from "../../../assets/images/e1Gift.png";
-import e2Gift from "../../../assets/images/e2Gift.png";
-import mainCar from "../../../assets/images/mainCar.png";
-import landingCar from "../../../assets/images/landingCar.png";
-import { SELECT_DATA } from "../../../constants/EventData";
+import e1Gift from "../../../../assets/images/e1Gift.png";
+import e2Gift from "../../../../assets/images/e2Gift.png";
+import mainCar from "../../../../assets/images/mainCar.png";
+import landingCar from "../../../../assets/images/landingCar.png";
+import useAnimation, {
+  UseAnimationProps,
+} from "../../../../hooks/useAnimation";
+import { SELECT_DATA } from "../../../../constants/EventData";
+import EventSelectOptions from "../../../../components/mainPage/MainScreen/EventSelectOptions/EventSelectOptions";
 
 const LANDING_CAR_ANIMATION_OPTIONS: UseAnimationProps = {
   startKeyframes: [
@@ -73,7 +75,7 @@ const EventSelectSection = ({
       >
         <div
           ref={titleRef}
-          className="before:gradient-mask relative w-[36.75rem] opacity-0 before:-inset-[2rem] before:content-none"
+          className="relative w-[36.75rem] opacity-0 before:-inset-[2rem] before:content-none before:gradient-mask"
         >
           <p className="text-center font-kia-signature-bold text-title-2 text-glow-white">
             {SELECT_DATA.PAGE_TITLE}
