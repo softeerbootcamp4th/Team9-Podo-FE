@@ -1,5 +1,5 @@
 import React from "react";
-import Guide from "../../../components/mainPage/InfoScreen/InsideGuide/InsideGuide";
+import InsideGuide from "./InsideGuide";
 import Interior from "../../../assets/images/Interior.png";
 import useInView from "../../../hooks/useInView";
 
@@ -20,7 +20,7 @@ const InsideSection = () => {
           alt="interior"
           className="absolute top-0 h-screen w-screen snap-start object-cover"
         />
-        <Guide />
+        <InsideGuide />
       </div>
     </div>
   );

@@ -24,6 +24,7 @@ import { shakeHorizontal } from "../../styles/keyframes";
 import { shakeInputOptions } from "../../styles/options";
 import useTimer from "../../hooks/useTimer";
 import { useAppContext } from "../../providers/AppProvider";
+import Cookies from "js-cookie";
 
 const initialForm: PhoneAuthCheckForm = {
   name: "",
@@ -105,6 +106,7 @@ const AuthModal = () => {
         const response = await postPhoneAuthCheckRequest(form);
         if (response.code === 200) {
           if (location.state.event) setIsAuth(true);
+          Cookies.set("auth", response.result.accessToken, { expires: 1 / 24 });
           navigate(
             `${location.state.event === 2 ? "/event2/result" : "/event1"}`,
           );
@@ -119,8 +121,15 @@ const AuthModal = () => {
   };
   if (isAuth) navigate(-1);
   return (
-    <div className="absolute left-0 top-0 z-50 h-screen w-screen bg-black/90 flex-center">
-      <div className="relative h-[52.75rem] w-[35.25rem] flex-col rounded-[2rem] bg-gray-900 p-6 px-8 text-white flex-center">
+    <div
+      role="navigation"
+      onClick={() => navigate(-1)}
+      className="absolute left-0 top-0 z-50 h-screen w-screen bg-black/90 flex-center"
+    >
+      <div
+        onClick={(event) => event.stopPropagation()}
+        className="relative h-[52.75rem] w-[35.25rem] flex-col rounded-[2rem] bg-gray-900 p-6 px-8 text-white flex-center"
+      >
         <div className="pb-700 font-kia-signature-bold text-title-2">
           개인정보 수집, 이용에 대한 동의
         </div>

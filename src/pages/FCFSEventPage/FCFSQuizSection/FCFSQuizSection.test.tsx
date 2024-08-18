@@ -1,7 +1,7 @@
 import React from "react";
-import { render, screen, waitFor } from "../../utils/test-utils";
+import { render, screen, waitFor } from "../../../utils/TestUtils";
 import FCFSQuizSection from "./FCFSQuizSection";
-import { quizInfo } from "../../mocks/data/FCFSEvent";
+import { quizInfo } from "../../../mocks/data/FCFSEvent";
 import userEvent from "@testing-library/user-event";
 
 describe("FCFSQuizSection Component", () => {

@@ -73,8 +73,10 @@
     "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
+    "@types/js-cookie": "^3.0.6",
     "echarts": "^5.5.1",
     "echarts-wordcloud": "^2.1.0",
+    "js-cookie": "^3.0.5",
     "react-router-dom": "^6.26.0"
   },
   "eslintConfig": {

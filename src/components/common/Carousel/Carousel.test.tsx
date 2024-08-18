@@ -1,6 +1,6 @@
 import React from "react";
 import { outsideInfoData } from "../../../constants/InfoData";
-import { render, screen } from "../../../utils/test-utils";
+import { render, screen } from "../../../utils/TestUtils";
 import OutsideDescriptionItem from "../../mainPage/InfoScreen/OutsideDescriptionItem/OutsideDescriptionItem";
 import Carousel from "./Carousel";
 import userEvent from "@testing-library/user-event";

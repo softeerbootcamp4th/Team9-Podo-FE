@@ -1,12 +1,12 @@
 import React, { forwardRef, useEffect, useState } from "react";
-import InnerHighlight from "../../../../assets/svg/InnerHighlight";
-import useInView from "../../../../hooks/useInView";
+import InnerHighlight from "../../../assets/svg/InnerHighlight";
+import useInView from "../../../hooks/useInView";
 import {
   INSIDE_INFO_DATA,
   InsideGuideTextAnimationTime,
   InsideGuideTextShowTime,
-} from "../../../../constants/InfoData";
-import { InsideInfo } from "../../../../types/InfoScreen";
+} from "../../../constants/InfoData";
+import { InsideInfo } from "../../../types/InfoScreen";
 
 const initialState: Record<InsideInfo, boolean> = {
   light: false,

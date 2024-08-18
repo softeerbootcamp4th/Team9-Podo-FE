@@ -28,6 +28,7 @@ const useTimer = (initialTime: number, onEndHandler?: Function) => {
 
   useEffect(() => {
     const timer = setInterval(() => {
+      console.log("set");
       setLeftTime((prevTime) => prevTime - INTERVAL);
     }, INTERVAL);
 

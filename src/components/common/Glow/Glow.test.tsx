@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "../../../utils/test-utils";
+import { render, screen } from "../../../utils/TestUtils";
 import Glow from "./Glow";
 import { glowFadeOptions, glowOptions } from "../../../styles/options";
 import { fadeIn, randomGlow } from "../../../styles/keyframes";

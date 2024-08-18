@@ -1,5 +1,11 @@
-import React from "react";
-import { render, screen } from "../../utils/test-utils";
+import React, { createContext, ReactNode, useContext, useState } from "react";
+import {
+  act,
+  MockContext,
+  render,
+  screen,
+  waitFor,
+} from "../../utils/TestUtils";
 import AuthModal from "./AuthModal";
 import userEvent from "@testing-library/user-event";
 import { AUTH_DELAY, MESSAGE } from "../../constants/AuthModal";
@@ -9,9 +15,28 @@ import { server } from "../../mocks/node";
 import { http, HttpResponse } from "msw";
 import { phoneAuthCheckFailResult } from "../../mocks/data/AuthModal";
 
+jest.mock("../../providers/AppProvider", () => ({
+  useAppContext: jest.fn().mockImplementation(() => {
+    return useContext(MockContext);
+  }),
+}));
+
+const navigate = jest.fn();
+
+jest.mock("react-router", () => ({
+  ...jest.requireActual("react-router"),
+  useNavigate: jest.fn(() => {
+    return navigate;
+  }),
+}));
+
 Element.prototype.animate = jest.fn();
 
 describe("AuthModal Component 렌더링 및 입력 테스트", () => {
+  afterEach(() => {
+    jest.clearAllTimers();
+  });
+
   test("개인정보를 입력할 수 있는 입력창과 인증 버튼이 화면에 보여야 한다.", () => {
     render(<AuthModal />);
 
@@ -22,7 +47,14 @@ describe("AuthModal Component 렌더링 및 입력 테스트", () => {
     expect(authButton).toBeInTheDocument();
   });
 
-  // test("뒷 배경이 블러 처리 되야 한다.", () => {});
+  test("뒷 배경을 누르면 뒤로가기가 되어야 한다.", async () => {
+    render(<AuthModal />);
+
+    const background = screen.getByRole("navigation");
+    await userEvent.click(background);
+
+    expect(navigate).toHaveBeenCalledWith(-1);
+  });
 
   test("이름입력창에 알맞은 형식의 텍스트를 입력할 수 있어야 한다.", async () => {
     render(<AuthModal />);
@@ -33,7 +65,7 @@ describe("AuthModal Component 렌더링 및 입력 테스트", () => {
     expect(nameInput).toHaveValue("강준우");
   });
 
-  test("번호입력창에 알맞은 형식의 텍스트를 입력할 수 있어야 한다.", async () => {
+  test("번호입력창에 01022222222 텍스트를 입력하면 010-2222-2222의 값이 들어와야 한다.", async () => {
     render(<AuthModal />);
 
     const phoneNumberInput = screen.getByPlaceholderText("전화번호");
@@ -76,6 +108,7 @@ describe("AuthModal Component 렌더링 및 입력 테스트", () => {
 
 describe("AuthModal 인증 관련 테스트", () => {
   beforeEach(async () => {
+    jest.useRealTimers();
     render(<AuthModal />);
 
     const nameInput = screen.getByPlaceholderText("이름");
@@ -83,6 +116,11 @@ describe("AuthModal 인증 관련 테스트", () => {
 
     const phoneNumberInput = screen.getByPlaceholderText("전화번호");
     await userEvent.type(phoneNumberInput, "01011111111");
+  });
+
+  afterEach(() => {
+    jest.clearAllTimers();
+    jest.useRealTimers();
   });
 
   test("전화번호를 누르고 인증번호 버튼을 누르면 인증 번호 옆에 타이머가 나타나야 한다.", async () => {
@@ -94,19 +132,28 @@ describe("AuthModal 인증 관련 테스트", () => {
   });
 
   // test("인증 시간이 만료되면 인증시간 만료 토스트를 보여줘야 한다.", async () => {
-  //   const phoneAuthButton = screen.getByRole("button", { name: "인증번호" });
   //   jest.useFakeTimers();
+
+  //   const phoneAuthButton = await screen.findByRole("button", {
+  //     name: "인증번호",
+  //   });
 
   //   await userEvent.click(phoneAuthButton);
 
-  //   jest.advanceTimersByTime(10000);
-  //   jest.runAllTimers();
-
-  //   const expToast = await screen.findByRole("alert", {
-  //     name: MESSAGE.AUTH_NUM_EXPRIES,
+  //   act(() => {
+  //     jest.advanceTimersByTime(3000);
   //   });
-  //   expect(expToast).toBeInTheDocument();
-  // }, 15000);
+
+  //   await waitFor(() => {
+  //     expect(
+  //       screen.getByRole("alert", {
+  //         name: MESSAGE.AUTH_NUM_EXPRIES,
+  //       }),
+  //     ).toBeInTheDocument();
+  //   });
+
+  //   jest.useRealTimers();
+  // });
 
   test("인증번호 버튼을 누르면 재전송 버튼으로 바뀌어야 한다.", async () => {
     const phoneAuthButton = screen.getByRole("button", { name: "인증번호" });
@@ -121,7 +168,7 @@ describe("AuthModal 인증 관련 테스트", () => {
     expect(authButton).toBeDisabled();
   });
 
-  test("동의 버튼과 미동이 버튼은 서로 토글되어야 한다.", async () => {
+  test("동의 버튼과 미동의 버튼은 서로 토글되어야 한다.", async () => {
     const agreeButton = screen.getByRole("radio", { name: "동의" });
     const disagreeButton = screen.getByRole("radio", { name: "미동의" });
 
@@ -153,6 +200,4 @@ describe("AuthModal 인증 관련 테스트", () => {
 
     expect(errorToast).toBeInTheDocument();
   });
-
-  test("인증번호를 입력하고 동의 상태에서 인증하기 버튼을 누르면 이전 페이지로 이동해야 한다.", () => {});
 });

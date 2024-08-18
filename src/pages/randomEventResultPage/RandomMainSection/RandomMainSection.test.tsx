@@ -2,7 +2,7 @@ import React, { createContext, ReactNode, useState } from "react";
 import { screen } from "@testing-library/react";
 import { AppProvider, useAppContext } from "../../../providers/AppProvider";
 import RandomMainSection from "./RandomMainSection";
-import { render } from "../../../utils/test-utils";
+import { render } from "../../../utils/TestUtils";
 
 interface MockAppState {
   isAuth: boolean;
