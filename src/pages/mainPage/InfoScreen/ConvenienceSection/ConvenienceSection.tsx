@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import ConvenienceDescriptionItem from "../../../components/mainPage/InfoScreen/ConvenienceDescriptionItem/ConvenienceDescriptionItem";
-import { convenienceInfoData } from "../../../constants/InfoData";
-import useInView from "../../../hooks/useInView";
+import ConvenienceDescriptionItem from "../../../../components/mainPage/InfoScreen/ConvenienceDescriptionItem/ConvenienceDescriptionItem";
+import { convenienceInfoData } from "../../../../constants/InfoData";
+import useInView from "../../../../hooks/useInView";
 
 const ConvenienceSection = () => {
   const { isInView, elementRef } = useInView<HTMLDivElement>(0.5, () => {

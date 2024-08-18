@@ -8,7 +8,7 @@ Element.prototype.scrollTo = jest.fn();
 
 describe("ColorSection Component", () => {
   colorInfoData.forEach((color, index) => {
-    test(`${color.koTitle}의 색상 정보를 담은 화면에 표시 되어야 한다.`, () => {
+    test(`${color.koTitle}의 색상 정보를 담은 화면이 표시 되어야 한다.`, () => {
       render(<ColorSection />);
 
       const koTitle = screen.getAllByText(color.koTitle);

@@ -15,6 +15,7 @@ const ConvenienceDescriptionItem = ({
 }: ConvenienceDescriptionItemProps) => {
   return (
     <div
+      role="article"
       className={`flex h-[38.25rem] w-[46rem] shrink-0 flex-col ${tailwind}`}
     >
       <img src={img} className="w-full" />

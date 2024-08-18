@@ -13,6 +13,7 @@ const DriveDescriptionItem = ({
 }: DriveDescriptionItemProps) => {
   return (
     <div
+      role="article"
       className={`flex h-[20.875rem] w-[30rem] flex-col gap-700 flex-center ${tailwind}`}
     >
       <img src={img} alt={title} />

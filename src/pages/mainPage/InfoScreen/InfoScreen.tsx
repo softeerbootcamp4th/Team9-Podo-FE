@@ -2,8 +2,8 @@ import React, { ForwardedRef, forwardRef } from "react";
 import OutsideSection from "./OutsideSection";
 import InsideSection from "./InsideSection";
 import VideoSection from "./VideoSection";
-import DriveSection from "./DriveSection";
-import ConvenienceSection from "./ConvenienceSection";
+import DriveSection from "./DriveSection/DriveSection";
+import ConvenienceSection from "./ConvenienceSection/ConvenienceSection";
 import ColorSection from "./ColorSection/ColorSection";
 import PerformanceSection from "./PerformanceSection";
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import DriveDescriptionItem from "../../../components/mainPage/InfoScreen/DriveDescriptionItem/DriveDescriptionItem";
-import { driveInfoData } from "../../../constants/InfoData";
-import useInView from "../../../hooks/useInView";
+import DriveDescriptionItem from "../../../../components/mainPage/InfoScreen/DriveDescriptionItem/DriveDescriptionItem";
+import { driveInfoData } from "../../../../constants/InfoData";
+import useInView from "../../../../hooks/useInView";
 
 const animationDelay = {
   0: "delay-0",
