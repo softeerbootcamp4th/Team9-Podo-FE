@@ -17,11 +17,27 @@ type RandomParticipantsProps = {
   participants: Participant[];
 };
 
+const PAGE_SIZE = 10;
+
 const RandomParticipants = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const onModalHandler = () => {
     setIsModalOpen((current) => !current);
+  };
+
+  const startIndex = (currentPage - 1) * PAGE_SIZE;
+  const endIndex = startIndex + PAGE_SIZE;
+  const currentPageItems = participants.slice(startIndex, endIndex);
+
+  // 총 페이지 수 계산
+  const totalPages = Math.ceil(participants.length / PAGE_SIZE);
+
+  const goToPage = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
   };
 
   return (
@@ -52,51 +68,77 @@ const RandomParticipants = () => {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto">
-        <table className="min-w-full border border-gray-300 bg-white">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="border-r p-2">No.</th>
-              <th className="border-r p-2">식별번호</th>
-              <th className="border-r p-2">이름</th>
-              <th className="border-r p-2">전화번호</th>
-              <th className="border-r p-2">참여일시</th>
-              <th className="border-r p-2">기대평 작성여부</th>
-              <th className="border-r p-2">기대평</th>
-              <th className="border-r p-2">당첨여부</th>
-              <th className="p-2">등수</th>
-            </tr>
-          </thead>
-          <tbody>
-            {participants.map((participant, index) => (
-              <tr key={participant.id} className="border-t">
-                <td className="border-r p-2 text-center">{index + 1}</td>
-                <td className="border-r p-2 text-center">
-                  {participant.식별번호}
-                </td>
-                <td className="border-r p-2 text-center">{participant.이름}</td>
-                <td className="border-r p-2 text-center">
-                  {participant.전화번호}
-                </td>
-                <td className="border-r p-2 text-center">
-                  {participant.참여일시}
-                </td>
-                <td className="border-r p-2 text-center">
-                  {participant.기대평작성여부}
-                </td>
-                <td className="max-w-xs truncate border-r p-2 text-center">
-                  {participant.기대평}
-                </td>
-                <td className="border-r p-2 text-center">
-                  {participant.당첨여부}
-                </td>
-                <td className="p-2 text-center">{participant.등수}</td>
+      <div className="flex h-4/5 flex-col justify-between">
+        <div>
+          <table className="min-w-full border-gray-300 bg-white">
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="border-r p-2">No.</th>
+                <th className="border-r p-2">식별번호</th>
+                <th className="border-r p-2">이름</th>
+                <th className="border-r p-2">전화번호</th>
+                <th className="border-r p-2">참여일시</th>
+                <th className="border-r p-2">기대평 작성여부</th>
+                <th className="border-r p-2">기대평</th>
+                <th className="border-r p-2">당첨여부</th>
+                <th className="p-2">등수</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {currentPageItems.map((participant, index) => (
+                <tr key={participant.id} className="border-t">
+                  <td className="border-r p-2 text-center">
+                    {startIndex + index + 1}
+                  </td>
+                  <td className="border-r p-2 text-center">
+                    {participant.식별번호}
+                  </td>
+                  <td className="border-r p-2 text-center">
+                    {participant.이름}
+                  </td>
+                  <td className="border-r p-2 text-center">
+                    {participant.전화번호}
+                  </td>
+                  <td className="border-r p-2 text-center">
+                    {participant.참여일시}
+                  </td>
+                  <td className="border-r p-2 text-center">
+                    {participant.기대평작성여부}
+                  </td>
+                  <td className="w-96 truncate border-r p-2 text-center">
+                    {participant.기대평}
+                  </td>
+                  <td className="border-r p-2 text-center">
+                    {participant.당첨여부}
+                  </td>
+                  <td className="p-2 text-center">{participant.등수}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
+        {/* 페이지네이션 컨트롤 */}
+        <div className="mt-4 flex items-center justify-between">
+          <button
+            onClick={() => goToPage(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="rounded bg-gray-300 px-4 py-2 text-gray-700"
+          >
+            이전
+          </button>
+          <span>
+            {currentPage} / {totalPages}
+          </span>
+          <button
+            onClick={() => goToPage(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="rounded bg-gray-300 px-4 py-2 text-gray-700"
+          >
+            다음
+          </button>
+        </div>
+      </div>
       {/* Export Button */}
       <div className="mt-4 flex justify-end">
         <button className="rounded bg-gray-400 px-4 py-2 text-white">
