@@ -1,31 +1,16 @@
 import React, { useEffect, useState } from "react";
-import useAnimation, { UseAnimationProps } from "../../../hooks/useAnimation";
-import EventSelectOptions from "../../../components/mainPage/MainScreen/EventSelectOptions/EventSelectOptions";
-import e1Gift from "../../../assets/images/e1Gift.png";
-import e2Gift from "../../../assets/images/e2Gift.png";
-import mainCar from "../../../assets/images/mainCar.png";
-import landingCar from "../../../assets/images/landingCar.png";
-import { SELECT_DATA } from "../../../constants/EventData";
-
-const LANDING_CAR_ANIMATION_OPTIONS: UseAnimationProps = {
-  startKeyframes: [
-    { transform: "translateX(0)" },
-    { transform: "translateX(-160rem)", display: "none" },
-  ],
-  startOptions: { duration: 500, fill: "forwards", delay: 100 },
-};
-
-const MAIN_CAR_ANIMATION_OPTIONS: UseAnimationProps = {
-  startKeyframes: [{ opacity: "0" }, { opacity: "100" }],
-  startOptions: { duration: 2000, fill: "forwards", delay: 1000 },
-  cancelKeyframes: [{ opacity: "100" }, { opacity: "0" }],
-  cancelOptions: { duration: 200, fill: "forwards" },
-};
-
-const TITLE_ANIMATION_OPTIONS: UseAnimationProps = {
-  startKeyframes: [{ opacity: "0" }, { opacity: "100" }],
-  startOptions: { duration: 2000, fill: "forwards", delay: 600 },
-};
+import e1Gift from "../../../../assets/images/e1Gift.png";
+import e2Gift from "../../../../assets/images/e2Gift.png";
+import mainCar from "../../../../assets/images/mainCar.png";
+import landingCar from "../../../../assets/images/landingCar.png";
+import useAnimation from "../../../../hooks/useAnimation";
+import { SELECT_DATA } from "../../../../constants/EventData";
+import EventSelectOptions from "../../../../components/mainPage/MainScreen/EventSelectOptions/EventSelectOptions";
+import {
+  LANDING_CAR_ANIMATION_OPTIONS,
+  MAIN_CAR_ANIMATION_OPTIONS,
+  TITLE_ANIMATION_OPTIONS,
+} from "../../../../styles/keyframesOptions";
 
 const LANDING_TIMEOUT_DURATION = 4000;
 
@@ -73,7 +58,7 @@ const EventSelectSection = ({
       >
         <div
           ref={titleRef}
-          className="before:gradient-mask relative w-[36.75rem] opacity-0 before:-inset-[2rem] before:content-none"
+          className="relative w-[36.75rem] opacity-0 before:-inset-[2rem] before:content-none before:gradient-mask"
         >
           <p className="text-center font-kia-signature-bold text-title-2 text-glow-white">
             {SELECT_DATA.PAGE_TITLE}

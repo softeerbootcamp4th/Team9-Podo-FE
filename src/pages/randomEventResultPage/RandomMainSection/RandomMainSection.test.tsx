@@ -1,140 +1,147 @@
-import React, { createContext, ReactNode, useState } from "react";
-import { screen } from "@testing-library/react";
-import { AppProvider, useAppContext } from "../../../providers/AppProvider";
+import React from "react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import RandomMainSection from "./RandomMainSection";
-import { render } from "../../../utils/TestUtils";
+import { useAppContext } from "../../../providers/AppProvider";
+import { postRandomResult } from "../../../api/fetch";
 
-interface MockAppState {
-  isAuth: boolean;
-  isRandomEnd: boolean;
-}
+const mockNavigate = jest.fn();
+const mockLocation = { pathname: "/test-path" };
 
-const MockAppContext = createContext<MockAppState | undefined>(undefined);
+jest.mock("react-router", () => ({
+  ...jest.requireActual("react-router"),
+  useNavigate: () => mockNavigate,
+  useLocation: () => mockLocation,
+}));
 
-const MockAppProvider = ({
-  children,
-  value,
-}: {
-  children: ReactNode;
-  value: MockAppState;
-}) => {
-  const [isAuth, setIsAuth] = useState(value.isAuth);
-  const [isRandomEnd, setIsRandomEnd] = useState(value.isRandomEnd);
+jest.mock("../../../providers/AppProvider", () => ({
+  useAppContext: jest.fn(),
+}));
 
-  return (
-    <MockAppContext.Provider
-      value={{
-        isAuth,
-        isRandomEnd,
-      }}
-    >
-      {children}
-    </MockAppContext.Provider>
-  );
-};
+jest.mock("../../../api/fetch", () => ({
+  postRandomResult: jest.fn(),
+}));
 
-const description = [
-  { content: "복잡한 도심 속", highlighted: false },
-  { content: "안전하고 즐거운 주행경험", highlighted: true },
-  { content: "을 제공하는", highlighted: false },
-  { content: "The 2025 셀토스", highlighted: true },
-];
-
-const scenarioList = [
-  {
-    image: "path",
-    title: "차로 이탈 시 경고 / 자동 조향 보조",
-    subtitle:
-      "정신 없이 바쁜 일상 속에서도 셀토스는 일정 속도 이상 주행 중 방향지시등 스위치 조작 없이 차로 이탈 시 경고 및 자동 조향 보조 기능으로 사용자의 안전을 지켜줍니다.",
+Object.defineProperty(navigator, "clipboard", {
+  value: {
+    writeText: jest.fn(),
   },
-  {
-    image: "path",
-    title: "원격 제어 주차 및 출차",
-    subtitle:
-      "원격 제어를 통한 주차 및 출차 기능으로 사용자가 좁은 골목길에서도 걱정없이 주차 할 수 있게 돕습니다. ",
-  },
-  {
-    image: "path",
-    title: "네비게이션 기반 크루즈 컨트롤",
-    subtitle:
-      "네비게이션 기반 크루즈 컨트롤을 통해 고속도로 주행 시, 도로 상황에 맞춰 안전한 속도로 주행하도록 도와줍니다.",
-  },
-];
+  writable: true,
+});
 
 describe("RandomMainSection", () => {
-  test("RandomMainSection은 올바르게 랜더링 되어야 한다.", () => {
-    const initialValues = {
-      isAuth: false,
+  beforeEach(() => {
+    (useAppContext as jest.Mock).mockReturnValue({
+      isAuth: true,
       isRandomEnd: false,
-    };
+    });
+    (postRandomResult as jest.Mock).mockResolvedValue({
+      result: { uniqueLink: "https://www.example.com/share" },
+    });
 
-    // render(
-    //   <MockAppProvider value={initialValues}>
-    //     <RandomMainSection
-    //       description={description}
-    //       scenarioList={scenarioList}
-    //     />
-    //   </MockAppProvider>,
-    // );
-    // expect(screen.getByText(`${scenarioList[0].title}`)).toBeInTheDocument();
+    mockNavigate.mockClear();
+    (postRandomResult as jest.Mock).mockClear();
+    (navigator.clipboard.writeText as jest.Mock).mockClear();
   });
 
-  // test("isAuth가 false일 때 버튼은 본인인증하고 이벤트 참여하기가 보여야 한다.", () => {
-  //   const initialValues = {
-  //     isAuth: false,
-  //     isRandomEnd: false,
-  //   };
+  test("props에 따라 올바르게 랜더링 되어야 한다.", () => {
+    const props = {
+      resultTypeId: 1,
+      description: [{ content: "테스트 설명", highlighted: false }],
+      scenarioList: [
+        {
+          image: "test-image.jpg",
+          title: "테스트 시나리오 제목",
+          subtitle: "테스트 시나리오 부제목",
+        },
+      ],
+    };
 
+    render(<RandomMainSection {...props} />);
+
+    expect(screen.getByText("테스트 설명")).toBeInTheDocument();
+    expect(screen.getByText("1.")).toBeInTheDocument();
+    expect(screen.getByAltText("시나리오")).toBeInTheDocument();
+    expect(screen.getByText("테스트 시나리오 제목")).toBeInTheDocument();
+    expect(screen.getByText("테스트 시나리오 부제목")).toBeInTheDocument();
+  });
+
+  test("다시하기 버튼을 누르면 /event2/0 경로로 이동해야 한다.", async () => {
+    const props = {
+      resultTypeId: 1,
+      description: [],
+      scenarioList: [],
+    };
+
+    render(<RandomMainSection {...props} />);
+
+    await userEvent.click(screen.getByText("다시하기"));
+
+    expect(mockNavigate).toHaveBeenCalledWith("/event2/0");
+  });
+
+  test("본인인증이 되어있지 않은 상태에서 공유하기를 누르면 기본 사이트 주소가 복사되어야 한다.", async () => {
+    (useAppContext as jest.Mock).mockReturnValue({
+      isAuth: false,
+      isRandomEnd: false,
+    });
+
+    render(
+      <RandomMainSection resultTypeId={1} description={[]} scenarioList={[]} />,
+    );
+
+    await userEvent.click(screen.getByText("공유하기"));
+
+    await waitFor(() => {
+      expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+        "https://www.hyundaiseltos.site/",
+      );
+    });
+  });
+
+  //실패
+  // test("본인인증이 된 상태에서 공유하기를 누르면 자신의 고유 사이트 주소가 복사되어야 한다.", async () => {
   //   render(
-  //     <MockAppProvider value={initialValues}>
-  //       <AppProvider>
-  //         <RandomMainSection
-  //           description={description}
-  //           scenarioList={scenarioList}
-  //         />
-  //       </AppProvider>
-  //     </MockAppProvider>,
+  //     <RandomMainSection resultTypeId={1} description={[]} scenarioList={[]} />,
   //   );
-  //   expect(
-  //     screen.getByText("본인인증하고 이벤트 참여하기"),
-  //   ).toBeInTheDocument();
+
+  //   await userEvent.click(screen.getByText("공유하기"));
+
+  //   await waitFor(() => {
+  //     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+  //       "https://www.example.com/share",
+  //     );
+  //   });
   // });
 
-  // test("isAuth가 true, isRandomEnd가 false일 때 버튼은 이벤트 참여하기가 보여야 한다.", () => {
-  //   const initialValues = {
-  //     isAuth: true,
-  //     isRandomEnd: false,
-  //   };
+  test("본인인증이 되어있지 않은 상태에서는 본인인증하고 이벤트 참여하기 버튼을 누르면 모달 창으로 이동해야 한다.", async () => {
+    (useAppContext as jest.Mock).mockReturnValue({
+      isAuth: false,
+      isRandomEnd: false,
+    });
 
+    render(
+      <RandomMainSection resultTypeId={1} description={[]} scenarioList={[]} />,
+    );
+
+    userEvent.click(screen.getByText("본인인증하고 이벤트 참여하기"));
+
+    await waitFor(() => {
+      expect(mockNavigate).toHaveBeenCalledWith("/auth-modal", {
+        state: { background: mockLocation, event: 2 },
+      });
+    });
+  });
+
+  // //실패
+  // test("본인인증이 된 상태에서는 이벤트 참여하기 버튼을 누르면 버튼을 비활성화하고 정보를 전송해야 한다.", async () => {
   //   render(
-  //     <AppProvider>
-  //       <MockAppProvider value={initialValues}>
-  //         <RandomMainSection
-  //           description={description}
-  //           scenarioList={scenarioList}
-  //         />
-  //       </MockAppProvider>
-  //     </AppProvider>,
+  //     <RandomMainSection resultTypeId={1} description={[]} scenarioList={[]} />,
   //   );
-  //   expect(screen.getByText("이벤트 참여하기")).toBeInTheDocument();
-  // });
 
-  // test("isAuth가 true, isRandomEnd가 true일 때 버튼은 비활성화 되어야 한다.", () => {
-  //   const initialValues = {
-  //     isAuth: true,
-  //     isRandomEnd: true,
-  //   };
+  //   await userEvent.click(screen.getByText("이벤트 참여하기"));
 
-  //   render(
-  //     <AppProvider>
-  //       <MockAppProvider value={initialValues}>
-  //         <RandomMainSection
-  //           description={description}
-  //           scenarioList={scenarioList}
-  //         />
-  //       </MockAppProvider>
-  //     </AppProvider>,
-  //   );
-  //   expect(screen.getByRole("button")).toBeDisabled();
+  //   expect(postRandomResult).toHaveBeenCalledWith(1);
+  //   expect(screen.getByText("이벤트 참여 완료")).toBeInTheDocument();
   // });
 });
