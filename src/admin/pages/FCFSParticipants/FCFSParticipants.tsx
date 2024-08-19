@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import FCFSWinnersPopup from "../../components/FCFSWinnersPopup/FCFSWinnersPopup";
 
 type Participant = {
   id: number;
@@ -69,6 +70,11 @@ const PAGE_SIZE = 10;
 
 const FCFSParticipants = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const onModalHandler = () => {
+    setIsModalOpen((current) => !current);
+  };
 
   const startIndex = (currentPage - 1) * PAGE_SIZE;
   const endIndex = startIndex + PAGE_SIZE;
@@ -103,7 +109,10 @@ const FCFSParticipants = () => {
             onChange={(e) => onDateChange()}
             className="mr-2 rounded border border-gray-300 px-4 py-2"
           />
-          <button className="rounded bg-gray-400 px-4 py-2 text-white">
+          <button
+            className="rounded bg-gray-400 px-4 py-2 text-white"
+            onClick={onModalHandler}
+          >
             등수 / 당첨자 관리
           </button>
         </div>
@@ -185,6 +194,7 @@ const FCFSParticipants = () => {
           Excel로 내보내기
         </button>
       </div>
+      {isModalOpen && <FCFSWinnersPopup modalHandler={onModalHandler} />}
     </div>
   );
 };
