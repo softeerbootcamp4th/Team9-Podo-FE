@@ -74,3 +74,13 @@ export const ERROR_MSG = {
   short: "20자 이상 답변을 작성해주세요.",
   inappropriate: "부적절한 답변입니다. 다시 작성해주세요.",
 };
+
+export const TEXT_CONTENT = {
+  EVENT_PARTICIPATION: {
+    PROMPT: "이벤트 응모하고",
+    PRIZE_TEXT: "시그니엘 숙박권",
+    PRIZE_SUFFIX: "받자!!",
+  },
+};
+
+export const TOOLTIP_CONTENT = "클립보드에 URL이 복사되었습니다";
