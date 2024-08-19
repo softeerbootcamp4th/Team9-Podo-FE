@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import RandomWinnersPopup from "../../components/RandomWinnersPopup/RandomWinnersPopup";
 
 type Participant = {
   id: number;
@@ -17,6 +18,12 @@ type RandomParticipantsProps = {
 };
 
 const RandomParticipants = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const onModalHandler = () => {
+    setIsModalOpen((current) => !current);
+  };
+
   return (
     <div className="h-screen w-screen bg-gray-100 p-4">
       {/* Header */}
@@ -31,7 +38,10 @@ const RandomParticipants = () => {
 
       {/* Search Bar */}
       <div className="mb-4 flex items-center justify-between">
-        <button className="rounded bg-gray-400 px-4 py-2 text-white">
+        <button
+          className="rounded bg-gray-400 px-4 py-2 text-white"
+          onClick={onModalHandler}
+        >
           추첨 진행
         </button>
         <input
@@ -93,6 +103,7 @@ const RandomParticipants = () => {
           Excel로 내보내기
         </button>
       </div>
+      {isModalOpen && <RandomWinnersPopup modalHandler={onModalHandler} />}
     </div>
   );
 };

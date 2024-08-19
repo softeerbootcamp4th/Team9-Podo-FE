@@ -1,9 +1,22 @@
 import React from "react";
 
-const RandomWinnersPopup: React.FC = () => {
+interface RandomPopupInterface {
+  modalHandler: () => void;
+}
+
+const RandomWinnersPopup = ({ modalHandler }: RandomPopupInterface) => {
+  const handlePropagation = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+  };
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="w-full max-w-lg rounded-lg bg-white p-6 shadow-lg">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+      onClick={modalHandler}
+    >
+      <div
+        className="w-full max-w-lg rounded-lg bg-white p-6 shadow-lg"
+        onClick={(e) => handlePropagation(e)}
+      >
         {/* Modal Title */}
         <h2 className="mb-4 text-2xl font-bold">추첨 진행</h2>
 
