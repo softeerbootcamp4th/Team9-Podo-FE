@@ -13,6 +13,14 @@ import Convenience1 from "../assets/images/Convenience1.png";
 import Convenience2 from "../assets/images/Convenience2.png";
 import Convenience3 from "../assets/images/Convenience3.png";
 
+import white from "../assets/images/colorSnowWhitePearl.png";
+import blue from "../assets/images/colorDarkOceanBlue.png";
+import green from "../assets/images/colorGrean.png";
+import gray from "../assets/images/colorGravityGray.png";
+import black from "../assets/images/colorFusionBlack.png";
+
+import { InsideInfo, InsideInfoData } from "../types/InfoScreen";
+
 export const outsideInfoData = [
   {
     key: 0,
@@ -156,3 +164,48 @@ export const INSIDE_INFO_DATA: Record<InsideInfo, InsideInfoData> = {
 
 export const InsideGuideTextShowTime = 2000;
 export const InsideGuideTextAnimationTime = 500;
+
+export const colorInfoData = [
+  {
+    key: 0,
+    color: white,
+    koTitle: "스노우 화이트 펄",
+    engTitle: "Snow White Pearl",
+    rgb: "bg-[#F2F2F2]",
+  },
+  {
+    key: 1,
+    color: blue,
+    koTitle: "다크 오션 블루",
+    engTitle: "Dark Ocean Blue",
+    rgb: "bg-[#1B3F72]",
+  },
+  {
+    key: 2,
+    color: green,
+    koTitle: "플루톤 블루",
+    engTitle: "Pluton Blue",
+    rgb: "bg-[#4B7C83]",
+  },
+  {
+    key: 3,
+    color: gray,
+    koTitle: "그레비티 그레이",
+    engTitle: "Gravity Gray",
+    rgb: "bg-[#292F35]",
+  },
+  {
+    key: 4,
+    color: black,
+    koTitle: "퓨전 블랙",
+    engTitle: "Fusion Black",
+    rgb: "bg-[#181818]",
+  },
+  {
+    key: 5,
+    color: black,
+    koTitle: "퓨전 블랙",
+    engTitle: "Fusion Black",
+    rgb: "bg-[#181818]",
+  },
+];

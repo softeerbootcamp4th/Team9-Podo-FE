@@ -1,8 +1,8 @@
 import { MouseEventHandler } from "react";
 
-type InsideInfo = "light" | "dial" | "display" | "blow" | "headup";
+export type InsideInfo = "light" | "dial" | "display" | "blow" | "headup";
 
-type InsideInfoData = {
+export type InsideInfoData = {
   title: string;
   description: string;
 };

@@ -54,7 +54,6 @@ const useAnimation = <T extends Element>({
   const startAnimation = async () => {
     const element = elementRef.current;
     if (!element) return;
-
     animationRef.current = element.animate(startKeyframes, startOptions);
 
     if (afterStartKeyframes.length > 0 && animationRef.current) {

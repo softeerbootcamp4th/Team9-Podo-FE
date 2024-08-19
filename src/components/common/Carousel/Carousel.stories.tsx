@@ -2,7 +2,7 @@ import React from "react";
 import { fn } from "@storybook/test";
 import Carousel from "./Carousel";
 import { outsideInfoData } from "../../../constants/InfoData";
-import OutsideDescriptionItem from "../../mainPage/InfoScreen/OutsideDescriptionItem";
+import OutsideDescriptionItem from "../../mainPage/InfoScreen/OutsideDescriptionItem/OutsideDescriptionItem";
 
 export default {
   component: Carousel,

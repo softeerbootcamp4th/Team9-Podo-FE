@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import FCFSHintSection from "./FCFSHintSection";
-import FCFSQuizSection from "./FCFSQuizSection";
+import FCFSHintSection from "./FCFSHintSection/FCFSHintSection";
+import FCFSQuizSection from "./FCFSQuizSection/FCFSQuizSection";
 import { fetchFCFSQuizInfo } from "../../api/fetch";
 import { QuizInfo } from "../../types/FCFSEvent";
 import useAnimation from "../../hooks/useAnimation";
 import { showUp, goDown } from "../../styles/keyframes";
 import { FCFSHintOptions } from "../../styles/options";
 import Glow from "../../components/common/Glow/Glow";
+import HomeButton from "../../components/common/HomeButton/HomeButton";
+import { className } from "../../styles/tailwind";
 
 const FCFSEventPage = () => {
   const [quizInfo, setQuizInfo] = useState<QuizInfo | null>(null);
@@ -33,6 +35,9 @@ const FCFSEventPage = () => {
 
   return (
     <div className="relative flex h-screen w-screen flex-col items-center overflow-hidden bg-black">
+      <div className="absolute left-0 top-0 z-50 p-[2rem]">
+        <HomeButton />
+      </div>
       <div className="z-10">
         <Glow />
       </div>
