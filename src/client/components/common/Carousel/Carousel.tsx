@@ -71,7 +71,7 @@ const Carousel = ({ items }: CarouselProps) => {
                 }
               }}
               ref={(el) => (itemRefs.current[index] = el)}
-              className={`flex-shrink-0 ${index === selectedIndex ? "opacity-100" : "opacity-30"} snap-center transition-opacity`}
+              className={`flex-shrink-0 ${index === selectedIndex ? "opacity-100" : "opacity-30"} cursor-pointer snap-center transition-opacity`}
             >
               {item}
             </div>
