@@ -20,6 +20,7 @@ const EventSelectOptions = ({
 
   return (
     <div
+      role="option"
       className={`flex h-full w-1/2 flex-col items-center pb-10 pt-44 font-kia-signature-bold text-title-3 text-gray-50 transition-all duration-200 ${
         isDimmed && "opacity-30"
       }`}

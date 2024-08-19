@@ -58,7 +58,7 @@ describe("EventSelectOptions Component", () => {
   test("hoveredIndex가 index와 맞지 않을 때 올바른 opacity가 적용되어야 한다.", () => {
     render(<EventSelectOptions {...defaultProps} hoveredIndex={1} />);
 
-    const optionContainer = screen.getByText("event 1.").closest("div");
+    const optionContainer = screen.getByRole("option");
     expect(optionContainer).toHaveClass("opacity-30");
   });
 });
