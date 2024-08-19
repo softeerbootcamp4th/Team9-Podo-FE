@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import * as echarts from "echarts";
+import "echarts-wordcloud";
 
 const WordCloud = ({ data, maskImage }: any) => {
   const chartRef = useRef(null);

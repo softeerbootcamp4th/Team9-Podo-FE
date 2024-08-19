@@ -38,7 +38,7 @@ const NotificationScreen = () => {
             EVENT 2를 통해 기대평을 작성하실 수 있습니다.
           </p>
         </div>
-        <WordCloud data={wordCloudData} maskImage={carMask}></WordCloud>
+        {/* <WordCloud data={wordCloudData} maskImage={carMask}></WordCloud> */}
         <Button
           size="small"
           onClick={() => {

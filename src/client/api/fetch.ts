@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { ApiResponse } from "../types/api";
 import {
   AuthResult,
@@ -14,7 +15,12 @@ import { SharedLinkInterface } from "../types/RandomEvent";
  * @returns
  */
 export const fetchFCFSQuizInfo = async (): Promise<ApiResponse<QuizInfo>> => {
-  const response = await fetch("/v1/quiz");
+  const response = await fetch("/v1/quiz", {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: decodeURI(Cookies.get("auth") || ""),
+    },
+  });
 
   return await response.json();
 };
@@ -28,8 +34,7 @@ export const fetchFCFSResult = async (): Promise<ApiResponse<QuizResult>> => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization:
-        "Bearer eyJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiZGlyIn0..Wv4DNiAP2hL36vDs.AOwY0A-a8JH6lJWR9T_P3pTgB5o8JaMUwrehYQjpCD1uFhs3aFoWJ-wDLgnX5Jx_YT6dHfJPIXbpG3Oycammh6VQH97U2UtNChPr_t3F9ILqbXAaBcMoWYUx0YqtbgVbOybS6FTMDp7QGhXRZNzXz06gQi46AqbTPOTnVUDICYHHqRq_3efphiRNjTu4JP2OFKq9jIunoLNHCcPZFFidVBafs9R4Z9nEPD-W__uuZOuG111wD4vqjBdshkxs46Y.UyhO03YoDwLvAMmPXHV70g",
+      Authorization: decodeURI(Cookies.get("auth") || ""),
     },
   });
 
@@ -98,8 +103,7 @@ export const postComment = async (
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization:
-        "Bearer eyJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiZGlyIn0..mrgt15FIWG0uPVeH.1ZLiQXVRGvSLU4BbKNoSuBLxd0lcrnKz3XTTW90y0r8ePkwq6Ek9UxkAKGxc4cyx6ud5niEKtxs6qFoMy14JQP_D7zR9aRDTvNFrFaaPqks9jgTv8gtSuUHYrS325EwetswbNyO3TmAdxXJtBOqkiE3Se2iiJ87Jh9zt3BVAG00Qhyn4GIOeAHJvs8uWlPlo5StBP9KOz8RYUHXgl_cf6TP5RikXa9s45b2Io_o2MANGlkrdd3Cj4tw5MkoIuUg.mWOcxU8wsoosCBr6L0wLxA",
+      Authorization: decodeURI(Cookies.get("auth") || ""),
     },
     body: JSON.stringify({ comment: `${comment}` }),
   });
@@ -118,8 +122,7 @@ export const postRandomResult = async (
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization:
-        "Bearer eyJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiZGlyIn0..Wv4DNiAP2hL36vDs.AOwY0A-a8JH6lJWR9T_P3pTgB5o8JaMUwrehYQjpCD1uFhs3aFoWJ-wDLgnX5Jx_YT6dHfJPIXbpG3Oycammh6VQH97U2UtNChPr_t3F9ILqbXAaBcMoWYUx0YqtbgVbOybS6FTMDp7QGhXRZNzXz06gQi46AqbTPOTnVUDICYHHqRq_3efphiRNjTu4JP2OFKq9jIunoLNHCcPZFFidVBafs9R4Z9nEPD-W__uuZOuG111wD4vqjBdshkxs46Y.UyhO03YoDwLvAMmPXHV70g",
+      Authorization: decodeURI(Cookies.get("auth") || ""),
     },
     body: JSON.stringify({ resultTypeId: resultId }),
   });
