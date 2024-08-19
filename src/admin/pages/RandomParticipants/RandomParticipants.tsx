@@ -62,7 +62,7 @@ const RandomParticipants = () => {
         </button>
         <input
           type="text"
-          placeholder="검색 (이름, 전화번호, 기대평 내용)"
+          placeholder="검색 (이름, 전화번호)"
           className="w-1/3 rounded border border-gray-300 px-4 py-2"
         />
       </div>

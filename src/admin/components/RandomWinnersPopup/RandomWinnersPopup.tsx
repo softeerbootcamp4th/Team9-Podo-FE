@@ -1,13 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
+import useInputs from "../../../client/hooks/useInputs";
 
 interface RandomPopupInterface {
   modalHandler: () => void;
+}
+
+type field = "reward" | "numWinners";
+interface ItemChangesInterface {
+  index: number;
+  field: field;
+  value: string;
 }
 
 const RandomWinnersPopup = ({ modalHandler }: RandomPopupInterface) => {
   const handlePropagation = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
   };
+
+  const [items, setItems] = useState([{ reward: "", numWinners: "", rank: 1 }]);
+  const [weight, setWeight] = useState(1);
+
+  const addItem = (index: number) => {
+    setItems([...items, { reward: "", numWinners: "", rank: index }]);
+  };
+
+  const handleChange = ({ index, field, value }: ItemChangesInterface) => {
+    const updatedItems = items.map((item, i) =>
+      i === index ? { ...item, [field]: value } : item,
+    );
+    setItems(updatedItems);
+  };
+
+  const handleWeightChange = (value: number) => {
+    setWeight(value);
+  };
+
+  const getWinnersList = () => {
+    const data = {
+      eventRewardList: items,
+      eventWeight: {
+        times: weight,
+        condition: "기대평 작성 여부",
+      },
+    };
+    //data 백으로 전송
+  };
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
@@ -26,53 +64,48 @@ const RandomWinnersPopup = ({ modalHandler }: RandomPopupInterface) => {
 
           {/* Item List */}
           <div className="space-y-2">
-            <div className="flex items-center space-x-2">
-              <span>1</span>
-              <input
-                type="text"
-                placeholder="항목"
-                className="flex-1 rounded border p-2"
-              />
-              <input
-                type="number"
-                placeholder="1"
-                className="w-20 rounded border p-2"
-              />
-              <span>명</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span>2</span>
-              <input
-                type="text"
-                placeholder="항목"
-                className="flex-1 rounded border p-2"
-              />
-              <input
-                type="number"
-                placeholder="3"
-                className="w-20 rounded border p-2"
-              />
-              <span>명</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span>3</span>
-              <input
-                type="text"
-                placeholder="항목"
-                className="flex-1 rounded border p-2"
-              />
-              <input
-                type="number"
-                placeholder="10"
-                className="w-20 rounded border p-2"
-              />
-              <span>명</span>
-            </div>
+            {items.map((item, index) => (
+              <div key={index} className="flex items-center space-x-2">
+                <span>{index + 1}</span>
+                <input
+                  type="text"
+                  value={item.reward}
+                  placeholder="항목"
+                  onChange={(e) =>
+                    handleChange({
+                      index: index,
+                      field: "reward" as field,
+                      value: e.target.value,
+                    })
+                  }
+                  className="flex-1 rounded border p-2"
+                />
+                <input
+                  type="number"
+                  value={item.numWinners}
+                  placeholder="인원"
+                  onChange={(e) =>
+                    handleChange({
+                      index: index,
+                      field: "numWinners" as field,
+                      value: e.target.value,
+                    })
+                  }
+                  className="w-20 rounded border p-2"
+                />
+                <span>명</span>
+              </div>
+            ))}
           </div>
 
-          <button className="mt-2 rounded bg-gray-200 px-4 py-2 text-gray-700">
-            항목 추가
-          </button>
+          {items.length < 10 && (
+            <button
+              onClick={() => addItem(items.length + 1)}
+              className="mt-2 rounded bg-gray-200 px-4 py-2 text-gray-700"
+            >
+              항목 추가
+            </button>
+          )}
         </div>
 
         {/* Total Count */}
@@ -83,28 +116,29 @@ const RandomWinnersPopup = ({ modalHandler }: RandomPopupInterface) => {
         {/* Condition Section */}
         <div className="mb-4">
           <p className="mb-2 font-semibold">가중치 부여 조건</p>
-          <div className="flex items-center space-x-2">
-            <select className="flex-1 rounded border p-2">
-              <option>조건</option>
-              <option>기대평 작성 여부</option>
-            </select>
+          <div className="flex items-center justify-around">
+            <div className="p-2">기대평 작성 여부</div>
             <span>=</span>
-            <select className="w-20 rounded border p-2">
-              <option>Y</option>
-              <option>N</option>
-            </select>
-            <input
-              type="number"
-              placeholder="배"
-              className="w-20 rounded border p-2"
-            />
-            <span>배</span>
+            <div className="p-2">Y</div>
+            <div className="space-x-2">
+              <input
+                type="number"
+                placeholder="배"
+                className="w-20 rounded border p-2"
+                onChange={(e) => handleWeightChange(Number(e.target.value))}
+                value={weight}
+              />
+              <span>배</span>
+            </div>
           </div>
         </div>
 
         {/* Action Button */}
         <div className="text-right">
-          <button className="rounded bg-gray-500 px-4 py-2 text-white">
+          <button
+            className="rounded bg-gray-500 px-4 py-2 text-white"
+            onClick={getWinnersList}
+          >
             추첨 진행 하기
           </button>
         </div>
