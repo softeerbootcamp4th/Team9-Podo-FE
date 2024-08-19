@@ -10,11 +10,6 @@ const RandomExpectations = forwardRef<HTMLDivElement>((props, ref) => {
 
   const onClickHandler = () => {
     if (expectation.length < 20) setError("short");
-    else if (
-      expectation === "부적절한 답변/부적절한 답변/부적절한 답변/부적절한 답변"
-    )
-      //test를 위한 임시 부적절한 답변
-      setError("inappropriate");
     else {
       setError(null);
       postComment(expectation);

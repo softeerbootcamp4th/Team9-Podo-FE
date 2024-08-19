@@ -1,16 +1,16 @@
-import React, { ForwardedRef, forwardRef, useState } from "react";
-import Timer from "./Timer";
-import EventHeader from "../../../components/mainPage/MainScreen/EventHeader";
-import Button from "../../../components/common/Button/Button";
-import e1Gift from "../../../assets/images/e1Gift.png";
+import React, { ForwardedRef, forwardRef } from "react";
+import Timer from "../../../../components/mainPage/MainScreen/Timer/Timer";
+import EventHeader from "../../../../components/mainPage/MainScreen/EventHeader/EventHeader";
+import Button from "../../../../components/common/Button/Button";
+import e1Gift from "../../../../assets/images/e1Gift.png";
 import {
   FCFS_EVENT_DATA,
   FCFS_PARTICIPATION_STEPS,
   FCFS_PERIOD_INFO,
   FCFS_TIPS,
-} from "../../../constants/EventData";
+} from "../../../../constants/EventData";
 import { useLocation, useNavigate } from "react-router";
-import { useAppContext } from "../../../providers/AppProvider";
+import { useAppContext } from "../../../../providers/AppProvider";
 
 interface FCFSEventSectionProps {
   isVisible: boolean;
@@ -27,6 +27,7 @@ const FCFSEventSection = (
 
   return (
     <div
+      role="region"
       className={`relative flex h-screen w-screen snap-start snap-always flex-col items-center justify-around transition-all duration-200 ${!isVisible && "opacity-0"}`}
       ref={ref}
     >

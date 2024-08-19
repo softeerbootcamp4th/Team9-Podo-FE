@@ -6,7 +6,7 @@ import FCFSEventResultPage from "../pages/FCFSEventResultPage/FCFSEventResultPag
 import RandomEventPage from "../pages/randomEventPage/RandomEventPage";
 import RandomEventResultPage from "../pages/randomEventResultPage/RandomEventResultPage";
 import AuthModal from "../pages/authModal/AuthModal";
-import RandomQuizSection from "../pages/randomEventPage/RandomQuizSection";
+import RandomQuizSection from "../pages/randomEventPage/RandomQuizSection/RandomQuizSection";
 
 const RouterWithModal = () => {
   const location = useLocation();
