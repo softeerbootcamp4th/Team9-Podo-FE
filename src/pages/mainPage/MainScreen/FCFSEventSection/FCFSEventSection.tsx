@@ -27,6 +27,7 @@ const FCFSEventSection = (
 
   return (
     <div
+      role="region"
       className={`relative flex h-screen w-screen snap-start snap-always flex-col items-center justify-around transition-all duration-200 ${!isVisible && "opacity-0"}`}
       ref={ref}
     >
