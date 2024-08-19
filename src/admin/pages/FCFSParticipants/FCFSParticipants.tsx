@@ -92,13 +92,11 @@ const FCFSParticipants = () => {
             등수 / 당첨자 관리
           </button>
         </div>
-        <div>
-          <input
-            type="text"
-            placeholder="검색 (이름, 전화번호)"
-            className="w-full rounded border border-gray-300 px-4 py-2"
-          />
-        </div>
+        <input
+          type="text"
+          placeholder="검색 (이름, 전화번호)"
+          className="w-1/3 rounded border border-gray-300 px-4 py-2"
+        />
       </div>
 
       {/* Table */}
