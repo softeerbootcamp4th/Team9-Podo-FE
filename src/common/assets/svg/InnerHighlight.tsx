@@ -1,5 +1,6 @@
 import React, { Dispatch, MouseEvent, SetStateAction } from "react";
-import { InsideInfo } from "../../../../client/types/InfoScreen";
+
+type InsideInfo = "light" | "dial" | "display" | "blow" | "headup";
 
 interface InnerHighlightProps {
   setDescriptionStates: Dispatch<SetStateAction<Record<InsideInfo, boolean>>>;
