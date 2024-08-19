@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7cc9b307-74dd-474a-9a22-da37c4457223" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/fonts/KiaSignatureFixBold.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/fonts/KiaSignatureFixBold.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/fonts/KiaSignatureFixLight.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/fonts/KiaSignatureFixLight.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/fonts/KiaSignatureFixRegular.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/fonts/KiaSignatureFixRegular.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/Convenience1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/Convenience1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/Convenience2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/Convenience2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/Convenience3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/Convenience3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/Drive1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/Drive1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/Drive2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/Drive2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/Drive3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/Drive3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/Drive4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/Drive4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/Drive5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/Drive5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/Drive6.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/Drive6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/FCFSCar.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/FCFSCar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/FCFSKey.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/FCFSKey.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/Home.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/Home.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/Interior.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/Interior.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/Outside1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/Outside1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/Outside2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/Outside2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/Outside3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/Outside3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/OutsideInfo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/OutsideInfo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/colorDarkOceanBlue.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/colorDarkOceanBlue.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/colorFusionBlack.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/colorFusionBlack.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/colorGravityGray.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/colorGravityGray.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/colorGrean.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/colorGrean.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/colorSnowWhitePearl.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/colorSnowWhitePearl.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/e1Gift.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/e1Gift.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/e2Gift.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/e2Gift.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/e2Gift1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/e2Gift1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/e2Gift2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/e2Gift2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/e2Gift3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/e2Gift3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/hint1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/hint1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/hint2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/hint2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/hint3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/hint3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/hint4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/hint4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/hint5.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/hint5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/hint6.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/hint6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/hint7.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/hint7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/landingCar.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/landingCar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/mainCar.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/mainCar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/powerImg.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/powerImg.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/random0.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/random0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/random1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/random1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/random2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/random2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/random3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/random3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/reset.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/reset.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/share.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/share.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/whiteLeft.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/whiteLeft.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/whiteRight.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/whiteRight.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/images/wordcloud.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/images/wordcloud.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/svg/FCFSKeyButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/svg/FCFSKeyButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/svg/FCFSNoticeBanner.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/svg/FCFSNoticeBanner.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/svg/Glow1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/svg/Glow1.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/svg/Glow2.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/svg/Glow2.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/svg/Glow3.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/svg/Glow3.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/svg/InnerHighlight.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/svg/InnerHighlight.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/svg/RefreshButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/svg/RefreshButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/assets/video/CarInfoVideo.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/assets/video/CarInfoVideo.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/common/AuthTooltip/AuthTooltip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/common/AuthTooltip/AuthTooltip.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/common/Button/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/common/Button/Button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/common/Glow/Glow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/common/Glow/Glow.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/common/HomeButton/HomeButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/common/HomeButton/HomeButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/components/randomEventPage/ProgressBar/ProgressBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/components/randomEventPage/ProgressBar/ProgressBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/constants/InfoData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/constants/InfoData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/constants/RandomEventData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/constants/RandomEventData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/pages/FCFSEventPage/FCFSHintSection/FCFSHintSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/pages/FCFSEventPage/FCFSHintSection/FCFSHintSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/pages/FCFSEventResultPage/FCFSEventResultPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/pages/FCFSEventResultPage/FCFSEventResultPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/pages/mainPage/InfoScreen/InsideSection/InsideGuide.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/pages/mainPage/InfoScreen/InsideSection/InsideGuide.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/pages/mainPage/InfoScreen/InsideSection/InsideSection.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/pages/mainPage/InfoScreen/InsideSection/InsideSection.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/pages/mainPage/InfoScreen/InsideSection/InsideSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/pages/mainPage/InfoScreen/InsideSection/InsideSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/pages/mainPage/InfoScreen/OutsideSection/OutsideSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/pages/mainPage/InfoScreen/OutsideSection/OutsideSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/pages/mainPage/InfoScreen/PerformanceSection/PerformanceSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/pages/mainPage/InfoScreen/PerformanceSection/PerformanceSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/pages/mainPage/InfoScreen/VideoSection/VideoSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/pages/mainPage/InfoScreen/VideoSection/VideoSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/pages/mainPage/MainScreen/EventSelectSection/EventSelectSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/pages/mainPage/MainScreen/EventSelectSection/EventSelectSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/pages/mainPage/MainScreen/FCFSEventSection/FCFSEventSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/pages/mainPage/MainScreen/FCFSEventSection/FCFSEventSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/pages/mainPage/MainScreen/MainScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/pages/mainPage/MainScreen/MainScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/pages/mainPage/MainScreen/RandomEventSection/RandomEventSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/pages/mainPage/MainScreen/RandomEventSection/RandomEventSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/pages/mainPage/NotificationScreen/NotificationScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/pages/mainPage/NotificationScreen/NotificationScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/pages/randomEventResultPage/RandomEventResultPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/pages/randomEventResultPage/RandomEventResultPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/pages/randomEventResultPage/RandomMainSection/RandomMainSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/pages/randomEventResultPage/RandomMainSection/RandomMainSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/styles/tailwind.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/styles/tailwind.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="2kriKr4SUEyTWD5MswV1YTQAd7l" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "develop",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "ts.external.directory.path": "/Users/admin/Desktop/team9-podo/Team9-Podo-FE/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/common" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-WS-242.20224.342" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7cc9b307-74dd-474a-9a22-da37c4457223" name="Changes" comment="" />
+      <created>1724048035062</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1724048035062</updated>
+      <workItem from="1724048036269" duration="81000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

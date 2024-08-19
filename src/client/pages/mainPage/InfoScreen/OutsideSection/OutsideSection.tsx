@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import OutsideDescriptionItem from "../../../../components/mainPage/InfoScreen/OutsideDescriptionItem/OutsideDescriptionItem";
-import OutsideInfo from "../../../../assets/images/OutsideInfo.png";
+import OutsideInfo from "../../../../../common/assets/images/OutsideInfo.png";
 import { outsideInfoData } from "../../../../constants/InfoData";
 import Carousel from "../../../../components/common/Carousel/Carousel";
 import useInView from "../../../../hooks/useInView";

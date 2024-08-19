@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import RefreshButton from "../../../assets/svg/RefreshButton";
+import RefreshButton from "../../../../common/assets/svg/RefreshButton";
 import useTimer from "../../../hooks/useTimer";
 
 interface AuthTooltipProps {

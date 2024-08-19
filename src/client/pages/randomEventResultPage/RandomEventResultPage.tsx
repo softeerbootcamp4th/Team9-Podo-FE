@@ -5,7 +5,7 @@ import { postEvent2Answers } from "../../api/post";
 import RandomMainSection from "./RandomMainSection/RandomMainSection";
 import RandomExpectations from "./RandomExpectations/RandomExpectations";
 import Roulette from "../../components/randomEventPage/Roulette/Roulette";
-import car from "../../assets/images/mainCar.png";
+import car from "../../../common/assets/images/mainCar.png";
 import { DRIVER_TYPE_LIST } from "../../constants/RandomEventData";
 import { RandomQuizResponseInterface } from "../../types/RandomEvent";
 import { getDescriptionList } from "../../utils/util";

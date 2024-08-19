@@ -1,7 +1,7 @@
-import img0 from "../assets/images/random0.png";
-import img1 from "../assets/images/random1.png";
-import img2 from "../assets/images/random2.png";
-import img3 from "../assets/images/random3.png";
+import img0 from "../../common/assets/images/random0.png";
+import img1 from "../../common/assets/images/random1.png";
+import img2 from "../../common/assets/images/random2.png";
+import img3 from "../../common/assets/images/random3.png";
 
 export const QUIZ_LIST = [
   {

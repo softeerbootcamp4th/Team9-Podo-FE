@@ -8,7 +8,9 @@
     "build": "webpack --config webpack.prod.js",
     "start": "webpack-dev-server --hot --config webpack.dev.js",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "admin": "webpack-dev-server --hot --config webpack.config.js",
+    "adminBuild": "webpack --config webpack.config.js"
   },
   "keywords": [],
   "author": "",

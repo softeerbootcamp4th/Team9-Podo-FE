@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Video from "../../../../assets/video/CarInfoVideo.mp4";
+import Video from "../../../../../common/assets/video/CarInfoVideo.mp4";
 
 const VideoSection = () => {
   const [isShown, setIsShown] = useState(false);

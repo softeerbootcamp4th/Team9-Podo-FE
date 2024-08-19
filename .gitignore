@@ -1,3 +1,4 @@
 node_modules/
 build
+adminBuild
 *storybook.log

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import Glow1 from "../../../assets/svg/Glow1";
-import Glow2 from "../../../assets/svg/Glow2";
-import Glow3 from "../../../assets/svg/Glow3";
+import Glow1 from "../../../../common/assets/svg/Glow1";
+import Glow2 from "../../../../common/assets/svg/Glow2";
+import Glow3 from "../../../../common/assets/svg/Glow3";
 import useAnimation from "../../../hooks/useAnimation";
 import { glowFadeOptions, glowOptions } from "../../../styles/options";
 import { fadeIn, randomGlow } from "../../../styles/keyframes";

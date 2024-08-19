@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import carMask from "../../../assets/images/wordcloud.png";
+import carMask from "../../../../common/assets/images/wordcloud.png";
 import Button from "../../../components/common/Button/Button";
 import { useNavigate } from "react-router";
 import { EVENT_TERMS } from "../../../constants/EventData";

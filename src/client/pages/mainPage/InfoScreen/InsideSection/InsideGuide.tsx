@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useState } from "react";
-import InnerHighlight from "../../../../assets/svg/InnerHighlight";
+import InnerHighlight from "../../../../../common/assets/svg/InnerHighlight";
 import useInView from "../../../../hooks/useInView";
 import {
   INSIDE_INFO_DATA,

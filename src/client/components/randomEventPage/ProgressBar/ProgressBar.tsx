@@ -1,5 +1,5 @@
 import React from "react";
-import car from "../../../assets/images/whiteRight.png"; // car 이미지 경로
+import car from "../../../../common/assets/images/whiteRight.png"; // car 이미지 경로
 
 interface ProgressBarInterface {
   currentIndex: number;

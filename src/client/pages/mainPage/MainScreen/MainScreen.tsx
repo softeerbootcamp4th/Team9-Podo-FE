@@ -8,7 +8,7 @@ import React, {
 import GlowBackground from "../../../components/common/GlowBackground/GlowBackground";
 import FCFSEventSection from "./FCFSEventSection/FCFSEventSection";
 import RandomEventSection from "./RandomEventSection/RandomEventSection";
-import mainCar from "../../../assets/images/mainCar.png";
+import mainCar from "../../../../common/assets/images/mainCar.png";
 import EventSelectSection from "./EventSelectSection/EventSelectSection";
 
 const MainScreen = (

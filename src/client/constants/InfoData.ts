@@ -1,23 +1,23 @@
-import Outside1 from "../assets/images/Outside1.png";
-import Outside2 from "../assets/images/Outside2.png";
-import Outside3 from "../assets/images/Outside3.png";
+import Outside1 from "../../common/assets/images/Outside1.png";
+import Outside2 from "../../common/assets/images/Outside2.png";
+import Outside3 from "../../common/assets/images/Outside3.png";
 
-import Drive1 from "../assets/images/Drive1.png";
-import Drive2 from "../assets/images/Drive2.png";
-import Drive3 from "../assets/images/Drive3.png";
-import Drive4 from "../assets/images/Drive4.png";
-import Drive5 from "../assets/images/Drive5.png";
-import Drive6 from "../assets/images/Drive6.png";
+import Drive1 from "../../common/assets/images/Drive1.png";
+import Drive2 from "../../common/assets/images/Drive2.png";
+import Drive3 from "../../common/assets/images/Drive3.png";
+import Drive4 from "../../common/assets/images/Drive4.png";
+import Drive5 from "../../common/assets/images/Drive5.png";
+import Drive6 from "../../common/assets/images/Drive6.png";
 
-import Convenience1 from "../assets/images/Convenience1.png";
-import Convenience2 from "../assets/images/Convenience2.png";
-import Convenience3 from "../assets/images/Convenience3.png";
+import Convenience1 from "../../common/assets/images/Convenience1.png";
+import Convenience2 from "../../common/assets/images/Convenience2.png";
+import Convenience3 from "../../common/assets/images/Convenience3.png";
 
-import white from "../assets/images/colorSnowWhitePearl.png";
-import blue from "../assets/images/colorDarkOceanBlue.png";
-import green from "../assets/images/colorGrean.png";
-import gray from "../assets/images/colorGravityGray.png";
-import black from "../assets/images/colorFusionBlack.png";
+import white from "../../common/assets/images/colorSnowWhitePearl.png";
+import blue from "../../common/assets/images/colorDarkOceanBlue.png";
+import green from "../../common/assets/images/colorGrean.png";
+import gray from "../../common/assets/images/colorGravityGray.png";
+import black from "../../common/assets/images/colorFusionBlack.png";
 
 import { InsideInfo, InsideInfoData } from "../types/InfoScreen";
 

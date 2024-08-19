@@ -1,11 +1,11 @@
 import React, { ComponentPropsWithRef, ForwardedRef, forwardRef } from "react";
-import hint1 from "../../../assets/images/hint1.png";
-import hint2 from "../../../assets/images/hint2.png";
-import hint3 from "../../../assets/images/hint3.png";
-import hint4 from "../../../assets/images/hint4.png";
-import hint5 from "../../../assets/images/hint5.png";
-import hint6 from "../../../assets/images/hint6.png";
-import hint7 from "../../../assets/images/hint7.png";
+import hint1 from "../../../../common/assets/images/hint1.png";
+import hint2 from "../../../../common/assets/images/hint2.png";
+import hint3 from "../../../../common/assets/images/hint3.png";
+import hint4 from "../../../../common/assets/images/hint4.png";
+import hint5 from "../../../../common/assets/images/hint5.png";
+import hint6 from "../../../../common/assets/images/hint6.png";
+import hint7 from "../../../../common/assets/images/hint7.png";
 
 interface FCFSHintSectionProps extends ComponentPropsWithRef<"div"> {}
 

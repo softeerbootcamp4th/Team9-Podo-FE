@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import FCFSCar from "../../assets/images/FCFSCar.png";
-import FCFSKey from "../../assets/images/FCFSKey.png";
-import FCFSKeyButton from "../../assets/svg/FCFSKeyButton";
+import FCFSCar from "../../../common/assets/images/FCFSCar.png";
+import FCFSKey from "../../../common/assets/images/FCFSKey.png";
+import FCFSKeyButton from "../../../common/assets/svg/FCFSKeyButton";
 import { fetchFCFSResult } from "../../api/fetch";
 import useAnimation from "../../hooks/useAnimation";
 import {
@@ -17,7 +17,7 @@ import {
 } from "../../styles/options";
 import Button from "../../components/common/Button/Button";
 import { useNavigate } from "react-router";
-import FCFSNoticeBanner from "../../assets/svg/FCFSNoticeBanner";
+import FCFSNoticeBanner from "../../../common/assets/svg/FCFSNoticeBanner";
 import { NOTICE } from "../../constants/FCFSEventResultData";
 import Glow from "../../components/common/Glow/Glow";
 
