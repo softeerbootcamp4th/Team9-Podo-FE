@@ -3,12 +3,11 @@ import FCFSWinnersPopup from "../../components/FCFSWinnersPopup/FCFSWinnersPopup
 
 type Participant = {
   id: number;
-  식별번호: string;
-  이름: string;
-  전화번호: string;
-  참여일시: string;
-  당첨여부: string;
-  등수: string;
+  name: string;
+  phoneNum: string;
+  rank: number;
+  createdAt: string;
+  reward: string;
 };
 
 type FCFSParticipantsProps = {
@@ -18,51 +17,47 @@ type FCFSParticipantsProps = {
 };
 const onDateChange = () => {};
 const selectedDate = "2024.08.19";
-const participants = [
+
+const participants: Participant[] = [
   {
     id: 1,
-    식별번호: "00000001",
-    이름: "김연진",
-    전화번호: "01029292929",
-    참여일시: "2024-09-02 15:00:01",
-    당첨여부: "당첨",
-    등수: "1",
+    name: "김연진",
+    phoneNum: "01029292929",
+    rank: 1,
+    createdAt: "2024-09-02 15:00:01",
+    reward: "당첨",
   },
   {
     id: 2,
-    식별번호: "00000002",
-    이름: "정서린",
-    전화번호: "01038383838",
-    참여일시: "2024-09-02 15:00:03",
-    당첨여부: "당첨",
-    등수: "1",
+    name: "정서린",
+    phoneNum: "01038383838",
+    rank: 1,
+    createdAt: "2024-09-02 15:00:03",
+    reward: "당첨",
   },
   {
     id: 3,
-    식별번호: "00000003",
-    이름: "권혁진",
-    전화번호: "01047474747",
-    참여일시: "2024-09-02 15:00:30",
-    당첨여부: "당첨",
-    등수: "1",
+    name: "권혁진",
+    phoneNum: "01047474747",
+    rank: 1,
+    createdAt: "2024-09-02 15:00:30",
+    reward: "당첨",
   },
   {
     id: 4,
-    식별번호: "00000004",
-    이름: "박수현",
-    전화번호: "01058585858",
-    참여일시: "2024-09-03 15:01:00",
-    당첨여부: "당첨",
-    등수: "2",
+    name: "박수현",
+    phoneNum: "01058585858",
+    rank: 2,
+    createdAt: "2024-09-03 15:01:00",
+    reward: "당첨",
   },
   {
     id: 5,
-    식별번호: "00000005",
-    이름: "이민수",
-    전화번호: "01069696969",
-    참여일시: "2024-09-03 15:02:00",
-    당첨여부: "낙첨",
-    등수: "-",
+    name: "이민수",
+    phoneNum: "01069696969",
+    rank: 0,
+    createdAt: "2024-09-03 15:02:00",
+    reward: "낙첨",
   },
 ];
 
@@ -144,22 +139,20 @@ const FCFSParticipants = () => {
                   <td className="border-r p-2 text-center">
                     {startIndex + index + 1}
                   </td>
+                  <td className="border-r p-2 text-center">{participant.id}</td>
                   <td className="border-r p-2 text-center">
-                    {participant.식별번호}
+                    {participant.name}
                   </td>
                   <td className="border-r p-2 text-center">
-                    {participant.이름}
+                    {participant.phoneNum}
                   </td>
                   <td className="border-r p-2 text-center">
-                    {participant.전화번호}
+                    {participant.createdAt}
                   </td>
                   <td className="border-r p-2 text-center">
-                    {participant.참여일시}
+                    {participant.reward}
                   </td>
-                  <td className="border-r p-2 text-center">
-                    {participant.당첨여부}
-                  </td>
-                  <td className="p-2 text-center">{participant.등수}</td>
+                  <td className="p-2 text-center">{participant.rank}</td>
                 </tr>
               ))}
             </tbody>
