@@ -4,7 +4,7 @@
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
 
-import { server } from "./src/mocks/node";
+import { server } from "./src/client/mocks/node";
 
 beforeAll(() => server.listen());
 

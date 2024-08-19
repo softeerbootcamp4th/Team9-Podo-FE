@@ -8,7 +8,9 @@
     "build": "webpack --config webpack.prod.js",
     "start": "webpack-dev-server --hot --config webpack.dev.js",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "admin": "webpack-dev-server --hot --config webpack.config.js",
+    "adminBuild": "webpack --config webpack.config.js"
   },
   "keywords": [],
   "author": "",
@@ -63,6 +65,7 @@
     "storybook": "^8.2.6",
     "style-loader": "^4.0.0",
     "tailwindcss": "^3.4.6",
+    "ts-jest": "^29.2.4",
     "ts-loader": "^9.5.1",
     "typescript": "^5.5.4",
     "undici": "^6.19.4",
@@ -72,6 +75,10 @@
     "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
+    "@types/js-cookie": "^3.0.6",
+    "echarts": "^5.5.1",
+    "echarts-wordcloud": "^2.1.0",
+    "js-cookie": "^3.0.5",
     "react-router-dom": "^6.26.0"
   },
   "eslintConfig": {

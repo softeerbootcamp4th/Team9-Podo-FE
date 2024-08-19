@@ -59,14 +59,24 @@ module.exports = {
           "100%": { transform: "translateY(0)" },
         },
         fadeOut: {
-          "0%": { opacity: "1" },
-          "100%": { opacity: "0", display: "none" },
+          "0%": { opacity: "100" },
+          "100%": { opacity: "0" },
+        },
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "100" },
+        },
+        moveLanding: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-160rem)", display: "none" },
         },
       },
       animation: {
         moveText: "moveText 1s linear forwards",
         moveSection: "moveSection 1s ease-out",
         fadeOut: "fadeOut 1s ease-out forwards",
+        fadeIn: "fadeIn 1s ease-out forwards",
+        moveLanding: "moveLanding 0.5s linear 0.1s forwards",
       },
     },
   },
@@ -89,12 +99,23 @@ module.exports = {
           "background-clip": "text",
           color: "transparent",
         },
-      });
-    },
-    ({ addUtilities }) => {
-      addUtilities({
         ".text-glow-white": {
           textShadow: "0px 0px 10px #FFF, 0px 0px 20px #FFF, 0px 0px 30px #FFF",
+        },
+        ".text-glow-lightly": {
+          textShadow:
+            "0px 0px 200px #FFF, 0px 0px 60px #FFF, 0px 0px 30px #FFF",
+        },
+        ".gradient-mask": {
+          content: '""',
+          position: "absolute",
+          borderRadius: "9999px",
+          padding: "1px",
+          background:
+            "linear-gradient(45deg,  #505861 0%, #4B7C83 33.5%, #1B3F72 66.5%, #F2F2F2 100%)",
+          mask: "linear-gradient(#000 0 0) content-box, linear-gradient(#402d67 0 0)",
+          WebkitMaskComposite: "exclude",
+          maskComposite: "exclude",
         },
       });
     },

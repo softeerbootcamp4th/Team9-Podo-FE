@@ -102,7 +102,7 @@ const config = {
 
   // A preset that is used as a base for Jest's configuration
   // preset: undefined,
-
+  preset: "ts-jest",
   // Run tests from one or more projects
   // projects: undefined,
 
@@ -198,7 +198,7 @@ const config = {
   // watchman: true,
 
   moduleNameMapper: {
-    "\\.(jpg|jpeg|png|gif|svg)$": "<rootDir>/__mocks__/fileMock.ts",
+    "\\.(jpg|jpeg|png|gif|svg|mp4)$": "<rootDir>/__mocks__/fileMock.ts",
   },
 };
 

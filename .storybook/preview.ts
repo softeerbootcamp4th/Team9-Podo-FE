@@ -1,4 +1,4 @@
-import "../src/styles/tailwind.css";
+import "../src/client/styles/tailwind.css";
 import { initialize, mswLoader } from "msw-storybook-addon";
 
 // Initialize MSW
