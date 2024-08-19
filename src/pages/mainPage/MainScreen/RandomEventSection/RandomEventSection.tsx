@@ -11,6 +11,7 @@ import {
   RANDOM_STEPS,
 } from "../../../../constants/EventData";
 import { useNavigate } from "react-router";
+import { useAppContext } from "../../../../providers/AppProvider";
 
 interface RandomEventSectionProps {
   isVisible: boolean;
@@ -22,9 +23,11 @@ const RandomEventSection = (
 ) => {
   const images = [e2Gift1, e2Gift2, e2Gift3];
   const navigate = useNavigate();
+  const { isAuth, isRandomEnd } = useAppContext();
 
   return (
     <div
+      role="region"
       className={`flex h-screen w-screen snap-start snap-always flex-col items-center justify-around transition-all duration-200 ${!isVisible && "opacity-0"}`}
       ref={ref}
     >
@@ -88,7 +91,7 @@ const RandomEventSection = (
           }}
           size="big"
           isEnabled={true}
-          defaultText="참여하기"
+          defaultText={isAuth ? "참여하기" : "본인인증하고\n참여하기"}
         />
       </div>
     </div>
