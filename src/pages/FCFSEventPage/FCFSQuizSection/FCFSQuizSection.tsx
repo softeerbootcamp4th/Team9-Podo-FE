@@ -45,7 +45,6 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
     if (selectedIndex + 1 === parseInt(answer)) {
       setIsFCFSEnd(true);
       navigate("/event1/result");
-      console.log("clicked");
     } else {
       if (selectedIndex === -1) {
         setIsError("NO_ANSWER");

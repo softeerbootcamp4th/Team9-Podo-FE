@@ -31,7 +31,6 @@ const ColorPallete = ({ index, parentRef }: ColorPalleteProps) => {
       const containerOffset = parentRef.current.offsetTop;
       const imageHeight = parentRef.current.offsetHeight / colorInfoData.length;
       const imageOffset = (index + 1) * imageHeight;
-      console.log(imageOffset + containerOffset);
       parentRef.current.parentElement?.parentElement?.scrollTo({
         top: imageOffset + containerOffset,
         behavior: "smooth",

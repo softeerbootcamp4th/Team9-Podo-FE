@@ -75,10 +75,6 @@ const FCFSEventResultPage = () => {
     }
   }, [isResultVisible, buttonStartAnimation]);
 
-  useEffect(() => {
-    console.log("print result");
-  }, []);
-
   return (
     <div className="relative flex h-screen w-screen flex-col items-center justify-start overflow-hidden bg-black">
       <div>

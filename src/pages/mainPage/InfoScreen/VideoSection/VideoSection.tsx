@@ -10,7 +10,6 @@ const VideoSection = () => {
     const videoObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          console.log("video");
           if (entry.isIntersecting) videoRef.current?.play();
           else videoRef.current?.pause();
         });
@@ -21,9 +20,7 @@ const VideoSection = () => {
     const textObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          console.log("text");
           if (entry.isIntersecting) {
-            console.log("intersecting");
             setIsShown(true);
           } else setIsShown(false);
         });
