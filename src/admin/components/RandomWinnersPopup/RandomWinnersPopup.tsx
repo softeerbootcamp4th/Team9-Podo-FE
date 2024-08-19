@@ -12,13 +12,14 @@ interface ItemChangesInterface {
   value: string;
 }
 
-const RandomWinnersPopup = ({ modalHandler }: RandomPopupInterface) => {
-  const handlePropagation = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.stopPropagation();
-  };
+const handlePropagation = (event: React.MouseEvent<HTMLDivElement>) => {
+  event.stopPropagation();
+};
 
+const RandomWinnersPopup = ({ modalHandler }: RandomPopupInterface) => {
   const [items, setItems] = useState([{ reward: "", numWinners: "", rank: 1 }]);
   const [weight, setWeight] = useState(1);
+  const [totalWinners, setTotalWinners] = useState(100);
 
   const addItem = (index: number) => {
     setItems([...items, { reward: "", numWinners: "", rank: index }]);
@@ -33,6 +34,10 @@ const RandomWinnersPopup = ({ modalHandler }: RandomPopupInterface) => {
 
   const handleWeightChange = (value: number) => {
     setWeight(value);
+  };
+
+  const handleTotalChange = (value: number) => {
+    setTotalWinners(value);
   };
 
   const getWinnersList = () => {
@@ -81,6 +86,7 @@ const RandomWinnersPopup = ({ modalHandler }: RandomPopupInterface) => {
                   className="flex-1 rounded border p-2"
                 />
                 <input
+                  min={0}
                   type="number"
                   value={item.numWinners}
                   placeholder="인원"
@@ -110,7 +116,10 @@ const RandomWinnersPopup = ({ modalHandler }: RandomPopupInterface) => {
 
         {/* Total Count */}
         <div className="mb-4">
-          <p className="font-semibold">총 14 / 40명</p>
+          <p className="font-semibold">
+            총 {items.reduce((acc, item) => acc + Number(item.numWinners), 0)} /
+            {totalWinners}명
+          </p>
         </div>
 
         {/* Condition Section */}

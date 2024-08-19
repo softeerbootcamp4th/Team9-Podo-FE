@@ -11,6 +11,10 @@ interface ItemChangesInterface {
   value: string;
 }
 
+const handlePropagation = (event: React.MouseEvent<HTMLDivElement>) => {
+  event.stopPropagation();
+};
+
 const FCFSWinnersPopup = ({ modalHandler }: FCFSPopupInterface) => {
   const [totalWinners, setTotalWinners] = useState(100);
   const [items, setItems] = useState([{ reward: "", numWinners: "", rank: 1 }]);
@@ -30,10 +34,6 @@ const FCFSWinnersPopup = ({ modalHandler }: FCFSPopupInterface) => {
     setTotalWinners(value);
   };
 
-  const handlePropagation = (event: React.MouseEvent<HTMLDivElement>) => {
-    event.stopPropagation();
-  };
-
   const postRewards = () => {
     const data = {
       eventRewardList: items,
@@ -42,7 +42,7 @@ const FCFSWinnersPopup = ({ modalHandler }: FCFSPopupInterface) => {
         condition: "string",
       },
     };
-    console.log(data);
+    //data 백으로 전송
   };
 
   return (
@@ -76,6 +76,7 @@ const FCFSWinnersPopup = ({ modalHandler }: FCFSPopupInterface) => {
                 className="flex-1 rounded border p-2"
               />
               <input
+                min={0}
                 type="number"
                 value={item.numWinners}
                 onChange={(e) =>
