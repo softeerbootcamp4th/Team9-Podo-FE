@@ -9,9 +9,7 @@ import WordCloud from "../../../components/mainPage/InfoScreen/WordCloud";
 
 const NotificationScreen = () => {
   const navigate = useNavigate();
-  const [wordCloudData, setWordCloudData] = useState<WordListResponse | null>(
-    null,
-  );
+  const [wordCloudData, setWordCloudData] = useState({});
 
   useEffect(() => {
     try {
@@ -24,7 +22,7 @@ const NotificationScreen = () => {
   const fetchData = async () => {
     const data = await fetchWordCloudData();
 
-    setWordCloudData(data.result);
+    setWordCloudData(data.result.wordList);
   };
 
   return (

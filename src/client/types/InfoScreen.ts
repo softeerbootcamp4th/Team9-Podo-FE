@@ -12,8 +12,8 @@ export interface WordListResponse {
 }
 
 interface Word {
-  keyword: string;
-  count: number;
+  name: string;
+  value: number;
 }
 
 export interface EventSelectOptionsProps {

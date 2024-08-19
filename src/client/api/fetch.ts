@@ -24,7 +24,7 @@ export const fetchFCFSQuizInfo = async (): Promise<ApiResponse<QuizInfo>> => {
  * @returns
  */
 export const fetchFCFSResult = async (): Promise<ApiResponse<QuizResult>> => {
-  const response = await fetch("/v1/quiz", {
+  const response = await fetch("/v1/arrival/application", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
