@@ -348,3 +348,31 @@ body {
   background-clip: padding-box, border-box;
   border: 1px solid transparent;
 }
+
+.gradient-mask::before {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  padding: 1px;
+  background: linear-gradient(
+    45deg,
+    #505861 0%,
+    #4b7c83 33.5%,
+    #1b3f72 66.5%,
+    #f2f2f2 100%
+  );
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#402d67 0 0);
+  -webkit-mask-composite: exclude;
+  mask-composite: exclude;
+}
+
+.content-none::before {
+  content: none;
+}
+
+.inset-0::before {
+  content: "";
+  inset: 0rem; /* 0px */
+}
