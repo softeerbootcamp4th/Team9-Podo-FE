@@ -94,9 +94,11 @@ const FCFSEventResultPage = () => {
         src={FCFSCar}
         alt="seltos-car"
       />
-      <div className="absolute top-[23rem] z-0 font-kia-signature-bold text-8xl text-white">
-        {isWin ? "당첨을 축하합니다!" : "아쉽지만 다음 기회에..."}
-      </div>
+      {isResultVisible && (
+        <div className="absolute top-[23rem] z-0 font-kia-signature-bold text-8xl text-white">
+          {isWin ? "당첨을 축하합니다!" : "아쉽지만 다음 기회에..."}
+        </div>
+      )}
       {isResultVisible && (
         <>
           <div ref={buttonRef} className="absolute top-[32rem] mt-[4.5rem]">
