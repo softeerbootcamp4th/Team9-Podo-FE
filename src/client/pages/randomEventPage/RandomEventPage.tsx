@@ -7,19 +7,29 @@ import { AnswerInterface } from "../../types/RandomEvent";
 const RandomEventPage = () => {
   const navigate = useNavigate();
   const { quizIndex } = useParams();
-  const [answer, setAnswer] = useState<AnswerInterface>({
-    answer1: "",
-    answer2: "",
-    answer3: "",
-    answer4: "",
+  const [answer, setAnswer] = useState<AnswerInterface>(() => {
+    const savedAnswer = sessionStorage.getItem("answer");
+    return savedAnswer
+      ? JSON.parse(savedAnswer)
+      : {
+          answer1: "",
+          answer2: "",
+          answer3: "",
+          answer4: "",
+        };
   });
+
+  useEffect(() => {
+    sessionStorage.setItem("answer", JSON.stringify(answer));
+  }, [answer]);
 
   const currentIndex = quizIndex ? parseInt(quizIndex, 10) : 0;
   const maxIndex = QUIZ_LIST.length - 1;
   const quizInfo = QUIZ_LIST[currentIndex];
 
   const handleClick = (newAnswer: AnswerInterface) => {
-    setAnswer(newAnswer);
+    const updatedAnswer = { ...answer, ...newAnswer };
+    setAnswer(updatedAnswer);
 
     setTimeout(() => {
       const nextQuizIndex = currentIndex + 1;
@@ -27,7 +37,7 @@ const RandomEventPage = () => {
       if (nextQuizIndex < QUIZ_LIST.length) {
         navigate(`/event2/${nextQuizIndex}`);
       } else {
-        navigate("/event2/result", { state: newAnswer });
+        navigate("/event2/result", { state: updatedAnswer });
       }
     }, 200);
   };
