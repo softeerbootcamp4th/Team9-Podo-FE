@@ -20,7 +20,7 @@ import { useNavigate } from "react-router";
 import FCFSNoticeBanner from "../../../common/assets/svg/FCFSNoticeBanner";
 import { NOTICE } from "../../constants/FCFSEventResultData";
 import Glow from "../../components/common/Glow/Glow";
-
+import Confetti from "react-confetti";
 const FCFSEventResultPage = () => {
   const navigate = useNavigate();
 
@@ -77,6 +77,9 @@ const FCFSEventResultPage = () => {
 
   return (
     <div className="relative flex h-screen w-screen flex-col items-center justify-start overflow-hidden bg-black">
+      {isWin && isResultVisible && (
+        <Confetti width={window.innerWidth} height={window.innerHeight} />
+      )}
       <div>
         <Glow />
       </div>
