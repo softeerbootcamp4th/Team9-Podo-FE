@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 import FCFSWinnersPopup from "../../components/FCFSWinnersPopup/FCFSWinnersPopup";
-
-type FCFSParticipant = {
-  id: number;
-  name: string;
-  phoneNum: string;
-  rank: number;
-  createdAt: string;
-  reward: string;
-};
+import { FCFSParticipant } from "../../types/event";
 
 type FCFSParticipantsProps = {
   participants: FCFSParticipant[];

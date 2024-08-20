@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 import RandomWinnersPopup from "../../components/RandomWinnersPopup/RandomWinnersPopup";
-
-type RandomParticipant = {
-  id: number;
-  name: string;
-  phoneNum: string;
-  createAt: string;
-  comment: string;
-  reward: string;
-};
+import { RandomParticipant } from "../../types/event";
 
 type RandomParticipantsProps = {
   participants: RandomParticipant[];
