@@ -91,7 +91,7 @@ const RandomEventSection = (
           }}
           size="big"
           isEnabled={true}
-          defaultText={isAuth ? "참여하기" : "본인인증하고\n참여하기"}
+          defaultText={"참여하기"}
         />
       </div>
     </div>
