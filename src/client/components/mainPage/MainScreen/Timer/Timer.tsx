@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import useTimer from "../../../../hooks/useTimer";
 
 const Timer = () => {
+  const onEndHandler = () => {};
+  const [remainingTime, setRemainingTime] = useState(16000000);
+  const { reset, hours, minutes, seconds } = useTimer(
+    remainingTime,
+    onEndHandler,
+  );
+
+  useEffect(() => {
+    const eventSource = new EventSource("http://localhost:3000/timer");
+
+    eventSource.onmessage = (event) => {
+      const { remainingTime } = JSON.parse(event.data);
+      setRemainingTime(remainingTime);
+    };
+
+    return () => {
+      eventSource.close();
+    };
+  }, []);
+
   return (
     <div className="relative h-[13rem] w-[54rem] flex-center">
-      <div className="before:gradient-mask relative h-full w-full flex-center before:-inset-[0] before:content-none">
+      <div className="relative h-full w-full flex-center before:-inset-[0] before:content-none before:gradient-mask">
         <p
           style={{
             backgroundImage:
@@ -14,7 +35,7 @@ const Timer = () => {
           }}
           className="font-kia-signature-bold text-[8rem]"
         >
-          00:00:00
+          {hours}:{minutes}:{seconds}
         </p>
       </div>
     </div>
