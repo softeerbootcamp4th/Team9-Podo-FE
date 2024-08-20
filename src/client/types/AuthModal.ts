@@ -16,7 +16,7 @@ export interface PhoneAuthVerifyResult {
   result: TokenInfo;
 }
 
-interface TokenInfo {
+export interface TokenInfo {
   accessToken: string;
   expireTime: number;
 }
