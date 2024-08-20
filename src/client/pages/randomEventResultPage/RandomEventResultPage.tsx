@@ -9,6 +9,7 @@ import car from "../../../common/assets/images/mainCar.png";
 import { DRIVER_TYPE_LIST } from "../../constants/RandomEventData";
 import { RandomQuizResponseInterface } from "../../types/RandomEvent";
 import { getDescriptionList } from "../../utils/util";
+import { LONG_BUTTON_TEXT } from "../../constants/common";
 
 const ANIMATION_DURATION = 5000;
 const ROULETTE_END_DELAY = 6000;

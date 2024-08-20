@@ -11,7 +11,7 @@ import {
 } from "../../../../constants/EventData";
 import { useLocation, useNavigate } from "react-router";
 import { useAppContext } from "../../../../providers/AppProvider";
-import { BUTTON_TEXT } from "../../../../constants/common";
+import { BIG_BUTTON_TEXT } from "../../../../constants/common";
 import {
   calculateLeftTime,
   calculateLeftTimeToEnd,
@@ -36,12 +36,12 @@ const FCFSEventSection = (
   };
 
   const setText = () => {
-    if (isAuth === false) return BUTTON_TEXT.NO_AUTH;
-    if (isFCFSEnd === true) return BUTTON_TEXT.EVENT_END;
-    if (calculateLeftTime() < 1000 * 60 * 50) return BUTTON_TEXT.EVENT_END;
-    if (calculateLeftTimeToEnd() === 0) return BUTTON_TEXT.EVENT_END;
-    if (isOpen === false) return BUTTON_TEXT.REMAIN_TIME;
-    if (isOpen === true) return BUTTON_TEXT.START_EVENT;
+    if (isAuth === false) return BIG_BUTTON_TEXT.NO_AUTH;
+    if (isFCFSEnd === true) return BIG_BUTTON_TEXT.EVENT_END;
+    if (calculateLeftTime() < 1000 * 60 * 50) return BIG_BUTTON_TEXT.EVENT_END;
+    if (calculateLeftTimeToEnd() === 0) return BIG_BUTTON_TEXT.EVENT_END;
+    if (isOpen === false) return BIG_BUTTON_TEXT.REMAIN_TIME;
+    if (isOpen === true) return BIG_BUTTON_TEXT.START_EVENT;
     return "";
   };
 
