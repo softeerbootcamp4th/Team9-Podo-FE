@@ -1,19 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
 import FCFSHintSection from "./FCFSHintSection/FCFSHintSection";
 import FCFSQuizSection from "./FCFSQuizSection/FCFSQuizSection";
-import { fetchFCFSQuizInfo } from "../../api/fetch";
+import { checkAndRefreshToken, fetchFCFSQuizInfo } from "../../api/fetch";
 import { QuizInfo } from "../../types/FCFSEvent";
 import useAnimation from "../../hooks/useAnimation";
 import { showUp, goDown } from "../../styles/keyframes";
 import { FCFSHintOptions } from "../../styles/options";
 import Glow from "../../components/common/Glow/Glow";
 import HomeButton from "../../components/common/HomeButton/HomeButton";
-import { className } from "../../styles/tailwind";
 import AuthTooltip from "../../components/common/AuthTooltip/AuthTooltip";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router";
+import { useAppContext } from "../../providers/AppProvider";
 
 const FCFSEventPage = () => {
   const [quizInfo, setQuizInfo] = useState<QuizInfo | null>(null);
-
+  const navigate = useNavigate();
+  const { isAuth, setIsAuth } = useAppContext();
   const { elementRef, startAnimation, stopAnimation } =
     useAnimation<HTMLDivElement>({
       startKeyframes: showUp,
@@ -24,8 +27,9 @@ const FCFSEventPage = () => {
   useEffect(() => {
     try {
       fetchData();
+      checkToken();
     } catch (error) {
-      console.error(error);
+      throw error;
     }
   }, []);
 
@@ -34,11 +38,16 @@ const FCFSEventPage = () => {
     setQuizInfo(quizData.result);
   };
 
+  const checkToken = async () => {
+    const response = await checkAndRefreshToken();
+    setIsAuth(true);
+    Cookies.set("auth", response.result.accessToken, { expires: 1 / 24 });
+  };
+
+  if (!isAuth) navigate("/");
   return (
     <div className="relative flex h-screen w-screen flex-col items-center overflow-hidden bg-black">
-      <div className="absolute left-0 top-0 z-50 p-[2rem]">
-        <HomeButton />
-      </div>
+      <HomeButton />
       <div className="z-10">
         <Glow />
       </div>

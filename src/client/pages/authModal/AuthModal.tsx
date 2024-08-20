@@ -87,7 +87,7 @@ const AuthModal = () => {
         setReRequesst(true);
         await postPhoneAuthRequest({ name, phoneNum });
       } catch (error) {
-        throw new Error();
+        throw new Error(error as string);
       }
     }
   };
@@ -114,7 +114,7 @@ const AuthModal = () => {
           setIsError("AUTH_NUM_INCORRECT");
         }
       } catch (error) {
-        throw new Error();
+        throw new Error(error as string);
       }
       setToastKey((current) => current + 1);
     }
