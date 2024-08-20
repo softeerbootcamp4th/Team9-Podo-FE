@@ -3,15 +3,17 @@ import useTimer from "../../../../hooks/useTimer";
 
 const Timer = () => {
   const onEndHandler = () => {};
-  const [remainingTime, setRemainingTime] = useState(16000000);
+  const [remainingTime, setRemainingTime] = useState(0);
   const { reset, hours, minutes, seconds } = useTimer(
     remainingTime,
     onEndHandler,
   );
 
   useEffect(() => {
+    //연결 설정
     const eventSource = new EventSource("http://localhost:3000/timer");
 
+    //데이터 수신시 호출되는 콜백, close할 때 까지 끊어지지 않음
     eventSource.onmessage = (event) => {
       const { remainingTime } = JSON.parse(event.data);
       setRemainingTime(remainingTime);
