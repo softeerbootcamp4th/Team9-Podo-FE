@@ -52,11 +52,14 @@ class EventSourceMock {
 
 describe("Timer", () => {
   test("initTime에 맞게 올바르게 랜더링 되어야 한다.", () => {
-    render(<Timer />);
+    const onEndHandler = jest.fn();
+    render(<Timer onEndHandler={onEndHandler} />);
 
     // Check if the Timer component renders the expected time
     expect(screen.getByText("00:00:00")).toBeInTheDocument();
   });
 
-  //   test("서버 이벤트를 통해 받아온 시간을 올바르게 표시해야 한다.", () => {});
+  // test("서버 이벤트를 통해 받아온 시간을 올바르게 표시해야 한다.", () => {});
+
+  // test("타이머가 끝나면 onEndHandler가 호출되어야 한다.", () => {});
 });

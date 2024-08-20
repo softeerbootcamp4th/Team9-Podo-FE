@@ -1,4 +1,4 @@
-import React, { ForwardedRef, forwardRef } from "react";
+import React, { ForwardedRef, forwardRef, useState } from "react";
 import Timer from "../../../../components/mainPage/MainScreen/Timer/Timer";
 import EventHeader from "../../../../components/mainPage/MainScreen/EventHeader/EventHeader";
 import Button from "../../../../components/common/Button/Button";
@@ -24,6 +24,24 @@ const FCFSEventSection = (
   const navigate = useNavigate();
   const { isAuth, isFCFSEnd } = useAppContext();
   const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onEndHandler = () => {
+    setIsOpen(true);
+  };
+
+  // const setText = () => {
+  //   if (isAuth && isOpen) {
+  //     const defaultText = "참여하기";
+  //   } else if (isAuth && !isOpen) {
+  //     const disabledText = "1시에 이벤트가 진행됩니다";
+  //   } else if (isAuth && isFCFSEnd) {
+  //     const disabledText = "이벤트가 마감되었습니다.";
+  //   } else if (!isAuth) {
+  //     const defaultText = "본인인증하고 참여하기";
+  //   } else if (!isAuth && isFCFSEnd) {
+  //   }
+  // };
 
   return (
     <div
@@ -41,7 +59,7 @@ const FCFSEventSection = (
         description={FCFS_EVENT_DATA.DESCRIPTION}
       />
       <div className="flex min-h-[30rem] flex-1 flex-col items-end justify-between">
-        <Timer />
+        <Timer onEndHandler={onEndHandler} />
       </div>
       <div className="h-[16.375rem] gap-4 text-gray-50 flex-center">
         <div className="flex h-full w-[26.5rem] flex-col gap-4 text-body-1-regular">
@@ -102,7 +120,11 @@ const FCFSEventSection = (
           size="big"
           isEnabled={!isFCFSEnd}
           defaultText={isAuth ? "퀴즈풀기" : "본인인증하고\n참여하기"}
-          disabledText={"이벤트가 마감되었습니다.\n다음 이벤트를 참여해주세요"}
+          disabledText={
+            isOpen && isFCFSEnd
+              ? "이벤트가 마감되었습니다.\n다음 이벤트를 참여해주세요"
+              : ""
+          }
         />
       </div>
     </div>

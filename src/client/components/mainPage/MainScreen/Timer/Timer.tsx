@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import useTimer from "../../../../hooks/useTimer";
 
-const Timer = () => {
-  const onEndHandler = () => {};
+interface TimerInterface {
+  onEndHandler: () => void;
+}
+
+const Timer = ({ onEndHandler }: TimerInterface) => {
   const [remainingTime, setRemainingTime] = useState(0);
   const { reset, hours, minutes, seconds } = useTimer(
     remainingTime,
