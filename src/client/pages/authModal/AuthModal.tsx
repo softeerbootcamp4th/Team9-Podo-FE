@@ -25,6 +25,7 @@ import { shakeInputOptions } from "../../styles/options";
 import useTimer from "../../hooks/useTimer";
 import { useAppContext } from "../../providers/AppProvider";
 import Cookies from "js-cookie";
+import { useErrorBoundary } from "react-error-boundary";
 
 const initialForm: PhoneAuthCheckForm = {
   name: "",
@@ -33,6 +34,7 @@ const initialForm: PhoneAuthCheckForm = {
 };
 
 const AuthModal = () => {
+  const { showBoundary } = useErrorBoundary();
   const [isAgree, setIsAgree] = useState("-1"); // 0이면 동의, 1이면 미동의
   const [reRequesst, setReRequesst] = useState(false);
   const [toastKey, setToastKey] = useState(0);
@@ -114,7 +116,7 @@ const AuthModal = () => {
           setIsError("AUTH_NUM_INCORRECT");
         }
       } catch (error) {
-        throw error;
+        showBoundary(error);
       }
       setToastKey((current) => current + 1);
     }
