@@ -2,13 +2,26 @@ import React, { useEffect, useState } from "react";
 import RefreshButton from "../../../../common/assets/svg/RefreshButton";
 import useTimer from "../../../hooks/useTimer";
 import { useAppContext } from "../../../providers/AppProvider";
+import { checkAndRefreshToken } from "../../../api/fetch";
+import Cookies from "js-cookie";
 
 const AuthTooltip = () => {
   const initialTime = 60 * 60 * 1000 - 1000;
 
-  const { isAuth } = useAppContext();
+  const { isAuth, setIsAuth } = useAppContext();
 
   const { reset, minutes, seconds } = useTimer(initialTime);
+
+  const refreshHandler = () => {
+    reset();
+    refreshToken();
+  };
+
+  const refreshToken = async () => {
+    const response = await checkAndRefreshToken();
+    setIsAuth(true);
+    Cookies.set("auth", response.result.accessToken, { expires: 1 / 24 });
+  };
 
   return (
     <div className="absolute right-7 top-0 z-50">
@@ -24,7 +37,7 @@ const AuthTooltip = () => {
             <span className="text-center font-kia-signature-bold text-body-2-bold text-gray-300">
               {minutes} : {seconds}
             </span>
-            <RefreshButton onClick={reset}></RefreshButton>
+            <RefreshButton onClick={refreshHandler}></RefreshButton>
           </div>
         </div>
       ) : (

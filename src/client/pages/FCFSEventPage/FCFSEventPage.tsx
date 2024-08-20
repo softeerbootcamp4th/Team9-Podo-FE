@@ -12,12 +12,13 @@ import AuthTooltip from "../../components/common/AuthTooltip/AuthTooltip";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router";
 import { useAppContext } from "../../providers/AppProvider";
+import { useErrorBoundary } from "react-error-boundary";
 
 const FCFSEventPage = () => {
+  const { showBoundary } = useErrorBoundary();
   const [quizInfo, setQuizInfo] = useState<QuizInfo | null>(null);
   const navigate = useNavigate();
   const { isAuth, setIsAuth } = useAppContext();
-  const [isError, setisError] = useState(false);
   const { elementRef, startAnimation, stopAnimation } =
     useAnimation<HTMLDivElement>({
       startKeyframes: showUp,
@@ -30,7 +31,7 @@ const FCFSEventPage = () => {
       fetchData();
       checkToken();
     } catch (error) {
-      setisError(true);
+      showBoundary(error);
     }
   }, []);
 
@@ -46,7 +47,6 @@ const FCFSEventPage = () => {
   };
 
   if (!isAuth) navigate("/");
-  if (isError) return <div>nono</div>;
   return (
     <div className="relative flex h-screen w-screen flex-col items-center overflow-hidden bg-black">
       <HomeButton />
