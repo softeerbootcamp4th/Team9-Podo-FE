@@ -1,87 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FCFSWinnersPopup from "../../components/FCFSWinnersPopup/FCFSWinnersPopup";
-
-type Participant = {
-  id: number;
-  name: string;
-  phoneNum: string;
-  rank: number;
-  createdAt: string;
-  reward: string;
-};
+import { FCFSParticipant } from "../../types/event";
+import { PAGE_SIZE } from "../../constants/constants";
+import { fetchFCFSParticipants } from "../../api/fetch";
 
 type FCFSParticipantsProps = {
-  participants: Participant[];
+  participants: FCFSParticipant[];
   selectedDate: string;
   onDateChange: (date: string) => void;
 };
 const onDateChange = () => {};
 const selectedDate = "2024.08.19";
 
-const participants: Participant[] = [
-  {
-    id: 1,
-    name: "김연진",
-    phoneNum: "01029292929",
-    rank: 1,
-    createdAt: "2024-09-02 15:00:01",
-    reward: "당첨",
-  },
-  {
-    id: 2,
-    name: "정서린",
-    phoneNum: "01038383838",
-    rank: 1,
-    createdAt: "2024-09-02 15:00:03",
-    reward: "당첨",
-  },
-  {
-    id: 3,
-    name: "권혁진",
-    phoneNum: "01047474747",
-    rank: 1,
-    createdAt: "2024-09-02 15:00:30",
-    reward: "당첨",
-  },
-  {
-    id: 4,
-    name: "박수현",
-    phoneNum: "01058585858",
-    rank: 2,
-    createdAt: "2024-09-03 15:01:00",
-    reward: "당첨",
-  },
-  {
-    id: 5,
-    name: "이민수",
-    phoneNum: "01069696969",
-    rank: 0,
-    createdAt: "2024-09-03 15:02:00",
-    reward: "낙첨",
-  },
-];
-
-const PAGE_SIZE = 10;
-
 const FCFSParticipants = () => {
-  const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPates] = useState(1);
+  const [participants, setParticipants] = useState<FCFSParticipant[]>([]);
 
   const onModalHandler = () => {
     setIsModalOpen((current) => !current);
   };
 
   const startIndex = (currentPage - 1) * PAGE_SIZE;
-  const endIndex = startIndex + PAGE_SIZE;
-  const currentPageItems = participants.slice(startIndex, endIndex);
-
-  const totalPages = Math.ceil(participants.length / PAGE_SIZE);
 
   const goToPage = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchFCFSParticipants(currentPage - 1);
+
+      setTotalPates(data.result.totalPage);
+      setCurrentPage(data.result.currentPage + 1);
+      setParticipants(data.result.arrivalUserList);
+    };
+
+    fetchData();
+    console.log(participants);
+  }, [currentPage, totalPages]);
 
   return (
     <div className="h-screen w-screen bg-gray-100 p-4">
@@ -134,7 +94,7 @@ const FCFSParticipants = () => {
               </tr>
             </thead>
             <tbody>
-              {currentPageItems.map((participant, index) => (
+              {participants.map((participant, index) => (
                 <tr key={participant.id} className="border-t">
                   <td className="border-r p-2 text-center">
                     {startIndex + index + 1}
@@ -159,6 +119,12 @@ const FCFSParticipants = () => {
           </table>
         </div>
 
+        {totalPages === 0 && (
+          <div className="font-kia-signature text-5xl flex-center">
+            참여자가 없습니다
+          </div>
+        )}
+
         {/* 페이지네이션 컨트롤 */}
         <div className="mt-4 flex items-center justify-between">
           <button
@@ -169,11 +135,11 @@ const FCFSParticipants = () => {
             이전
           </button>
           <span>
-            {currentPage} / {totalPages}
+            {currentPage} / {totalPages || 1}
           </span>
           <button
             onClick={() => goToPage(currentPage + 1)}
-            disabled={currentPage === totalPages}
+            disabled={currentPage === totalPages || totalPages === 0}
             className="rounded bg-gray-300 px-4 py-2 text-gray-700"
           >
             다음

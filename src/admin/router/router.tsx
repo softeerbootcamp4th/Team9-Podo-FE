@@ -15,9 +15,6 @@ const RouterWithModal = () => {
         <Route path="/create-event" element={<CreateEvent />} />
         <Route path="/fcfs-participants" element={<FCFSParticipants />} />
         <Route path="/random-participants" element={<RandomParticipants />} />
-        <Route path="/temp1" element={<FCFSWinnersPopup />} />
-        <Route path="/temp2" element={<RandomWinnersPopup />} />
-
         <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </>

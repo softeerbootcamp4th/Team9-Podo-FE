@@ -29,3 +29,21 @@ export interface EventPostInfo {
   endAt: string;
   tagImage: string;
 }
+
+export interface FCFSParticipant {
+  id: number;
+  name: string;
+  phoneNum: string;
+  rank: number;
+  createdAt: string;
+  reward: string;
+}
+
+export interface RandomParticipant {
+  id: number;
+  name: string;
+  phoneNum: string;
+  createAt: string;
+  comment: string;
+  reward: string;
+}
