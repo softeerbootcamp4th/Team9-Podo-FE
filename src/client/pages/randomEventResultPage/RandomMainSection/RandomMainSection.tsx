@@ -12,6 +12,7 @@ import {
   TOOLTIP_CONTENT,
 } from "../../../constants/RandomEventData";
 import { LONG_BUTTON_TEXT } from "../../../constants/common";
+import { useErrorBoundary } from "react-error-boundary";
 
 const RandomMainSection = ({
   resultTypeId,
@@ -21,6 +22,7 @@ const RandomMainSection = ({
   const { isAuth, isRandomEnd, setIsRandomEnd } = useAppContext();
   const navigate = useNavigate();
   const location = useLocation();
+  const { showBoundary } = useErrorBoundary();
 
   const [isCopied, setIsCopied] = useState(false);
   const [shareUrl, setShareUrl] = useState("https://www.hyundaiseltos.site/");
@@ -41,8 +43,12 @@ const RandomMainSection = ({
 
   const handleEventParticipation = async () => {
     if (isAuth) {
-      const { result } = await postRandomResult(resultTypeId);
-      setShareUrl(result.uniqueLink);
+      try {
+        const { result } = await postRandomResult(resultTypeId);
+        setShareUrl(result.uniqueLink);
+      } catch (error) {
+        showBoundary(error);
+      }
     } else {
       navigate("/auth-modal", { state: { background: location, event: 2 } });
     }

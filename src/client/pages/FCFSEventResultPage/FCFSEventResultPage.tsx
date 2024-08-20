@@ -21,8 +21,11 @@ import FCFSNoticeBanner from "../../../common/assets/svg/FCFSNoticeBanner";
 import { NOTICE } from "../../constants/FCFSEventResultData";
 import Glow from "../../components/common/Glow/Glow";
 import Confetti from "react-confetti";
+import { useErrorBoundary } from "react-error-boundary";
+
 const FCFSEventResultPage = () => {
   const navigate = useNavigate();
+  const { showBoundary } = useErrorBoundary();
 
   const [isWin, setIsWin] = useState(false);
   const [isResultVisible, setIsResultVisible] = useState(false);
@@ -61,12 +64,16 @@ const FCFSEventResultPage = () => {
   };
 
   const handleButtonClick = () => {
-    fetchData();
-    setIsResultVisible(true);
-    carStartAnimation();
-    textStartAnimation();
-    keyStartAnimation();
-    buttonStartAnimation();
+    try {
+      fetchData();
+      setIsResultVisible(true);
+      carStartAnimation();
+      textStartAnimation();
+      keyStartAnimation();
+      buttonStartAnimation();
+    } catch (error) {
+      showBoundary(error);
+    }
   };
 
   useEffect(() => {

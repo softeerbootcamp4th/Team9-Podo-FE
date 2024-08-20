@@ -4,17 +4,22 @@ import useTimer from "../../../hooks/useTimer";
 import { useAppContext } from "../../../providers/AppProvider";
 import { checkAndRefreshToken } from "../../../api/fetch";
 import Cookies from "js-cookie";
+import { useErrorBoundary } from "react-error-boundary";
 
 const AuthTooltip = () => {
   const initialTime = 60 * 60 * 1000 - 1000;
-
+  const { showBoundary } = useErrorBoundary();
   const { isAuth, setIsAuth } = useAppContext();
 
   const { reset, minutes, seconds } = useTimer(initialTime);
 
   const refreshHandler = () => {
-    reset();
-    refreshToken();
+    try {
+      reset();
+      refreshToken();
+    } catch (error) {
+      showBoundary(error);
+    }
   };
 
   const refreshToken = async () => {

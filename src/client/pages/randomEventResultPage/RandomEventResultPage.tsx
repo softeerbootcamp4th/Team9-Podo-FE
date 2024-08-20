@@ -10,6 +10,7 @@ import { DRIVER_TYPE_LIST } from "../../constants/RandomEventData";
 import { RandomQuizResponseInterface } from "../../types/RandomEvent";
 import { getDescriptionList } from "../../utils/util";
 import { LONG_BUTTON_TEXT } from "../../constants/common";
+import { useErrorBoundary } from "react-error-boundary";
 
 const ANIMATION_DURATION = 5000;
 const ROULETTE_END_DELAY = 6000;
@@ -29,6 +30,7 @@ const RandomEventResultPage = () => {
   const appContext = useAppContext();
   const location = useLocation();
   const [timeElapsed, setTimeElapsed] = useState(0);
+  const { showBoundary } = useErrorBoundary();
   const [resultData, setResultData] =
     useState<RandomQuizResponseInterface | null>(null);
   const randomExpectationsRef = useRef<HTMLDivElement>(null);
@@ -60,7 +62,11 @@ const RandomEventResultPage = () => {
       setResultData(response);
     };
 
-    fetchData();
+    try {
+      fetchData();
+    } catch (error) {
+      showBoundary(error);
+    }
   }, []);
 
   useEffect(() => {

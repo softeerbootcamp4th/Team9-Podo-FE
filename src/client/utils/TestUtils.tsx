@@ -7,6 +7,8 @@ import {
 } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
+import FallbackPage from "../pages/fallbackPage/FallbackPage";
 
 interface MockState {
   isAuth: boolean;
@@ -58,9 +60,11 @@ const Providers = ({
   initialState?: Partial<MockState>;
 }) => {
   return (
-    <BrowserRouter>
-      <MockProvider initialState={initialState}>{children}</MockProvider>
-    </BrowserRouter>
+    <ErrorBoundary FallbackComponent={FallbackPage}>
+      <BrowserRouter>
+        <MockProvider initialState={initialState}>{children}</MockProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 };
 

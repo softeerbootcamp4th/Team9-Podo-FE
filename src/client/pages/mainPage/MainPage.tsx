@@ -6,16 +6,18 @@ import InfoScreen from "./InfoScreen/InfoScreen";
 import { useAppContext } from "../../providers/AppProvider";
 import { checkAndRefreshToken } from "../../api/fetch";
 import Cookies from "js-cookie";
+import { useErrorBoundary } from "react-error-boundary";
 
 const MainPage = () => {
   const infoRef = useRef<HTMLDivElement>(null);
   const { setIsAuth } = useAppContext();
+  const { showBoundary } = useErrorBoundary();
 
   useEffect(() => {
     try {
       checkToken();
     } catch (error) {
-      throw error;
+      showBoundary(error);
     }
   }, []);
 

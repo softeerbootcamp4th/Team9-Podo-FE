@@ -89,7 +89,7 @@ const AuthModal = () => {
         setReRequesst(true);
         await postPhoneAuthRequest({ name, phoneNum });
       } catch (error) {
-        throw error;
+        showBoundary(error);
       }
     }
   };

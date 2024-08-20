@@ -5,8 +5,10 @@ import { useNavigate } from "react-router";
 import { EVENT_TERMS } from "../../../constants/EventData";
 import { fetchWordCloudData } from "../../../api/fetch";
 import WordCloud from "../../../components/mainPage/InfoScreen/WordCloud";
+import { useErrorBoundary } from "react-error-boundary";
 
 const NotificationScreen = () => {
+  const { showBoundary } = useErrorBoundary();
   const navigate = useNavigate();
   const [wordCloudData, setWordCloudData] = useState({});
 
@@ -14,7 +16,7 @@ const NotificationScreen = () => {
     try {
       fetchData();
     } catch (error) {
-      console.error(error);
+      showBoundary(error);
     }
   }, []);
 
