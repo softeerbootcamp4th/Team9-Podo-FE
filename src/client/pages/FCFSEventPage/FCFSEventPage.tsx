@@ -9,6 +9,7 @@ import { FCFSHintOptions } from "../../styles/options";
 import Glow from "../../components/common/Glow/Glow";
 import HomeButton from "../../components/common/HomeButton/HomeButton";
 import { className } from "../../styles/tailwind";
+import AuthTooltip from "../../components/common/AuthTooltip/AuthTooltip";
 
 const FCFSEventPage = () => {
   const [quizInfo, setQuizInfo] = useState<QuizInfo | null>(null);
@@ -49,6 +50,7 @@ const FCFSEventPage = () => {
           onMouseLeave={stopAnimation}
         />
       </div>
+      <AuthTooltip />
     </div>
   );
 };

@@ -1,23 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { fetchEventList } from "../../api/fetch";
+import { EventInfo } from "../../types/event";
 
 const EventManagement: React.FC = () => {
+  const navigate = useNavigate();
+  const [eventList, setEventList] = useState<EventInfo[]>();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetchEventList();
+      setEventList(response.result.eventList);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="p-4">
-      {/* Header */}
       <div className="mb-4 flex items-center justify-between">
         <h1 className="text-2xl font-bold">이벤트 리스트</h1>
-        <button className="rounded bg-blue-500 px-4 py-2 text-white">
-          이벤트 추가
-        </button>
       </div>
 
-      {/* Search Bar */}
-      <div className="mb-4 flex justify-end">
-        <input
-          type="text"
-          placeholder="검색 (제목)"
-          className="w-1/3 rounded border p-2"
-        />
+      <div className="flex justify-between">
+        <button
+          className="h-14 w-48 shrink-0 rounded bg-gray-400 px-4 py-2 text-white"
+          onClick={() => navigate("/create-event")}
+        >
+          이벤트 추가
+        </button>
+
+        <div className="mb-4 flex shrink-0 justify-end">
+          <input
+            type="text"
+            placeholder="검색 (제목)"
+            className="h-14 w-96 rounded border p-2"
+          />
+        </div>
       </div>
 
       {/* Event List Table */}
@@ -32,46 +51,75 @@ const EventManagement: React.FC = () => {
             <th className="p-3 text-left">반복</th>
             <th className="p-3 text-left">당첨인원</th>
             <th className="p-3 text-left">참여자 관리</th>
-            <th className="p-3 text-left">승인 여부</th>
             <th className="p-3 text-left">최종수정일</th>
             <th className="p-3 text-left">관리</th>
             <th className="p-3 text-left">GA</th>
           </tr>
         </thead>
         <tbody>
-          {/* Example Event Row */}
-          <tr className="border-b">
-            <td className="p-3">1</td>
-            <td className="p-3">셀토스 선착순</td>
-            <td className="p-3">선착순</td>
-            <td className="p-3">2024-09-02 09:00</td>
-            <td className="p-3">2024-09-06 23:59</td>
-            <td className="p-3">매일</td>
-            <td className="p-3">100</td>
-            <td className="p-3">
-              <button className="rounded bg-gray-200 p-2">바로가기</button>
-            </td>
-            <td className="p-3">
-              <span className="rounded bg-yellow-500 px-2 py-1 text-white">
-                대기
-              </span>
-            </td>
-            <td className="p-3">2024-09-01 08:39</td>
-            <td className="flex space-x-2 p-3">
-              <button className="rounded bg-blue-500 px-2 py-1 text-white">
-                수정
-              </button>
-              <button className="rounded bg-red-500 px-2 py-1 text-white">
-                삭제
-              </button>
-            </td>
-            <td className="p-3">
-              <a href="#" className="text-blue-500">
-                GA
-              </a>
-            </td>
-          </tr>
-          {/* Add more rows as needed */}
+          {eventList && eventList.length > 0 ? (
+            eventList.map((event, index) => (
+              <tr key={event.id} className="border-b">
+                <td className="p-3">{index + 1}</td>
+                <td className="p-3">{event.title}</td>
+                <td className="p-3">
+                  {event.eventType === "arrival" ? "선착순" : "추첨"}
+                </td>
+                <td className="p-3">{event.startAt}</td>
+                <td className="p-3">{event.endAt}</td>
+                <td className="p-3">
+                  {event.repeatDay
+                    ? "매일"
+                    : event.repeatDay === null
+                      ? "-"
+                      : "반복 없음"}
+                </td>
+                <td className="p-3">
+                  {event.eventRewardList.reduce(
+                    (total, reward) => total + reward.numWinners,
+                    0,
+                  )}
+                </td>
+                <td className="p-3">
+                  <button
+                    onClick={() =>
+                      navigate(
+                        `${event.eventType === "arrival" ? "/fcfs-participants" : "/random-participants"}`,
+                      )
+                    }
+                    className="rounded bg-gray-200 p-2"
+                  >
+                    바로가기
+                  </button>
+                </td>
+
+                <td className="p-3">{event.updatedAt}</td>
+                <td className="flex space-x-2 p-3">
+                  <button
+                    onClick={() =>
+                      navigate("/create-event", {
+                        state: { event: eventList[event.id - 1] },
+                      })
+                    }
+                    className="rounded bg-gray-400 px-2 py-1 text-white"
+                  >
+                    수정
+                  </button>
+                </td>
+                <td className="p-3">
+                  <a href="#" className="">
+                    GA
+                  </a>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={12} className="p-3 text-center">
+                이벤트가 없습니다.
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

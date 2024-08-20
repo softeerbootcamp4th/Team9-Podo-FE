@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import DriveDescriptionItem from "../../../../components/mainPage/InfoScreen/DriveDescriptionItem/DriveDescriptionItem";
 import { driveInfoData } from "../../../../constants/InfoData";
 import useInView from "../../../../hooks/useInView";
+import MouseEvent from "react";
+import { MouseEventHandler } from "react";
 
 const animationDelay = {
   0: "delay-0",
@@ -28,13 +30,21 @@ const DriveSection = () => {
         차급을 뛰어 넘는 주행 경험
       </div>
       <div className="grid grid-cols-3 grid-rows-2 gap-x-[2rem] gap-y-[3.75rem]">
-        {driveInfoData.map(({ key, title, image }, index) => (
-          <DriveDescriptionItem
+        {driveInfoData.map(({ key, title, image, description }, index) => (
+          <div
             key={key}
-            title={title}
-            img={image}
-            tailwind={`${isInView ? "opacity-100 scale-100" : "opacity-0 scale-90"} transition-all duration-[200ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)] origin-bottom-right ${animationDelay[index as keyof typeof animationDelay]} `}
-          />
+            onMouseEnter={() => setSelectedIndex(index)}
+            onMouseLeave={() => setSelectedIndex(-1)}
+          >
+            <DriveDescriptionItem
+              title={title}
+              description={description}
+              img={image}
+              isSelected={index === selectedIndex}
+              noneSelected={selectedIndex === -1}
+              tailwind={`${isInView ? "opacity-100 scale-100" : "opacity-0 scale-90"} transition-all duration-[200ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)] origin-bottom-right ${animationDelay[index as keyof typeof animationDelay]} `}
+            />
+          </div>
         ))}
       </div>
     </div>
