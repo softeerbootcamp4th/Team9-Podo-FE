@@ -26,7 +26,7 @@ const NotificationScreen = () => {
 
   return (
     <div className="snap-start flex-col flex-center">
-      <div className="h-screen w-screen flex-col justify-around flex-center">
+      <div className="flex h-screen w-screen flex-col items-center justify-around">
         <div className="w-[94rem] flex-col gap-3 rounded-[5rem] border border-opacity-20 bg-black bg-opacity-5 px-700 py-1000 backdrop-blur-lg flex-center">
           <p className="text-title-2 font-bold text-gray-50">
             The 2025 Seltos에서 가장 기대되는 점은?

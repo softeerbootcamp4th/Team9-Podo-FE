@@ -60,7 +60,7 @@ const EventSelectSection = ({
           ref={titleRef}
           className="relative w-[36.75rem] opacity-0 before:-inset-[2rem] before:content-none before:gradient-mask"
         >
-          <p className="text-center font-kia-signature-bold text-title-2 text-glow-white">
+          <p className="text-center font-kia-signature-bold text-title-2 text-white text-glow-white">
             {SELECT_DATA.PAGE_TITLE}
           </p>
         </div>

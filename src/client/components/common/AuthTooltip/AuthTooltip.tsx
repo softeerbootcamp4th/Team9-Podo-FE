@@ -8,7 +8,7 @@ const AuthTooltip = () => {
 
   const { isAuth } = useAppContext();
 
-  const { reset, minutes, second } = useTimer(initialTime);
+  const { reset, minutes, seconds } = useTimer(initialTime);
 
   return (
     <div className="absolute right-7 top-0 z-50">
@@ -22,7 +22,7 @@ const AuthTooltip = () => {
           </div>
           <div className="gap-2 flex-center">
             <span className="text-center font-kia-signature-bold text-body-2-bold text-gray-300">
-              {minutes} : {second}
+              {minutes} : {seconds}
             </span>
             <RefreshButton onClick={reset}></RefreshButton>
           </div>

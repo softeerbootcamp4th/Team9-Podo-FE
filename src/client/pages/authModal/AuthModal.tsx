@@ -39,7 +39,7 @@ const AuthModal = () => {
   const [isError, setIsError] = useState<ErrorToastKey | null>(null);
   const { isAuth, setIsAuth } = useAppContext();
 
-  const { reset, minutes, second } = useTimer(AUTH_DELAY, () => {
+  const { hours, minutes, seconds, reset } = useTimer(AUTH_DELAY, () => {
     if (reRequesst) {
       setIsError("AUTH_NUM_EXPRIES");
       setToastKey((current) => current + 1);
@@ -87,7 +87,7 @@ const AuthModal = () => {
         setReRequesst(true);
         await postPhoneAuthRequest({ name, phoneNum });
       } catch (error) {
-        throw new Error(error as string);
+        throw error;
       }
     }
   };
@@ -108,13 +108,13 @@ const AuthModal = () => {
           if (location.state.event) setIsAuth(true);
           Cookies.set("auth", response.result.accessToken, { expires: 1 / 24 });
           navigate(
-            `${location.state.event === 2 ? "/event2/result" : "/event1"}`,
+            `${location.state.event === 2 ? "/event2/result" : location.state.isOpen ? "/event1" : "/"}`,
           );
         } else {
           setIsError("AUTH_NUM_INCORRECT");
         }
       } catch (error) {
-        throw new Error(error as string);
+        throw error;
       }
       setToastKey((current) => current + 1);
     }
@@ -197,7 +197,7 @@ const AuthModal = () => {
                 role="timer"
                 className="absolute right-4 top-4 font-kia-signature text-body-1-regular text-gray-300"
               >
-                {minutes}:{second}
+                {minutes}:{seconds}
               </div>
             )}
           </div>

@@ -11,6 +11,11 @@ import {
 } from "../../../../constants/EventData";
 import { useLocation, useNavigate } from "react-router";
 import { useAppContext } from "../../../../providers/AppProvider";
+import { BUTTON_TEXT } from "../../../../constants/common";
+import {
+  calculateLeftTime,
+  calculateLeftTimeToEnd,
+} from "../../../../utils/util";
 
 interface FCFSEventSectionProps {
   isVisible: boolean;
@@ -30,18 +35,15 @@ const FCFSEventSection = (
     setIsOpen(true);
   };
 
-  // const setText = () => {
-  //   if (isAuth && isOpen) {
-  //     const defaultText = "참여하기";
-  //   } else if (isAuth && !isOpen) {
-  //     const disabledText = "1시에 이벤트가 진행됩니다";
-  //   } else if (isAuth && isFCFSEnd) {
-  //     const disabledText = "이벤트가 마감되었습니다.";
-  //   } else if (!isAuth) {
-  //     const defaultText = "본인인증하고 참여하기";
-  //   } else if (!isAuth && isFCFSEnd) {
-  //   }
-  // };
+  const setText = () => {
+    if (isAuth === false) return BUTTON_TEXT.NO_AUTH;
+    if (isFCFSEnd === true) return BUTTON_TEXT.EVENT_END;
+    if (calculateLeftTime() < 1000 * 60 * 50) return BUTTON_TEXT.EVENT_END;
+    if (calculateLeftTimeToEnd() === 0) return BUTTON_TEXT.EVENT_END;
+    if (isOpen === false) return BUTTON_TEXT.REMAIN_TIME;
+    if (isOpen === true) return BUTTON_TEXT.START_EVENT;
+    return "";
+  };
 
   return (
     <div
@@ -114,17 +116,13 @@ const FCFSEventSection = (
             isAuth
               ? navigate("event1")
               : navigate("auth-modal", {
-                  state: { background: location, event: 1 },
+                  state: { background: location, event: 1, isOpen: isOpen },
                 });
           }}
           size="big"
-          isEnabled={!isFCFSEnd}
-          defaultText={isAuth ? "퀴즈풀기" : "본인인증하고\n참여하기"}
-          disabledText={
-            isOpen && isFCFSEnd
-              ? "이벤트가 마감되었습니다.\n다음 이벤트를 참여해주세요"
-              : ""
-          }
+          isEnabled={isOpen || isAuth === false}
+          defaultText={setText()}
+          disabledText={setText()}
         />
       </div>
     </div>
