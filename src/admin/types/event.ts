@@ -3,8 +3,8 @@ export interface EventInfo {
   eventType: string;
   title: string;
   description: string;
-  repeatDay: null;
-  repeatTime: null;
+  repeatDay: string | null;
+  repeatTime: string | null;
   startAt: string;
   endAt: string;
   updatedAt: string;
@@ -23,8 +23,8 @@ export interface EventInfo {
 export interface EventPostInfo {
   title: string;
   description: string;
-  repeatDay: string;
-  repeatTime: string;
+  repeatDay: string | null;
+  repeatTime: string | null;
   startAt: string;
   endAt: string;
   tagImage: string;

@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { MouseEvent, useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { EventInfo, EventPostInfo } from "../../types/event";
+import { putFCFSEvent, putRandomEvent } from "../../api/fetch";
 
 const convertToEventPostInfo = (event: EventInfo): EventPostInfo => {
   return {
     title: event.title,
     description: event.description,
-    repeatDay: event.repeatDay || "0000000",
-    repeatTime: event.repeatTime || "00:00:00",
+    repeatDay: event.repeatDay,
+    repeatTime: event.repeatTime,
     startAt: event.startAt,
     endAt: event.endAt,
     tagImage: event.tagImage,
@@ -24,30 +25,50 @@ const EventForm: React.FC = () => {
         title: "",
         description: "",
         repeatDay: "0000000",
-        repeatTime: "00:00:00",
+        repeatTime: "",
         startAt: "",
         endAt: "",
         tagImage: "",
       };
 
   const [formData, setFormData] = useState<EventPostInfo>(initialState);
+  const [minEndDate, setMinEndDate] = useState<string>("");
+
+  useEffect(() => {
+    const today = new Date().toISOString().slice(0, 16);
+    setMinEndDate(formData.startAt || today);
+  }, [formData.startAt]);
 
   useEffect(() => {
     console.log(formData);
-  }, [formData]);
+  });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
+    const updatedValue =
+      name === "repeatTime" && value.length === 5 ? `${value}:00` : value;
+
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: updatedValue,
     }));
   };
 
-  const toggleDay = (index: number) => {
-    const newRepeatDay = formData.repeatDay.split("");
+  const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (event?.eventType === "arrival") putData(putFCFSEvent);
+    else if (event?.eventType === "lots") putData(putRandomEvent);
+  };
 
-    // Toggle the day at the given index
+  const putData = async (putApi: Function) => {
+    const response = await putApi(formData);
+    console.log(response);
+  };
+
+  const toggleDay = (index: number) => {
+    const newRepeatDay = formData.repeatDay!.split("");
+
     newRepeatDay[index] = newRepeatDay[index] === "1" ? "0" : "1";
 
     setFormData((prevState) => ({
@@ -108,6 +129,7 @@ const EventForm: React.FC = () => {
             <div className="flex space-x-4">
               <button
                 type="button"
+                disabled
                 className={`w-1/2 rounded border border-gray-300 ${
                   event?.eventType === "arrival" ? "bg-gray-200" : "bg-gray-400"
                 } p-2`}
@@ -116,6 +138,7 @@ const EventForm: React.FC = () => {
               </button>
               <button
                 type="button"
+                disabled
                 className={`w-1/2 rounded border border-gray-300 ${
                   event?.eventType === "arrival" ? "bg-gray-400" : "bg-gray-200"
                 } p-2`}
@@ -133,7 +156,8 @@ const EventForm: React.FC = () => {
             <input
               type="time"
               name="repeatTime"
-              value={formData.repeatTime}
+              disabled={event?.eventType !== "arrival"}
+              value={formData?.repeatTime || ""}
               onChange={handleInputChange}
               className="w-full rounded border border-gray-300 p-2"
             />
@@ -145,6 +169,7 @@ const EventForm: React.FC = () => {
             <input
               type="datetime-local"
               name="startAt"
+              min={new Date().toISOString().slice(0, 16)}
               value={formData.startAt}
               onChange={handleInputChange}
               className="w-full rounded border border-gray-300 p-2"
@@ -157,6 +182,7 @@ const EventForm: React.FC = () => {
             <input
               type="datetime-local"
               name="endAt"
+              min={minEndDate}
               value={formData.endAt}
               onChange={handleInputChange}
               className="w-full rounded border border-gray-300 p-2"
@@ -171,7 +197,8 @@ const EventForm: React.FC = () => {
                 type="checkbox"
                 className="form-checkbox"
                 checked={formData.repeatDay === "1111111"}
-                onChange={toggleAllDays} // Handle "매일" checkbox
+                onChange={toggleAllDays}
+                disabled={event?.eventType !== "arrival"}
               />
               <span className="text-nowrap text-sm">매일</span>
               <div className="flex space-x-2">
@@ -180,8 +207,9 @@ const EventForm: React.FC = () => {
                     <button
                       key={index}
                       type="button"
+                      disabled={event?.eventType !== "arrival"}
                       className={`shrink-0 rounded border border-gray-300 p-2 ${
-                        formData.repeatDay[index] === "1"
+                        formData.repeatDay && formData.repeatDay[index] === "1"
                           ? "bg-blue-200"
                           : "bg-gray-200"
                       }`}
@@ -211,6 +239,7 @@ const EventForm: React.FC = () => {
         <div className="mt-6">
           <button
             type="submit"
+            onClick={handleSubmit}
             className="w-full rounded bg-gray-400 py-3 font-bold text-white"
           >
             등록 신청

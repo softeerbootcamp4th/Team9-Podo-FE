@@ -39,7 +39,6 @@ const EventManagement: React.FC = () => {
         </div>
       </div>
 
-      {/* Event List Table */}
       <table className="w-full rounded-lg border bg-white">
         <thead>
           <tr className="border-b bg-gray-100">
