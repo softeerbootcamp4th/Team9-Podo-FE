@@ -23,15 +23,17 @@
               당신의 운전자 유형은?
             </p>
             <div
+              id="result-box"
               class="position-relative width-36-5-rem felx-center font-size-1-25-rem color-gray-50 inset-0 flex font-kia-signature-bold content-none gradient-mask"
             >
               <div
                 class="position-relative height-full width-full padding-x-2-5-rem padding-y-1-5-rem overflow-hidden flex-center"
               >
                 <p
+                  id="result-text"
                   class="font-size-2-rem font-kia-signature-bold text-glow-white"
                 >
-                  안전을 최우선시하는 베스트 드라이버
+                  <!-- 결과 텍스트가 여기에 표시됩니다 -->
                 </p>
               </div>
             </div>
@@ -41,11 +43,11 @@
               <div
                 class="position-relative height-36-25-rem width-94-rem flex-column gap-1-5-rem border-radius-2-5-rem border-color-white background-white background-opacity-10 padding-2-5-rem flex border-opacity-15 backdrop-blur-lg"
               >
-                <div class="font-size-1-5-rem flex font-kia-signature-bold">
-                  <span class="color-gray-400">복잡한 도심 속 </span
-                  ><span class="color-gray-50">안전하고 즐거운 주행경험</span
-                  ><span class="color-gray-400">을 제공하는 </span
-                  ><span class="color-gray-50">The 2025 셀토스</span>
+                <div
+                  id="description-text"
+                  class="font-size-1-5-rem flex font-kia-signature-bold"
+                >
+                  <!-- 설명 텍스트가 여기에 표시됩니다 -->
                 </div>
                 <hr class="height-1px background-gray-400" />
                 <div class="gap-1-5-rem justify-content-center flex">
@@ -56,21 +58,22 @@
                       1.
                     </p>
                     <img
-                      src="http://d368oyukqq562h.cloudfront.net/safety/safety_image1.png"
-                      alt="시나리오"
+                      id="scenario-image-1"
+                      src=""
+                      alt="시나리오 1"
                       class="height-15-25-rem width-28-75-rem border-radius-xl"
                     />
                     <p
+                      id="scenario-title-1"
                       class="font-size-1-25-rem color-gray-50 font-kia-signature-bold"
                     >
-                      차로 이탈 시 경고 / 자동 조향 보조
+                      <!-- 시나리오 1 제목 -->
                     </p>
                     <p
+                      id="scenario-subtitle-1"
                       class="width-26-rem font-weight-regular-1-rem color-gray-300 font-kia-signature"
                     >
-                      정신 없이 바쁜 일상 속에서도 셀토스는 일정 속도 이상 주행
-                      중 방향지시등 스위치 조작 없이 차로 이탈 시 경고 및 자동
-                      조향 보조 기능으로 사용자의 안전을 지켜줍니다.
+                      <!-- 시나리오 1 부제목 -->
                     </p>
                   </div>
                   <div class="flex-column gap-1-rem flex">
@@ -80,20 +83,22 @@
                       2.
                     </p>
                     <img
-                      src="http://d368oyukqq562h.cloudfront.net/safety/safety_image2.png"
-                      alt="시나리오"
+                      id="scenario-image-2"
+                      src=""
+                      alt="시나리오 2"
                       class="height-15-25-rem width-28-75-rem border-radius-xl"
                     />
                     <p
+                      id="scenario-title-2"
                       class="font-size-1-25-rem color-gray-50 font-kia-signature-bold"
                     >
-                      원격 제어 주차 및 출차
+                      <!-- 시나리오 2 제목 -->
                     </p>
                     <p
+                      id="scenario-subtitle-2"
                       class="width-26-rem font-weight-regular-1-rem color-gray-300 font-kia-signature"
                     >
-                      원격 제어를 통한 주차 및 출차 기능으로 사용자가 좁은
-                      골목길에서도 걱정 없이 주차할 수 있게 돕습니다.
+                      <!-- 시나리오 2 부제목 -->
                     </p>
                   </div>
                   <div class="flex-column gap-1-rem flex">
@@ -103,20 +108,22 @@
                       3.
                     </p>
                     <img
-                      src="http://d368oyukqq562h.cloudfront.net/safety/safety_image3.png"
-                      alt="시나리오"
+                      id="scenario-image-3"
+                      src=""
+                      alt="시나리오 3"
                       class="height-15-25-rem width-28-75-rem border-radius-xl"
                     />
                     <p
+                      id="scenario-title-3"
                       class="font-size-1-25-rem color-gray-50 font-kia-signature-bold"
                     >
-                      네비게이션 기반 크루즈 컨트롤
+                      <!-- 시나리오 3 제목 -->
                     </p>
                     <p
+                      id="scenario-subtitle-3"
                       class="width-26-rem font-weight-regular-1-rem color-gray-300 font-kia-signature"
                     >
-                      네비게이션 기반 크루즈 컨트롤을 통해 고속도로 주행 시,
-                      도로 상황에 맞춰 안전한 속도로 주행하도록 도와줍니다.
+                      <!-- 시나리오 3 부제목 -->
                     </p>
                   </div>
                 </div>
@@ -150,5 +157,113 @@
         </div>
       </div>
     </div>
+
+    <script>
+      // DescriptionInterface 타입 정의
+      class DescriptionInterface {
+        constructor(content, highlighted) {
+          this.content = content;
+          this.highlighted = highlighted;
+        }
+      }
+
+      // getDescriptionList 함수 구현
+      function getDescriptionList(description) {
+        const descriptionList = description.split("/");
+        let newDescriptionList = [];
+
+        descriptionList.forEach((element) => {
+          if (element[0] === "h") {
+            newDescriptionList.push(
+              new DescriptionInterface(element.substring(1), true),
+            );
+          } else if (element[0] === "d") {
+            newDescriptionList.push(
+              new DescriptionInterface(element.substring(1), false),
+            );
+          }
+        });
+
+        return newDescriptionList;
+      }
+
+      // 예제 resultData 객체
+      const resultData = {
+        isSuccess: true,
+        code: 200,
+        message: "Success",
+        result: {
+          resultId: 1,
+          result: "안전을 최우선시하는 베스트 드라이버",
+          type: "driver",
+          description:
+            "/d복잡한 도심 속 /h안전하고 즐거운 주행경험 /d을 제공하는 /hThe 2025 셀토스",
+          scenarioList: [
+            {
+              title: "차로 이탈 시 경고 / 자동 조향 보조",
+              subtitle:
+                "정신 없이 바쁜 일상 속에서도 셀토스는 일정 속도 이상 주행 중 방향지시등 스위치 조작 없이 차로 이탈 시 경고 및 자동 조향 보조 기능으로 사용자의 안전을 지켜줍니다.",
+              image:
+                "http://d368oyukqq562h.cloudfront.net/safety/safety_image1.png",
+            },
+            {
+              title: "원격 제어 주차 및 출차",
+              subtitle:
+                "원격 제어를 통한 주차 및 출차 기능으로 사용자가 좁은 골목길에서도 걱정 없이 주차할 수 있게 돕습니다.",
+              image:
+                "http://d368oyukqq562h.cloudfront.net/safety/safety_image2.png",
+            },
+            {
+              title: "네비게이션 기반 크루즈 컨트롤",
+              subtitle:
+                "네비게이션 기반 크루즈 컨트롤을 통해 고속도로 주행 시, 도로 상황에 맞춰 안전한 속도로 주행하도록 도와줍니다.",
+              image:
+                "http://d368oyukqq562h.cloudfront.net/safety/safety_image3.png",
+            },
+          ],
+        },
+      };
+
+      // 페이지의 텍스트와 이미지를 채우는 함수
+      function populateContent(resultData) {
+        if (!resultData.isSuccess) {
+          console.error("Failed to fetch data");
+          return;
+        }
+
+        // 결과 텍스트 설정
+        document.getElementById("result-text").textContent =
+          resultData.result.result;
+
+        // 설명 텍스트 설정
+        const descriptionTextElement =
+          document.getElementById("description-text");
+        const descriptionList = getDescriptionList(
+          resultData.result.description,
+        );
+
+        descriptionTextElement.innerHTML = descriptionList
+          .map((item) => {
+            return `<span class="${item.highlighted ? "color-gray-50" : "color-gray-400"}">${item.content} </span>`;
+          })
+          .join("");
+
+        // 시나리오 목록 설정
+        resultData.result.scenarioList.forEach((scenario, index) => {
+          document.getElementById(`scenario-title-${index + 1}`).textContent =
+            scenario.title;
+          document.getElementById(
+            `scenario-subtitle-${index + 1}`,
+          ).textContent = scenario.subtitle;
+          document.getElementById(`scenario-image-${index + 1}`).src =
+            scenario.image;
+        });
+      }
+
+      // 페이지가 로드되면 콘텐츠를 채움
+      document.addEventListener("DOMContentLoaded", function () {
+        populateContent(resultData);
+      });
+    </script>
   </body>
 </html>

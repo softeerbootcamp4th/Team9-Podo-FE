@@ -31,10 +31,10 @@ export const Main = {
     isAuth: false,
     isFCFSEnd: false,
     description: [
-      "복잡한 도심 속 ",
-      "안전하고 즐거운 주행경험",
-      "을 제공하는 ",
-      "The 2025 셀토스",
+      "/d복잡한 도심 속 ",
+      "/h안전하고 즐거운 주행경험",
+      "/d을 제공하는 ",
+      "/hThe 2025 셀토스",
     ],
     scenarioList: [
       {
