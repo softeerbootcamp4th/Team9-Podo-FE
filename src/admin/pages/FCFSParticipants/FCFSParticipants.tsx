@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FCFSWinnersPopup from "../../components/FCFSWinnersPopup/FCFSWinnersPopup";
 import { FCFSParticipant } from "../../types/event";
+import { PAGE_SIZE } from "../../constants/constants";
 
 type FCFSParticipantsProps = {
   participants: FCFSParticipant[];
@@ -9,51 +10,6 @@ type FCFSParticipantsProps = {
 };
 const onDateChange = () => {};
 const selectedDate = "2024.08.19";
-
-const participants = [
-  {
-    id: 1,
-    name: "김연진",
-    phoneNum: "01029292929",
-    rank: 1,
-    createdAt: "2024-09-02 15:00:01",
-    reward: "당첨",
-  },
-  {
-    id: 2,
-    name: "정서린",
-    phoneNum: "01038383838",
-    rank: 1,
-    createdAt: "2024-09-02 15:00:03",
-    reward: "당첨",
-  },
-  {
-    id: 3,
-    name: "권혁진",
-    phoneNum: "01047474747",
-    rank: 1,
-    createdAt: "2024-09-02 15:00:30",
-    reward: "당첨",
-  },
-  {
-    id: 4,
-    name: "박수현",
-    phoneNum: "01058585858",
-    rank: 2,
-    createdAt: "2024-09-03 15:01:00",
-    reward: "당첨",
-  },
-  {
-    id: 5,
-    name: "이민수",
-    phoneNum: "01069696969",
-    rank: 0,
-    createdAt: "2024-09-03 15:02:00",
-    reward: "낙첨",
-  },
-];
-
-const PAGE_SIZE = 10;
 
 const FCFSParticipants = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -185,3 +141,46 @@ const FCFSParticipants = () => {
 };
 
 export default FCFSParticipants;
+
+const participants = [
+  {
+    id: 1,
+    name: "김연진",
+    phoneNum: "01029292929",
+    rank: 1,
+    createdAt: "2024-09-02 15:00:01",
+    reward: "당첨",
+  },
+  {
+    id: 2,
+    name: "정서린",
+    phoneNum: "01038383838",
+    rank: 1,
+    createdAt: "2024-09-02 15:00:03",
+    reward: "당첨",
+  },
+  {
+    id: 3,
+    name: "권혁진",
+    phoneNum: "01047474747",
+    rank: 1,
+    createdAt: "2024-09-02 15:00:30",
+    reward: "당첨",
+  },
+  {
+    id: 4,
+    name: "박수현",
+    phoneNum: "01058585858",
+    rank: 2,
+    createdAt: "2024-09-03 15:01:00",
+    reward: "당첨",
+  },
+  {
+    id: 5,
+    name: "이민수",
+    phoneNum: "01069696969",
+    rank: 0,
+    createdAt: "2024-09-03 15:02:00",
+    reward: "낙첨",
+  },
+];
