@@ -22,14 +22,7 @@ const EventManagement: React.FC = () => {
         <h1 className="text-2xl font-bold">이벤트 리스트</h1>
       </div>
 
-      <div className="flex justify-between">
-        <button
-          className="h-14 w-48 shrink-0 rounded bg-gray-400 px-4 py-2 text-white"
-          onClick={() => navigate("/create-event")}
-        >
-          이벤트 추가
-        </button>
-
+      <div className="flex justify-end">
         <div className="mb-4 flex shrink-0 justify-end">
           <input
             type="text"
