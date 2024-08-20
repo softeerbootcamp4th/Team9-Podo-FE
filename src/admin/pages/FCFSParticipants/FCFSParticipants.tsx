@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FCFSWinnersPopup from "../../components/FCFSWinnersPopup/FCFSWinnersPopup";
 
-type Participant = {
+type FCFSParticipant = {
   id: number;
   name: string;
   phoneNum: string;
@@ -11,14 +11,14 @@ type Participant = {
 };
 
 type FCFSParticipantsProps = {
-  participants: Participant[];
+  participants: FCFSParticipant[];
   selectedDate: string;
   onDateChange: (date: string) => void;
 };
 const onDateChange = () => {};
 const selectedDate = "2024.08.19";
 
-const participants: Participant[] = [
+const participants = [
   {
     id: 1,
     name: "김연진",

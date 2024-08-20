@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import RandomWinnersPopup from "../../components/RandomWinnersPopup/RandomWinnersPopup";
 
-type Participant = {
+type RandomParticipant = {
   id: number;
   name: string;
   phoneNum: string;
   createAt: string;
-  기대평작성여부: string;
-  기대평: string;
+  comment: string;
   reward: string;
-  rank: string;
 };
 
 type RandomParticipantsProps = {
-  participants: Participant[];
+  participants: RandomParticipant[];
 };
 
 const PAGE_SIZE = 10;
@@ -99,15 +97,15 @@ const RandomParticipants = () => {
                     {participant.createAt}
                   </td>
                   <td className="border-r p-2 text-center">
-                    {participant.기대평작성여부}
+                    {participant.comment === null ? "N" : "Y"}
                   </td>
                   <td className="w-96 truncate border-r p-2 text-center">
-                    {participant.기대평}
+                    {participant.comment ?? "-"}
                   </td>
                   <td className="border-r p-2 text-center">
-                    {participant.reward}
+                    {participant.reward ?? "-"}
                   </td>
-                  <td className="p-2 text-center">{participant.rank}</td>
+                  <td className="p-2 text-center">-</td>
                 </tr>
               ))}
             </tbody>
@@ -154,219 +152,175 @@ const participants = [
     name: "김연진",
     phoneNum: "01029292929",
     createAt: "2024-09-02 15:00:01",
-    기대평작성여부: "Y",
-    기대평: "2025 셀럽 이벤트 정말 기대됩니다!",
-    reward: "-",
-    rank: "-",
+    comment: "2025 셀럽 이벤트 정말 기대됩니다!",
+    reward: null,
   },
   {
     id: 2,
     name: "정서린",
     phoneNum: "01038383838",
     createAt: "2024-09-02 15:00:03",
-    기대평작성여부: "N",
-    기대평: "-",
-    reward: "-",
-    rank: "-",
+    comment: null,
+    reward: null,
   },
   {
     id: 3,
     name: "권혁진",
     phoneNum: "01047474747",
     createAt: "2024-09-02 15:00:30",
-    기대평작성여부: "N",
-    기대평: "세련된 디자인 기대돼요!",
-    reward: "-",
-    rank: "-",
+    comment: "세련된 디자인 기대돼요!",
+    reward: null,
   },
   {
     id: 4,
     name: "박수현",
     phoneNum: "01058585858",
     createAt: "2024-09-02 15:01:00",
-    기대평작성여부: "Y",
-    기대평: "매년 기다려지는 행사입니다!",
-    reward: "-",
-    rank: "-",
+    comment: "매년 기다려지는 행사입니다!",
+    reward: null,
   },
   {
     id: 5,
     name: "이민수",
     phoneNum: "01069696969",
     createAt: "2024-09-02 15:02:00",
-    기대평작성여부: "Y",
-    기대평: "참여하게 되어 기쁩니다!",
-    reward: "-",
-    rank: "-",
+    comment: "참여하게 되어 기쁩니다!",
+    reward: null,
   },
   {
     id: 6,
     name: "홍길동",
     phoneNum: "01010101010",
     createAt: "2024-09-02 15:03:00",
-    기대평작성여부: "Y",
-    기대평: "항상 기대되는 행사입니다!",
-    reward: "-",
-    rank: "-",
+    comment: "항상 기대되는 행사입니다!",
+    reward: null,
   },
   {
     id: 7,
     name: "이영희",
     phoneNum: "01020202020",
     createAt: "2024-09-02 15:04:00",
-    기대평작성여부: "N",
-    기대평: "-",
-    reward: "-",
-    rank: "-",
+    comment: "-",
+    reward: null,
   },
   {
     id: 8,
     name: "박지수",
     phoneNum: "01030303030",
     createAt: "2024-09-02 15:05:00",
-    기대평작성여부: "Y",
-    기대평: "재밌는 이벤트 기대할게요!",
-    reward: "-",
-    rank: "-",
+    comment: "재밌는 이벤트 기대할게요!",
+    reward: null,
   },
   {
     id: 9,
     name: "최민호",
     phoneNum: "01040404040",
     createAt: "2024-09-02 15:06:00",
-    기대평작성여부: "N",
-    기대평: "-",
-    reward: "-",
-    rank: "-",
+    comment: "-",
+    reward: null,
   },
   {
     id: 10,
     name: "김민지",
     phoneNum: "01050505050",
     createAt: "2024-09-02 15:07:00",
-    기대평작성여부: "Y",
-    기대평: "처음 참여하는 이벤트라 기대됩니다!",
-    reward: "-",
-    rank: "-",
+    comment: "처음 참여하는 이벤트라 기대됩니다!",
+    reward: null,
   },
   {
     id: 11,
     name: "한수연",
     phoneNum: "01060606060",
     createAt: "2024-09-02 15:08:00",
-    기대평작성여부: "Y",
-    기대평: "즐거운 시간이 되길 바라요!",
-    reward: "-",
-    rank: "-",
+    comment: "즐거운 시간이 되길 바라요!",
+    reward: null,
   },
   {
     id: 12,
     name: "김준호",
     phoneNum: "01070707070",
     createAt: "2024-09-02 15:09:00",
-    기대평작성여부: "N",
-    기대평: "-",
-    reward: "-",
-    rank: "-",
+    comment: "-",
+    reward: null,
   },
   {
     id: 13,
     name: "이하은",
     phoneNum: "01080808080",
     createAt: "2024-09-02 15:10:00",
-    기대평작성여부: "Y",
-    기대평: "이벤트가 너무 기대돼요!",
-    reward: "-",
-    rank: "-",
+    comment: "이벤트가 너무 기대돼요!",
+    reward: null,
   },
   {
     id: 14,
     name: "정민호",
     phoneNum: "01090909090",
     createAt: "2024-09-02 15:11:00",
-    기대평작성여부: "Y",
-    기대평: "매년 참여하는 이벤트입니다!",
-    reward: "-",
-    rank: "-",
+    comment: "매년 참여하는 이벤트입니다!",
+    reward: null,
   },
   {
     id: 15,
     name: "서유리",
     phoneNum: "01011112222",
     createAt: "2024-09-02 15:12:00",
-    기대평작성여부: "N",
-    기대평: "-",
-    reward: "-",
-    rank: "-",
+    comment: "-",
+    reward: null,
   },
   {
     id: 16,
     name: "김현수",
     phoneNum: "01033334444",
     createAt: "2024-09-02 15:13:00",
-    기대평작성여부: "Y",
-    기대평: "이벤트 준비해주셔서 감사합니다!",
-    reward: "-",
-    rank: "-",
+    comment: "이벤트 준비해주셔서 감사합니다!",
+    reward: null,
   },
   {
     id: 17,
     name: "이지훈",
     phoneNum: "01055556666",
     createAt: "2024-09-02 15:14:00",
-    기대평작성여부: "Y",
-    기대평: "즐거운 이벤트 기대합니다!",
-    reward: "-",
-    rank: "-",
+    comment: "즐거운 이벤트 기대합니다!",
+    reward: null,
   },
   {
     id: 18,
     name: "박준영",
     phoneNum: "01077778888",
     createAt: "2024-09-02 15:15:00",
-    기대평작성여부: "N",
-    기대평: "-",
-    reward: "-",
-    rank: "-",
+    comment: "-",
+    reward: null,
   },
   {
     id: 19,
     name: "김지우",
     phoneNum: "01099990000",
     createAt: "2024-09-02 15:16:00",
-    기대평작성여부: "Y",
-    기대평: "항상 기대되는 이벤트입니다!",
-    reward: "-",
-    rank: "-",
+    comment: "항상 기대되는 이벤트입니다!",
+    reward: null,
   },
   {
     id: 20,
     name: "윤서준",
     phoneNum: "01012345678",
     createAt: "2024-09-02 15:17:00",
-    기대평작성여부: "Y",
-    기대평: "잘 부탁드립니다!",
-    reward: "-",
-    rank: "-",
+    comment: "잘 부탁드립니다!",
+    reward: null,
   },
   {
     id: 21,
     name: "최다은",
     phoneNum: "01087654321",
     createAt: "2024-09-02 15:18:00",
-    기대평작성여부: "N",
-    기대평: "-",
-    reward: "-",
-    rank: "-",
+    comment: "-",
+    reward: null,
   },
   {
     id: 22,
     name: "황수민",
     phoneNum: "01011223344",
     createAt: "2024-09-02 15:19:00",
-    기대평작성여부: "Y",
-    기대평: "재미있게 즐길게요!",
-    reward: "-",
-    rank: "-",
+    comment: "재미있게 즐길게요!",
+    reward: null,
   },
 ];
