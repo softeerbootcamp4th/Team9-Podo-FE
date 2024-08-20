@@ -17,7 +17,7 @@ const initialState: Record<InsideInfo, boolean> = {
 };
 
 const InsideGuide = () => {
-  const [showText, setShowText] = useState(false);
+  const [showText, setShowText] = useState(true);
   const [isAnimation, setIsAnimation] = useState(false);
   const [descriptionStates, setDescriptionStates] = useState(initialState);
   const [mouseInfo, setMouseInfo] = useState({ x: 0, y: 0 });
