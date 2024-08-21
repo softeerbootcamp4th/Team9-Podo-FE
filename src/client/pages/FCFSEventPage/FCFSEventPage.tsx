@@ -12,8 +12,10 @@ import AuthTooltip from "../../components/common/AuthTooltip/AuthTooltip";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router";
 import { useAppContext } from "../../providers/AppProvider";
+import { useErrorBoundary } from "react-error-boundary";
 
 const FCFSEventPage = () => {
+  const { showBoundary } = useErrorBoundary();
   const [quizInfo, setQuizInfo] = useState<QuizInfo | null>(null);
   const navigate = useNavigate();
   const { isAuth, setIsAuth } = useAppContext();
@@ -29,7 +31,7 @@ const FCFSEventPage = () => {
       fetchData();
       checkToken();
     } catch (error) {
-      throw error;
+      showBoundary(error);
     }
   }, []);
 

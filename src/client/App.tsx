@@ -1,12 +1,12 @@
 import React from "react";
-import { RouterProvider, Routes, useLocation } from "react-router-dom";
 import Router from "./router/router";
 import { AppProvider } from "./providers/AppProvider";
-import ErrorBoundary from "./providers/ErrorBoundary";
+import { ErrorBoundary } from "react-error-boundary";
+import FallbackPage from "./pages/fallbackPage/FallbackPage";
 
 const App = () => {
   return (
-    <ErrorBoundary>
+    <ErrorBoundary FallbackComponent={FallbackPage}>
       <AppProvider>
         <Router />
       </AppProvider>

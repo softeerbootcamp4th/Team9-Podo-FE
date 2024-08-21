@@ -20,9 +20,12 @@ import { useNavigate } from "react-router";
 import FCFSNoticeBanner from "../../../common/assets/svg/FCFSNoticeBanner";
 import { NOTICE } from "../../constants/FCFSEventResultData";
 import Glow from "../../components/common/Glow/Glow";
+import Confetti from "react-confetti";
+import { useErrorBoundary } from "react-error-boundary";
 
 const FCFSEventResultPage = () => {
   const navigate = useNavigate();
+  const { showBoundary } = useErrorBoundary();
 
   const [isWin, setIsWin] = useState(false);
   const [isResultVisible, setIsResultVisible] = useState(false);
@@ -61,12 +64,16 @@ const FCFSEventResultPage = () => {
   };
 
   const handleButtonClick = () => {
-    fetchData();
-    setIsResultVisible(true);
-    carStartAnimation();
-    textStartAnimation();
-    keyStartAnimation();
-    buttonStartAnimation();
+    try {
+      fetchData();
+      setIsResultVisible(true);
+      carStartAnimation();
+      textStartAnimation();
+      keyStartAnimation();
+      buttonStartAnimation();
+    } catch (error) {
+      showBoundary(error);
+    }
   };
 
   useEffect(() => {
@@ -77,6 +84,9 @@ const FCFSEventResultPage = () => {
 
   return (
     <div className="relative flex h-screen w-screen flex-col items-center justify-start overflow-hidden bg-black">
+      {isWin && isResultVisible && (
+        <Confetti width={window.innerWidth} height={window.innerHeight} />
+      )}
       <div>
         <Glow />
       </div>
@@ -94,9 +104,11 @@ const FCFSEventResultPage = () => {
         src={FCFSCar}
         alt="seltos-car"
       />
-      <div className="absolute top-[23rem] z-0 font-kia-signature-bold text-8xl text-white">
-        {isWin ? "당첨을 축하합니다!" : "아쉽지만 다음 기회에..."}
-      </div>
+      {isResultVisible && (
+        <div className="absolute top-[23rem] z-0 font-kia-signature-bold text-8xl text-white">
+          {isWin ? "당첨을 축하합니다!" : "아쉽지만 다음 기회에..."}
+        </div>
+      )}
       {isResultVisible && (
         <>
           <div ref={buttonRef} className="absolute top-[32rem] mt-[4.5rem]">

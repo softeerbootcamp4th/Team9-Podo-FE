@@ -1,9 +1,9 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import RandomExpectations from "./RandomExpectations";
 import { ERROR_MSG } from "../../../constants/RandomEventData";
 import { postComment } from "../../../api/fetch";
+import { render, screen } from "../../../utils/TestUtils";
 
 jest.mock("../../../api/fetch", () => ({
   postComment: jest.fn(),

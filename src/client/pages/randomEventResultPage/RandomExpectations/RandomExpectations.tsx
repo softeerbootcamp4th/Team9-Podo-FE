@@ -2,18 +2,24 @@ import React, { ChangeEvent, forwardRef, useState } from "react";
 import Toast from "../../../components/common/Toast/Toast";
 import { ERROR_MSG } from "../../../constants/RandomEventData";
 import { postComment } from "../../../api/fetch";
+import { useErrorBoundary } from "react-error-boundary";
 
 const RandomExpectations = forwardRef<HTMLDivElement>((props, ref) => {
   const [error, setError] = useState<"short" | "inappropriate" | null>(null);
   const [expectation, setExpectation] = useState<string>("");
   const [toastKey, setToastKey] = useState(0);
+  const { showBoundary } = useErrorBoundary();
 
   const onClickHandler = () => {
     if (expectation.length < 20) setError("short");
     else {
-      setError(null);
-      postComment(expectation);
-      setExpectation("");
+      try {
+        setError(null);
+        postComment(expectation);
+        setExpectation("");
+      } catch (error) {
+        showBoundary(error);
+      }
     }
     setToastKey((current) => current + 1);
   };

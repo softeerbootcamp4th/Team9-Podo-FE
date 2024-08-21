@@ -11,15 +11,18 @@ import {
   TEXT_CONTENT,
   TOOLTIP_CONTENT,
 } from "../../../constants/RandomEventData";
+import { LONG_BUTTON_TEXT } from "../../../constants/common";
+import { useErrorBoundary } from "react-error-boundary";
 
 const RandomMainSection = ({
   resultTypeId,
   description,
   scenarioList,
 }: RandomMainInterface) => {
-  const { isAuth, isRandomEnd } = useAppContext();
+  const { isAuth, isRandomEnd, setIsRandomEnd } = useAppContext();
   const navigate = useNavigate();
   const location = useLocation();
+  const { showBoundary } = useErrorBoundary();
 
   const [isCopied, setIsCopied] = useState(false);
   const [shareUrl, setShareUrl] = useState("https://www.hyundaiseltos.site/");
@@ -40,11 +43,21 @@ const RandomMainSection = ({
 
   const handleEventParticipation = async () => {
     if (isAuth) {
-      const { result } = await postRandomResult(resultTypeId);
-      setShareUrl(result.uniqueLink);
+      try {
+        const { result } = await postRandomResult(resultTypeId);
+        setShareUrl(result.uniqueLink);
+      } catch (error) {
+        showBoundary(error);
+      }
     } else {
       navigate("/auth-modal", { state: { background: location, event: 2 } });
     }
+  };
+
+  const setText = () => {
+    if (isAuth === false) return LONG_BUTTON_TEXT.NO_AUTH;
+    if (isRandomEnd === true) return LONG_BUTTON_TEXT.EVENT_END;
+    else return LONG_BUTTON_TEXT.START_EVENT;
   };
 
   return (
@@ -106,11 +119,9 @@ const RandomMainSection = ({
         <Button
           size="long"
           onClick={handleEventParticipation}
-          defaultText={
-            isAuth ? "이벤트 참여하기" : "본인인증하고 이벤트 참여하기"
-          }
+          defaultText={setText()}
           disabledText="이벤트 참여 완료"
-          isEnabled={!isRandomEnd && !isAuth}
+          isEnabled={!isAuth && !isRandomEnd}
         />
       </div>
     </div>

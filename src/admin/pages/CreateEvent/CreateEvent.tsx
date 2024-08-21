@@ -1,5 +1,5 @@
 import React, { MouseEvent, useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { EventInfo, EventPostInfo } from "../../types/event";
 import { putFCFSEvent, putRandomEvent } from "../../api/fetch";
 
@@ -16,6 +16,7 @@ const convertToEventPostInfo = (event: EventInfo): EventPostInfo => {
 };
 
 const EventForm: React.FC = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const event = location.state?.event as EventInfo | undefined;
 
@@ -59,6 +60,7 @@ const EventForm: React.FC = () => {
     e.preventDefault();
     if (event?.eventType === "arrival") putData(putFCFSEvent);
     else if (event?.eventType === "lots") putData(putRandomEvent);
+    navigate("/");
   };
 
   const putData = async (putApi: Function) => {

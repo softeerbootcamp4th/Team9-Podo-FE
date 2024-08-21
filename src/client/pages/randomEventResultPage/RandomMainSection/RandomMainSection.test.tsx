@@ -1,9 +1,9 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import RandomMainSection from "./RandomMainSection";
 import { useAppContext } from "../../../providers/AppProvider";
 import { postRandomResult } from "../../../api/fetch";
+import { render, screen, waitFor } from "../../../utils/TestUtils";
 
 const mockNavigate = jest.fn();
 const mockLocation = { pathname: "/test-path" };

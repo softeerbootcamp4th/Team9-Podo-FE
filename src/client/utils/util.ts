@@ -27,3 +27,21 @@ export const getDescriptionList = (
 
   return newDiscriptionList;
 };
+
+export function calculateLeftTime() {
+  const now = new Date();
+  const noon = new Date();
+
+  noon.setHours(13, 0, 0, 0);
+
+  return noon.getTime() - now.getTime();
+}
+
+export function calculateLeftTimeToEnd() {
+  const now = new Date();
+  const noon = new Date();
+
+  noon.setHours(14, 0, 0, 0);
+
+  return noon.getTime() - now.getTime();
+}

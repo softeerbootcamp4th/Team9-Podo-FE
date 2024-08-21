@@ -132,8 +132,6 @@ export const fetchInterceptor = async <T>(
 
   if (jsonResponse.code === HTTP_STATUS_CODE.UNAUTHORIZED) {
     throw new Error(jsonResponse.message);
-  } else if (jsonResponse.code === HTTP_STATUS_CODE.FORBIDDEN) {
-    throw new Error(jsonResponse.message);
   } else if (jsonResponse.code === HTTP_STATUS_CODE.NOT_FOUND) {
     throw new Error(jsonResponse.message);
   } else if (jsonResponse.code === HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR) {

@@ -57,10 +57,10 @@ const ColorPallete = ({ index, parentRef }: ColorPalleteProps) => {
         })}
       </nav>
       <div className="flex flex-col items-center">
-        <p className="mb-2 font-kia-signature-bold text-4xl text-black/70">
+        <p className="mb-2 font-kia-signature-bold text-4xl text-white/70">
           {colorInfoData[index].koTitle}
         </p>
-        <p className="font-kia-signature text-xl text-black/20">
+        <p className="font-kia-signature text-xl text-white/20">
           {colorInfoData[index].engTitle}
         </p>
       </div>
