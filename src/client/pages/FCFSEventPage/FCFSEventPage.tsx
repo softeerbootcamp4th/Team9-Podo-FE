@@ -36,6 +36,7 @@ const FCFSEventPage = () => {
       }
     };
     tryFetch();
+    if (!isAuth) navigate("/");
   }, []);
 
   const fetchData = async () => {
@@ -49,7 +50,6 @@ const FCFSEventPage = () => {
     Cookies.set("auth", response.result.accessToken, { expires: 1 / 24 });
   };
 
-  if (!isAuth) navigate("/");
   return (
     <div className="relative flex h-screen w-screen flex-col items-center overflow-hidden bg-black">
       <HomeButton />
