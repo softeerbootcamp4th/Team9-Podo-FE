@@ -4,8 +4,7 @@ import CreateEvent from "../pages/CreateEvent/CreateEvent";
 import EventManagement from "../pages/EventManagement/EventManagement";
 import FCFSParticipants from "../pages/FCFSParticipants/FCFSParticipants";
 import RandomParticipants from "../pages/RandomParticipants/RandomParticipants";
-import FCFSWinnersPopup from "../components/FCFSWinnersPopup/FCFSWinnersPopup";
-import RandomWinnersPopup from "../components/RandomWinnersPopup/RandomWinnersPopup";
+import LogManagement from "../pages/LogManagement/LogManagement";
 
 const RouterWithModal = () => {
   return (
@@ -15,6 +14,7 @@ const RouterWithModal = () => {
         <Route path="/create-event" element={<CreateEvent />} />
         <Route path="/fcfs-participants" element={<FCFSParticipants />} />
         <Route path="/random-participants" element={<RandomParticipants />} />
+        <Route path="/log" element={<LogManagement />} />
         <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </>

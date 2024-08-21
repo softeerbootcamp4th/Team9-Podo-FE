@@ -30,6 +30,19 @@ export interface EventPostInfo {
   tagImage: string;
 }
 
+export interface fetchLogForm {
+  totalPage: number;
+  currentPage: number;
+  adminLogList: LogInfo[];
+}
+
+export interface LogInfo {
+  id: number;
+  requestPath: string;
+  requestHeader: string;
+  requestBody: string;
+}
+
 export interface FCFSParticipant {
   id: number;
   name: string;
