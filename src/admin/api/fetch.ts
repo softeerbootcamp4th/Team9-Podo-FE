@@ -4,6 +4,7 @@ import {
   FCFSParticipant,
   RandomParticipant,
   EventPostInfo,
+  RewardInterface,
 } from "../types/event";
 
 export const fetchEventList = async (): Promise<
@@ -68,4 +69,32 @@ export const fetchRandomParticipants = async (
   const response = await fetch(`/admin/lots/applicationList?page=${page}`);
 
   return response.json();
+};
+
+export const putFCFSReward = async (
+  rewardInfo: RewardInterface,
+): Promise<ApiResponse<RewardInterface>> => {
+  const response = await fetch("/admin/arrival/rewardconfig", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(rewardInfo),
+  });
+
+  return await response.json();
+};
+
+export const putRandomReward = async (
+  rewardInfo: RewardInterface,
+): Promise<ApiResponse<RewardInterface>> => {
+  const response = await fetch("/admin/lots/rewardconfig", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(rewardInfo),
+  });
+
+  return await response.json();
 };

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { putFCFSEvent, putFCFSReward } from "../../api/fetch";
 
 interface FCFSPopupInterface {
   modalHandler: () => void;
@@ -17,10 +18,10 @@ const handlePropagation = (event: React.MouseEvent<HTMLDivElement>) => {
 
 const FCFSWinnersPopup = ({ modalHandler }: FCFSPopupInterface) => {
   const [totalWinners, setTotalWinners] = useState(100);
-  const [items, setItems] = useState([{ reward: "", numWinners: "", rank: 1 }]);
+  const [items, setItems] = useState([{ reward: "", numWinners: 0, rank: 1 }]);
 
   const addItem = (index: number) => {
-    setItems([...items, { reward: "", numWinners: "", rank: index }]);
+    setItems([...items, { reward: "", numWinners: 0, rank: index }]);
   };
 
   const handleChange = ({ index, field, value }: ItemChangesInterface) => {
@@ -34,7 +35,7 @@ const FCFSWinnersPopup = ({ modalHandler }: FCFSPopupInterface) => {
     setTotalWinners(value);
   };
 
-  const postRewards = () => {
+  const postRewards = async () => {
     const data = {
       eventRewardList: items,
       eventWeight: {
@@ -42,7 +43,8 @@ const FCFSWinnersPopup = ({ modalHandler }: FCFSPopupInterface) => {
         condition: "string",
       },
     };
-    //data 백으로 전송
+    const response = await putFCFSReward(data);
+    console.log(response);
   };
 
   return (
@@ -111,7 +113,10 @@ const FCFSWinnersPopup = ({ modalHandler }: FCFSPopupInterface) => {
         <div className="text-right">
           <button
             className="rounded bg-gray-500 px-4 py-2 text-white"
-            onClick={postRewards}
+            onClick={() => {
+              postRewards();
+              modalHandler();
+            }}
           >
             설정 완료
           </button>

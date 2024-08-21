@@ -47,3 +47,19 @@ export interface RandomParticipant {
   comment: string;
   reward: string;
 }
+
+interface EventRewardInterface {
+  rank: number;
+  numWinners: number;
+  reward: string;
+}
+
+interface EventWeightInterface {
+  times: number;
+  condition: string;
+}
+
+export interface RewardInterface {
+  eventRewardList: EventRewardInterface[];
+  eventWeight: EventWeightInterface;
+}
