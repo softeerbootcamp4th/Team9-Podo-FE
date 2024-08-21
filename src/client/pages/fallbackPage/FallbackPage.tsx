@@ -10,7 +10,7 @@ const FallbackPage = ({ error, resetErrorBoundary }: FallbackProps) => {
       <GlowBackground />
       <HomeButton />
       <div className="flex h-full w-full flex-col gap-20 flex-center">
-        <h2 className="font-kia-signature-bold text-8xl text-gray-50">
+        <h2 className="font-kia-signature-bold text-5xl text-gray-50">
           요청에 오류가 발생했습니다.
         </h2>
         <Button

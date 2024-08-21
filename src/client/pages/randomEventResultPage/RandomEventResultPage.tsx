@@ -11,6 +11,8 @@ import { RandomQuizResponseInterface } from "../../types/RandomEvent";
 import { getDescriptionList } from "../../utils/util";
 import { LONG_BUTTON_TEXT } from "../../constants/common";
 import { useErrorBoundary } from "react-error-boundary";
+import { checkAndRefreshToken } from "../../api/fetch";
+import Cookies from "js-cookie";
 
 const ANIMATION_DURATION = 5000;
 const ROULETTE_END_DELAY = 6000;
@@ -35,7 +37,7 @@ const RandomEventResultPage = () => {
     useState<RandomQuizResponseInterface | null>(null);
   const randomExpectationsRef = useRef<HTMLDivElement>(null);
 
-  const { isAuth } = appContext;
+  const { isAuth, setIsAuth } = appContext;
   const answer = location.state;
 
   const isRouletteEnd = timeElapsed >= ROULETTE_END_DELAY;
@@ -65,6 +67,7 @@ const RandomEventResultPage = () => {
     const tryFetch = async () => {
       try {
         await fetchData();
+        await checkToken();
       } catch (error) {
         showBoundary(error);
       }
@@ -80,6 +83,12 @@ const RandomEventResultPage = () => {
       });
     }
   }, [isAuth]);
+
+  const checkToken = async () => {
+    const response = await checkAndRefreshToken();
+    setIsAuth(true);
+    Cookies.set("auth", response.result.accessToken, { expires: 1 / 24 });
+  };
 
   if (resultData === null) return null;
 
