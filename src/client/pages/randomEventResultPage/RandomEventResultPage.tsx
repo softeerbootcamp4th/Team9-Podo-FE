@@ -7,12 +7,16 @@ import RandomExpectations from "./RandomExpectations/RandomExpectations";
 import Roulette from "../../components/randomEventPage/Roulette/Roulette";
 import car from "../../../common/assets/images/mainCar.png";
 import { DRIVER_TYPE_LIST } from "../../constants/RandomEventData";
-import { RandomQuizResponseInterface } from "../../types/RandomEvent";
+import {
+  AnswerInterface,
+  RandomQuizResponseInterface,
+} from "../../types/RandomEvent";
 import { getDescriptionList } from "../../utils/util";
 import { LONG_BUTTON_TEXT } from "../../constants/common";
 import { useErrorBoundary } from "react-error-boundary";
 import { checkAndRefreshToken } from "../../api/fetch";
 import Cookies from "js-cookie";
+import GlowBackground from "../../components/common/GlowBackground/GlowBackground";
 
 const ANIMATION_DURATION = 5000;
 const ROULETTE_END_DELAY = 6000;
@@ -38,7 +42,17 @@ const RandomEventResultPage = () => {
   const randomExpectationsRef = useRef<HTMLDivElement>(null);
 
   const { isAuth, setIsAuth } = appContext;
-  const answer = location.state;
+  const [answer, setAnswer] = useState<AnswerInterface>(() => {
+    const savedAnswer = sessionStorage.getItem("answer");
+    return savedAnswer
+      ? JSON.parse(savedAnswer)
+      : {
+          answer1: "",
+          answer2: "",
+          answer3: "",
+          answer4: "",
+        };
+  });
 
   const isRouletteEnd = timeElapsed >= ROULETTE_END_DELAY;
   const animation = timeElapsed >= ANIMATION_DURATION;
@@ -94,38 +108,41 @@ const RandomEventResultPage = () => {
 
   return (
     <div className="flex flex-col items-center transition-all duration-500">
-      <div
-        className={`relative flex h-screen w-screen flex-col items-center ${containerStyle} gap-16 overflow-scroll bg-black transition-all duration-300`}
-      >
+      <GlowBackground />
+      {resultData && (
         <div
-          className={`absolute flex w-[36.5rem] flex-col items-center duration-500 ${headerStyle}`}
+          className={`relative flex h-screen w-screen flex-col items-center ${containerStyle} gap-16 overflow-scroll transition-all duration-300`}
         >
-          <p className="text-center font-kia-signature-bold text-title-3 text-gray-50">
-            {HEADER_TEXT}
-          </p>
-          <Roulette
-            textList={DRIVER_TYPE_LIST}
-            targetText={resultData?.result.type}
-          />
-          {!isRouletteEnd && (
-            <img
-              src={car}
-              alt="자동차"
-              className={`${animation && "animate-fadeOut"}`}
+          <div
+            className={`absolute flex w-[36.5rem] flex-col items-center duration-500 ${headerStyle}`}
+          >
+            <p className="text-center font-kia-signature-bold text-title-3 text-gray-50">
+              {HEADER_TEXT}
+            </p>
+            <Roulette
+              textList={DRIVER_TYPE_LIST}
+              targetText={resultData?.result.type}
             />
+            {!isRouletteEnd && (
+              <img
+                src={car}
+                alt="자동차"
+                className={`${animation && "animate-fadeOut"}`}
+              />
+            )}
+          </div>
+          {isRouletteEnd && (
+            <div className="animate-moveSection">
+              <RandomMainSection
+                resultTypeId={resultData.result.resultId}
+                description={getDescriptionList(resultData?.result.description)}
+                scenarioList={resultData?.result.scenarioList}
+              />
+              {isAuth && <RandomExpectations ref={randomExpectationsRef} />}
+            </div>
           )}
         </div>
-        {isRouletteEnd && (
-          <div className="animate-moveSection">
-            <RandomMainSection
-              resultTypeId={resultData.result.resultId}
-              description={getDescriptionList(resultData?.result.description)}
-              scenarioList={resultData?.result.scenarioList}
-            />
-            {isAuth && <RandomExpectations ref={randomExpectationsRef} />}
-          </div>
-        )}
-      </div>
+      )}
     </div>
   );
 };

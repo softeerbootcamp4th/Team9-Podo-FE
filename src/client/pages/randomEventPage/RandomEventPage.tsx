@@ -37,7 +37,7 @@ const RandomEventPage = () => {
       if (nextQuizIndex < QUIZ_LIST.length) {
         navigate(`/event2/${nextQuizIndex}`);
       } else {
-        navigate("/event2/result", { state: updatedAnswer });
+        navigate("/event2/result");
       }
     }, 200);
   };

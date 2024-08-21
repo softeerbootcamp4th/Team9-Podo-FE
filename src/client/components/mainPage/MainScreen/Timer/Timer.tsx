@@ -7,9 +7,8 @@ interface TimerInterface {
 }
 
 const Timer = ({ onEndHandler }: TimerInterface) => {
-  const [remainingTime, setRemainingTime] = useState(10000);
-  const { reset, hours, minutes, seconds } = useTimer(
-    remainingTime,
+  const { reset, hours, minutes, seconds, setLeftTime } = useTimer(
+    0,
     onEndHandler,
   );
   const { showBoundary } = useErrorBoundary();
@@ -17,15 +16,13 @@ const Timer = ({ onEndHandler }: TimerInterface) => {
   useEffect(() => {
     const tryFetch = () => {
       try {
-        //연결 설정
         const eventSource = new EventSource(
           "https://www.hyundaiseltos.site/arrival/time",
         );
 
-        //데이터 수신시 호출되는 콜백, close할 때 까지 끊어지지 않음
         eventSource.onmessage = (event) => {
-          const { date } = JSON.parse(event.data);
-          setRemainingTime(date);
+          const date = JSON.parse(event.data);
+          setLeftTime(date);
         };
 
         return eventSource;
@@ -33,6 +30,7 @@ const Timer = ({ onEndHandler }: TimerInterface) => {
         showBoundary(error);
       }
     };
+
     const eventSource = tryFetch();
 
     return () => {
