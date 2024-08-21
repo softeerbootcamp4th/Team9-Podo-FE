@@ -25,28 +25,28 @@ export const fetchLogList = async (
 };
 
 export const putRandomEvent = async (
-  eventInfo: EventPostInfo,
+  eventInfo: FormData,
 ): Promise<ApiResponse<EventInfo>> => {
   const response = await fetch("/admin/lots/config", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(eventInfo),
+    body: eventInfo,
   });
 
   return await response.json();
 };
 
 export const putFCFSEvent = async (
-  eventInfo: EventPostInfo,
+  eventInfo: FormData,
 ): Promise<ApiResponse<EventInfo>> => {
   const response = await fetch("/admin/arrival/config", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(eventInfo),
+    body: eventInfo,
   });
 
   return await response.json();

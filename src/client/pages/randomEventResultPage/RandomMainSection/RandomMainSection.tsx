@@ -131,7 +131,7 @@ const RandomMainSection = ({
           onClick={handleEventParticipation}
           defaultText={setText()}
           disabledText="이벤트 참여 완료"
-          isEnabled={!isAuth && !isRandomEnd}
+          isEnabled={!isAuth || !isRandomEnd}
         />
       </div>
     </div>

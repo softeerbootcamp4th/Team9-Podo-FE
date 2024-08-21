@@ -21,7 +21,7 @@ export const phoneAuthCheckFailResult: ApiResponse<TokenInfo | null> = {
 
 export const reissueResult: ApiResponse<TokenInfo> = {
   isSuccess: true,
-  code: 200,
+  code: 403,
   message: "요청에 성공했습니다.",
   result: {
     accessToken:

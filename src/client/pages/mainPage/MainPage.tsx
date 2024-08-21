@@ -26,8 +26,10 @@ const MainPage = () => {
 
   const checkToken = async () => {
     const response = await checkAndRefreshToken();
-    setIsAuth(true);
-    Cookies.set("auth", response.result.accessToken, { expires: 1 / 24 });
+    if (response.code === 200) {
+      setIsAuth(true);
+      Cookies.set("auth", response.result.accessToken, { expires: 1 / 24 });
+    }
   };
 
   return (

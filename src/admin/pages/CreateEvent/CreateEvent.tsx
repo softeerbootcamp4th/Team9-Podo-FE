@@ -11,7 +11,7 @@ const convertToEventPostInfo = (event: EventInfo): EventPostInfo => {
     repeatTime: event.repeatTime,
     startAt: event.startAt,
     endAt: event.endAt,
-    tagImage: event.tagImage,
+    tagImage: null,
   };
 };
 
@@ -29,7 +29,7 @@ const EventForm: React.FC = () => {
         repeatTime: "",
         startAt: "",
         endAt: "",
-        tagImage: "",
+        tagImage: null,
       };
 
   const [formData, setFormData] = useState<EventPostInfo>(initialState);
@@ -42,7 +42,15 @@ const EventForm: React.FC = () => {
 
   useEffect(() => {
     console.log(formData);
-  });
+  }, [formData]);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setFormData((prevState) => ({
+      ...prevState,
+      tagImage: file,
+    }));
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -64,7 +72,20 @@ const EventForm: React.FC = () => {
   };
 
   const putData = async (putApi: Function) => {
-    const response = await putApi(formData);
+    const formDataToSend = new FormData();
+
+    formDataToSend.append("title", formData.title || "");
+    formDataToSend.append("description", formData.description || "");
+    formDataToSend.append("repeatDay", formData.repeatDay || "");
+    formDataToSend.append("repeatTime", formData.repeatTime || "");
+    formDataToSend.append("startAt", formData.startAt || "");
+    formDataToSend.append("endAt", formData.endAt || "");
+
+    if (formData.tagImage) {
+      formDataToSend.append("tagImage", formData.tagImage);
+    }
+
+    const response = await putApi(formDataToSend);
     console.log(response);
   };
 
@@ -232,6 +253,8 @@ const EventForm: React.FC = () => {
             </label>
             <input
               type="file"
+              name="tagImage"
+              onChange={handleFileChange}
               className="w-full rounded border border-gray-300 p-2"
             />
           </div>
