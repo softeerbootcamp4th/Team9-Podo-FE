@@ -7,13 +7,15 @@ import RandomEventPage from "../pages/randomEventPage/RandomEventPage";
 import RandomEventResultPage from "../pages/randomEventResultPage/RandomEventResultPage";
 import AuthModal from "../pages/authModal/AuthModal";
 import RandomQuizSection from "../pages/randomEventPage/RandomQuizSection/RandomQuizSection";
+import { ErrorBoundary } from "react-error-boundary";
+import FallbackPage from "../pages/fallbackPage/FallbackPage";
 
 const RouterWithModal = () => {
   const location = useLocation();
   const background = location.state && location.state.background;
 
   return (
-    <>
+    <ErrorBoundary FallbackComponent={FallbackPage}>
       <Routes location={background || location}>
         <Route path="/" element={<MainPage />} />
         <Route path="/event1" element={<FCFSEventPage />} />
@@ -30,7 +32,7 @@ const RouterWithModal = () => {
           <Route path="/auth-modal" element={<AuthModal />} />
         </Routes>
       )}
-    </>
+    </ErrorBoundary>
   );
 };
 
