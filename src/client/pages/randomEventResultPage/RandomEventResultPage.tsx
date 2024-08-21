@@ -62,11 +62,14 @@ const RandomEventResultPage = () => {
       setResultData(response);
     };
 
-    try {
-      fetchData();
-    } catch (error) {
-      showBoundary(error);
-    }
+    const tryFetch = async () => {
+      try {
+        await fetchData();
+      } catch (error) {
+        showBoundary(error);
+      }
+    };
+    tryFetch();
   }, []);
 
   useEffect(() => {

@@ -14,11 +14,14 @@ const MainPage = () => {
   const { showBoundary } = useErrorBoundary();
 
   useEffect(() => {
-    try {
-      checkToken();
-    } catch (error) {
-      showBoundary(error);
-    }
+    const tryFetch = async () => {
+      try {
+        await checkToken();
+      } catch (error) {
+        showBoundary(error);
+      }
+    };
+    tryFetch();
   }, []);
 
   const checkToken = async () => {

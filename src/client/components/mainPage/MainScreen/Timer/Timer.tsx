@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useTimer from "../../../../hooks/useTimer";
+import { useErrorBoundary } from "react-error-boundary";
 
 interface TimerInterface {
   onEndHandler: () => void;
@@ -11,21 +12,31 @@ const Timer = ({ onEndHandler }: TimerInterface) => {
     remainingTime,
     onEndHandler,
   );
+  const { showBoundary } = useErrorBoundary();
 
   useEffect(() => {
-    //연결 설정
-    const eventSource = new EventSource(
-      "https://www.hyundaiseltos.site/arrival/time",
-    );
+    const tryFetch = () => {
+      try {
+        //연결 설정
+        const eventSource = new EventSource(
+          "https://www.hyundaiseltos.site/arrival/time",
+        );
 
-    //데이터 수신시 호출되는 콜백, close할 때 까지 끊어지지 않음
-    eventSource.onmessage = (event) => {
-      const { date } = JSON.parse(event.data);
-      setRemainingTime(date);
+        //데이터 수신시 호출되는 콜백, close할 때 까지 끊어지지 않음
+        eventSource.onmessage = (event) => {
+          const { date } = JSON.parse(event.data);
+          setRemainingTime(date);
+        };
+
+        return eventSource;
+      } catch (error) {
+        showBoundary(error);
+      }
     };
+    const eventSource = tryFetch();
 
     return () => {
-      eventSource.close();
+      eventSource?.close();
     };
   }, []);
 

@@ -13,10 +13,10 @@ const AuthTooltip = () => {
 
   const { reset, minutes, seconds } = useTimer(initialTime);
 
-  const refreshHandler = () => {
+  const refreshHandler = async () => {
     try {
+      await refreshToken();
       reset();
-      refreshToken();
     } catch (error) {
       showBoundary(error);
     }

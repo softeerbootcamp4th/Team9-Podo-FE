@@ -27,12 +27,15 @@ const FCFSEventPage = () => {
     });
 
   useEffect(() => {
-    try {
-      fetchData();
-      checkToken();
-    } catch (error) {
-      showBoundary(error);
-    }
+    const tryFetch = async () => {
+      try {
+        await fetchData();
+        await checkToken();
+      } catch (error) {
+        showBoundary(error);
+      }
+    };
+    tryFetch();
   }, []);
 
   const fetchData = async () => {
