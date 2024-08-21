@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "../../../../utils/TestUtils";
 import userEvent from "@testing-library/user-event";
 import FCFSEventSection from "./FCFSEventSection";
 import { FCFS_EVENT_DATA } from "../../../../constants/EventData";
@@ -10,21 +10,21 @@ jest.mock("../../../../providers/AppProvider", () => ({
   useAppContext: jest.fn(),
 }));
 
-jest.mock("react-router", () => ({
-  useNavigate: jest.fn(),
-  useLocation: jest.fn(),
-}));
+// jest.mock("react-router", () => ({
+//   useNavigate: jest.fn(),
+//   useLocation: jest.fn(),
+// }));
 
-const mockNavigate = jest.fn();
-const mockLocation = { pathname: "/some-path" };
+// const mockNavigate = jest.fn();
+// const mockLocation = { pathname: "/some-path" };
 
 beforeEach(() => {
   (useAppContext as jest.Mock).mockReturnValue({
     isAuth: false,
     isFCFSEnd: false,
   });
-  (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
-  (useLocation as jest.Mock).mockReturnValue(mockLocation);
+  // (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
+  // (useLocation as jest.Mock).mockReturnValue(mockLocation);
 });
 
 class EventSourceMock {

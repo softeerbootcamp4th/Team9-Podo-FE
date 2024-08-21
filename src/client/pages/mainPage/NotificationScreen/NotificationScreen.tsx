@@ -13,11 +13,14 @@ const NotificationScreen = () => {
   const [wordCloudData, setWordCloudData] = useState({});
 
   useEffect(() => {
-    try {
-      fetchData();
-    } catch (error) {
-      showBoundary(error);
-    }
+    const tryFetch = async () => {
+      try {
+        await fetchData();
+      } catch (error) {
+        showBoundary(error);
+      }
+    };
+    tryFetch();
   }, []);
 
   const fetchData = async () => {
@@ -37,7 +40,7 @@ const NotificationScreen = () => {
             EVENT 2를 통해 기대평을 작성하실 수 있습니다.
           </p>
         </div>
-        {/* <WordCloud data={wordCloudData} maskImage={carMask}></WordCloud> */}
+        <WordCloud data={wordCloudData} maskImage={carMask}></WordCloud>
         <Button
           size="small"
           onClick={() => {

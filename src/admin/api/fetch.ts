@@ -5,12 +5,21 @@ import {
   RandomParticipant,
   EventPostInfo,
   RewardInterface,
+  fetchLogForm,
 } from "../types/event";
 
 export const fetchEventList = async (): Promise<
   ApiResponse<{ eventList: EventInfo[] }>
 > => {
   const response = await fetch("/admin/eventlist");
+
+  return await response.json();
+};
+
+export const fetchLogList = async (
+  page: number,
+): Promise<ApiResponse<fetchLogForm>> => {
+  const response = await fetch(`/admin/log?page=${page}`);
 
   return await response.json();
 };

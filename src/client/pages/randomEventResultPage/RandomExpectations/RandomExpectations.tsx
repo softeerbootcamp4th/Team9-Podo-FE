@@ -12,11 +12,11 @@ const RandomExpectations = forwardRef<HTMLDivElement>((props, ref) => {
   const [toastKey, setToastKey] = useState(0);
   const { showBoundary } = useErrorBoundary();
 
-  const onClickHandler = () => {
+  const onClickHandler = async () => {
     if (expectation.length < 20) setError("short");
     else {
       try {
-        postComment(expectation);
+        await postComment(expectation);
         setError("success");
         setExpectation("");
       } catch (error) {
