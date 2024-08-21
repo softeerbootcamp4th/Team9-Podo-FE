@@ -49,9 +49,11 @@ const Timer = ({ onEndHandler }: TimerInterface) => {
             backgroundClip: "text",
             color: "transparent",
           }}
-          className="font-kia-signature-bold text-[8rem]"
+          className={`font-kia-signature-bold ${hours === "00" && minutes === "00" && seconds === "00" ? "text-7xl" : "text-[8rem]"}`}
         >
-          {hours}:{minutes}:{seconds}
+          {hours === "00" && minutes === "00" && seconds === "00"
+            ? "이벤트가 진행 중입니다."
+            : `${hours}:${minutes}:${seconds}`}
         </p>
       </div>
     </div>

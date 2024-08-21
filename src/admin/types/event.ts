@@ -27,7 +27,7 @@ export interface EventPostInfo {
   repeatTime: string | null;
   startAt: string;
   endAt: string;
-  tagImage: string;
+  tagImage: File | null;
 }
 
 export interface fetchLogForm {
