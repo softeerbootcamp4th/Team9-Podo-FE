@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="HYUNDAI SELTOS EVENT" />
+    <meta property="og:description" content="나는 어떤 유형의 운전자일까?" />
+    <meta
+      property="og:image"
+      content="https://velog.velcdn.com/images/jw0097/post/84911c75-715c-4bc9-8cde-1ff0ee2e4f4b/image.png"
+    />
+    <meta property="og:url" content="https://www.hyundaiseltos.site" />
+    <meta property="og:type" content="website" />
+    <title>운전자 유형 테스트</title>
+    <link rel="stylesheet" href="share.css" />
+  </head>
+  <body cz-shortcut-listen="true">
+    <div id="root">
+      <div
+        class="flex-column align-items-center flex transition-all duration-500"
+      >
+        <div
+          class="position-relative height-full-screen width-full-screen flex-column align-items-center justify-content-start padding-top-16-rem gap-4-rem background-black flex overflow-scroll transition-all duration-300"
+        >
+          <div
+            class="position-absolute width-36-5-rem flex-column align-items-center gap-1-rem top-3-rem flex duration-500"
+          >
+            <p
+              class="text-align-center font-size-1-5-rem color-gray-50 font-kia-signature-bold"
+            >
+              당신의 운전자 유형은?
+            </p>
+            <div
+              id="result-box"
+              class="position-relative width-36-5-rem felx-center font-size-1-25-rem color-gray-50 inset-0 flex font-kia-signature-bold content-none gradient-mask"
+            >
+              <div
+                class="position-relative height-full width-full padding-x-2-5-rem padding-y-1-5-rem overflow-hidden flex-center"
+              >
+                <p
+                  id="result-text"
+                  class="font-size-2-rem font-kia-signature-bold text-glow-white"
+                >
+                  <!-- 결과 텍스트가 여기에 표시됩니다 -->
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="animation-moveSection">
+            <div class="margin-bottom-6-rem width-94-rem">
+              <div
+                class="position-relative height-36-25-rem width-94-rem flex-column gap-1-5-rem border-radius-2-5-rem border-color-white background-white background-opacity-10 padding-2-5-rem flex border-opacity-15 backdrop-blur-lg"
+              >
+                <div
+                  id="description-text"
+                  class="font-size-1-5-rem flex font-kia-signature-bold"
+                >
+                  <!-- 설명 텍스트가 여기에 표시됩니다 -->
+                </div>
+                <hr class="height-1px background-gray-400" />
+                <div class="gap-1-5-rem justify-content-center flex">
+                  <div class="flex-column gap-1-rem flex">
+                    <p
+                      class="font-weight-bold-1-rem color-gray-50 font-kia-signature-bold"
+                    >
+                      1.
+                    </p>
+                    <img
+                      id="scenario-image-1"
+                      src=""
+                      alt="시나리오 1"
+                      class="height-15-25-rem width-28-75-rem border-radius-xl"
+                    />
+                    <p
+                      id="scenario-title-1"
+                      class="font-size-1-25-rem color-gray-50 font-kia-signature-bold"
+                    >
+                      <!-- 시나리오 1 제목 -->
+                    </p>
+                    <p
+                      id="scenario-subtitle-1"
+                      class="width-26-rem font-weight-regular-1-rem color-gray-300 font-kia-signature"
+                    >
+                      <!-- 시나리오 1 부제목 -->
+                    </p>
+                  </div>
+                  <div class="flex-column gap-1-rem flex">
+                    <p
+                      class="font-weight-bold-1-rem color-gray-50 font-kia-signature-bold"
+                    >
+                      2.
+                    </p>
+                    <img
+                      id="scenario-image-2"
+                      src=""
+                      alt="시나리오 2"
+                      class="height-15-25-rem width-28-75-rem border-radius-xl"
+                    />
+                    <p
+                      id="scenario-title-2"
+                      class="font-size-1-25-rem color-gray-50 font-kia-signature-bold"
+                    >
+                      <!-- 시나리오 2 제목 -->
+                    </p>
+                    <p
+                      id="scenario-subtitle-2"
+                      class="width-26-rem font-weight-regular-1-rem color-gray-300 font-kia-signature"
+                    >
+                      <!-- 시나리오 2 부제목 -->
+                    </p>
+                  </div>
+                  <div class="flex-column gap-1-rem flex">
+                    <p
+                      class="font-weight-bold-1-rem color-gray-50 font-kia-signature-bold"
+                    >
+                      3.
+                    </p>
+                    <img
+                      id="scenario-image-3"
+                      src=""
+                      alt="시나리오 3"
+                      class="height-15-25-rem width-28-75-rem border-radius-xl"
+                    />
+                    <p
+                      id="scenario-title-3"
+                      class="font-size-1-25-rem color-gray-50 font-kia-signature-bold"
+                    >
+                      <!-- 시나리오 3 제목 -->
+                    </p>
+                    <p
+                      id="scenario-subtitle-3"
+                      class="width-26-rem font-weight-regular-1-rem color-gray-300 font-kia-signature"
+                    >
+                      <!-- 시나리오 3 부제목 -->
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="margin-top-2-25-rem flex-column gap-1-rem flex flex-center"
+              >
+                <p class="color-gray-200 font-kia-signature">
+                  이벤트 응모하고<span
+                    class="color-gray-50 font-kia-signature-bold"
+                    >시그니엘 숙박권</span
+                  >받자!!
+                </p>
+                <button
+                  class="position-relative height-6-25-rem width-94-rem border-radius-3xl background-primary color-gray-950 group overflow-hidden flex-center"
+                  onclick="window.location.href='https://www.hyundaiseltos.site/event2/0';"
+                >
+                  <p
+                    class="font-size-1-25-rem text-align-center font-kia-signature-bold"
+                  >
+                    나도 해보기
+                  </p>
+                  <img
+                    src="/src/common/assets/images/whiteRight.png"
+                    alt="car"
+                    class="position-absolute left-negative-28 height-5-875-rem width-13-5-rem group-hover-translate-x-100-rem top-2 transition-transform duration-300"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const getResultData = async () => {
+        const urlParams = new URL(location.href).searchParams;
+
+        const id = urlParams.get("id");
+
+        try {
+          const response = await fetch(`/lots/type/id=${id}`);
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.error("Error posting answers:", error);
+          return null;
+        }
+      };
+
+      // DescriptionInterface 타입 정의
+      class DescriptionInterface {
+        constructor(content, highlighted) {
+          this.content = content;
+          this.highlighted = highlighted;
+        }
+      }
+
+      // getDescriptionList 함수 구현
+      function getDescriptionList(description) {
+        const descriptionList = description.split("/");
+        let newDescriptionList = [];
+
+        descriptionList.forEach((element) => {
+          if (element[0] === "h") {
+            newDescriptionList.push(
+              new DescriptionInterface(element.substring(1), true),
+            );
+          } else if (element[0] === "d") {
+            newDescriptionList.push(
+              new DescriptionInterface(element.substring(1), false),
+            );
+          }
+        });
+
+        return newDescriptionList;
+      }
+
+      // 예제 resultData 객체
+      const resultData = getResultData();
+
+      // 페이지의 텍스트와 이미지를 채우는 함수
+      function populateContent(resultData) {
+        if (!resultData.isSuccess) {
+          console.error("Failed to fetch data");
+          return;
+        }
+
+        // 결과 텍스트 설정
+        document.getElementById("result-text").textContent =
+          resultData.result.result;
+
+        // 설명 텍스트 설정
+        const descriptionTextElement =
+          document.getElementById("description-text");
+        const descriptionList = getDescriptionList(
+          resultData.result.description,
+        );
+
+        descriptionTextElement.innerHTML = descriptionList
+          .map((item) => {
+            return `<span class="${item.highlighted ? "color-gray-50" : "color-gray-400"}">${item.content} </span>`;
+          })
+          .join("");
+
+        // 시나리오 목록 설정
+        resultData.result.scenarioList.forEach((scenario, index) => {
+          document.getElementById(`scenario-title-${index + 1}`).textContent =
+            scenario.title;
+          document.getElementById(
+            `scenario-subtitle-${index + 1}`,
+          ).textContent = scenario.subtitle;
+          document.getElementById(`scenario-image-${index + 1}`).src =
+            scenario.image;
+        });
+      }
+
+      // 페이지가 로드되면 콘텐츠를 채움
+      document.addEventListener("DOMContentLoaded", function () {
+        populateContent(resultData);
+      });
+    </script>
+  </body>
+</html>

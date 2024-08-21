@@ -1,0 +1,378 @@
+/* 전체적인 reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Kia-Signature-Regular", sans-serif;
+}
+
+/* Flexbox 중앙 정렬 */
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-start {
+  justify-content: flex-start;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.width-full-screen {
+  width: 100vw;
+}
+
+.height-full-screen {
+  height: 100vh;
+}
+
+.height-15-25-rem {
+  height: 15.25rem;
+}
+
+.width-28-75-rem {
+  width: 28.75rem;
+}
+
+.width-full {
+  width: 100%;
+}
+
+.height-full {
+  height: 100%;
+}
+
+.height-5-875-rem {
+  height: 5.875rem;
+}
+
+.width-13-5-rem {
+  width: 13.5rem;
+}
+
+.width-36-5-rem {
+  width: 36.5rem;
+}
+
+.width-26-rem {
+  width: 26rem;
+}
+
+.height-36-25-rem {
+  height: 36.25rem;
+}
+
+.height-6-25-rem {
+  height: 6.25rem;
+}
+
+.width-94-rem {
+  width: 94rem;
+}
+
+.padding-top-16-rem {
+  padding-top: 16rem;
+}
+
+.gap-4-rem {
+  gap: 4rem;
+}
+
+.gap-1-5-rem {
+  gap: 1.5rem;
+}
+
+.gap-1-rem {
+  gap: 1rem;
+}
+
+.padding-2-5-rem {
+  padding: 2.5rem;
+}
+
+.padding-x-2-5-rem {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.padding-y-1-5-rem {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.margin-bottom-6-rem {
+  margin-bottom: 6rem;
+}
+
+.margin-top-2-25-rem {
+  margin-top: 2.25rem;
+}
+
+.top-3-rem {
+  top: 3rem;
+}
+
+.top-negative-2-5-rem {
+  top: -2.5rem;
+}
+
+.top-negative-4-5-rem {
+  top: -4.5rem;
+}
+
+.right-0 {
+  right: 0;
+}
+
+.left-negative-28 {
+  left: -8rem;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+/* 타이포그래피 */
+.text-align-center {
+  text-align: center;
+}
+
+.font-size-2-rem {
+  font-size: 2rem;
+  line-height: 140%;
+}
+
+.font-size-1-5-rem {
+  font-size: 1.5rem;
+  line-height: 140%;
+}
+
+.font-size-1-25-rem {
+  font-size: 1.25rem;
+  line-height: 140%;
+}
+
+.font-weight-bold-1-rem {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 140%;
+}
+
+.font-weight-regular-1-rem {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 140%;
+}
+
+.color-gray-50 {
+  color: #f1f1f1;
+}
+
+.color-gray-400 {
+  color: #888888;
+}
+
+.color-gray-300 {
+  color: #d1d1d1;
+}
+
+.color-gray-200 {
+  color: #e7e7e7;
+}
+
+.color-gray-950 {
+  color: #181818;
+}
+
+.background-black {
+  background-color: black;
+}
+
+.background-white {
+  background-color: white;
+}
+
+.background-opacity-10 {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.background-primary {
+  background-color: #fcff56;
+}
+
+.backdrop-blur-lg {
+  backdrop-filter: blur(16px);
+}
+
+/* Border */
+.border-radius-xl {
+  border-radius: 0.75rem;
+}
+
+.border-radius-2-5-rem {
+  border-radius: 2.5rem;
+}
+
+.border-radius-3xl {
+  border-radius: 1.5rem;
+}
+
+.border-color-white {
+  border-color: white;
+}
+
+.border-opacity-15 {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.border-1px {
+  border-width: 1px;
+}
+
+/* Animation */
+.animation-moveText {
+  animation: moveText 1s linear forwards;
+}
+
+.animation-moveSection {
+  animation: moveSection 1s ease-out;
+}
+
+.animation-fadeOut {
+  animation: fadeOut 1s ease-out forwards;
+}
+
+.animation-fadeIn {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.animation-moveLanding {
+  animation: moveLanding 0.5s linear 0.1s forwards;
+}
+
+/* 기타 */
+.group:hover .group-hover-translate-x-100-rem {
+  transform: translateX(110rem);
+}
+
+.white-space-pre {
+  white-space: pre;
+}
+
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* 특수 효과 */
+.text-glow-white {
+  text-shadow:
+    0px 0px 10px #fff,
+    0px 0px 20px #fff,
+    0px 0px 30px #fff;
+}
+
+.gradient-text {
+  background-image: linear-gradient(
+    93.7deg,
+    #505861 0%,
+    #4b7c83 33.5%,
+    #1b3f72 66.5%,
+    #f2f2f2 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.gradient-mask::before {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  padding: 1px;
+  background: linear-gradient(
+    45deg,
+    #505861 0%,
+    #4b7c83 33.5%,
+    #1b3f72 66.5%,
+    #f2f2f2 100%
+  );
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#402d67 0 0);
+  -webkit-mask-composite: exclude;
+  mask-composite: exclude;
+}
+
+.gradient-border {
+  background-image: linear-gradient(#fff, #fff),
+    linear-gradient(
+      93.7deg,
+      #505861 0%,
+      #4b7c83 33.5%,
+      #1b3f72 66.5%,
+      #f2f2f2 100%
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border: 1px solid transparent;
+}
+
+.gradient-mask::before {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  padding: 1px;
+  background: linear-gradient(
+    45deg,
+    #505861 0%,
+    #4b7c83 33.5%,
+    #1b3f72 66.5%,
+    #f2f2f2 100%
+  );
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#402d67 0 0);
+  -webkit-mask-composite: exclude;
+  mask-composite: exclude;
+}
+
+.content-none::before {
+  content: none;
+}
+
+.inset-0::before {
+  content: "";
+  inset: 0rem; /* 0px */
+}
