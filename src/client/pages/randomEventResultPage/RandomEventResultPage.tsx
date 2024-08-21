@@ -7,7 +7,10 @@ import RandomExpectations from "./RandomExpectations/RandomExpectations";
 import Roulette from "../../components/randomEventPage/Roulette/Roulette";
 import car from "../../../common/assets/images/mainCar.png";
 import { DRIVER_TYPE_LIST } from "../../constants/RandomEventData";
-import { RandomQuizResponseInterface } from "../../types/RandomEvent";
+import {
+  AnswerInterface,
+  RandomQuizResponseInterface,
+} from "../../types/RandomEvent";
 import { getDescriptionList } from "../../utils/util";
 import { LONG_BUTTON_TEXT } from "../../constants/common";
 import { useErrorBoundary } from "react-error-boundary";
@@ -35,9 +38,18 @@ const RandomEventResultPage = () => {
   const [resultData, setResultData] =
     useState<RandomQuizResponseInterface | null>(null);
   const randomExpectationsRef = useRef<HTMLDivElement>(null);
-
   const { isAuth } = appContext;
-  const answer = location.state;
+  const [answer, setAnswer] = useState<AnswerInterface>(() => {
+    const savedAnswer = sessionStorage.getItem("answer");
+    return savedAnswer
+      ? JSON.parse(savedAnswer)
+      : {
+          answer1: "",
+          answer2: "",
+          answer3: "",
+          answer4: "",
+        };
+  });
 
   const isRouletteEnd = timeElapsed >= ROULETTE_END_DELAY;
   const animation = timeElapsed >= ANIMATION_DURATION;
