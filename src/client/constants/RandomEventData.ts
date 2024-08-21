@@ -73,6 +73,7 @@ export const DRIVER_TYPE_LIST = [
 export const ERROR_MSG = {
   short: "20자 이상 답변을 작성해주세요.",
   inappropriate: "부적절한 답변입니다. 다시 작성해주세요.",
+  success: "기대평이 등록되었습니다.",
 };
 
 export const TEXT_CONTENT = {
