@@ -14,6 +14,8 @@ import {
 import { getDescriptionList } from "../../utils/util";
 import { LONG_BUTTON_TEXT } from "../../constants/common";
 import { useErrorBoundary } from "react-error-boundary";
+import { checkAndRefreshToken } from "../../api/fetch";
+import Cookies from "js-cookie";
 import GlowBackground from "../../components/common/GlowBackground/GlowBackground";
 
 const ANIMATION_DURATION = 5000;
@@ -38,7 +40,8 @@ const RandomEventResultPage = () => {
   const [resultData, setResultData] =
     useState<RandomQuizResponseInterface | null>(null);
   const randomExpectationsRef = useRef<HTMLDivElement>(null);
-  const { isAuth } = appContext;
+
+  const { isAuth, setIsAuth } = appContext;
   const [answer, setAnswer] = useState<AnswerInterface>(() => {
     const savedAnswer = sessionStorage.getItem("answer");
     return savedAnswer
@@ -75,11 +78,15 @@ const RandomEventResultPage = () => {
       setResultData(response);
     };
 
-    try {
-      fetchData();
-    } catch (error) {
-      showBoundary(error);
-    }
+    const tryFetch = async () => {
+      try {
+        await fetchData();
+        await checkToken();
+      } catch (error) {
+        showBoundary(error);
+      }
+    };
+    tryFetch();
   }, []);
 
   useEffect(() => {
@@ -90,6 +97,14 @@ const RandomEventResultPage = () => {
       });
     }
   }, [isAuth]);
+
+  const checkToken = async () => {
+    const response = await checkAndRefreshToken();
+    setIsAuth(true);
+    Cookies.set("auth", response.result.accessToken, { expires: 1 / 24 });
+  };
+
+  if (resultData === null) return null;
 
   return (
     <div className="flex flex-col items-center transition-all duration-500">

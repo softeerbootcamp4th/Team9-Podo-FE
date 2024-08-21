@@ -63,9 +63,9 @@ const FCFSEventResultPage = () => {
     if (Object.keys(quizData).length !== 0) setIsWin(true);
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = async () => {
     try {
-      fetchData();
+      await fetchData();
       setIsResultVisible(true);
       carStartAnimation();
       textStartAnimation();
