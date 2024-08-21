@@ -118,6 +118,7 @@ describe("RandomMainSection", () => {
     (useAppContext as jest.Mock).mockReturnValue({
       isAuth: false,
       isRandomEnd: false,
+      setIsRandomEnd: jest.fn(),
     });
 
     render(

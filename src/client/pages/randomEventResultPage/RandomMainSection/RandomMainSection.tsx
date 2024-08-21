@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useAppContext } from "../../../providers/AppProvider";
 import { useLocation, useNavigate } from "react-router";
 import Button from "../../../components/common/Button/Button";
@@ -31,6 +31,15 @@ const RandomMainSection = ({
     navigate("/event2/0");
   };
 
+  const getUniqueUrl = async () => {
+    try {
+      const { result } = await postRandomResult(resultTypeId);
+      setShareUrl(result.uniqueLink);
+    } catch (error) {
+      showBoundary(error);
+    }
+  };
+
   const handleShare = useCallback(() => {
     if (!isCopied) {
       navigator.clipboard.writeText(shareUrl);
@@ -43,16 +52,17 @@ const RandomMainSection = ({
 
   const handleEventParticipation = async () => {
     if (isAuth) {
-      try {
-        const { result } = await postRandomResult(resultTypeId);
-        setShareUrl(result.uniqueLink);
-      } catch (error) {
-        showBoundary(error);
-      }
+      getUniqueUrl();
     } else {
       navigate("/auth-modal", { state: { background: location, event: 2 } });
     }
+
+    setIsRandomEnd(true);
   };
+
+  useEffect(() => {
+    getUniqueUrl();
+  }, [isAuth]);
 
   const setText = () => {
     if (isAuth === false) return LONG_BUTTON_TEXT.NO_AUTH;
