@@ -4,19 +4,13 @@ import { FCFSParticipant } from "../../types/event";
 import { PAGE_SIZE } from "../../constants/constants";
 import { fetchFCFSParticipants } from "../../api/fetch";
 
-type FCFSParticipantsProps = {
-  participants: FCFSParticipant[];
-  selectedDate: string;
-  onDateChange: (date: string) => void;
-};
-const onDateChange = () => {};
-const selectedDate = "2024.08.19";
-
 const FCFSParticipants = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentDate, setCurrentDate] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPates] = useState(1);
   const [participants, setParticipants] = useState<FCFSParticipant[]>([]);
+  const [search, setSearch] = useState("");
 
   const onModalHandler = () => {
     setIsModalOpen((current) => !current);
@@ -27,21 +21,22 @@ const FCFSParticipants = () => {
   const goToPage = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
+      fetchData(page, currentDate);
     }
   };
 
+  const fetchData = async (page: number, date?: string, text?: string) => {
+    const obj = { page: page - 1, createdAt: date, phoneNum: text };
+    const data = await fetchFCFSParticipants(obj);
+
+    setTotalPates(data.result.totalPage);
+    setCurrentPage(data.result.currentPage + 1);
+    setParticipants(data.result.arrivalUserList);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchFCFSParticipants(currentPage - 1);
-
-      setTotalPates(data.result.totalPage);
-      setCurrentPage(data.result.currentPage + 1);
-      setParticipants(data.result.arrivalUserList);
-    };
-
-    fetchData();
-    console.log(participants);
-  }, [currentPage, totalPages]);
+    fetchData(1, currentDate);
+  }, []);
 
   return (
     <div className="h-screen w-screen bg-gray-100 p-4">
@@ -49,9 +44,9 @@ const FCFSParticipants = () => {
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-xl font-bold">참여자 관리</h2>
         <div>
-          <button className="mr-2 rounded bg-gray-200 px-4 py-2">
+          <div className="mr-2 rounded bg-gray-200 px-4 py-2">
             선착순 이벤트
-          </button>
+          </div>
         </div>
       </div>
 
@@ -60,8 +55,11 @@ const FCFSParticipants = () => {
         <div className="flex items-center">
           <input
             type="date"
-            value={selectedDate}
-            onChange={(e) => onDateChange()}
+            value={currentDate}
+            onChange={(e) => {
+              setCurrentDate(e.target.value);
+              fetchData(1, e.target.value);
+            }}
             className="mr-2 rounded border border-gray-300 px-4 py-2"
           />
           <button
@@ -75,6 +73,16 @@ const FCFSParticipants = () => {
           type="text"
           placeholder="검색 (이름, 전화번호)"
           className="w-1/3 rounded border border-gray-300 px-4 py-2"
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            console.log(e.key);
+            if (e.key === "Enter") {
+              fetchData(1, currentDate, search);
+            }
+          }}
         />
       </div>
 

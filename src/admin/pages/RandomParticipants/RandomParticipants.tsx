@@ -13,6 +13,7 @@ const RandomParticipants = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPates] = useState(1);
   const [participants, setParticipants] = useState<RandomParticipant[]>([]);
+  const [search, setSearch] = useState("");
 
   const onModalHandler = () => {
     setIsModalOpen((current) => !current);
@@ -23,20 +24,22 @@ const RandomParticipants = () => {
   const goToPage = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
+      fetchData(page);
     }
   };
 
+  const fetchData = async (page: number, text?: string) => {
+    const obj = { page: page - 1, phoneNum: text };
+    const data = await fetchRandomParticipants(obj);
+
+    setTotalPates(data.result.totalPage);
+    setCurrentPage(data.result.currentPage + 1);
+    setParticipants(data.result.lotsUserList);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchRandomParticipants(currentPage - 1);
-
-      setTotalPates(data.result.totalPage);
-      setCurrentPage(data.result.currentPage + 1);
-      setParticipants(data.result.lotsUserList);
-    };
-
-    fetchData();
-  }, [currentPage, totalPages]);
+    fetchData(1);
+  }, []);
 
   return (
     <div className="h-screen w-screen bg-gray-100 p-4">
@@ -44,9 +47,7 @@ const RandomParticipants = () => {
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-xl font-bold">참여자 관리</h2>
         <div>
-          <button className="mr-2 rounded bg-gray-200 px-4 py-2">
-            추첨 이벤트
-          </button>
+          <div className="mr-2 rounded bg-gray-200 px-4 py-2">추첨 이벤트</div>
         </div>
       </div>
 
@@ -62,6 +63,16 @@ const RandomParticipants = () => {
           type="text"
           placeholder="검색 (이름, 전화번호)"
           className="w-1/3 rounded border border-gray-300 px-4 py-2"
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            console.log(e.key);
+            if (e.key === "Enter") {
+              fetchData(1, search);
+            }
+          }}
         />
       </div>
 

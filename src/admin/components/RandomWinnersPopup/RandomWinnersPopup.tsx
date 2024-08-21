@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useInputs from "../../../client/hooks/useInputs";
+import { putRandomReward } from "../../api/fetch";
 
 interface RandomPopupInterface {
   modalHandler: () => void;
@@ -17,12 +18,12 @@ const handlePropagation = (event: React.MouseEvent<HTMLDivElement>) => {
 };
 
 const RandomWinnersPopup = ({ modalHandler }: RandomPopupInterface) => {
-  const [items, setItems] = useState([{ reward: "", numWinners: "", rank: 1 }]);
+  const [items, setItems] = useState([{ reward: "", numWinners: 0, rank: 1 }]);
   const [weight, setWeight] = useState(1);
   const [totalWinners, setTotalWinners] = useState(100);
 
   const addItem = (index: number) => {
-    setItems([...items, { reward: "", numWinners: "", rank: index }]);
+    setItems([...items, { reward: "", numWinners: 0, rank: index }]);
   };
 
   const handleChange = ({ index, field, value }: ItemChangesInterface) => {
@@ -40,7 +41,7 @@ const RandomWinnersPopup = ({ modalHandler }: RandomPopupInterface) => {
     setTotalWinners(value);
   };
 
-  const getWinnersList = () => {
+  const postRewards = async () => {
     const data = {
       eventRewardList: items,
       eventWeight: {
@@ -48,7 +49,9 @@ const RandomWinnersPopup = ({ modalHandler }: RandomPopupInterface) => {
         condition: "기대평 작성 여부",
       },
     };
-    //data 백으로 전송
+
+    const response = await putRandomReward(data);
+    console.log(response);
   };
 
   return (
@@ -146,7 +149,10 @@ const RandomWinnersPopup = ({ modalHandler }: RandomPopupInterface) => {
         <div className="text-right">
           <button
             className="rounded bg-gray-500 px-4 py-2 text-white"
-            onClick={getWinnersList}
+            onClick={() => {
+              postRewards();
+              modalHandler();
+            }}
           >
             추첨 진행 하기
           </button>
