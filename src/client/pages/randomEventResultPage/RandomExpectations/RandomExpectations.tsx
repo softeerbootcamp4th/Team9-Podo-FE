@@ -5,7 +5,9 @@ import { postComment } from "../../../api/fetch";
 import { useErrorBoundary } from "react-error-boundary";
 
 const RandomExpectations = forwardRef<HTMLDivElement>((props, ref) => {
-  const [error, setError] = useState<"short" | "inappropriate" | null>(null);
+  const [error, setError] = useState<
+    "short" | "inappropriate" | "success" | null
+  >(null);
   const [expectation, setExpectation] = useState<string>("");
   const [toastKey, setToastKey] = useState(0);
   const { showBoundary } = useErrorBoundary();
@@ -14,8 +16,8 @@ const RandomExpectations = forwardRef<HTMLDivElement>((props, ref) => {
     if (expectation.length < 20) setError("short");
     else {
       try {
-        setError(null);
         postComment(expectation);
+        setError("success");
         setExpectation("");
       } catch (error) {
         showBoundary(error);
@@ -55,6 +57,7 @@ const RandomExpectations = forwardRef<HTMLDivElement>((props, ref) => {
             value={4}
             delay={4000}
             duration={1000}
+            color={error === "success" ? "bg-[#66bb6a]" : undefined}
           />
         )}
       </div>

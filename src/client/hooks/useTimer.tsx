@@ -53,7 +53,7 @@ const useTimer = (initialTime: number, onEndHandler?: Function) => {
     setLeftTime(initialTime);
   };
 
-  return { reset, hours, minutes, seconds };
+  return { reset, hours, minutes, seconds, setLeftTime };
 };
 
 export default useTimer;
