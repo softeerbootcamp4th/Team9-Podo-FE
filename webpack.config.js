@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
-module.exports = () => {
+module.exports = (env) => {
   return {
     mode: "development",
     devtool: "inline-source-map",

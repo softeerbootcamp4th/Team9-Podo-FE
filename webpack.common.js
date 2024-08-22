@@ -2,9 +2,16 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const dotenv = require("dotenv");
 
 module.exports = (env) => {
-  // console.log("env", process.env);
+  const { DEV } = env;
+  if (DEV) {
+    dotenv.config({ path: "./.env.dev" });
+  } else {
+    dotenv.config({ path: "./.env.prod" });
+  }
+
   return {
     entry: "./src/client/index.tsx",
     output: {
@@ -63,7 +70,7 @@ module.exports = (env) => {
         filename: "index.html", // output으로 출력할 파일은 index.html 이다.
       }),
       new webpack.DefinePlugin({
-        "process.env": JSON.stringify(env),
+        "process.env.API_URL": JSON.stringify(process.env.API_URL),
       }),
       new MiniCssExtractPlugin({
         filename: "style.css",
