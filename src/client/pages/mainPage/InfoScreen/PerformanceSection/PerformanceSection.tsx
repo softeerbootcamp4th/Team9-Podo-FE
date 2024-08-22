@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import carImg from "../../../../../common/assets/images/powerImg.png";
+import carImg from "../../../../../common/assets/images/powerImg.webp";
 import {
   ELECTRONIC_4WD,
   ENGINE_SPECS,
@@ -82,7 +82,7 @@ const PerformanceSection = () => {
       <img
         src={carImg}
         alt="셀토스"
-        className={`${isInView ? "translate-x-0" : "translate-x-80"} transition-all duration-500`}
+        className={`${isInView ? "translate-x-0" : "translate-x-80"} h-fit w-fit transition-all duration-500`}
       />
     </div>
   );

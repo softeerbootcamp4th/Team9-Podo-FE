@@ -13,7 +13,7 @@ const OutsideDescriptionItem = ({
 }: OutsideDescriptionItemProps) => {
   return (
     <div role="article">
-      <img className="h-[39.125rem] w-[95rem]" src={img} />
+      <img className="h-[39.125rem] w-[95rem]" src={img} alt={title} />
       <div className="py-700">
         <div className="mb-500 font-kia-signature-bold text-title-3 text-gray-950">
           {title}

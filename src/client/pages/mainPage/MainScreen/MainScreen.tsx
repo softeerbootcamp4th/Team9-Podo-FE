@@ -8,7 +8,7 @@ import React, {
 import GlowBackground from "../../../components/common/GlowBackground/GlowBackground";
 import FCFSEventSection from "./FCFSEventSection/FCFSEventSection";
 import RandomEventSection from "./RandomEventSection/RandomEventSection";
-import mainCar from "../../../../common/assets/images/mainCar.png";
+import mainCar from "../../../../common/assets/images/mainCar.webp";
 import EventSelectSection from "./EventSelectSection/EventSelectSection";
 
 const MainScreen = (
@@ -122,7 +122,7 @@ const MainScreen = (
       />
       <img
         src={mainCar}
-        alt=""
+        alt="2024년 모델 셀토스"
         className={`pointer-events-none absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transition-opacity duration-200 ${
           isImageVisible ? "opacity-100" : "opacity-0"
         }`}

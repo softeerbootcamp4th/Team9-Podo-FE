@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from "react";
-import car from "../../../../common/assets/images/whiteRight.png";
+import car from "../../../../common/assets/images/whiteRight.webp";
 
 interface ButtonInterface {
   size: "small" | "big" | "long";
@@ -64,7 +64,7 @@ const Button = ({
       {isEnabled && (
         <img
           src={car}
-          alt="car"
+          alt="셀토스 측면 이미지"
           className={`absolute ${carPosition} -left-28 h-[5.875rem] w-[13.5rem] transition-transform duration-300 ${moveDestination}`}
         />
       )}

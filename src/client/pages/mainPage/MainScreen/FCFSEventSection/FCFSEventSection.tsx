@@ -2,7 +2,7 @@ import React, { ForwardedRef, forwardRef, useEffect, useState } from "react";
 import Timer from "../../../../components/mainPage/MainScreen/Timer/Timer";
 import EventHeader from "../../../../components/mainPage/MainScreen/EventHeader/EventHeader";
 import Button from "../../../../components/common/Button/Button";
-import e1Gift from "../../../../../common/assets/images/e1Gift.png";
+import e1Gift from "../../../../../common/assets/images/e1Gift.webp";
 import {
   FCFS_EVENT_DATA,
   FCFS_PARTICIPATION_STEPS,
@@ -85,7 +85,7 @@ const FCFSEventSection = (
     >
       <img
         src={e1Gift}
-        alt="Event"
+        alt="셀토스 출시 이벤트 상품"
         className="pointer-events-none absolute z-10 h-[5.75rem] w-[3.375rem] translate-x-[16rem] translate-y-20"
       />
       <EventHeader

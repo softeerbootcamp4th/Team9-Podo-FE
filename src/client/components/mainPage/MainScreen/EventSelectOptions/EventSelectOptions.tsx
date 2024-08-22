@@ -38,7 +38,7 @@ const EventSelectOptions = ({
           </div>
           <div className="whitespace-pre-wrap text-center">{description}</div>
         </div>
-        <img src={img} alt="" className="h-[28rem] w-fit" />
+        <img src={img} alt="상품" className="h-[28rem] w-fit" />
         <Button
           onClick={onClick}
           size={size}

@@ -42,7 +42,7 @@ module.exports = (env) => {
           },
         },
         {
-          test: /\.(png|jpe?g|gif|mp4)$/i,
+          test: /\.(png|jpe?g|gif|mp4|webp)$/i,
           use: [
             {
               loader: "file-loader",

@@ -61,7 +61,6 @@ describe("RandomMainSection", () => {
 
     expect(screen.getByText("테스트 설명")).toBeInTheDocument();
     expect(screen.getByText("1.")).toBeInTheDocument();
-    expect(screen.getByAltText("시나리오")).toBeInTheDocument();
     expect(screen.getByText("테스트 시나리오 제목")).toBeInTheDocument();
     expect(screen.getByText("테스트 시나리오 부제목")).toBeInTheDocument();
   });

@@ -1,9 +1,9 @@
 import React, { ForwardedRef, forwardRef } from "react";
 import EventHeader from "../../../../components/mainPage/MainScreen/EventHeader/EventHeader";
 import Button from "../../../../components/common/Button/Button";
-import e2Gift1 from "../../../../../common/assets/images/e2Gift1.png";
-import e2Gift2 from "../../../../../common/assets/images/e2Gift2.png";
-import e2Gift3 from "../../../../../common/assets/images/e2Gift3.png";
+import e2Gift1 from "../../../../../common/assets/images/e2Gift1.webp";
+import e2Gift2 from "../../../../../common/assets/images/e2Gift2.webp";
+import e2Gift3 from "../../../../../common/assets/images/e2Gift3.webp";
 import {
   RANDOM_EVENT_DATA,
   RANDOM_PERIOD_INFO,
@@ -40,8 +40,8 @@ const RandomEventSection = (
           <img
             key={index}
             src={src}
-            alt={`Gift ${index + 1}`}
-            className="w-1/3"
+            alt={`셀토스 출시 이벤트 상품 ${index + 1}`}
+            className="h-fit w-1/3"
             style={{
               maskImage:
                 "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
