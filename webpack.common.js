@@ -10,6 +10,7 @@ module.exports = (env) => {
     dotenv.config({ path: "./.env.dev" });
   } else if (DEV === "false") {
     dotenv.config({ path: "./.env.prod" });
+    console.log("process.env.RANDOM_URL");
   }
 
   return {

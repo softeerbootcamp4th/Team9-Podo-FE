@@ -89,6 +89,7 @@ const AuthModal = () => {
         setReRequesst(true);
         await postPhoneAuthRequest({ name, phoneNum });
       } catch (error) {
+        if (error.message === "Failed to fetch") return;
         showBoundary(error);
       }
     }
@@ -116,6 +117,7 @@ const AuthModal = () => {
           setIsError("AUTH_NUM_INCORRECT");
         }
       } catch (error) {
+        if (error.message === "Failed to fetch") return;
         showBoundary(error);
       }
       setToastKey((current) => current + 1);

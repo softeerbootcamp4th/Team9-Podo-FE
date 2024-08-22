@@ -72,6 +72,7 @@ const FCFSEventResultPage = () => {
       keyStartAnimation();
       buttonStartAnimation();
     } catch (error) {
+      if (error.message === "Failed to fetch") return;
       showBoundary(error);
     }
   };

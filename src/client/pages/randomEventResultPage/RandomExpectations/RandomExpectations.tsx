@@ -20,6 +20,7 @@ const RandomExpectations = forwardRef<HTMLDivElement>((props, ref) => {
         setError("success");
         setExpectation("");
       } catch (error) {
+        if (error.message === "Failed to fetch") return;
         showBoundary(error);
       }
     }

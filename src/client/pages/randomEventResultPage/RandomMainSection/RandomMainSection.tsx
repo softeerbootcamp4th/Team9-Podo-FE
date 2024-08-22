@@ -37,6 +37,7 @@ const RandomMainSection = ({
         const { result } = await postRandomResult(resultTypeId);
         setShareUrl(result.uniqueLink);
       } catch (error) {
+        if (error.message === "Failed to fetch") return;
         showBoundary(error);
       }
   };
