@@ -70,7 +70,9 @@ module.exports = (env) => {
         filename: "index.html", // output으로 출력할 파일은 index.html 이다.
       }),
       new webpack.DefinePlugin({
-        "process.env.API_URL": JSON.stringify(process.env.API_URL),
+        "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+        "process.env.RANDOM_URL": JSON.stringify(process.env.RANDOM_URL),
+        "process.env.FCFS_URL": JSON.stringify(process.env.FCFS_URL),
       }),
       new MiniCssExtractPlugin({
         filename: "style.css",

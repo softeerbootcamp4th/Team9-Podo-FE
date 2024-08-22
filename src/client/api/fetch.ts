@@ -13,13 +13,15 @@ import {
   SharedLinkInterface,
 } from "../types/RandomEvent";
 import { HTTP_STATUS_CODE } from "../constants/api";
+const RANDOM_URL = process.env.RANDOM_URL;
+const FCFS_URL = process.env.FCFS_URL;
 
 /**
  * 선착순 퀴즈 정보를 가져오는 api
  * @returns
  */
 export const fetchFCFSQuizInfo = async () => {
-  return await fetchInterceptor<QuizInfo>("/v1/quiz", {
+  return await fetchInterceptor<QuizInfo>(FCFS_URL + "/v1/quiz", {
     headers: {
       "Content-Type": "application/json",
       Authorization: decodeURI(Cookies.get("auth") || ""),
@@ -32,13 +34,16 @@ export const fetchFCFSQuizInfo = async () => {
  * @returns
  */
 export const fetchFCFSResult = async () => {
-  return await fetchInterceptor<QuizResult>("/v1/quiz", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: decodeURI(Cookies.get("auth") || ""),
+  return await fetchInterceptor<QuizResult>(
+    FCFS_URL + "/v1/arrival/application",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: decodeURI(Cookies.get("auth") || ""),
+      },
     },
-  });
+  );
 };
 
 /**
@@ -49,7 +54,7 @@ export const fetchFCFSResult = async () => {
 export const postPhoneAuthRequest = async (
   phoneAuthRequestForm: PhoneAuthRequestForm,
 ) => {
-  return await fetchInterceptor<string>("/verification/claim", {
+  return await fetchInterceptor<string>(RANDOM_URL + "/verification/claim", {
     method: "POST",
     body: JSON.stringify(phoneAuthRequestForm),
     headers: {
@@ -66,7 +71,7 @@ export const postPhoneAuthRequest = async (
 export const postPhoneAuthCheckRequest = async (
   phoneAuthCheckForm: PhoneAuthCheckForm,
 ) => {
-  return await fetchInterceptor<TokenInfo>("/verification/check", {
+  return await fetchInterceptor<TokenInfo>(RANDOM_URL + "/verification/check", {
     method: "POST",
     body: JSON.stringify(phoneAuthCheckForm),
     headers: {
@@ -80,7 +85,9 @@ export const postPhoneAuthCheckRequest = async (
  * @returns
  */
 export const fetchWordCloudData = async () => {
-  return await fetchInterceptor<WordListResponse>("/lots/wordCloud");
+  return await fetchInterceptor<WordListResponse>(
+    RANDOM_URL + "/lots/wordCloud",
+  );
 };
 
 /**
@@ -89,7 +96,7 @@ export const fetchWordCloudData = async () => {
  */
 export const postComment = async (comment: string) => {
   //any 수정 필요
-  return await fetchInterceptor<any>("/v1/lots/comment", {
+  return await fetchInterceptor<any>(RANDOM_URL + "/v1/lots/comment", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -104,14 +111,17 @@ export const postComment = async (comment: string) => {
  * @returns
  */
 export const postRandomResult = async (resultId: number) => {
-  return await fetchInterceptor<SharedLinkInterface>("/v1/lots/application", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: decodeURI(Cookies.get("auth") || ""),
+  return await fetchInterceptor<SharedLinkInterface>(
+    RANDOM_URL + "/v1/lots/application",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: decodeURI(Cookies.get("auth") || ""),
+      },
+      body: JSON.stringify({ resultTypeId: resultId }),
     },
-    body: JSON.stringify({ resultTypeId: resultId }),
-  });
+  );
 };
 
 /**
@@ -119,7 +129,7 @@ export const postRandomResult = async (resultId: number) => {
  * @returns
  */
 export const checkAndRefreshToken = async () => {
-  return await fetchInterceptor<TokenInfo>("/v1/reissue", {
+  return await fetchInterceptor<TokenInfo>(RANDOM_URL + "/v1/reissue", {
     method: "POST",
     headers: {
       Authorization: decodeURI(Cookies.get("auth") || ""),
@@ -149,7 +159,7 @@ export const postEvent2Answers = async (
   answers: AnswerInterface,
 ): Promise<RandomQuizResponseInterface | null> => {
   try {
-    const response = await fetch("/lots/type", {
+    const response = await fetch(RANDOM_URL + "/lots/type", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

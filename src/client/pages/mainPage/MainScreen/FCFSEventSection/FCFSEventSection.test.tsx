@@ -4,51 +4,58 @@ import userEvent from "@testing-library/user-event";
 import FCFSEventSection from "./FCFSEventSection";
 import { FCFS_EVENT_DATA } from "../../../../constants/EventData";
 import { useAppContext } from "../../../../providers/AppProvider";
-import { useNavigate, useLocation } from "react-router";
 
 jest.mock("../../../../providers/AppProvider", () => ({
   useAppContext: jest.fn(),
 }));
-
-// jest.mock("react-router", () => ({
-//   useNavigate: jest.fn(),
-//   useLocation: jest.fn(),
-// }));
-
-// const mockNavigate = jest.fn();
-// const mockLocation = { pathname: "/some-path" };
 
 beforeEach(() => {
   (useAppContext as jest.Mock).mockReturnValue({
     isAuth: false,
     isFCFSEnd: false,
   });
-  // (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
-  // (useLocation as jest.Mock).mockReturnValue(mockLocation);
 });
 
-class EventSourceMock {
-  private onMessageCallback?: (event: MessageEvent) => void;
+const EventSourceMock: jest.Mock = jest.fn().mockImplementation(() => {
+  return {
+    onMessageCallback: jest.fn(),
+    triggerMessage(remainingTime: number) {
+      if (this.onMessageCallback) {
+        console.log(remainingTime);
+        this.onMessageCallback({
+          data: JSON.stringify({ remainingTime }),
+        } as MessageEvent);
+      }
+    },
+    close() {},
+  };
+});
 
-  constructor(url: string) {}
+// })(
+// class EventSourceMock {
+//   private onMessageCallback: (event: MessageEvent) => void;
 
-  set onmessage(callback: (event: MessageEvent) => void) {
-    this.onMessageCallback = callback;
-  }
+//   constructor(url: string) {
+//     this.onMessageCallback;
+//   }
 
-  triggerMessage(remainingTime: number) {
-    if (this.onMessageCallback) {
-      this.onMessageCallback({
-        data: JSON.stringify({ remainingTime }),
-      } as MessageEvent);
-    }
-  }
+//   set onmessage(callback: (event: MessageEvent) => void) {
+//     this.onMessageCallback = callback;
+//   }
 
-  close() {}
-}
+//   triggerMessage(remainingTime: number) {
+//     if (this.onMessageCallback) {
+//       console.log(remainingTime);
+//       this.onMessageCallback({
+//         data: JSON.stringify({ remainingTime }),
+//       } as MessageEvent);
+//     }
+//   }
+
+//   close() {}
+// }
 
 (global as any).EventSource = EventSourceMock;
-
 describe("FCFSEventSection", () => {
   test("isVisible이 true일 때 올바르게 랜더링 되어야 한다.", () => {
     render(<FCFSEventSection isVisible={true} onInfoClick={jest.fn()} />);
@@ -77,16 +84,16 @@ describe("FCFSEventSection", () => {
   });
 
   //실패
-  //   test("본인인증이 되어있고 퀴즈 시작 시간이 아니라면 버튼에 1시에 이벤트가 진행됩니다가 보여야 한다.", () => {
-  //     (useAppContext as jest.Mock).mockReturnValue({
-  //       isAuth: true,
-  //       isFCFSEnd: false,
-  //     });
-
-  //     render(<FCFSEventSection isVisible={true} onInfoClick={jest.fn()} />);
-
-  //     expect(screen.getByText("1시에 이벤트가 진행됩니다")).toBeInTheDocument();
+  // test("본인인증이 되어있고 퀴즈 시작 시간이 아니라면 버튼에 1시에 이벤트가 진행됩니다가 보여야 한다.", () => {
+  //   (useAppContext as jest.Mock).mockReturnValue({
+  //     isAuth: true,
+  //     isFCFSEnd: false,
   //   });
+
+  //   render(<FCFSEventSection isVisible={true} onInfoClick={jest.fn()} />);
+
+  //   expect(screen.getByText("1시에 이벤트가 진행됩니다")).toBeInTheDocument();
+  // });
 
   // test("본인인증이 되어있고 퀴즈 시작 시간이라면 버튼에 퀴즈풀기가 보여야 한다.", () => {
   //   (useAppContext as jest.Mock).mockReturnValue({

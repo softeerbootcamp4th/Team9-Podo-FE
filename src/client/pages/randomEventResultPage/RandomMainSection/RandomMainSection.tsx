@@ -32,12 +32,13 @@ const RandomMainSection = ({
   };
 
   const getUniqueUrl = async () => {
-    try {
-      const { result } = await postRandomResult(resultTypeId);
-      setShareUrl(result.uniqueLink);
-    } catch (error) {
-      showBoundary(error);
-    }
+    if (isAuth)
+      try {
+        const { result } = await postRandomResult(resultTypeId);
+        setShareUrl(result.uniqueLink);
+      } catch (error) {
+        showBoundary(error);
+      }
   };
 
   const handleShare = () => {
