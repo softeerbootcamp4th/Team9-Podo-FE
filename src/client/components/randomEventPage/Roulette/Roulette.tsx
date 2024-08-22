@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { RouletteInterface } from "../../../types/RandomEvent";
+import { ROULETTE_VALUES } from "../../../constants/RandomEventData";
 
 /**
  * 룰렛이 돌며 약 5초 뒤 targetText가 표시됨
@@ -9,28 +10,25 @@ import { RouletteInterface } from "../../../types/RandomEvent";
  * @returns
  */
 const Roulette = ({ textList, targetText }: RouletteInterface) => {
-  const [duration, setDuration] = useState(0.2);
-  const [delay, setDelay] = useState(0.1);
+  const [duration, setDuration] = useState(ROULETTE_VALUES.INITIAL_DURATION);
+  const [delay, setDelay] = useState(ROULETTE_VALUES.INITIAL_DELAY);
   const [showType, setShowType] = useState(false);
 
   useEffect(() => {
+    const totalDuration =
+      duration * ROULETTE_VALUES.BASE_ANIMATION_DURATION_MULTIPLIER * 1000;
+
     if (duration > 0.7) {
-      const timeoutId = setTimeout(
-        () => {
-          setShowType(true);
-        },
-        duration * 2.1 * 1000,
-      );
+      const timeoutId = setTimeout(() => {
+        setShowType(true);
+      }, totalDuration);
       return () => clearTimeout(timeoutId);
     }
 
-    const intervalId = setInterval(
-      () => {
-        setDuration((current) => current + 0.2);
-        setDelay((current) => current + 0.1);
-      },
-      duration * 2.1 * 1000,
-    );
+    const intervalId = setInterval(() => {
+      setDuration((current) => current + ROULETTE_VALUES.DURATION_INCREMENT);
+      setDelay((current) => current + ROULETTE_VALUES.DELAY_INCREMENT);
+    }, totalDuration);
 
     return () => clearInterval(intervalId);
   }, [duration]);
