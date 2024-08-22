@@ -29,9 +29,7 @@ export const putRandomEvent = async (
 ): Promise<ApiResponse<EventInfo>> => {
   const response = await fetch("/admin/lots/config", {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: {},
     body: eventInfo,
   });
 
@@ -43,9 +41,7 @@ export const putFCFSEvent = async (
 ): Promise<ApiResponse<EventInfo>> => {
   const response = await fetch("/admin/arrival/config", {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: {},
     body: eventInfo,
   });
 

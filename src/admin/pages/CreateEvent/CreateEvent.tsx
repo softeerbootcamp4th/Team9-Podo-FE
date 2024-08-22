@@ -46,6 +46,7 @@ const EventForm: React.FC = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
+    console.log(file);
     setFormData((prevState) => ({
       ...prevState,
       tagImage: file,
@@ -74,15 +75,30 @@ const EventForm: React.FC = () => {
   const putData = async (putApi: Function) => {
     const formDataToSend = new FormData();
 
-    formDataToSend.append("title", formData.title || "");
-    formDataToSend.append("description", formData.description || "");
-    formDataToSend.append("repeatDay", formData.repeatDay || "");
-    formDataToSend.append("repeatTime", formData.repeatTime || "");
-    formDataToSend.append("startAt", formData.startAt || "");
-    formDataToSend.append("endAt", formData.endAt || "");
+    // formDataToSend.append("title", formData.title || "");
+    // formDataToSend.append("description", formData.description || "");
+    // formDataToSend.append("repeatDay", formData.repeatDay || "");
+    // formDataToSend.append("repeatTime", formData.repeatTime || "");
+    // formDataToSend.append("startAt", formData.startAt || "");
+    // formDataToSend.append("endAt", formData.endAt || "");
+    const formDataEdited = {
+      title: formData.title,
+      description: formData.description,
+      repeatDay: formData.repeatDay,
+      repeatTime: formData.repeatTime,
+      startAt: formData.startAt,
+      endAt: formData.endAt,
+    };
+
+    formDataToSend.append(
+      "dto",
+      new Blob([JSON.stringify(formDataEdited)], {
+        type: "application/json",
+      }),
+    );
 
     if (formData.tagImage) {
-      formDataToSend.append("tagImage", formData.tagImage);
+      formDataToSend.append("file", formData.tagImage);
     }
 
     const response = await putApi(formDataToSend);
