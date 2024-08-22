@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useAppContext } from "../../providers/AppProvider";
 import { postEvent2Answers } from "../../api/post";
 import RandomMainSection from "./RandomMainSection/RandomMainSection";
@@ -36,6 +36,7 @@ const ROULETTE_END_HEADER_CLASSES = {
 
 const RandomEventResultPage = () => {
   const appContext = useAppContext();
+  const navigate = useNavigate();
   const location = useLocation();
   const [timeElapsed, setTimeElapsed] = useState(0);
   const { showBoundary } = useErrorBoundary();
@@ -44,17 +45,7 @@ const RandomEventResultPage = () => {
   const randomExpectationsRef = useRef<HTMLDivElement>(null);
 
   const { isAuth, setIsAuth, isRandomEnd } = appContext;
-  const [answer, setAnswer] = useState<AnswerInterface>(() => {
-    const savedAnswer = sessionStorage.getItem("answer");
-    return savedAnswer
-      ? JSON.parse(savedAnswer)
-      : {
-          answer1: "",
-          answer2: "",
-          answer3: "",
-          answer4: "",
-        };
-  });
+  const [answer, setAnswer] = useState<AnswerInterface | null>(null);
 
   const isRouletteEnd = timeElapsed >= ROULETTE_END_DELAY;
   const animation = timeElapsed >= ANIMATION_DURATION;
@@ -75,8 +66,25 @@ const RandomEventResultPage = () => {
   }, [timeElapsed]);
 
   useEffect(() => {
+    if (isRandomEnd && randomExpectationsRef.current) {
+      randomExpectationsRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [isRandomEnd]);
+
+  useEffect(() => {
+    const savedAnswer = sessionStorage.getItem("answer");
+    if (!savedAnswer) {
+      navigate("/event2/0");
+      return;
+    }
+
+    setAnswer(JSON.parse(savedAnswer));
+
     const fetchData = async () => {
-      const response = await postEvent2Answers(answer);
+      const response = await postEvent2Answers(JSON.parse(savedAnswer));
       setResultData(response);
     };
 
@@ -88,17 +96,9 @@ const RandomEventResultPage = () => {
         showBoundary(error);
       }
     };
-    tryFetch();
-  }, []);
 
-  useEffect(() => {
-    if (isRandomEnd && randomExpectationsRef.current) {
-      randomExpectationsRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  }, [isRandomEnd]);
+    tryFetch();
+  });
 
   const checkToken = async () => {
     const response = await checkAndRefreshToken();

@@ -11,7 +11,14 @@ const RandomEventPage = () => {
   const { quizIndex } = useParams();
   const [answer, setAnswer] = useState<AnswerInterface>(() => {
     const savedAnswer = sessionStorage.getItem("answer");
-    return savedAnswer ? JSON.parse(savedAnswer) : navigate("/event2/0");
+    return savedAnswer
+      ? JSON.parse(savedAnswer)
+      : {
+          answer1: "A",
+          answer2: "A",
+          answer3: "A",
+          answer4: "A",
+        };
   });
 
   useEffect(() => {
