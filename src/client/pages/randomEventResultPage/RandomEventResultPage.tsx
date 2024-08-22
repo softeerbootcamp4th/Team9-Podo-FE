@@ -17,6 +17,8 @@ import { useErrorBoundary } from "react-error-boundary";
 import { checkAndRefreshToken } from "../../api/fetch";
 import Cookies from "js-cookie";
 import GlowBackground from "../../components/common/GlowBackground/GlowBackground";
+import HomeButton from "../../components/common/HomeButton/HomeButton";
+import AuthTooltip from "../../components/common/AuthTooltip/AuthTooltip";
 
 const ANIMATION_DURATION = 5000;
 const ROULETTE_END_DELAY = 6000;
@@ -41,7 +43,7 @@ const RandomEventResultPage = () => {
     useState<RandomQuizResponseInterface | null>(null);
   const randomExpectationsRef = useRef<HTMLDivElement>(null);
 
-  const { isAuth, setIsAuth } = appContext;
+  const { isAuth, setIsAuth, isRandomEnd } = appContext;
   const [answer, setAnswer] = useState<AnswerInterface>(() => {
     const savedAnswer = sessionStorage.getItem("answer");
     return savedAnswer
@@ -90,19 +92,22 @@ const RandomEventResultPage = () => {
   }, []);
 
   useEffect(() => {
-    if (isAuth && randomExpectationsRef.current) {
+    if (isRandomEnd && randomExpectationsRef.current) {
       randomExpectationsRef.current.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
     }
-  }, [isAuth]);
+  }, [isRandomEnd]);
 
   const checkToken = async () => {
     const response = await checkAndRefreshToken();
     if (response.code === 200) {
       setIsAuth(true);
       Cookies.set("auth", response.result.accessToken, { expires: 1 / 24 });
+    } else {
+      setIsAuth(false);
+      Cookies.remove("auth");
     }
   };
 
@@ -110,6 +115,8 @@ const RandomEventResultPage = () => {
 
   return (
     <div className="flex flex-col items-center transition-all duration-500">
+      <HomeButton />
+      <AuthTooltip />
       <GlowBackground />
       {resultData && (
         <div
@@ -140,7 +147,9 @@ const RandomEventResultPage = () => {
                 description={getDescriptionList(resultData?.result.description)}
                 scenarioList={resultData?.result.scenarioList}
               />
-              {isAuth && <RandomExpectations ref={randomExpectationsRef} />}
+              {isAuth && isRandomEnd && (
+                <RandomExpectations ref={randomExpectationsRef} />
+              )}
             </div>
           )}
         </div>

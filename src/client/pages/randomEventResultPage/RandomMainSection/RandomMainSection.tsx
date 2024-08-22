@@ -40,7 +40,7 @@ const RandomMainSection = ({
     }
   };
 
-  const handleShare = useCallback(() => {
+  const handleShare = () => {
     if (!isCopied) {
       navigator.clipboard.writeText(shareUrl);
       setIsCopied(true);
@@ -48,7 +48,7 @@ const RandomMainSection = ({
       const timeoutId = setTimeout(() => setIsCopied(false), 4000);
       return () => clearTimeout(timeoutId);
     }
-  }, [isCopied]);
+  };
 
   const handleEventParticipation = async () => {
     if (isAuth) {

@@ -29,6 +29,9 @@ const MainPage = () => {
     if (response.code === 200) {
       setIsAuth(true);
       Cookies.set("auth", response.result.accessToken, { expires: 1 / 24 });
+    } else {
+      setIsAuth(false);
+      Cookies.remove("auth");
     }
   };
 

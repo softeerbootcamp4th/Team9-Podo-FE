@@ -3,9 +3,11 @@ import { Outlet, useNavigate, useParams } from "react-router";
 import ProgressBar from "../../components/randomEventPage/ProgressBar/ProgressBar";
 import { QUIZ_LIST } from "../../constants/RandomEventData";
 import { AnswerInterface } from "../../types/RandomEvent";
+import { useAppContext } from "../../providers/AppProvider";
 
 const RandomEventPage = () => {
   const navigate = useNavigate();
+  const { setIsRandomEnd } = useAppContext();
   const { quizIndex } = useParams();
   const [answer, setAnswer] = useState<AnswerInterface>(() => {
     const savedAnswer = sessionStorage.getItem("answer");
@@ -41,6 +43,10 @@ const RandomEventPage = () => {
       }
     }, 200);
   };
+
+  useEffect(() => {
+    setIsRandomEnd(false);
+  });
 
   return (
     <div

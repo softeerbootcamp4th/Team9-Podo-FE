@@ -94,7 +94,7 @@ describe("RandomMainSection", () => {
 
     await waitFor(() => {
       expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
-        "https://www.hyundaiseltos.site/",
+        "https://www.example.com/share",
       );
     });
   });

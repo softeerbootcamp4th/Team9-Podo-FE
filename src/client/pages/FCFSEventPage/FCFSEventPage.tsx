@@ -13,6 +13,7 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router";
 import { useAppContext } from "../../providers/AppProvider";
 import { useErrorBoundary } from "react-error-boundary";
+import { calculateLeftTime, calculateLeftTimeToEnd } from "../../utils/util";
 
 const FCFSEventPage = () => {
   const { showBoundary } = useErrorBoundary();
@@ -37,6 +38,9 @@ const FCFSEventPage = () => {
     };
     tryFetch();
     if (!isAuth) navigate("/");
+    if (calculateLeftTimeToEnd() < 0 || calculateLeftTime() > 0) {
+      navigate("/");
+    }
   }, []);
 
   const fetchData = async () => {
@@ -49,6 +53,9 @@ const FCFSEventPage = () => {
     if (response.code === 200) {
       setIsAuth(true);
       Cookies.set("auth", response.result.accessToken, { expires: 1 / 24 });
+    } else {
+      setIsAuth(false);
+      Cookies.remove("auth");
     }
   };
 

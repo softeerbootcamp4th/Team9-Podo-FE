@@ -1,6 +1,6 @@
 // Timer.test.tsx
 import React from "react";
-import { render, screen, act } from "../../../../utils/TestUtils";
+import { render } from "../../../../utils/TestUtils";
 import Timer from "./Timer";
 
 // Mock useTimer hook
@@ -20,6 +20,7 @@ jest.mock("../../../../hooks/useTimer", () => ({
 
     return {
       reset: jest.fn(),
+      setLeftTime: jest.fn(),
       hours,
       minutes,
       seconds,
@@ -52,7 +53,7 @@ class EventSourceMock {
 describe("Timer", () => {
   test("initTime에 맞게 올바르게 랜더링 되어야 한다.", () => {
     const onEndHandler = jest.fn();
-    render(<Timer onEndHandler={onEndHandler} />);
+    render(<Timer onEndHandler={onEndHandler} time={0} />);
 
     // Check if the Timer component renders the expected time
     // expect(screen.getByText("00:00:00")).toBeInTheDocument();

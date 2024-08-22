@@ -175,7 +175,13 @@
         const id = urlParams.get("id");
 
         try {
-          const response = await fetch(`/lots/type/id=${id}`);
+          const response = await fetch("/lots/typeId", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ resultTypeId: id }),
+          });
 
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -229,7 +235,7 @@
 
         // 결과 텍스트 설정
         document.getElementById("result-text").textContent =
-          resultData.result.result;
+          resultData.result.type;
 
         // 설명 텍스트 설정
         const descriptionTextElement =
@@ -252,13 +258,25 @@
             `scenario-subtitle-${index + 1}`,
           ).textContent = scenario.subtitle;
           document.getElementById(`scenario-image-${index + 1}`).src =
-            scenario.image;
+            `http://${scenario.image}`;
         });
       }
 
       // 페이지가 로드되면 콘텐츠를 채움
-      document.addEventListener("DOMContentLoaded", function () {
-        populateContent(resultData);
+      document.addEventListener("DOMContentLoaded", async function () {
+        try {
+          // getResultData 함수가 데이터를 반환할 때까지 기다림
+          const resultData = await getResultData();
+
+          // 데이터가 성공적으로 받아졌을 때만 populateContent 함수 호출
+          if (resultData) {
+            populateContent(resultData);
+          } else {
+            console.error("Failed to load result data.");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+        }
       });
     </script>
   </body>

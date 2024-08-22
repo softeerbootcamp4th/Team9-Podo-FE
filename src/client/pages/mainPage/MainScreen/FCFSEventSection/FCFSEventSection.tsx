@@ -1,4 +1,4 @@
-import React, { ForwardedRef, forwardRef, useState } from "react";
+import React, { ForwardedRef, forwardRef, useEffect, useState } from "react";
 import Timer from "../../../../components/mainPage/MainScreen/Timer/Timer";
 import EventHeader from "../../../../components/mainPage/MainScreen/EventHeader/EventHeader";
 import Button from "../../../../components/common/Button/Button";
@@ -16,6 +16,8 @@ import {
   calculateLeftTime,
   calculateLeftTimeToEnd,
 } from "../../../../utils/util";
+import { useErrorBoundary } from "react-error-boundary";
+import { show } from "../../../FCFSEventPage/FCFSHintSection/FCFSHintSection.stories";
 
 interface FCFSEventSectionProps {
   isVisible: boolean;
@@ -30,19 +32,49 @@ const FCFSEventSection = (
   const { isAuth, isFCFSEnd } = useAppContext();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-
+  const [leftTime, setLeftTime] = useState(0);
+  const { showBoundary } = useErrorBoundary();
   const onEndHandler = () => {
     setIsOpen(true);
   };
 
+  useEffect(() => {
+    const tryFetch = () => {
+      try {
+        const eventSource = new EventSource(
+          "https://www.hyundaiseltos.site/arrival/time",
+        );
+
+        eventSource.onmessage = (event) => {
+          const date = JSON.parse(event.data);
+          setLeftTime(date * 1000);
+        };
+
+        return eventSource;
+      } catch (error) {
+        showBoundary(error);
+      }
+    };
+
+    const eventSource = tryFetch();
+
+    return () => {
+      eventSource?.close();
+    };
+  }, []);
   const setText = () => {
-    if (isAuth === false) return BIG_BUTTON_TEXT.NO_AUTH;
     if (isFCFSEnd === true) return BIG_BUTTON_TEXT.EVENT_END;
-    if (calculateLeftTime() < 1000 * 60 * 50) return BIG_BUTTON_TEXT.EVENT_END;
-    if (calculateLeftTimeToEnd() === 0) return BIG_BUTTON_TEXT.EVENT_END;
-    if (isOpen === false) return BIG_BUTTON_TEXT.REMAIN_TIME;
-    if (isOpen === true) return BIG_BUTTON_TEXT.START_EVENT;
-    return "";
+    if (leftTime === 0 && isAuth) return BIG_BUTTON_TEXT.START_EVENT;
+    if (leftTime < 60 * 60 * 1000 && isAuth) return BIG_BUTTON_TEXT.REMAIN_TIME;
+    if (leftTime < 60 * 60 * 1000 && !isAuth) return BIG_BUTTON_TEXT.NO_AUTH;
+    return BIG_BUTTON_TEXT.EVENT_END;
+  };
+
+  const setEnabled = () => {
+    if (isFCFSEnd === true) return false;
+    if (leftTime === 0) return true;
+    if (!isAuth && leftTime < 60 * 60 * 1000) return true;
+    return false;
   };
 
   return (
@@ -61,7 +93,7 @@ const FCFSEventSection = (
         description={FCFS_EVENT_DATA.DESCRIPTION}
       />
       <div className="flex min-h-[30rem] flex-1 flex-col items-end justify-between">
-        <Timer onEndHandler={onEndHandler} />
+        <Timer onEndHandler={onEndHandler} time={leftTime} />
       </div>
       <div className="h-[16.375rem] gap-4 text-gray-50 flex-center">
         <div className="flex h-full w-[26.5rem] flex-col gap-4 text-body-1-regular">
@@ -120,7 +152,7 @@ const FCFSEventSection = (
                 });
           }}
           size="big"
-          isEnabled={isOpen || isAuth === false}
+          isEnabled={setEnabled()}
           defaultText={setText()}
           disabledText={setText()}
         />

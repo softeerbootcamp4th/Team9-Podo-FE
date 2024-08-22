@@ -1,3 +1,18 @@
+@font-face {
+  font-family: "Kia-Signature-Regular";
+  src: url(../../common/assets/fonts/KiaSignatureFixRegular.ttf);
+}
+
+@font-face {
+  font-family: "Kia-Signature-Bold";
+  src: url(../../common/assets/fonts/KiaSignatureFixBold.ttf);
+}
+
+@font-face {
+  font-family: "Kia-Signature-Light";
+  src: url(../../common/assets/fonts/KiaSignatureFixLight.ttf);
+}
+
 /* 전체적인 reset */
 * {
   margin: 0;

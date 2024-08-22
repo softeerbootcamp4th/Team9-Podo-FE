@@ -4,39 +4,18 @@ import { useErrorBoundary } from "react-error-boundary";
 
 interface TimerInterface {
   onEndHandler: () => void;
+  time: number;
 }
 
-const Timer = ({ onEndHandler }: TimerInterface) => {
+const Timer = ({ onEndHandler, time }: TimerInterface) => {
   const { reset, hours, minutes, seconds, setLeftTime } = useTimer(
     0,
     onEndHandler,
   );
-  const { showBoundary } = useErrorBoundary();
 
   useEffect(() => {
-    const tryFetch = () => {
-      try {
-        const eventSource = new EventSource(
-          "https://www.hyundaiseltos.site/arrival/time",
-        );
-
-        eventSource.onmessage = (event) => {
-          const date = JSON.parse(event.data);
-          setLeftTime(date);
-        };
-
-        return eventSource;
-      } catch (error) {
-        showBoundary(error);
-      }
-    };
-
-    const eventSource = tryFetch();
-
-    return () => {
-      eventSource?.close();
-    };
-  }, []);
+    setLeftTime(time);
+  }, [time]);
 
   return (
     <div className="relative h-[13rem] w-[54rem] flex-center">
