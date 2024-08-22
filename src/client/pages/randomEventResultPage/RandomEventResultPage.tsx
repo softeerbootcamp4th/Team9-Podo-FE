@@ -114,7 +114,7 @@ const RandomEventResultPage = () => {
       <GlowBackground />
       {resultData && (
         <div
-          className={`relative flex h-screen w-screen flex-col items-center ${containerStyle} gap-16 transition-all duration-300`}
+          className={`relative flex h-screen w-screen flex-col items-center ${containerStyle} gap-16 overflow-scroll transition-all duration-300`}
         >
           <div
             className={`absolute flex w-[36.5rem] flex-col items-center duration-500 ${headerStyle}`}
