@@ -1,3 +1,12 @@
+import { MouseEventHandler } from "react";
+
+export interface OptionInterface {
+  label: string;
+  content: string;
+  state: "default" | "selected" | "unselected";
+  onClick: MouseEventHandler<HTMLButtonElement>;
+}
+
 export interface AnswerInterface {
   answer1: string;
   answer2: string;
