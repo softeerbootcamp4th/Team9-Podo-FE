@@ -22,7 +22,7 @@ describe("InsideSection Component", () => {
   test("화면에 내장 설명 이미지가 보여야 한다.", () => {
     render(<InsideSection />);
 
-    const image = screen.getByRole("img", { name: /interior/i });
+    const image = screen.getByRole("img", { name: /셀토스 내부 뷰/i });
     expect(image).toHaveAttribute("src", Interior);
   });
 

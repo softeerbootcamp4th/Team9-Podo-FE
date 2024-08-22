@@ -47,7 +47,7 @@ describe("EventSelectSection", () => {
     );
 
     expect(screen.getByText(SELECT_DATA.PAGE_TITLE)).toBeInTheDocument();
-    expect(screen.getByAltText("Main Car")).toBeInTheDocument();
+    expect(screen.getByAltText("2024년 모델 셀토스")).toBeInTheDocument();
   });
 
   test("landing car, main car, title 애니메이션이 useAnimation hook을 통해 호출되어야 한다.", () => {

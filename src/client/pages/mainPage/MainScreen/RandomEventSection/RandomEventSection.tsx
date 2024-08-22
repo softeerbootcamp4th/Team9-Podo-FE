@@ -40,7 +40,7 @@ const RandomEventSection = (
           <img
             key={index}
             src={src}
-            alt={`Gift ${index + 1}`}
+            alt={`셀토스 출시 이벤트 상품 ${index + 1}`}
             className="h-fit w-1/3"
             style={{
               maskImage:

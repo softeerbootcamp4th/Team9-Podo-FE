@@ -76,11 +76,11 @@ const RandomMainSection = ({
         <div className="absolute -top-10 right-0 flex gap-4 font-kia-signature-bold text-body-1-bold text-white">
           <Tooltip content={TOOLTIP_CONTENT} isVisible={isCopied} />
           <button onClick={handleRetry} className="flex gap-2">
-            <img src={reset} alt="다시하기" />
+            <img src={reset} alt="셀토스 이벤트 다시하기" />
             다시하기
           </button>
           <button onClick={handleShare} className="flex gap-2">
-            <img src={share} alt="공유하기" />
+            <img src={share} alt="셀토스 이벤트 공유하기" />
             공유하기
           </button>
         </div>
@@ -104,7 +104,7 @@ const RandomMainSection = ({
               <p className="font-kia-signature-bold text-body-1-bold text-gray-50">{`${index + 1}.`}</p>
               <img
                 src={`http://${scenario.image}`}
-                alt="시나리오"
+                alt={scenario.title}
                 className="h-[15.25rem] w-[28.75rem] rounded-xl"
               />
               <p className="font-kia-signature-bold text-title-4 text-gray-50">

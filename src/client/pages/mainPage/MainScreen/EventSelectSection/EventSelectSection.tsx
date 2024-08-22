@@ -68,7 +68,7 @@ const EventSelectSection = ({
 
       <img
         src={mainCar}
-        alt="Main Car"
+        alt="2024년 모델 셀토스"
         className={`absolute top-96 opacity-0`}
         ref={mainCarRef}
       />
@@ -76,7 +76,7 @@ const EventSelectSection = ({
       {isLanding && (
         <img
           src={landingCar}
-          alt="Landing Car"
+          alt="셀토스 측면 이미지"
           className="absolute -bottom-96 -right-1/2 h-[64rem] w-[150rem]"
           ref={landingCarRef}
         />

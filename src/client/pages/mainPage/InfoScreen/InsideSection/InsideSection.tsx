@@ -16,7 +16,7 @@ const InsideSection = () => {
       <div className="relative h-screen w-screen">
         <img
           src={Interior}
-          alt="interior"
+          alt="셀토스 내부 뷰"
           className="absolute top-0 h-screen w-screen snap-start object-cover"
         />
         <InsideGuide />

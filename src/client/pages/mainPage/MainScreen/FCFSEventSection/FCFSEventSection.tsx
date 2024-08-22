@@ -85,7 +85,7 @@ const FCFSEventSection = (
     >
       <img
         src={e1Gift}
-        alt="Event"
+        alt="셀토스 출시 이벤트 상품"
         className="pointer-events-none absolute z-10 h-[5.75rem] w-[3.375rem] translate-x-[16rem] translate-y-20"
       />
       <EventHeader

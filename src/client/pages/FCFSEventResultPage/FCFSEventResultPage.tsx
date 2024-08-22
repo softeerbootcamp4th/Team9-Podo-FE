@@ -102,7 +102,7 @@ const FCFSEventResultPage = () => {
         ref={carRef}
         className="absolute top-20 z-10 -scale-x-90 scale-y-90"
         src={FCFSCar}
-        alt="seltos-car"
+        alt="셀토스 측면 이미지"
       />
       {isResultVisible && (
         <div className="absolute top-[23rem] z-0 font-kia-signature-bold text-8xl text-white">
@@ -165,7 +165,7 @@ const FCFSEventResultPage = () => {
         ref={keyRef}
         className="absolute -bottom-8"
         src={FCFSKey}
-        alt="car-key"
+        alt="셀토스 자동차 키"
       />
       {!isResultVisible && (
         <FCFSKeyButton

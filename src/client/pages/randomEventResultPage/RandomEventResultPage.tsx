@@ -135,7 +135,7 @@ const RandomEventResultPage = () => {
             {!isRouletteEnd && (
               <img
                 src={car}
-                alt="자동차"
+                alt="2024년 모델 셀토스"
                 className={`${animation && "animate-fadeOut"}`}
               />
             )}
