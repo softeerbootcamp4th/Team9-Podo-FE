@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate, useParams } from "react-router";
-import ProgressBar from "../../components/randomEventPage/ProgressBar/ProgressBar";
-import { INITIAL_ANSWER, QUIZ_LIST } from "../../constants/RandomEventData";
-import { AnswerInterface } from "../../types/RandomEvent";
 import { useAppContext } from "../../providers/AppProvider";
+import ProgressBar from "../../components/randomEventPage/ProgressBar/ProgressBar";
+import { AnswerInterface } from "../../types/RandomEvent";
+import { INITIAL_ANSWER, QUIZ_LIST } from "../../constants/RandomEventData";
 
 const RandomEventPage = () => {
   const navigate = useNavigate();
