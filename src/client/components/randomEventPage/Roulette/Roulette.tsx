@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
-
-interface RouletteInterface {
-  textList: Array<string>;
-  targetText: string;
-}
+import { RouletteInterface } from "../../../types/RandomEvent";
 
 /**
  * 룰렛이 돌며 약 5초 뒤 targetText가 표시됨
@@ -40,7 +36,7 @@ const Roulette = ({ textList, targetText }: RouletteInterface) => {
   }, [duration]);
 
   return (
-    <div className="before:gradient-mask relative flex w-[36.75rem] items-center justify-center font-kia-signature-bold text-title-4 text-gray-50 before:-inset-[0rem] before:content-none">
+    <div className="relative flex w-[36.75rem] items-center justify-center font-kia-signature-bold text-title-4 text-gray-50 before:-inset-[0rem] before:content-none before:gradient-mask">
       <div className="relative h-full w-full overflow-hidden px-10 py-6 flex-center">
         <p
           className={`font-kia-signature-bold text-title-2 transition duration-700 text-glow-white ${showType ? "" : "-translate-y-16"}`}

@@ -1,10 +1,6 @@
 import React from "react";
-import car from "../../../../common/assets/images/whiteRight.webp"; // car 이미지 경로
-
-interface ProgressBarInterface {
-  currentIndex: number;
-  maxIndex: number;
-}
+import car from "../../../../common/assets/images/whiteRight.webp";
+import { ProgressBarInterface } from "../../../types/RandomEvent";
 
 /**
  * 퀴즈 진행 상황을 나타내는 컴포넌트
