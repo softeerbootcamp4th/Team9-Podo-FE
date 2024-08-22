@@ -18,7 +18,7 @@ const ConvenienceDescriptionItem = ({
       role="article"
       className={`flex h-[38.25rem] w-[46rem] shrink-0 flex-col ${tailwind}`}
     >
-      <img src={img} className="h-full w-full" />
+      <img src={img} className="h-full w-full" alt={title} />
       <div className="mb-500 mt-800 font-kia-signature-bold text-title-3 text-gray-950">
         {title}
       </div>
