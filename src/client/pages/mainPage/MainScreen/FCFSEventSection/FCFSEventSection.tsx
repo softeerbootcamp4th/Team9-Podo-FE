@@ -62,6 +62,7 @@ const FCFSEventSection = (
       eventSource?.close();
     };
   }, []);
+
   const setText = () => {
     if (isFCFSEnd === true) return BIG_BUTTON_TEXT.EVENT_END;
     if (leftTime === 0 && isAuth) return BIG_BUTTON_TEXT.START_EVENT;
