@@ -40,7 +40,7 @@ const VideoSection = () => {
   return (
     <div className="relative h-[200vh] w-screen bg-black">
       <video
-        role="document"
+        role="presentation"
         ref={videoRef}
         playsInline
         autoPlay
