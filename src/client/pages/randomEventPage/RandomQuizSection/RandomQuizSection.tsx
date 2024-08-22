@@ -5,6 +5,7 @@ import {
   AnswerInterface,
   RandomQuizSectionInterface,
 } from "../../../types/RandomEvent";
+import { NEXT_QUIZ_TIMEOUT } from "../../../constants/RandomEventData";
 
 const ANIMATION_CLASS = {
   next: "opacity-0 translate-x-[40rem]",
@@ -18,22 +19,17 @@ const RandomQuizSection = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [animationClass, setAnimationClass] = useState("");
 
-  useEffect(() => {
-    setSelectedIndex(null);
-    startAnimation();
-  }, [quizInfo]);
-
   const startAnimation = () => {
     setAnimationClass(ANIMATION_CLASS.next);
     const timeout = setTimeout(() => {
       setAnimationClass(ANIMATION_CLASS.current);
-    }, 200);
+    }, NEXT_QUIZ_TIMEOUT);
+
     return () => clearTimeout(timeout);
   };
 
   const handleAnswerChange = (newAnswer: string): AnswerInterface => {
     const updatedAnswer = { ...answer };
-
     const answerKey = `answer${currentIndex + 1}` as keyof AnswerInterface;
 
     updatedAnswer[answerKey] = newAnswer;
@@ -49,16 +45,10 @@ const RandomQuizSection = () => {
     onClick(handleAnswerChange(answerValue));
   };
 
-  const renderOptions = () =>
-    quizInfo.optionList.map((option, index) => (
-      <Option
-        key={index}
-        label={option.label}
-        content={option.content}
-        state={selectedIndex === index ? "selected" : "default"}
-        onClick={() => onClickHandler(index)}
-      />
-    ));
+  useEffect(() => {
+    setSelectedIndex(null);
+    startAnimation();
+  }, [quizInfo]);
 
   return (
     <div
@@ -68,7 +58,17 @@ const RandomQuizSection = () => {
       <p className="w-[43rem] break-keep text-center font-kia-signature text-title-2 text-white">
         {quizInfo.question}
       </p>
-      <div className="flex flex-row gap-8">{renderOptions()}</div>
+      <div className="flex gap-8">
+        {quizInfo.optionList.map((option, index) => (
+          <Option
+            key={index}
+            label={option.label}
+            content={option.content}
+            state={selectedIndex === index ? "selected" : "default"}
+            onClick={() => onClickHandler(index)}
+          />
+        ))}
+      </div>
     </div>
   );
 };

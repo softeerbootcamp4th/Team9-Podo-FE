@@ -12,7 +12,6 @@ import {
   RandomQuizResponseInterface,
 } from "../../types/RandomEvent";
 import { getDescriptionList } from "../../utils/util";
-import { LONG_BUTTON_TEXT } from "../../constants/common";
 import { useErrorBoundary } from "react-error-boundary";
 import { checkAndRefreshToken } from "../../api/fetch";
 import Cookies from "js-cookie";

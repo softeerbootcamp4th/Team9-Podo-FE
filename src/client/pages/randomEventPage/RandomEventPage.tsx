@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate, useParams } from "react-router";
 import ProgressBar from "../../components/randomEventPage/ProgressBar/ProgressBar";
-import { QUIZ_LIST } from "../../constants/RandomEventData";
+import { INITIAL_ANSWER, QUIZ_LIST } from "../../constants/RandomEventData";
 import { AnswerInterface } from "../../types/RandomEvent";
 import { useAppContext } from "../../providers/AppProvider";
 
@@ -11,14 +11,7 @@ const RandomEventPage = () => {
   const { quizIndex } = useParams();
   const [answer, setAnswer] = useState<AnswerInterface>(() => {
     const savedAnswer = sessionStorage.getItem("answer");
-    return savedAnswer
-      ? JSON.parse(savedAnswer)
-      : {
-          answer1: "A",
-          answer2: "A",
-          answer3: "A",
-          answer4: "A",
-        };
+    return savedAnswer ? JSON.parse(savedAnswer) : INITIAL_ANSWER;
   });
 
   useEffect(() => {
