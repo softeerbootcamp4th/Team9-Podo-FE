@@ -11,7 +11,7 @@ export interface WordListResponse {
   wordList: Word[];
 }
 
-interface Word {
+export interface Word {
   name: string;
   value: number;
 }
