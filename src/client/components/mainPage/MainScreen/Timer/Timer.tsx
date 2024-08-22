@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import useTimer from "../../../../hooks/useTimer";
+import { useErrorBoundary } from "react-error-boundary";
 
-const Timer = () => {
+interface TimerInterface {
+  onEndHandler: () => void;
+  time: number;
+}
+
+const Timer = ({ onEndHandler, time }: TimerInterface) => {
+  const { reset, hours, minutes, seconds, setLeftTime } = useTimer(
+    0,
+    onEndHandler,
+  );
+
+  useEffect(() => {
+    setLeftTime(time);
+  }, [time]);
+
   return (
     <div className="relative h-[13rem] w-[54rem] flex-center">
-      <div className="before:gradient-mask relative h-full w-full flex-center before:-inset-[0] before:content-none">
+      <div className="relative h-full w-full flex-center before:-inset-[0] before:content-none before:gradient-mask">
         <p
           style={{
             backgroundImage:
@@ -12,9 +28,11 @@ const Timer = () => {
             backgroundClip: "text",
             color: "transparent",
           }}
-          className="font-kia-signature-bold text-[8rem]"
+          className={`font-kia-signature-bold ${hours === "00" && minutes === "00" && seconds === "00" ? "text-7xl" : "text-[8rem]"}`}
         >
-          00:00:00
+          {hours === "00" && minutes === "00" && seconds === "00"
+            ? "이벤트가 진행 중입니다."
+            : `${hours}:${minutes}:${seconds}`}
         </p>
       </div>
     </div>

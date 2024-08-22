@@ -1,39 +1,49 @@
+import Cookies from "js-cookie";
 import { ApiResponse } from "../types/api";
 import {
-  AuthResult,
   PhoneAuthCheckForm,
   PhoneAuthRequestForm,
-  PhoneAuthVerifyResult,
+  TokenInfo,
 } from "../types/AuthModal";
 import { QuizInfo, QuizResult } from "../types/FCFSEvent";
 import { WordListResponse } from "../types/InfoScreen";
-import { SharedLinkInterface } from "../types/RandomEvent";
+import {
+  AnswerInterface,
+  RandomQuizResponseInterface,
+  SharedLinkInterface,
+} from "../types/RandomEvent";
+import { HTTP_STATUS_CODE } from "../constants/api";
+const RANDOM_URL = process.env.RANDOM_URL;
+const FCFS_URL = process.env.FCFS_URL;
 
 /**
  * 선착순 퀴즈 정보를 가져오는 api
  * @returns
  */
-export const fetchFCFSQuizInfo = async (): Promise<ApiResponse<QuizInfo>> => {
-  const response = await fetch("/v1/quiz");
-
-  return await response.json();
+export const fetchFCFSQuizInfo = async () => {
+  return await fetchInterceptor<QuizInfo>(FCFS_URL + "/v1/quiz", {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: decodeURI(Cookies.get("auth") || ""),
+    },
+  });
 };
 
 /**
  * 선착순 퀴즈 결과를 가져오는 api
  * @returns
  */
-export const fetchFCFSResult = async (): Promise<ApiResponse<QuizResult>> => {
-  const response = await fetch("/v1/arrival/application", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization:
-        "Bearer eyJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiZGlyIn0..Wv4DNiAP2hL36vDs.AOwY0A-a8JH6lJWR9T_P3pTgB5o8JaMUwrehYQjpCD1uFhs3aFoWJ-wDLgnX5Jx_YT6dHfJPIXbpG3Oycammh6VQH97U2UtNChPr_t3F9ILqbXAaBcMoWYUx0YqtbgVbOybS6FTMDp7QGhXRZNzXz06gQi46AqbTPOTnVUDICYHHqRq_3efphiRNjTu4JP2OFKq9jIunoLNHCcPZFFidVBafs9R4Z9nEPD-W__uuZOuG111wD4vqjBdshkxs46Y.UyhO03YoDwLvAMmPXHV70g",
+export const fetchFCFSResult = async () => {
+  return await fetchInterceptor<QuizResult>(
+    FCFS_URL + "/v1/arrival/application",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: decodeURI(Cookies.get("auth") || ""),
+      },
     },
-  });
-
-  return await response.json();
+  );
 };
 
 /**
@@ -43,16 +53,14 @@ export const fetchFCFSResult = async (): Promise<ApiResponse<QuizResult>> => {
  */
 export const postPhoneAuthRequest = async (
   phoneAuthRequestForm: PhoneAuthRequestForm,
-): Promise<AuthResult> => {
-  const response = await fetch("/verification/claim", {
+) => {
+  return await fetchInterceptor<string>(RANDOM_URL + "/verification/claim", {
     method: "POST",
     body: JSON.stringify(phoneAuthRequestForm),
     headers: {
       "Content-Type": "application/json",
     },
   });
-
-  return await response.json();
 };
 
 /**
@@ -62,67 +70,112 @@ export const postPhoneAuthRequest = async (
  */
 export const postPhoneAuthCheckRequest = async (
   phoneAuthCheckForm: PhoneAuthCheckForm,
-): Promise<PhoneAuthVerifyResult> => {
-  const response = await fetch("/verification/check", {
+) => {
+  return await fetchInterceptor<TokenInfo>(RANDOM_URL + "/verification/check", {
     method: "POST",
     body: JSON.stringify(phoneAuthCheckForm),
     headers: {
       "Content-Type": "application/json",
     },
   });
-
-  return await response.json();
 };
 
 /**
  * wordCloud data를 가져오는 api
  * @returns
  */
-export const fetchWordCloudData = async (): Promise<
-  ApiResponse<WordListResponse>
-> => {
-  const response = await fetch("/lots/wordCloud");
-
-  return await response.json();
+export const fetchWordCloudData = async () => {
+  return await fetchInterceptor<WordListResponse>(
+    RANDOM_URL + "/lots/wordCloud",
+  );
 };
 
 /**
  * 기대평 등록 api
  * @returns
  */
-export const postComment = async (
-  comment: string,
-): Promise<ApiResponse<any>> => {
+export const postComment = async (comment: string) => {
   //any 수정 필요
-  const response = await fetch("/v1/lots/comment", {
+  return await fetchInterceptor<any>(RANDOM_URL + "/v1/lots/comment", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization:
-        "Bearer eyJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiZGlyIn0..mrgt15FIWG0uPVeH.1ZLiQXVRGvSLU4BbKNoSuBLxd0lcrnKz3XTTW90y0r8ePkwq6Ek9UxkAKGxc4cyx6ud5niEKtxs6qFoMy14JQP_D7zR9aRDTvNFrFaaPqks9jgTv8gtSuUHYrS325EwetswbNyO3TmAdxXJtBOqkiE3Se2iiJ87Jh9zt3BVAG00Qhyn4GIOeAHJvs8uWlPlo5StBP9KOz8RYUHXgl_cf6TP5RikXa9s45b2Io_o2MANGlkrdd3Cj4tw5MkoIuUg.mWOcxU8wsoosCBr6L0wLxA",
+      Authorization: decodeURI(Cookies.get("auth") || ""),
     },
     body: JSON.stringify({ comment: `${comment}` }),
   });
-
-  return await response.json();
 };
 
 /**
  * 랜덤 이벤트 응모 후 공유 링크 가져오는 api
  * @returns
  */
-export const postRandomResult = async (
-  resultId: number,
-): Promise<ApiResponse<SharedLinkInterface>> => {
-  const response = await fetch("/v1/lots/application", {
+export const postRandomResult = async (resultId: number) => {
+  return await fetchInterceptor<SharedLinkInterface>(
+    RANDOM_URL + "/v1/lots/application",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: decodeURI(Cookies.get("auth") || ""),
+      },
+      body: JSON.stringify({ resultTypeId: resultId }),
+    },
+  );
+};
+
+/**
+ * 인증 토큰을 확인하고 갱신하는 api
+ * @returns
+ */
+export const checkAndRefreshToken = async () => {
+  return await fetchInterceptor<TokenInfo>(RANDOM_URL + "/v1/reissue", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
-      Authorization:
-        "Bearer eyJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiZGlyIn0..Wv4DNiAP2hL36vDs.AOwY0A-a8JH6lJWR9T_P3pTgB5o8JaMUwrehYQjpCD1uFhs3aFoWJ-wDLgnX5Jx_YT6dHfJPIXbpG3Oycammh6VQH97U2UtNChPr_t3F9ILqbXAaBcMoWYUx0YqtbgVbOybS6FTMDp7QGhXRZNzXz06gQi46AqbTPOTnVUDICYHHqRq_3efphiRNjTu4JP2OFKq9jIunoLNHCcPZFFidVBafs9R4Z9nEPD-W__uuZOuG111wD4vqjBdshkxs46Y.UyhO03YoDwLvAMmPXHV70g",
+      Authorization: decodeURI(Cookies.get("auth") || ""),
     },
-    body: JSON.stringify({ resultTypeId: resultId }),
   });
+};
 
-  return await response.json();
+export const fetchInterceptor = async <T>(
+  url: string,
+  options: RequestInit = {},
+): Promise<ApiResponse<T>> => {
+  const response = await fetch(url, options);
+  const jsonResponse: ApiResponse<T> = await response.json();
+
+  if (jsonResponse.code === HTTP_STATUS_CODE.UNAUTHORIZED) {
+    throw new Error(jsonResponse.message);
+  } else if (jsonResponse.code === HTTP_STATUS_CODE.NOT_FOUND) {
+    throw new Error(jsonResponse.message);
+  } else if (jsonResponse.code === HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR) {
+    throw new Error(jsonResponse.message);
+  }
+
+  return jsonResponse;
+};
+
+export const postEvent2Answers = async (
+  answers: AnswerInterface,
+): Promise<RandomQuizResponseInterface | null> => {
+  try {
+    const response = await fetch(RANDOM_URL + "/lots/type", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: decodeURI(Cookies.get("auth") || ""),
+      },
+      body: JSON.stringify(answers),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error posting answers:", error);
+    return null;
+  }
 };

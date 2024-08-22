@@ -1,12 +1,27 @@
 import { http, HttpResponse } from "msw";
-import { phoneAuthCheckResult } from "../data/AuthModal";
+import {
+  phoneAuthCheckFailResult,
+  phoneAuthCheckResult,
+  reissueResult,
+} from "../data/AuthModal";
+import { PhoneAuthCheckForm } from "../../types/AuthModal";
 
 const postPhoneAuthRequest = http.post("/verification/claim", () => {
   return HttpResponse.json({ success: true });
 });
 
-const postPhoneAuthCheck = http.post("/verification/check", () => {
-  return HttpResponse.json(phoneAuthCheckResult);
+const postPhoneAuthCheck = http.post(
+  "/verification/check",
+  async ({ request }) => {
+    const body = (await request.json()) as PhoneAuthCheckForm;
+    if (body.verificationCode === "654321")
+      return HttpResponse.json(phoneAuthCheckResult);
+    else return HttpResponse.json(phoneAuthCheckFailResult);
+  },
+);
+
+const reissueToken = http.post("/v1/reissue", () => {
+  return HttpResponse.json(reissueResult);
 });
 
-export default [postPhoneAuthRequest, postPhoneAuthCheck];
+export default [postPhoneAuthRequest, postPhoneAuthCheck, reissueToken];

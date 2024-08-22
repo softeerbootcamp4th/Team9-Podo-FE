@@ -39,10 +39,7 @@ const Glow = () => {
 
   return (
     <div className="absolute left-0 top-0">
-      <Glow1
-        className="absolute -left-[17.625rem] top-[6.375rem]"
-        ref={oneRef}
-      />
+      <Glow1 className="absolute -left-[13.625rem] top-[0rem]" ref={oneRef} />
       <Glow3 className="absolute left-[52rem] top-[2rem]" ref={threeRef} />
       <Glow2 className="absolute -top-[7rem] left-[20rem]" ref={twoRef} />
     </div>

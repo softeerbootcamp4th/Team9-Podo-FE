@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import OutsideDescriptionItem from "../../../../components/mainPage/InfoScreen/OutsideDescriptionItem/OutsideDescriptionItem";
-import OutsideInfo from "../../../../../common/assets/images/OutsideInfo.png";
+import OutsideInfo from "../../../../../common/assets/images/OutsideInfo.webp";
 import { outsideInfoData } from "../../../../constants/InfoData";
 import Carousel from "../../../../components/common/Carousel/Carousel";
 import useInView from "../../../../hooks/useInView";
@@ -19,7 +19,7 @@ const OutsideSection = () => {
       <img
         ref={elementRef}
         src={OutsideInfo}
-        alt="OutsideImage"
+        alt="셀토스 외부 뷰"
         className={`h-screen w-screen snap-start ${isInView ? "scale-100" : "scale-90"} transition-transform duration-200`}
       />
       <div className="pb-[8rem] pt-[5rem]">

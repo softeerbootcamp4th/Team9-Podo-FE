@@ -1,11 +1,12 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import RandomMainSection from "./RandomMainSection";
 import { useAppContext } from "../../../providers/AppProvider";
 import { postRandomResult } from "../../../api/fetch";
+import { render, screen, waitFor } from "../../../utils/TestUtils";
 
 const mockNavigate = jest.fn();
+Element.prototype.animate = jest.fn();
 const mockLocation = { pathname: "/test-path" };
 
 jest.mock("react-router", () => ({
@@ -61,7 +62,6 @@ describe("RandomMainSection", () => {
 
     expect(screen.getByText("테스트 설명")).toBeInTheDocument();
     expect(screen.getByText("1.")).toBeInTheDocument();
-    expect(screen.getByAltText("시나리오")).toBeInTheDocument();
     expect(screen.getByText("테스트 시나리오 제목")).toBeInTheDocument();
     expect(screen.getByText("테스트 시나리오 부제목")).toBeInTheDocument();
   });
@@ -99,25 +99,30 @@ describe("RandomMainSection", () => {
     });
   });
 
-  //실패
-  // test("본인인증이 된 상태에서 공유하기를 누르면 자신의 고유 사이트 주소가 복사되어야 한다.", async () => {
-  //   render(
-  //     <RandomMainSection resultTypeId={1} description={[]} scenarioList={[]} />,
-  //   );
+  test("본인인증이 된 상태에서 공유하기를 누르면 자신의 고유 사이트 주소가 복사되어야 한다.", async () => {
+    (useAppContext as jest.Mock).mockReturnValue({
+      isAuth: true,
+      isRandomEnd: true,
+      setIsRandomEnd: jest.fn(),
+    });
+    render(
+      <RandomMainSection resultTypeId={1} description={[]} scenarioList={[]} />,
+    );
 
-  //   await userEvent.click(screen.getByText("공유하기"));
+    await userEvent.click(screen.getByText("공유하기"));
 
-  //   await waitFor(() => {
-  //     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
-  //       "https://www.example.com/share",
-  //     );
-  //   });
-  // });
+    await waitFor(() => {
+      expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+        "https://www.example.com/share",
+      );
+    });
+  });
 
   test("본인인증이 되어있지 않은 상태에서는 본인인증하고 이벤트 참여하기 버튼을 누르면 모달 창으로 이동해야 한다.", async () => {
     (useAppContext as jest.Mock).mockReturnValue({
       isAuth: false,
       isRandomEnd: false,
+      setIsRandomEnd: jest.fn(),
     });
 
     render(
@@ -133,15 +138,31 @@ describe("RandomMainSection", () => {
     });
   });
 
-  // //실패
-  // test("본인인증이 된 상태에서는 이벤트 참여하기 버튼을 누르면 버튼을 비활성화하고 정보를 전송해야 한다.", async () => {
-  //   render(
-  //     <RandomMainSection resultTypeId={1} description={[]} scenarioList={[]} />,
-  //   );
+  test("본인인증이 된 상태에서는 이벤트 참여하기 버튼을 누르면 정보를 전송해야 한다.", async () => {
+    (useAppContext as jest.Mock).mockReturnValue({
+      isAuth: true,
+      isRandomEnd: false,
+      setIsRandomEnd: jest.fn(),
+    });
+    render(
+      <RandomMainSection resultTypeId={1} description={[]} scenarioList={[]} />,
+    );
 
-  //   await userEvent.click(screen.getByText("이벤트 참여하기"));
+    await userEvent.click(screen.getByText("이벤트 참여하기"));
 
-  //   expect(postRandomResult).toHaveBeenCalledWith(1);
-  //   expect(screen.getByText("이벤트 참여 완료")).toBeInTheDocument();
-  // });
+    expect(postRandomResult).toHaveBeenCalledWith(1);
+  });
+
+  test("본인인증이 된 상태에서 이벤트를 완료하면 버튼을 비활성화 해야 한다.", async () => {
+    (useAppContext as jest.Mock).mockReturnValue({
+      isAuth: true,
+      isRandomEnd: true,
+      setIsRandomEnd: jest.fn(),
+    });
+    render(
+      <RandomMainSection resultTypeId={1} description={[]} scenarioList={[]} />,
+    );
+
+    expect(screen.getByText("이벤트 참여 완료")).toBeInTheDocument();
+  });
 });

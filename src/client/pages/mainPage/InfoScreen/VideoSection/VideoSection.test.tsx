@@ -31,7 +31,7 @@ describe("VideoSection component", () => {
   test("Video가 화면에 보여야 한다.", () => {
     render(<VideoSection />);
 
-    const video = screen.getByRole("video");
+    const video = screen.getByRole("presentation");
 
     expect(video).toBeInTheDocument();
     expect(video).toHaveProperty("paused", true);
@@ -40,7 +40,7 @@ describe("VideoSection component", () => {
   test("VideoSection에 진입하면 video가 재생 되어야 한다.", () => {
     render(<VideoSection />);
 
-    const video = screen.getByRole("video") as HTMLMediaElement;
+    const video = screen.getByRole("presentation") as HTMLMediaElement;
 
     act(() => {
       (IntersectionObserver as jest.Mock).mock.calls[0][0]([

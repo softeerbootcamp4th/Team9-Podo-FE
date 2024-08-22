@@ -1,11 +1,5 @@
-import React, { MouseEventHandler } from "react";
-
-interface OptionInterface {
-  label: string;
-  content: string;
-  state: "default" | "selected" | "unselected";
-  onClick: MouseEventHandler<HTMLButtonElement>;
-}
+import React from "react";
+import { OptionInterface } from "../../../types/RandomEvent";
 
 const STATE_CLASSES = {
   default: "bg-opacity-5",

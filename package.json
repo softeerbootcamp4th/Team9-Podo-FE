@@ -5,8 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "jest",
-    "build": "webpack --config webpack.prod.js",
-    "start": "webpack-dev-server --hot --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js --env DEV=false",
+    "start": "webpack-dev-server --hot --config webpack.dev.js --env DEV=true",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "admin": "webpack-dev-server --hot --config webpack.config.js",
@@ -76,9 +76,12 @@
   },
   "dependencies": {
     "@types/js-cookie": "^3.0.6",
+    "dotenv": "^16.4.5",
     "echarts": "^5.5.1",
     "echarts-wordcloud": "^2.1.0",
     "js-cookie": "^3.0.5",
+    "react-confetti": "^6.1.0",
+    "react-error-boundary": "^4.0.13",
     "react-router-dom": "^6.26.0"
   },
   "eslintConfig": {

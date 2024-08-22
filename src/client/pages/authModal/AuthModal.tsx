@@ -25,6 +25,7 @@ import { shakeInputOptions } from "../../styles/options";
 import useTimer from "../../hooks/useTimer";
 import { useAppContext } from "../../providers/AppProvider";
 import Cookies from "js-cookie";
+import { useErrorBoundary } from "react-error-boundary";
 
 const initialForm: PhoneAuthCheckForm = {
   name: "",
@@ -33,13 +34,14 @@ const initialForm: PhoneAuthCheckForm = {
 };
 
 const AuthModal = () => {
+  const { showBoundary } = useErrorBoundary();
   const [isAgree, setIsAgree] = useState("-1"); // 0이면 동의, 1이면 미동의
   const [reRequesst, setReRequesst] = useState(false);
   const [toastKey, setToastKey] = useState(0);
   const [isError, setIsError] = useState<ErrorToastKey | null>(null);
   const { isAuth, setIsAuth } = useAppContext();
 
-  const { reset, minutes, second } = useTimer(AUTH_DELAY, () => {
+  const { hours, minutes, seconds, reset } = useTimer(AUTH_DELAY, () => {
     if (reRequesst) {
       setIsError("AUTH_NUM_EXPRIES");
       setToastKey((current) => current + 1);
@@ -87,7 +89,7 @@ const AuthModal = () => {
         setReRequesst(true);
         await postPhoneAuthRequest({ name, phoneNum });
       } catch (error) {
-        throw new Error();
+        showBoundary(error);
       }
     }
   };
@@ -108,13 +110,13 @@ const AuthModal = () => {
           if (location.state.event) setIsAuth(true);
           Cookies.set("auth", response.result.accessToken, { expires: 1 / 24 });
           navigate(
-            `${location.state.event === 2 ? "/event2/result" : "/event1"}`,
+            `${location.state.event === 2 ? "/event2/result" : location.state.isOpen ? "/event1" : "/"}`,
           );
         } else {
           setIsError("AUTH_NUM_INCORRECT");
         }
       } catch (error) {
-        throw new Error();
+        showBoundary(error);
       }
       setToastKey((current) => current + 1);
     }
@@ -197,7 +199,7 @@ const AuthModal = () => {
                 role="timer"
                 className="absolute right-4 top-4 font-kia-signature text-body-1-regular text-gray-300"
               >
-                {minutes}:{second}
+                {minutes}:{seconds}
               </div>
             )}
           </div>

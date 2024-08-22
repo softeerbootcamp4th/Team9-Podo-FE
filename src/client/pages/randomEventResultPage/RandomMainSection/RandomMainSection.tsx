@@ -1,25 +1,28 @@
-import React, { useState, useCallback } from "react";
-import { useAppContext } from "../../../providers/AppProvider";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
+import { useErrorBoundary } from "react-error-boundary";
+import { useAppContext } from "../../../providers/AppProvider";
+import { postRandomResult } from "../../../api/fetch";
+import Tooltip from "../../../components/randomEventPage/Tooltip/Tooltip";
+import { RandomMainInterface } from "../../../types/RandomEvent";
 import Button from "../../../components/common/Button/Button";
 import reset from "../../../../common/assets/images/reset.png";
 import share from "../../../../common/assets/images/share.png";
-import { RandomMainInterface } from "../../../types/RandomEvent";
-import Tooltip from "../../../components/randomEventPage/Tooltip/Tooltip";
-import { postRandomResult } from "../../../api/fetch";
 import {
   TEXT_CONTENT,
   TOOLTIP_CONTENT,
 } from "../../../constants/RandomEventData";
+import { LONG_BUTTON_TEXT } from "../../../constants/common";
 
 const RandomMainSection = ({
   resultTypeId,
   description,
   scenarioList,
 }: RandomMainInterface) => {
-  const { isAuth, isRandomEnd } = useAppContext();
+  const { isAuth, isRandomEnd, setIsRandomEnd } = useAppContext();
   const navigate = useNavigate();
   const location = useLocation();
+  const { showBoundary } = useErrorBoundary();
 
   const [isCopied, setIsCopied] = useState(false);
   const [shareUrl, setShareUrl] = useState("https://www.hyundaiseltos.site/");
@@ -28,7 +31,17 @@ const RandomMainSection = ({
     navigate("/event2/0");
   };
 
-  const handleShare = useCallback(() => {
+  const getUniqueUrl = async () => {
+    if (isAuth)
+      try {
+        const { result } = await postRandomResult(resultTypeId);
+        setShareUrl(result.uniqueLink);
+      } catch (error) {
+        showBoundary(error);
+      }
+  };
+
+  const handleShare = () => {
     if (!isCopied) {
       navigator.clipboard.writeText(shareUrl);
       setIsCopied(true);
@@ -36,15 +49,26 @@ const RandomMainSection = ({
       const timeoutId = setTimeout(() => setIsCopied(false), 4000);
       return () => clearTimeout(timeoutId);
     }
-  }, [isCopied]);
+  };
 
   const handleEventParticipation = async () => {
     if (isAuth) {
-      const { result } = await postRandomResult(resultTypeId);
-      setShareUrl(result.uniqueLink);
+      getUniqueUrl();
     } else {
       navigate("/auth-modal", { state: { background: location, event: 2 } });
     }
+
+    setIsRandomEnd(true);
+  };
+
+  useEffect(() => {
+    getUniqueUrl();
+  }, [isAuth]);
+
+  const setText = () => {
+    if (isAuth === false) return LONG_BUTTON_TEXT.NO_AUTH;
+    if (isRandomEnd === true) return LONG_BUTTON_TEXT.EVENT_END;
+    else return LONG_BUTTON_TEXT.START_EVENT;
   };
 
   return (
@@ -53,11 +77,11 @@ const RandomMainSection = ({
         <div className="absolute -top-10 right-0 flex gap-4 font-kia-signature-bold text-body-1-bold text-white">
           <Tooltip content={TOOLTIP_CONTENT} isVisible={isCopied} />
           <button onClick={handleRetry} className="flex gap-2">
-            <img src={reset} alt="다시하기" />
+            <img src={reset} alt="셀토스 이벤트 다시하기" />
             다시하기
           </button>
           <button onClick={handleShare} className="flex gap-2">
-            <img src={share} alt="공유하기" />
+            <img src={share} alt="셀토스 이벤트 공유하기" />
             공유하기
           </button>
         </div>
@@ -81,7 +105,7 @@ const RandomMainSection = ({
               <p className="font-kia-signature-bold text-body-1-bold text-gray-50">{`${index + 1}.`}</p>
               <img
                 src={`http://${scenario.image}`}
-                alt="시나리오"
+                alt={scenario.title}
                 className="h-[15.25rem] w-[28.75rem] rounded-xl"
               />
               <p className="font-kia-signature-bold text-title-4 text-gray-50">
@@ -106,11 +130,9 @@ const RandomMainSection = ({
         <Button
           size="long"
           onClick={handleEventParticipation}
-          defaultText={
-            isAuth ? "이벤트 참여하기" : "본인인증하고 이벤트 참여하기"
-          }
-          disabledText="이벤트 참여 완료"
-          isEnabled={!isRandomEnd && !isAuth}
+          defaultText={setText()}
+          disabledText={LONG_BUTTON_TEXT.EVENT_END}
+          isEnabled={!isAuth || !isRandomEnd}
         />
       </div>
     </div>

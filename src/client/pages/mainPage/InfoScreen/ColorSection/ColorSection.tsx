@@ -23,7 +23,7 @@ interface ColorPalleteProps {
 
 const ColorPallete = ({ index, parentRef }: ColorPalleteProps) => {
   const handleClick = (
-    event: MouseEvent<HTMLDivElement>,
+    event: MouseEvent<HTMLButtonElement>,
     parentRef: RefObject<HTMLDivElement>,
     index: number,
   ) => {
@@ -47,20 +47,20 @@ const ColorPallete = ({ index, parentRef }: ColorPalleteProps) => {
         {colorInfoData.map(({ rgb, key }, i) => {
           if (i === 5) return null;
           return (
-            <div
+            <button
               role="button"
               onClick={(e) => handleClick(e, parentRef, i)}
               key={key}
               className={`${rgb} ${index === i ? "h-800 w-800" : "h-500 w-500"} cursor-pointer rounded-[50%]`}
-            ></div>
+            ></button>
           );
         })}
       </nav>
       <div className="flex flex-col items-center">
-        <p className="mb-2 font-kia-signature-bold text-4xl text-black/70">
+        <p className="mb-2 font-kia-signature-bold text-4xl text-white/70">
           {colorInfoData[index].koTitle}
         </p>
-        <p className="font-kia-signature text-xl text-black/20">
+        <p className="font-kia-signature text-xl text-white/20">
           {colorInfoData[index].engTitle}
         </p>
       </div>

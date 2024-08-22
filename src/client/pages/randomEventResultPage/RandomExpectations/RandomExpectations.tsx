@@ -1,19 +1,27 @@
 import React, { ChangeEvent, forwardRef, useState } from "react";
+import { useErrorBoundary } from "react-error-boundary";
+import { postComment } from "../../../api/fetch";
 import Toast from "../../../components/common/Toast/Toast";
 import { ERROR_MSG } from "../../../constants/RandomEventData";
-import { postComment } from "../../../api/fetch";
 
 const RandomExpectations = forwardRef<HTMLDivElement>((props, ref) => {
-  const [error, setError] = useState<"short" | "inappropriate" | null>(null);
+  const [error, setError] = useState<
+    "short" | "inappropriate" | "success" | null
+  >(null);
   const [expectation, setExpectation] = useState<string>("");
   const [toastKey, setToastKey] = useState(0);
+  const { showBoundary } = useErrorBoundary();
 
-  const onClickHandler = () => {
+  const onClickHandler = async () => {
     if (expectation.length < 20) setError("short");
     else {
-      setError(null);
-      postComment(expectation);
-      setExpectation("");
+      try {
+        await postComment(expectation);
+        setError("success");
+        setExpectation("");
+      } catch (error) {
+        showBoundary(error);
+      }
     }
     setToastKey((current) => current + 1);
   };
@@ -49,6 +57,7 @@ const RandomExpectations = forwardRef<HTMLDivElement>((props, ref) => {
             value={4}
             delay={4000}
             duration={1000}
+            color={error === "success" ? "bg-[#66bb6a]" : undefined}
           />
         )}
       </div>

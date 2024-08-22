@@ -1,22 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
-import carMask from "../../../../common/assets/images/wordcloud.png";
+import carMask from "../../../../common/assets/images/wordcloud.webp";
 import Button from "../../../components/common/Button/Button";
 import { useNavigate } from "react-router";
 import { EVENT_TERMS } from "../../../constants/EventData";
 import { fetchWordCloudData } from "../../../api/fetch";
-import { WordListResponse } from "../../../types/InfoScreen";
 import WordCloud from "../../../components/mainPage/InfoScreen/WordCloud";
+import { useErrorBoundary } from "react-error-boundary";
+import { Word } from "../../../types/InfoScreen";
 
 const NotificationScreen = () => {
+  const { showBoundary } = useErrorBoundary();
   const navigate = useNavigate();
-  const [wordCloudData, setWordCloudData] = useState({});
+  const [wordCloudData, setWordCloudData] = useState<Word[] | null>(null);
+
 
   useEffect(() => {
-    try {
-      fetchData();
-    } catch (error) {
-      console.error(error);
-    }
+    const tryFetch = async () => {
+      try {
+        await fetchData();
+      } catch (error) {
+        showBoundary(error);
+      }
+    };
+    tryFetch();
   }, []);
 
   const fetchData = async () => {
@@ -27,7 +33,7 @@ const NotificationScreen = () => {
 
   return (
     <div className="snap-start flex-col flex-center">
-      <div className="h-screen w-screen flex-col justify-around flex-center">
+      <div className="flex h-screen w-screen flex-col items-center justify-around">
         <div className="w-[94rem] flex-col gap-3 rounded-[5rem] border border-opacity-20 bg-black bg-opacity-5 px-700 py-1000 backdrop-blur-lg flex-center">
           <p className="text-title-2 font-bold text-gray-50">
             The 2025 Seltos에서 가장 기대되는 점은?
@@ -36,7 +42,9 @@ const NotificationScreen = () => {
             EVENT 2를 통해 기대평을 작성하실 수 있습니다.
           </p>
         </div>
-        <WordCloud data={wordCloudData} maskImage={carMask}></WordCloud>
+        {wordCloudData && (
+          <WordCloud data={wordCloudData} maskImage={carMask}></WordCloud>
+        )}
         <Button
           size="small"
           onClick={() => {

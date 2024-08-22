@@ -1,10 +1,6 @@
 import React from "react";
-import car from "../../../../common/assets/images/whiteRight.png"; // car 이미지 경로
-
-interface ProgressBarInterface {
-  currentIndex: number;
-  maxIndex: number;
-}
+import car from "../../../../common/assets/images/whiteRight.webp";
+import { ProgressBarInterface } from "../../../types/RandomEvent";
 
 /**
  * 퀴즈 진행 상황을 나타내는 컴포넌트
@@ -28,7 +24,7 @@ const ProgressBar = ({ currentIndex, maxIndex }: ProgressBarInterface) => {
         ></div>
         <img
           src={car}
-          alt="자동차"
+          alt="셀토스 측면 이미지"
           className="absolute bottom-2.5 h-[4.375rem] w-40 transform transition-all duration-[400ms] ease-in-out"
           style={{
             left: `calc(${progressWidth} - 5rem)`,

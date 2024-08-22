@@ -28,6 +28,7 @@ IntersectionObserver = jest.fn().mockImplementation((callback) => {
 });
 
 describe("InsideGuide Component", () => {
+  beforeEach(() => jest.clearAllMocks());
   initialState.forEach((state) => {
     test(`화면에 ${Object.keys(state)[0]}의 하이라이트 요소가 보여야 한다.`, () => {
       render(<InsideGuide />);

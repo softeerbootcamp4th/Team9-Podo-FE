@@ -19,10 +19,14 @@ describe("FCFSEventResultPage Component", () => {
   test("화면에 들어오면 자동차 사진과 자동차 키 사진이 보여야 한다.", async () => {
     render(<FCFSEventResultPage />);
 
-    const carImage = await screen.findByRole("img", { name: "seltos-car" });
+    const carImage = await screen.findByRole("img", {
+      name: "셀토스 측면 이미지",
+    });
     expect(carImage).toBeInTheDocument();
 
-    const keyImage = await screen.findByRole("img", { name: "car-key" });
+    const keyImage = await screen.findByRole("img", {
+      name: "셀토스 자동차 키",
+    });
     expect(keyImage).toBeInTheDocument();
   });
 

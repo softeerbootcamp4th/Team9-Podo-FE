@@ -198,7 +198,7 @@ const config = {
   // watchman: true,
 
   moduleNameMapper: {
-    "\\.(jpg|jpeg|png|gif|svg|mp4)$": "<rootDir>/__mocks__/fileMock.ts",
+    "\\.(jpg|jpeg|png|gif|svg|mp4|webp)$": "<rootDir>/__mocks__/fileMock.ts",
   },
 };
 

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import e1Gift from "../../../../../common/assets/images/e1Gift.png";
-import e2Gift from "../../../../../common/assets/images/e2Gift.png";
-import mainCar from "../../../../../common/assets/images/mainCar.png";
-import landingCar from "../../../../../common/assets/images/landingCar.png";
+import e1Gift from "../../../../../common/assets/images/e1Gift.webp";
+import e2Gift from "../../../../../common/assets/images/e2Gift.webp";
+import mainCar from "../../../../../common/assets/images/mainCar.webp";
+import landingCar from "../../../../../common/assets/images/landingCar.webp";
 import useAnimation from "../../../../hooks/useAnimation";
 import { SELECT_DATA } from "../../../../constants/EventData";
 import EventSelectOptions from "../../../../components/mainPage/MainScreen/EventSelectOptions/EventSelectOptions";
@@ -60,7 +60,7 @@ const EventSelectSection = ({
           ref={titleRef}
           className="relative w-[36.75rem] opacity-0 before:-inset-[2rem] before:content-none before:gradient-mask"
         >
-          <p className="text-center font-kia-signature-bold text-title-2 text-glow-white">
+          <p className="text-center font-kia-signature-bold text-title-2 text-white text-glow-white">
             {SELECT_DATA.PAGE_TITLE}
           </p>
         </div>
@@ -68,7 +68,7 @@ const EventSelectSection = ({
 
       <img
         src={mainCar}
-        alt="Main Car"
+        alt="2024년 모델 셀토스"
         className={`absolute top-96 opacity-0`}
         ref={mainCarRef}
       />
@@ -76,14 +76,17 @@ const EventSelectSection = ({
       {isLanding && (
         <img
           src={landingCar}
-          alt="Landing Car"
+          alt="셀토스 측면 이미지"
           className="absolute -bottom-96 -right-1/2 h-[64rem] w-[150rem]"
           ref={landingCarRef}
         />
       )}
 
       {!isLanding && (
-        <div className="h-full w-full animate-fadeIn flex-center">
+        <div
+          className="h-full w-full animate-fadeIn flex-center"
+          role="listbox"
+        >
           <EventSelectOptions
             index={0}
             hoveredIndex={hoveredIndex}

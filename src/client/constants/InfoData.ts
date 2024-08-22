@@ -1,23 +1,23 @@
-import Outside1 from "../../common/assets/images/Outside1.png";
-import Outside2 from "../../common/assets/images/Outside2.png";
-import Outside3 from "../../common/assets/images/Outside3.png";
+import Outside1 from "../../common/assets/images/Outside1.webp";
+import Outside2 from "../../common/assets/images/Outside2.webp";
+import Outside3 from "../../common/assets/images/Outside3.webp";
 
-import Drive1 from "../../common/assets/images/Drive1.png";
-import Drive2 from "../../common/assets/images/Drive2.png";
-import Drive3 from "../../common/assets/images/Drive3.png";
-import Drive4 from "../../common/assets/images/Drive4.png";
-import Drive5 from "../../common/assets/images/Drive5.png";
-import Drive6 from "../../common/assets/images/Drive6.png";
+import Drive1 from "../../common/assets/images/Drive1.webp";
+import Drive2 from "../../common/assets/images/Drive2.webp";
+import Drive3 from "../../common/assets/images/Drive3.webp";
+import Drive4 from "../../common/assets/images/Drive4.webp";
+import Drive5 from "../../common/assets/images/Drive5.webp";
+import Drive6 from "../../common/assets/images/Drive6.webp";
 
-import Convenience1 from "../../common/assets/images/Convenience1.png";
-import Convenience2 from "../../common/assets/images/Convenience2.png";
-import Convenience3 from "../../common/assets/images/Convenience3.png";
+import Convenience1 from "../../common/assets/images/Convenience1.webp";
+import Convenience2 from "../../common/assets/images/Convenience2.webp";
+import Convenience3 from "../../common/assets/images/Convenience3.webp";
 
-import white from "../../common/assets/images/colorSnowWhitePearl.png";
-import blue from "../../common/assets/images/colorDarkOceanBlue.png";
-import green from "../../common/assets/images/colorGrean.png";
-import gray from "../../common/assets/images/colorGravityGray.png";
-import black from "../../common/assets/images/colorFusionBlack.png";
+import white from "../../common/assets/images/colorSnowWhitePearl.webp";
+import blue from "../../common/assets/images/colorDarkOceanBlue.webp";
+import green from "../../common/assets/images/colorGrean.webp";
+import gray from "../../common/assets/images/colorGravityGray.webp";
+import black from "../../common/assets/images/colorFusionBlack.webp";
 
 import { InsideInfo, InsideInfoData } from "../types/InfoScreen";
 
@@ -50,31 +50,43 @@ export const driveInfoData = [
     key: 0,
     image: Drive1,
     title: "차로 이탈방지 보조",
+    description:
+      "일정 속도 이상 주행 중 방향지시등 스위치 조작 없이 차로 이달 시, 경고 및 자동으로 조향을 보조하여 차로를 이탈하지 않도록 도와줍니다.",
   },
   {
     key: 1,
     image: Drive2,
     title: "안전을 넘어 보다 즐겁고 기분 좋은 운전",
+    description:
+      "1.6 가솔린 터보 엔진, 8단 자동변속기 및 첨단 운전자 보조 시스템을 적용했습니다.",
   },
   {
     key: 2,
     image: Drive3,
     title: "내비게이선 기반 스마트 크루즈 컨트를",
+    description:
+      "고속도로 및 자동차 전용 도로 주행 시, 도로 상황에 맞춰 안전한 속도로 주행하도록 도와줍니다. (고속도로 / 자동차 전용도로 內 안전구간 / 곡선로)",
   },
   {
     key: 3,
     image: Drive4,
     title: "지능형 속도제한 보조",
+    description:
+      "전방 카메라 또는 내비게이선의 제한 속도 정보를 초과하여 주행할 경위 경고를 해주고 제한 속도를 초과하지 않도록 도와줍니다.",
   },
   {
     key: 4,
     image: Drive5,
     title: "차로 유지 보조",
+    description:
+      "차량이 차로 한가운데를 유지하며 주행할 수 있게끔 도와 주는 기능으로 주행 안정감과 더불어 운전자의 심리적 안정감을 더하는 기능이 됩니다.",
   },
   {
     key: 5,
     image: Drive6,
     title: "고속도로 주행 보조",
+    description:
+      "일정 속도 이상 주행 중 방향지시등 스위치 조작 없이 차로 이달 시, 경고 및 자동으로 조향을 보조하여 차로를 이탈하지 않도록 도와줍니다.",
   },
 ];
 

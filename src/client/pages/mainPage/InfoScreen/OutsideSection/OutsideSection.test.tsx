@@ -40,7 +40,7 @@ describe("OutsideSection component", () => {
   test("OutsideSection의 이미지가 intersectino이 되면 이미지가 화면 전체로 커지는 애니메이션이 발생해야 한다.", () => {
     render(<OutsideSection />);
 
-    const items = screen.getAllByRole("img", { name: /OutsideImage/i });
+    const items = screen.getAllByRole("img", { name: /셀토스 외부 뷰/i });
 
     items.forEach((item) => {
       expect(item).toHaveClass("scale-90");

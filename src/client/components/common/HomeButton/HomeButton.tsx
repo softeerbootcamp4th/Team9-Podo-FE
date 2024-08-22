@@ -10,7 +10,10 @@ const HomeButton = () => {
   };
 
   return (
-    <button className="flex-col gap-1 flex-center" onClick={onClickHandler}>
+    <button
+      className="absolute left-0 top-0 z-50 flex-col gap-1 p-[2rem] text-white/50 flex-center"
+      onClick={onClickHandler}
+    >
       <img src={home} alt="home" />
       <p>홈으로</p>
     </button>

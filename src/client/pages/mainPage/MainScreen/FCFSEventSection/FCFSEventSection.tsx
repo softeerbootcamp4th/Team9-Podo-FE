@@ -1,8 +1,8 @@
-import React, { ForwardedRef, forwardRef } from "react";
+import React, { ForwardedRef, forwardRef, useEffect, useState } from "react";
 import Timer from "../../../../components/mainPage/MainScreen/Timer/Timer";
 import EventHeader from "../../../../components/mainPage/MainScreen/EventHeader/EventHeader";
 import Button from "../../../../components/common/Button/Button";
-import e1Gift from "../../../../../common/assets/images/e1Gift.png";
+import e1Gift from "../../../../../common/assets/images/e1Gift.webp";
 import {
   FCFS_EVENT_DATA,
   FCFS_PARTICIPATION_STEPS,
@@ -11,6 +11,13 @@ import {
 } from "../../../../constants/EventData";
 import { useLocation, useNavigate } from "react-router";
 import { useAppContext } from "../../../../providers/AppProvider";
+import { BIG_BUTTON_TEXT } from "../../../../constants/common";
+import {
+  calculateLeftTime,
+  calculateLeftTimeToEnd,
+} from "../../../../utils/util";
+import { useErrorBoundary } from "react-error-boundary";
+import { show } from "../../../FCFSEventPage/FCFSHintSection/FCFSHintSection.stories";
 
 interface FCFSEventSectionProps {
   isVisible: boolean;
@@ -24,6 +31,52 @@ const FCFSEventSection = (
   const navigate = useNavigate();
   const { isAuth, isFCFSEnd } = useAppContext();
   const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+  const [leftTime, setLeftTime] = useState(0);
+  const { showBoundary } = useErrorBoundary();
+  const onEndHandler = () => {
+    setIsOpen(true);
+  };
+
+  useEffect(() => {
+    const tryFetch = () => {
+      try {
+        const eventSource = new EventSource(
+          "https://www.hyundaiseltos.site/arrival/time",
+        );
+
+        eventSource.onmessage = (event) => {
+          const date = JSON.parse(event.data);
+          setLeftTime(date * 1000);
+        };
+
+        return eventSource;
+      } catch (error) {
+        showBoundary(error);
+      }
+    };
+
+    const eventSource = tryFetch();
+
+    return () => {
+      eventSource?.close();
+    };
+  }, []);
+
+  const setText = () => {
+    if (isFCFSEnd === true) return BIG_BUTTON_TEXT.EVENT_END;
+    if (leftTime === 0 && isAuth) return BIG_BUTTON_TEXT.START_EVENT;
+    if (leftTime < 60 * 60 * 1000 && isAuth) return BIG_BUTTON_TEXT.REMAIN_TIME;
+    if (leftTime < 60 * 60 * 1000 && !isAuth) return BIG_BUTTON_TEXT.NO_AUTH;
+    return BIG_BUTTON_TEXT.EVENT_END;
+  };
+
+  const setEnabled = () => {
+    if (isFCFSEnd === true) return false;
+    if (leftTime === 0) return true;
+    if (!isAuth && leftTime < 60 * 60 * 1000) return true;
+    return false;
+  };
 
   return (
     <div
@@ -33,7 +86,7 @@ const FCFSEventSection = (
     >
       <img
         src={e1Gift}
-        alt="Event"
+        alt="셀토스 출시 이벤트 상품"
         className="pointer-events-none absolute z-10 h-[5.75rem] w-[3.375rem] translate-x-[16rem] translate-y-20"
       />
       <EventHeader
@@ -41,7 +94,7 @@ const FCFSEventSection = (
         description={FCFS_EVENT_DATA.DESCRIPTION}
       />
       <div className="flex min-h-[30rem] flex-1 flex-col items-end justify-between">
-        <Timer />
+        <Timer onEndHandler={onEndHandler} time={leftTime} />
       </div>
       <div className="h-[16.375rem] gap-4 text-gray-50 flex-center">
         <div className="flex h-full w-[26.5rem] flex-col gap-4 text-body-1-regular">
@@ -96,13 +149,13 @@ const FCFSEventSection = (
             isAuth
               ? navigate("event1")
               : navigate("auth-modal", {
-                  state: { background: location, event: 1 },
+                  state: { background: location, event: 1, isOpen: isOpen },
                 });
           }}
           size="big"
-          isEnabled={!isFCFSEnd}
-          defaultText={isAuth ? "퀴즈풀기" : "본인인증하고\n참여하기"}
-          disabledText={"이벤트가 마감되었습니다.\n다음 이벤트를 참여해주세요"}
+          isEnabled={setEnabled()}
+          defaultText={setText()}
+          disabledText={setText()}
         />
       </div>
     </div>

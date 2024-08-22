@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import FCFSCar from "../../../common/assets/images/FCFSCar.png";
-import FCFSKey from "../../../common/assets/images/FCFSKey.png";
+import FCFSCar from "../../../common/assets/images/FCFSCar.webp";
+import FCFSKey from "../../../common/assets/images/FCFSKey.webp";
 import FCFSKeyButton from "../../../common/assets/svg/FCFSKeyButton";
 import { fetchFCFSResult } from "../../api/fetch";
 import useAnimation from "../../hooks/useAnimation";
@@ -20,9 +20,12 @@ import { useNavigate } from "react-router";
 import FCFSNoticeBanner from "../../../common/assets/svg/FCFSNoticeBanner";
 import { NOTICE } from "../../constants/FCFSEventResultData";
 import Glow from "../../components/common/Glow/Glow";
+import Confetti from "react-confetti";
+import { useErrorBoundary } from "react-error-boundary";
 
 const FCFSEventResultPage = () => {
   const navigate = useNavigate();
+  const { showBoundary } = useErrorBoundary();
 
   const [isWin, setIsWin] = useState(false);
   const [isResultVisible, setIsResultVisible] = useState(false);
@@ -60,13 +63,17 @@ const FCFSEventResultPage = () => {
     if (Object.keys(quizData).length !== 0) setIsWin(true);
   };
 
-  const handleButtonClick = () => {
-    fetchData();
-    setIsResultVisible(true);
-    carStartAnimation();
-    textStartAnimation();
-    keyStartAnimation();
-    buttonStartAnimation();
+  const handleButtonClick = async () => {
+    try {
+      await fetchData();
+      setIsResultVisible(true);
+      carStartAnimation();
+      textStartAnimation();
+      keyStartAnimation();
+      buttonStartAnimation();
+    } catch (error) {
+      showBoundary(error);
+    }
   };
 
   useEffect(() => {
@@ -77,6 +84,9 @@ const FCFSEventResultPage = () => {
 
   return (
     <div className="relative flex h-screen w-screen flex-col items-center justify-start overflow-hidden bg-black">
+      {isWin && isResultVisible && (
+        <Confetti width={window.innerWidth} height={window.innerHeight} />
+      )}
       <div>
         <Glow />
       </div>
@@ -92,11 +102,13 @@ const FCFSEventResultPage = () => {
         ref={carRef}
         className="absolute top-20 z-10 -scale-x-90 scale-y-90"
         src={FCFSCar}
-        alt="seltos-car"
+        alt="셀토스 측면 이미지"
       />
-      <div className="absolute top-[23rem] z-0 font-kia-signature-bold text-8xl text-white">
-        {isWin ? "당첨을 축하합니다!" : "아쉽지만 다음 기회에..."}
-      </div>
+      {isResultVisible && (
+        <div className="absolute top-[23rem] z-0 font-kia-signature-bold text-8xl text-white">
+          {isWin ? "당첨을 축하합니다!" : "아쉽지만 다음 기회에..."}
+        </div>
+      )}
       {isResultVisible && (
         <>
           <div ref={buttonRef} className="absolute top-[32rem] mt-[4.5rem]">
@@ -153,7 +165,7 @@ const FCFSEventResultPage = () => {
         ref={keyRef}
         className="absolute -bottom-8"
         src={FCFSKey}
-        alt="car-key"
+        alt="셀토스 자동차 키"
       />
       {!isResultVisible && (
         <FCFSKeyButton

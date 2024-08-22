@@ -1,7 +1,7 @@
-import img0 from "../../common/assets/images/random0.png";
-import img1 from "../../common/assets/images/random1.png";
-import img2 from "../../common/assets/images/random2.png";
-import img3 from "../../common/assets/images/random3.png";
+import img0 from "../../common/assets/images/random0.webp";
+import img1 from "../../common/assets/images/random1.webp";
+import img2 from "../../common/assets/images/random2.webp";
+import img3 from "../../common/assets/images/random3.webp";
 
 export const QUIZ_LIST = [
   {
@@ -63,6 +63,19 @@ export const QUIZ_LIST = [
   },
 ];
 
+export const NEXT_QUIZ_TIMEOUT = 200;
+
+export const INITIAL_ANSWER = {
+  answer1: "A",
+  answer2: "A",
+  answer3: "A",
+  answer4: "A",
+};
+
+export const ANIMATION_DURATION = 5000;
+export const ROULETTE_END_DELAY = 6000;
+export const HEADER_TEXT = "당신의 운전자 유형은?";
+
 export const DRIVER_TYPE_LIST = [
   "안전을 최우선시하는 베스트 드라이버",
   "호기심 많은 얼리어답터",
@@ -73,6 +86,7 @@ export const DRIVER_TYPE_LIST = [
 export const ERROR_MSG = {
   short: "20자 이상 답변을 작성해주세요.",
   inappropriate: "부적절한 답변입니다. 다시 작성해주세요.",
+  success: "기대평이 등록되었습니다.",
 };
 
 export const TEXT_CONTENT = {
@@ -84,3 +98,11 @@ export const TEXT_CONTENT = {
 };
 
 export const TOOLTIP_CONTENT = "클립보드에 URL이 복사되었습니다";
+
+export const ROULETTE_VALUES = {
+  INITIAL_DURATION: 0.2,
+  INITIAL_DELAY: 0.1,
+  DURATION_INCREMENT: 0.2,
+  DELAY_INCREMENT: 0.1,
+  BASE_ANIMATION_DURATION_MULTIPLIER: 2.1,
+};
