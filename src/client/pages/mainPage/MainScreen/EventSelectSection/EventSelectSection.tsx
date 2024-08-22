@@ -83,7 +83,10 @@ const EventSelectSection = ({
       )}
 
       {!isLanding && (
-        <div className="h-full w-full animate-fadeIn flex-center">
+        <div
+          className="h-full w-full animate-fadeIn flex-center"
+          role="listbox"
+        >
           <EventSelectOptions
             index={0}
             hoveredIndex={hoveredIndex}

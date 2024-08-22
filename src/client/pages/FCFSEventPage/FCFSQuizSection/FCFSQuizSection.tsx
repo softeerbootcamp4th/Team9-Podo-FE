@@ -73,13 +73,13 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
         </div>
         <ol className="flex gap-800">
           {choices.map((choice, index) => (
-            <li
+            <button
               className={` ${selectedIndex === index ? "bg-white/20" : "bg-white/10"} flex h-[5.75rem] w-[22rem] cursor-pointer items-center justify-start rounded-[2rem] border border-white/15 px-800 font-kia-signature-bold text-title-4 text-gray-50 hover:bg-white/20`}
               key={choice}
               onClick={() => handleChoiceClick(index)}
             >
               {index + 1}. {choice}
-            </li>
+            </button>
           ))}
         </ol>
         <div className="relative">
