@@ -72,6 +72,10 @@ export const INITIAL_ANSWER = {
   answer4: "A",
 };
 
+export const ANIMATION_DURATION = 5000;
+export const ROULETTE_END_DELAY = 6000;
+export const HEADER_TEXT = "당신의 운전자 유형은?";
+
 export const DRIVER_TYPE_LIST = [
   "안전을 최우선시하는 베스트 드라이버",
   "호기심 많은 얼리어답터",
