@@ -1,9 +1,5 @@
 import React from "react";
-
-interface TooltipInterface {
-  isVisible: boolean;
-  content: string;
-}
+import { TooltipInterface } from "../../../types/RandomEvent";
 
 const Tooltip = ({ isVisible, content }: TooltipInterface) => {
   return (

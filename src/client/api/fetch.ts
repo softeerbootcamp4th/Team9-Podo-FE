@@ -7,7 +7,11 @@ import {
 } from "../types/AuthModal";
 import { QuizInfo, QuizResult } from "../types/FCFSEvent";
 import { WordListResponse } from "../types/InfoScreen";
-import { SharedLinkInterface } from "../types/RandomEvent";
+import {
+  AnswerInterface,
+  RandomQuizResponseInterface,
+  SharedLinkInterface,
+} from "../types/RandomEvent";
 import { HTTP_STATUS_CODE } from "../constants/api";
 
 /**
@@ -139,4 +143,29 @@ export const fetchInterceptor = async <T>(
   }
 
   return jsonResponse;
+};
+
+export const postEvent2Answers = async (
+  answers: AnswerInterface,
+): Promise<RandomQuizResponseInterface | null> => {
+  try {
+    const response = await fetch("/lots/type", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: decodeURI(Cookies.get("auth") || ""),
+      },
+      body: JSON.stringify(answers),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error posting answers:", error);
+    return null;
+  }
 };
