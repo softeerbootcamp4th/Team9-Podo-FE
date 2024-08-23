@@ -1,8 +1,16 @@
 const path = require("path");
 const webpack = require("webpack");
+const dotenv = require("dotenv");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = (env) => {
+  const { DEV } = env;
+  if (DEV === "true") {
+    dotenv.config({ path: "./.env.dev" });
+  } else if (DEV === "false") {
+    dotenv.config({ path: "./.env.prod" });
+    console.log("process.env.RANDOM_URL");
+  }
   return {
     mode: "development",
     devtool: "inline-source-map",
@@ -10,12 +18,6 @@ module.exports = (env) => {
       port: 9000,
       historyApiFallback: true,
       open: true,
-      proxy: [
-        {
-          context: ["/admin"],
-          target: "http://3.38.151.69:8080",
-        },
-      ],
     },
     entry: "./src/admin/index.tsx",
     output: {
@@ -74,7 +76,8 @@ module.exports = (env) => {
         filename: "index.html", // output으로 출력할 파일은 index.html 이다.
       }),
       new webpack.DefinePlugin({
-        "process.env": JSON.stringify(process.env),
+        "process.env.RANDOM_URL": JSON.stringify(process.env.RANDOM_URL),
+        "process.env.FCFS_URL": JSON.stringify(process.env.FCFS_URL),
       }),
     ],
   };
