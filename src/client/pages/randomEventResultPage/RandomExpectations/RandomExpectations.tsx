@@ -44,6 +44,7 @@ const RandomExpectations = forwardRef<HTMLDivElement>((props, ref) => {
           onChange={handleTextArea}
           value={expectation}
           placeholder="최소 20자 이상 입력하세요."
+          maxLength={200}
           className="ml-8 h-[12.25rem] w-[77.25rem] resize-none border-none bg-gray-950 text-gray-50 outline-none"
         ></textarea>
         <button
