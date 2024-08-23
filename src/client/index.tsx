@@ -7,7 +7,9 @@ const rootElement = document.getElementById("root");
 if (!rootElement) throw new Error("Failed to find the root element");
 
 async function enableMocking() {
+  console.log("eeeee");
   if (process.env.NODE_ENV !== "development") {
+    console.log("not dev");
     return;
   }
 

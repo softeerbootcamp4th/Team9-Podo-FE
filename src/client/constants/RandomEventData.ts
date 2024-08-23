@@ -63,6 +63,19 @@ export const QUIZ_LIST = [
   },
 ];
 
+export const NEXT_QUIZ_TIMEOUT = 200;
+
+export const INITIAL_ANSWER = {
+  answer1: "A",
+  answer2: "A",
+  answer3: "A",
+  answer4: "A",
+};
+
+export const ANIMATION_DURATION = 5000;
+export const ROULETTE_END_DELAY = 6000;
+export const HEADER_TEXT = "당신의 운전자 유형은?";
+
 export const DRIVER_TYPE_LIST = [
   "안전을 최우선시하는 베스트 드라이버",
   "호기심 많은 얼리어답터",
@@ -85,3 +98,11 @@ export const TEXT_CONTENT = {
 };
 
 export const TOOLTIP_CONTENT = "클립보드에 URL이 복사되었습니다";
+
+export const ROULETTE_VALUES = {
+  INITIAL_DURATION: 0.2,
+  INITIAL_DELAY: 0.1,
+  DURATION_INCREMENT: 0.2,
+  DELAY_INCREMENT: 0.1,
+  BASE_ANIMATION_DURATION_MULTIPLIER: 2.1,
+};

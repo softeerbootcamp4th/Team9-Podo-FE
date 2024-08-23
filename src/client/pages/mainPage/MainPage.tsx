@@ -1,12 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import NavigationBar from "./NavigationBar/NavigationBar";
+import { useErrorBoundary } from "react-error-boundary";
+import Cookies from "js-cookie";
+import { checkAndRefreshToken } from "../../api/fetch";
+import { useAppContext } from "../../providers/AppProvider";
 import MainScreen from "./MainScreen/MainScreen";
 import NotificationScreen from "./NotificationScreen/NotificationScreen";
 import InfoScreen from "./InfoScreen/InfoScreen";
-import { useAppContext } from "../../providers/AppProvider";
-import { checkAndRefreshToken } from "../../api/fetch";
-import Cookies from "js-cookie";
-import { useErrorBoundary } from "react-error-boundary";
 
 const MainPage = () => {
   const infoRef = useRef<HTMLDivElement>(null);
@@ -18,7 +17,10 @@ const MainPage = () => {
       try {
         await checkToken();
       } catch (error) {
-        showBoundary(error);
+        if (error instanceof Error) {
+          if (error.message === "Failed to fetch") return;
+          showBoundary(error);
+        }
       }
     };
     tryFetch();
@@ -40,7 +42,6 @@ const MainPage = () => {
       <MainScreen ref={infoRef} />
       <InfoScreen ref={infoRef} />
       <NotificationScreen />
-      <NavigationBar />
     </div>
   );
 };

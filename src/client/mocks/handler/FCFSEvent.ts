@@ -5,11 +5,11 @@ import {
   quizSuccessResult,
 } from "../data/FCFSEvent";
 
-const getQuizInfo = http.get("/v1/quiz", () => {
+const getQuizInfo = http.get("/undefined/v1/quiz", () => {
   return HttpResponse.json(FCFSSuccessResult(quizInfo));
 });
 
-const getFCFSResult = http.post("/v1/quiz", () => {
+const getFCFSResult = http.post("/undefined/v1/arrival/application", () => {
   return HttpResponse.json(FCFSSuccessResult(quizSuccessResult));
 });
 

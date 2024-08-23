@@ -1,8 +1,8 @@
 import React, { ChangeEvent, forwardRef, useState } from "react";
+import { useErrorBoundary } from "react-error-boundary";
+import { postComment } from "../../../api/fetch";
 import Toast from "../../../components/common/Toast/Toast";
 import { ERROR_MSG } from "../../../constants/RandomEventData";
-import { postComment } from "../../../api/fetch";
-import { useErrorBoundary } from "react-error-boundary";
 
 const RandomExpectations = forwardRef<HTMLDivElement>((props, ref) => {
   const [error, setError] = useState<
@@ -20,7 +20,10 @@ const RandomExpectations = forwardRef<HTMLDivElement>((props, ref) => {
         setError("success");
         setExpectation("");
       } catch (error) {
-        showBoundary(error);
+        if (error instanceof Error) {
+          if (error.message === "Failed to fetch") return;
+          showBoundary(error);
+        }
       }
     }
     setToastKey((current) => current + 1);

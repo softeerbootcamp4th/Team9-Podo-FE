@@ -5,6 +5,7 @@ interface ProgressBarInterface {
   currentIndex: number;
   maxIndex: number;
 }
+import { ProgressBarInterface } from "../../../types/RandomEvent";
 
 /**
  * 퀴즈 진행 상황을 나타내는 컴포넌트

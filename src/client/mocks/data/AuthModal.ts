@@ -14,7 +14,7 @@ export const phoneAuthCheckResult: PhoneAuthVerifyResult = {
 
 export const phoneAuthCheckFailResult: ApiResponse<TokenInfo | null> = {
   isSuccess: false,
-  code: 400,
+  code: 403,
   message: "인증 정보가 잘못되었거나 인증 시간이 초과되었습니다.",
   result: null,
 };

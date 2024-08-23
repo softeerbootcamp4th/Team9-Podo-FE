@@ -1,3 +1,17 @@
+import { MouseEventHandler } from "react";
+
+export interface OptionInterface {
+  label: string;
+  content: string;
+  state: "default" | "selected" | "unselected";
+  onClick: MouseEventHandler<HTMLButtonElement>;
+}
+
+export interface ProgressBarInterface {
+  currentIndex: number;
+  maxIndex: number;
+}
+
 export interface AnswerInterface {
   answer1: string;
   answer2: string;
@@ -21,6 +35,11 @@ export interface QuizInfoInterface {
 export interface OptionInterface {
   label: string;
   content: string;
+}
+
+export interface RouletteInterface {
+  textList: Array<string>;
+  targetText: string;
 }
 
 export interface RandomQuizResponseInterface {
@@ -59,4 +78,9 @@ export interface ScenarioInterface {
 
 export interface SharedLinkInterface {
   uniqueLink: string;
+}
+
+export interface TooltipInterface {
+  isVisible: boolean;
+  content: string;
 }

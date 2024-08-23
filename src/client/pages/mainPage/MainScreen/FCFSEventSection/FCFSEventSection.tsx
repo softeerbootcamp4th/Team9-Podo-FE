@@ -52,7 +52,10 @@ const FCFSEventSection = (
 
         return eventSource;
       } catch (error) {
-        showBoundary(error);
+        if (error instanceof Error) {
+          if (error.message === "Failed to fetch") return;
+          showBoundary(error);
+        }
       }
     };
 
@@ -62,6 +65,7 @@ const FCFSEventSection = (
       eventSource?.close();
     };
   }, []);
+
   const setText = () => {
     if (isFCFSEnd === true) return BIG_BUTTON_TEXT.EVENT_END;
     if (leftTime === 0 && isAuth) return BIG_BUTTON_TEXT.START_EVENT;

@@ -173,6 +173,14 @@
         const urlParams = new URL(location.href).searchParams;
 
         const id = urlParams.get("id");
+        const uid = urlParams.get("UID");
+
+        try {
+          await fetch(`lots/link&UID=${uid}`);
+        } catch (error) {
+          console.error("Error posting answers:", error);
+          return null;
+        }
 
         try {
           const response = await fetch("/lots/typeId", {

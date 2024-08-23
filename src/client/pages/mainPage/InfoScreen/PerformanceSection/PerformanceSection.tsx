@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import carImg from "../../../../../common/assets/images/powerImg.png?as=webp";
 import {
   ELECTRONIC_4WD,
@@ -12,12 +12,12 @@ interface SpecItemProps {
   label: string;
 }
 
-const SpecItem = ({ value, label }: SpecItemProps) => (
+const SpecItem = React.memo(({ value, label }: SpecItemProps) => (
   <div className="flex w-80 items-center gap-500 font-kia-signature font-semibold">
     <p className="text-[3rem] text-gray-950">{value}</p>
     <p className="whitespace-pre text-body-1-regular text-gray-700">{label}</p>
   </div>
-);
+));
 
 interface EngineSpecProps {
   title: string;
@@ -25,17 +25,24 @@ interface EngineSpecProps {
   note: string;
 }
 
-const EngineSpec = ({ title, specs, note }: EngineSpecProps) => (
-  <div className="flex flex-col">
-    <p>{title}</p>
-    <div className="flex">
-      {specs.map((spec, index) => (
-        <SpecItem key={index} value={spec.value} label={spec.label} />
-      ))}
-    </div>
-    <p className="ml-[40rem] text-body-2-regular text-gray-500">{note}</p>
-  </div>
-);
+const EngineSpec = React.memo(({ title, specs, note }: EngineSpecProps) => {
+  const renderedEngineSpec = useMemo(
+    () => (
+      <div className="flex flex-col">
+        <p>{title}</p>
+        <div className="flex">
+          {specs.map((spec, index) => (
+            <SpecItem key={index} value={spec.value} label={spec.label} />
+          ))}
+        </div>
+        <p className="ml-[40rem] text-body-2-regular text-gray-500">{note}</p>
+      </div>
+    ),
+    [title, specs, note],
+  );
+
+  return renderedEngineSpec;
+});
 
 const PerformanceSection = () => {
   const { isInView, elementRef } = useInView<HTMLDivElement>(0.7);
@@ -61,14 +68,12 @@ const PerformanceSection = () => {
             note={ENGINE_SPECS.turbo_1_6.note}
           />
           <hr className="w-[56.5rem] border border-gray-300" />
-
           <EngineSpec
             title={ENGINE_SPECS.gasoline_2_0.title}
             specs={ENGINE_SPECS.gasoline_2_0.specs}
             note={ENGINE_SPECS.gasoline_2_0.note}
           />
           <hr className="w-[56.5rem] border border-gray-300" />
-
           <div className="flex flex-col gap-4">
             <p className="text-title-4 font-semibold text-gray-950">
               {ELECTRONIC_4WD.title}
@@ -82,7 +87,9 @@ const PerformanceSection = () => {
       <img
         src={carImg}
         alt="셀토스"
-        className={`${isInView ? "translate-x-0" : "translate-x-80"} h-fit w-fit transition-all duration-500`}
+        className={`${
+          isInView ? "translate-x-0" : "translate-x-80"
+        } h-fit w-fit transition-all duration-500`}
       />
     </div>
   );

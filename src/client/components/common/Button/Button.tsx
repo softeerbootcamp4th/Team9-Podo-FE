@@ -40,36 +40,38 @@ const CAR_POSITION = {
  * @param isEnabled 활성화 상태인지
  * @returns 버튼 컴포넌트
  */
-const Button = ({
-  size,
-  onClick,
-  defaultText,
-  disabledText,
-  isEnabled,
-}: ButtonInterface) => {
-  const sizeClasses = SIZE_CLASSES[size];
-  const enabledClasses = ENABLED_CLASSES[`${isEnabled}`];
-  const moveDestination = MOVE_DESTINATIONS[size];
-  const carPosition = CAR_POSITION[size];
+const Button = React.memo(
+  ({
+    size,
+    onClick,
+    defaultText,
+    disabledText,
+    isEnabled,
+  }: ButtonInterface) => {
+    const sizeClasses = SIZE_CLASSES[size];
+    const enabledClasses = ENABLED_CLASSES[`${isEnabled}`];
+    const moveDestination = MOVE_DESTINATIONS[size];
+    const carPosition = CAR_POSITION[size];
 
-  return (
-    <button
-      className={`relative flex-center ${sizeClasses} rounded-3xl ${enabledClasses} group overflow-hidden`}
-      onClick={onClick}
-      disabled={!isEnabled}
-    >
-      <p className="whitespace-pre font-kia-signature-bold text-title-4">
-        {isEnabled ? defaultText : disabledText}
-      </p>
-      {isEnabled && (
-        <img
-          src={car}
-          alt="셀토스 측면 이미지"
-          className={`absolute ${carPosition} -left-28 h-[5.875rem] w-[13.5rem] transition-transform duration-300 ${moveDestination}`}
-        />
-      )}
-    </button>
-  );
-};
+    return (
+      <button
+        className={`relative flex-center ${sizeClasses} rounded-3xl ${enabledClasses} group overflow-hidden`}
+        onClick={onClick}
+        disabled={!isEnabled}
+      >
+        <p className="whitespace-pre font-kia-signature-bold text-title-4">
+          {isEnabled ? defaultText : disabledText}
+        </p>
+        {isEnabled && (
+          <img
+            src={car}
+            alt="셀토스 측면 이미지"
+            className={`absolute ${carPosition} -left-28 h-[5.875rem] w-[13.5rem] transition-transform duration-300 ${moveDestination}`}
+          />
+        )}
+      </button>
+    );
+  },
+);
 
 export default Button;

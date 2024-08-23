@@ -1,6 +1,10 @@
-import React, { useState, useCallback, useEffect } from "react";
-import { useAppContext } from "../../../providers/AppProvider";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
+import { useErrorBoundary } from "react-error-boundary";
+import { useAppContext } from "../../../providers/AppProvider";
+import { postRandomResult } from "../../../api/fetch";
+import Tooltip from "../../../components/randomEventPage/Tooltip/Tooltip";
+import { RandomMainInterface } from "../../../types/RandomEvent";
 import Button from "../../../components/common/Button/Button";
 import reset from "../../../../common/assets/images/reset.png?as=webp";
 import share from "../../../../common/assets/images/share.png?as=webp";
@@ -12,7 +16,6 @@ import {
   TOOLTIP_CONTENT,
 } from "../../../constants/RandomEventData";
 import { LONG_BUTTON_TEXT } from "../../../constants/common";
-import { useErrorBoundary } from "react-error-boundary";
 
 const RandomMainSection = ({
   resultTypeId,
@@ -32,12 +35,16 @@ const RandomMainSection = ({
   };
 
   const getUniqueUrl = async () => {
-    try {
-      const { result } = await postRandomResult(resultTypeId);
-      setShareUrl(result.uniqueLink);
-    } catch (error) {
-      showBoundary(error);
-    }
+    if (isAuth)
+      try {
+        const { result } = await postRandomResult(resultTypeId);
+        setShareUrl(result.uniqueLink);
+      } catch (error) {
+        if (error instanceof Error) {
+          if (error.message === "Failed to fetch") return;
+          showBoundary(error);
+        }
+      }
   };
 
   const handleShare = () => {
@@ -130,7 +137,7 @@ const RandomMainSection = ({
           size="long"
           onClick={handleEventParticipation}
           defaultText={setText()}
-          disabledText="이벤트 참여 완료"
+          disabledText={LONG_BUTTON_TEXT.EVENT_END}
           isEnabled={!isAuth || !isRandomEnd}
         />
       </div>
