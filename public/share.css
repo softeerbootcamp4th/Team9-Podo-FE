@@ -310,6 +310,10 @@ body {
   transition-duration: 300ms;
 }
 
+.whitespace-pre {
+  white-space: pre;
+}
+
 /* 특수 효과 */
 .text-glow-white {
   text-shadow:
