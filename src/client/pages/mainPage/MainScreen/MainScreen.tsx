@@ -10,6 +10,7 @@ import FCFSEventSection from "./FCFSEventSection/FCFSEventSection";
 import RandomEventSection from "./RandomEventSection/RandomEventSection";
 import mainCar from "../../../../common/assets/images/mainCar.png?as=webp";
 import EventSelectSection from "./EventSelectSection/EventSelectSection";
+import AuthTooltip from "../../../components/common/AuthTooltip/AuthTooltip";
 
 const MainScreen = (
   props: React.HTMLProps<HTMLDivElement>,
@@ -115,6 +116,7 @@ const MainScreen = (
 
   return (
     <>
+      <AuthTooltip />
       <GlowBackground />
       <EventSelectSection
         onFCFSClick={onFCFSClick}

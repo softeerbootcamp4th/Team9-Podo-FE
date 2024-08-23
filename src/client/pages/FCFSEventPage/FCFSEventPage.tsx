@@ -10,12 +10,13 @@ import Glow from "../../components/common/Glow/Glow";
 import HomeButton from "../../components/common/HomeButton/HomeButton";
 import AuthTooltip from "../../components/common/AuthTooltip/AuthTooltip";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useAppContext } from "../../providers/AppProvider";
 import { useErrorBoundary } from "react-error-boundary";
-import { calculateLeftTime, calculateLeftTimeToEnd } from "../../utils/util";
+import { calculateLeftTime } from "../../utils/util";
 
 const FCFSEventPage = () => {
+  const location = useLocation();
   const { showBoundary } = useErrorBoundary();
   const [quizInfo, setQuizInfo] = useState<QuizInfo | null>(null);
   const navigate = useNavigate();
@@ -41,7 +42,9 @@ const FCFSEventPage = () => {
     };
     tryFetch();
     if (!isAuth) navigate("/");
-    if (calculateLeftTimeToEnd() < 0 || calculateLeftTime() > 0) {
+
+    if (location.state?.leftTime !== 0) {
+      console.log("lefttime 0");
       navigate("/");
     }
   }, []);

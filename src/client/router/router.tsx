@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import MainPage from "../pages/mainPage/MainPage";
 import FCFSEventPage from "../pages/FCFSEventPage/FCFSEventPage";
 import FCFSEventResultPage from "../pages/FCFSEventResultPage/FCFSEventResultPage";
@@ -12,6 +18,7 @@ import FallbackPage from "../pages/fallbackPage/FallbackPage";
 
 const RouterWithModal = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const background = location.state && location.state.background;
 
   return (
@@ -25,7 +32,12 @@ const RouterWithModal = () => {
         </Route>
         <Route path="/event2/result" element={<RandomEventResultPage />} />
         <Route path="/auth-modal" element={<AuthModal />} />
-        <Route path="*" element={<h1>404</h1>} />
+        <Route
+          path="*"
+          element={
+            <FallbackPage error="404" resetErrorBoundary={() => navigate(-1)} />
+          }
+        />
       </Routes>
       {background && (
         <Routes>
