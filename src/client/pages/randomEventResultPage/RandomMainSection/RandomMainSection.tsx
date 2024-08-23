@@ -6,8 +6,11 @@ import { postRandomResult } from "../../../api/fetch";
 import Tooltip from "../../../components/randomEventPage/Tooltip/Tooltip";
 import { RandomMainInterface } from "../../../types/RandomEvent";
 import Button from "../../../components/common/Button/Button";
-import reset from "../../../../common/assets/images/reset.png";
-import share from "../../../../common/assets/images/share.png";
+import reset from "../../../../common/assets/images/reset.png?as=webp";
+import share from "../../../../common/assets/images/share.png?as=webp";
+import { RandomMainInterface } from "../../../types/RandomEvent";
+import Tooltip from "../../../components/randomEventPage/Tooltip/Tooltip";
+import { postRandomResult } from "../../../api/fetch";
 import {
   TEXT_CONTENT,
   TOOLTIP_CONTENT,

@@ -2,7 +2,12 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const dotenv = require("dotenv");
+const {
+  input,
+} = require("@testing-library/user-event/dist/cjs/event/input.js");
+const { createWebPGenerator } = require("./webpackUtil");
 
 module.exports = (env) => {
   const { DEV } = env;
@@ -51,15 +56,71 @@ module.exports = (env) => {
         },
         {
           test: /\.(png|jpe?g|gif|mp4|webp)$/i,
-          use: [
-            {
-              loader: "file-loader",
-              options: {
-                name: "[path][name].[ext]",
+          type: "asset/resource",
+          generator: {
+            filename: "assets/[name][ext]",
+          },
+        },
+      ],
+    },
+    optimization: {
+      minimizer: [
+        new ImageMinimizerPlugin({
+          minimizer: {
+            implementation: ImageMinimizerPlugin.sharpMinify,
+            options: {
+              encodeOptions: {
+                webp: {},
+                png: {},
               },
             },
+          },
+          generator: [
+            createWebPGenerator({ presetName: "webp", quality: 75 }),
+            createWebPGenerator({
+              presetName: "webp-high",
+              quality: 50,
+              fileNames: ["OutsideInfo.png"],
+            }),
+            createWebPGenerator({
+              presetName: "webp-smallh",
+              quality: 75,
+              fileNames: [
+                "e1Gift.png",
+                "Drive1.png",
+                "Drive2.png",
+                "Drive3.png",
+                "Drive4.png",
+                "Drive5.png",
+                "Drive6.png",
+                "whiteRight.png",
+              ],
+              resizeOptions: {
+                width: 300,
+                hgith: 170,
+              },
+            }),
+            createWebPGenerator({
+              presetName: "webp-smallw",
+              quality: 75,
+              fileNames: ["e1Gift.png"],
+              resizeOptions: {
+                width: 300,
+                height: 500,
+              },
+            }),
+            createWebPGenerator({
+              presetName: "webp-blur",
+              quality: 20,
+              fileNames: [
+                "random0.png",
+                "random1.png",
+                "random2.png",
+                "random3.png",
+              ],
+            }),
           ],
-        },
+        }),
       ],
     },
     resolve: {

@@ -1,23 +1,23 @@
-import Outside1 from "../../common/assets/images/Outside1.webp";
-import Outside2 from "../../common/assets/images/Outside2.webp";
-import Outside3 from "../../common/assets/images/Outside3.webp";
+import Outside1 from "../../common/assets/images/Outside1.png?as=webp";
+import Outside2 from "../../common/assets/images/Outside2.png?as=webp";
+import Outside3 from "../../common/assets/images/Outside3.png?as=webp";
 
-import Drive1 from "../../common/assets/images/Drive1.webp";
-import Drive2 from "../../common/assets/images/Drive2.webp";
-import Drive3 from "../../common/assets/images/Drive3.webp";
-import Drive4 from "../../common/assets/images/Drive4.webp";
-import Drive5 from "../../common/assets/images/Drive5.webp";
-import Drive6 from "../../common/assets/images/Drive6.webp";
+import Drive1 from "../../common/assets/images/Drive1.png?as=webp-smallh";
+import Drive2 from "../../common/assets/images/Drive2.png?as=webp-smallh";
+import Drive3 from "../../common/assets/images/Drive3.png?as=webp-smallh";
+import Drive4 from "../../common/assets/images/Drive4.png?as=webp-smallh";
+import Drive5 from "../../common/assets/images/Drive5.png?as=webp-smallh";
+import Drive6 from "../../common/assets/images/Drive6.png?as=webp-smallh";
 
-import Convenience1 from "../../common/assets/images/Convenience1.webp";
-import Convenience2 from "../../common/assets/images/Convenience2.webp";
-import Convenience3 from "../../common/assets/images/Convenience3.webp";
+import Convenience1 from "../../common/assets/images/Convenience1.png?as=webp";
+import Convenience2 from "../../common/assets/images/Convenience2.png?as=webp";
+import Convenience3 from "../../common/assets/images/Convenience3.png?as=webp";
 
-import white from "../../common/assets/images/colorSnowWhitePearl.webp";
-import blue from "../../common/assets/images/colorDarkOceanBlue.webp";
-import green from "../../common/assets/images/colorGrean.webp";
-import gray from "../../common/assets/images/colorGravityGray.webp";
-import black from "../../common/assets/images/colorFusionBlack.webp";
+import white from "../../common/assets/images/colorSnowWhitePearl.png?as=webp";
+import blue from "../../common/assets/images/colorDarkOceanBlue.png?as=webp";
+import green from "../../common/assets/images/colorGrean.png?as=webp";
+import gray from "../../common/assets/images/colorGravityGray.png?as=webp";
+import black from "../../common/assets/images/colorFusionBlack.png?as=webp";
 
 import { InsideInfo, InsideInfoData } from "../types/InfoScreen";
 

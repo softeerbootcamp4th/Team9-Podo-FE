@@ -2,7 +2,7 @@ import React, { ForwardedRef, forwardRef, useEffect, useState } from "react";
 import Timer from "../../../../components/mainPage/MainScreen/Timer/Timer";
 import EventHeader from "../../../../components/mainPage/MainScreen/EventHeader/EventHeader";
 import Button from "../../../../components/common/Button/Button";
-import e1Gift from "../../../../../common/assets/images/e1Gift.webp";
+import e1Gift from "../../../../../common/assets/images/e1Gift.png?as=webp-smallw";
 import {
   FCFS_EVENT_DATA,
   FCFS_PARTICIPATION_STEPS,

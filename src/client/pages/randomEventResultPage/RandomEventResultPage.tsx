@@ -11,7 +11,9 @@ import AuthTooltip from "../../components/common/AuthTooltip/AuthTooltip";
 import Roulette from "../../components/randomEventPage/Roulette/Roulette";
 import RandomMainSection from "./RandomMainSection/RandomMainSection";
 import RandomExpectations from "./RandomExpectations/RandomExpectations";
-import car from "../../../common/assets/images/mainCar.webp";
+import Roulette from "../../components/randomEventPage/Roulette/Roulette";
+import car from "../../../common/assets/images/mainCar.png?as=webp";
+import { DRIVER_TYPE_LIST } from "../../constants/RandomEventData";
 import {
   AnswerInterface,
   RandomQuizResponseInterface,

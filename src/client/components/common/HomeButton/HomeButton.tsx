@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import home from "../../../../common/assets/images/Home.png";
+import home from "../../../../common/assets/images/Home.png?as=webp";
 
 const HomeButton = () => {
   const navigate = useNavigate();

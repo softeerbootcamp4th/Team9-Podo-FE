@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import FCFSCar from "../../../common/assets/images/FCFSCar.webp";
-import FCFSKey from "../../../common/assets/images/FCFSKey.webp";
+import FCFSCar from "../../../common/assets/images/FCFSCar.png?as=webp";
+import FCFSKey from "../../../common/assets/images/FCFSKey.png?as=webp";
 import FCFSKeyButton from "../../../common/assets/svg/FCFSKeyButton";
 import { fetchFCFSResult } from "../../api/fetch";
 import useAnimation from "../../hooks/useAnimation";

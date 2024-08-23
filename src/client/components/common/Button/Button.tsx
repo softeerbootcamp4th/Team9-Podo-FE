@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from "react";
-import car from "../../../../common/assets/images/whiteRight.webp";
+import car from "../../../../common/assets/images/whiteRight.png?as=webp-smallh";
 
 interface ButtonInterface {
   size: "small" | "big" | "long";

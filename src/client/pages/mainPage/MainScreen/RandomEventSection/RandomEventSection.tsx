@@ -1,9 +1,9 @@
 import React, { ForwardedRef, forwardRef } from "react";
 import EventHeader from "../../../../components/mainPage/MainScreen/EventHeader/EventHeader";
 import Button from "../../../../components/common/Button/Button";
-import e2Gift1 from "../../../../../common/assets/images/e2Gift1.webp";
-import e2Gift2 from "../../../../../common/assets/images/e2Gift2.webp";
-import e2Gift3 from "../../../../../common/assets/images/e2Gift3.webp";
+import e2Gift1 from "../../../../../common/assets/images/e2Gift1.png?as=webp";
+import e2Gift2 from "../../../../../common/assets/images/e2Gift2.png?as=webp";
+import e2Gift3 from "../../../../../common/assets/images/e2Gift3.png?as=webp";
 import {
   RANDOM_EVENT_DATA,
   RANDOM_PERIOD_INFO,
