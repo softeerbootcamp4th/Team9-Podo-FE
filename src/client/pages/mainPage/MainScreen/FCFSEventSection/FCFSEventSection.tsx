@@ -52,8 +52,10 @@ const FCFSEventSection = (
 
         return eventSource;
       } catch (error) {
-        if (error.message === "Failed to fetch") return;
-        showBoundary(error);
+        if (error instanceof Error) {
+          if (error.message === "Failed to fetch") return;
+          showBoundary(error);
+        }
       }
     };
 

@@ -6,12 +6,12 @@ import {
 } from "../data/AuthModal";
 import { PhoneAuthCheckForm } from "../../types/AuthModal";
 
-const postPhoneAuthRequest = http.post("/verification/claim", () => {
+const postPhoneAuthRequest = http.post("/undefined/verification/claim", () => {
   return HttpResponse.json({ success: true });
 });
 
 const postPhoneAuthCheck = http.post(
-  "/verification/check",
+  "/undefined/verification/check",
   async ({ request }) => {
     const body = (await request.json()) as PhoneAuthCheckForm;
     if (body.verificationCode === "654321")
@@ -20,7 +20,7 @@ const postPhoneAuthCheck = http.post(
   },
 );
 
-const reissueToken = http.post("/v1/reissue", () => {
+const reissueToken = http.post("/undefined/v1/reissue", () => {
   return HttpResponse.json(reissueResult);
 });
 

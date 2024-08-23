@@ -18,8 +18,10 @@ const AuthTooltip = () => {
       await refreshToken();
       reset();
     } catch (error) {
-      if (error.message === "Failed to fetch") return;
-      showBoundary(error);
+      if (error instanceof Error) {
+        if (error.message === "Failed to fetch") return;
+        showBoundary(error);
+      }
     }
   };
 
