@@ -51,7 +51,7 @@ const ColorPallete = ({ index, parentRef }: ColorPalleteProps) => {
               role="button"
               onClick={(e) => handleClick(e, parentRef, i)}
               key={key}
-              className={`${rgb} ${index === i ? "h-800 w-800" : "h-500 w-500"} cursor-pointer rounded-[50%]`}
+              className={`${rgb} ${index === i ? "h-800 w-800" : index === 5 && i === 4 ? "h-800 w-800" : "h-500 w-500"} cursor-pointer rounded-[50%]`}
             ></button>
           );
         })}

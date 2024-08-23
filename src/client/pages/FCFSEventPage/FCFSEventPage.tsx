@@ -44,8 +44,6 @@ const FCFSEventPage = () => {
     if (!isAuth) navigate("/");
 
     if (location.state?.leftTime !== 0) {
-      console.log("lefttime 0");
-      navigate("/");
     }
   }, []);
 

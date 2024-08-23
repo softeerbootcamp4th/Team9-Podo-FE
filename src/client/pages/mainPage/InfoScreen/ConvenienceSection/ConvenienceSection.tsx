@@ -12,6 +12,7 @@ const ConvenienceSection = () => {
     <div
       ref={elementRef}
       className="flex h-screen w-screen snap-start items-center overflow-scroll bg-white"
+      style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
     >
       <div
         className={`flex h-[7.625rem] w-1/2 shrink-0 flex-col items-center ${isInView ? "opacity-100" : "opacity-0"} transition-opacity duration-[1000ms]`}

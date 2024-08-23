@@ -21,7 +21,7 @@ module.exports = (env) => {
   return {
     entry: "./src/client/index.tsx",
     output: {
-      filename: "bundle.js",
+      filename: "[name]-bundle.js",
       path: path.resolve(__dirname, "build"),
       publicPath: "/",
       clean: true,

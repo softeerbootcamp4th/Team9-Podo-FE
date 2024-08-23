@@ -41,7 +41,10 @@ const Carousel = ({ items }: CarouselProps) => {
   }, []);
 
   return (
-    <div className="flex snap-x snap-mandatory justify-start gap-800 overflow-scroll scroll-smooth px-32">
+    <div
+      className="flex snap-x snap-mandatory justify-start gap-800 overflow-scroll scroll-smooth px-32"
+      style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+    >
       {items &&
         items.map((item, index) => {
           return (

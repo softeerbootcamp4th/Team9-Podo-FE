@@ -113,8 +113,11 @@ const AuthModal = () => {
         if (response.code === 200) {
           if (location.state.event) setIsAuth(true);
           Cookies.set("auth", response.result.accessToken, { expires: 1 / 24 });
+
+          console.log(location.state);
           navigate(
             `${location.state.event === 2 ? "/event2/result" : location.state.isOpen ? "/event1" : "/"}`,
+            { state: { leftTime: location.state.leftTime } },
           );
         } else {
           setIsError("AUTH_NUM_INCORRECT");

@@ -34,9 +34,15 @@ const FCFSEventSection = (
   const [isOpen, setIsOpen] = useState(false);
   const [leftTime, setLeftTime] = useState(0);
   const { showBoundary } = useErrorBoundary();
+
   const onEndHandler = () => {
     setIsOpen(true);
   };
+
+  useEffect(() => {
+    console.log("efffect", isOpen);
+  }, [isOpen]);
+
   const URL = process.env.FCFS_URL;
 
   useEffect(() => {
@@ -148,10 +154,16 @@ const FCFSEventSection = (
         </div>
         <Button
           onClick={() => {
+            console.log("isOpen", isOpen);
             isAuth
               ? navigate("event1", { state: { leftTime: leftTime } })
               : navigate("auth-modal", {
-                  state: { background: location, event: 1, isOpen: isOpen },
+                  state: {
+                    background: location,
+                    event: 1,
+                    isOpen: isOpen,
+                    leftTime: leftTime,
+                  },
                 });
           }}
           size="big"

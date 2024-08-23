@@ -172,7 +172,7 @@ const FCFSEventResultPage = () => {
       />
       {!isResultVisible && (
         <FCFSKeyButton
-          className="absolute bottom-0"
+          className="absolute bottom-0 animate-pulse"
           onClick={handleButtonClick}
         />
       )}
