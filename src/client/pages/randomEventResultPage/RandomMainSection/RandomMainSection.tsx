@@ -58,11 +58,10 @@ const RandomMainSection = ({
   const handleEventParticipation = async () => {
     if (isAuth) {
       getUniqueUrl();
+      setIsRandomEnd(true);
     } else {
       navigate("/auth-modal", { state: { background: location, event: 2 } });
     }
-
-    setIsRandomEnd(true);
   };
 
   useEffect(() => {
