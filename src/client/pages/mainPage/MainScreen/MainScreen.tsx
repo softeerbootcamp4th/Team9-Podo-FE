@@ -116,7 +116,6 @@ const MainScreen = (
 
   return (
     <>
-      <AuthTooltip />
       <GlowBackground />
       <EventSelectSection
         onFCFSClick={onFCFSClick}
