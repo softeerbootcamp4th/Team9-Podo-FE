@@ -10,7 +10,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "admin": "webpack-dev-server --hot --config webpack.config.js",
-    "adminBuild": "webpack --config webpack.config.js"
+    "adminBuild": "webpack --config webpack.config.js --env DEV=false"
   },
   "keywords": [],
   "author": "",

@@ -8,10 +8,12 @@ import {
   fetchLogForm,
 } from "../types/event";
 
+const RANDOM_URL = process.env.RANDOM_URL;
+
 export const fetchEventList = async (): Promise<
   ApiResponse<{ eventList: EventInfo[] }>
 > => {
-  const response = await fetch("/admin/eventlist");
+  const response = await fetch(RANDOM_URL + "/admin/eventlist");
 
   return await response.json();
 };
@@ -19,7 +21,7 @@ export const fetchEventList = async (): Promise<
 export const fetchLogList = async (
   page: number,
 ): Promise<ApiResponse<fetchLogForm>> => {
-  const response = await fetch(`/admin/log?page=${page}`);
+  const response = await fetch(RANDOM_URL + `/admin/log?page=${page}`);
 
   return await response.json();
 };
@@ -27,7 +29,7 @@ export const fetchLogList = async (
 export const putRandomEvent = async (
   eventInfo: FormData,
 ): Promise<ApiResponse<EventInfo>> => {
-  const response = await fetch("/admin/lots/config", {
+  const response = await fetch(RANDOM_URL + "/admin/lots/config", {
     method: "PUT",
     headers: {},
     body: eventInfo,
@@ -39,7 +41,7 @@ export const putRandomEvent = async (
 export const putFCFSEvent = async (
   eventInfo: FormData,
 ): Promise<ApiResponse<EventInfo>> => {
-  const response = await fetch("/admin/arrival/config", {
+  const response = await fetch(RANDOM_URL + "/admin/arrival/config", {
     method: "PUT",
     headers: {},
     body: eventInfo,
@@ -66,7 +68,8 @@ export const fetchFCFSParticipants = async ({
   }>
 > => {
   const response = await fetch(
-    `/admin/arrival/applicationList?page=${page}${createdAt ? `&createdAt=${createdAt}` : ""}${phoneNum ? `&phoneNum=${phoneNum}` : ""}`,
+    RANDOM_URL +
+      `/admin/arrival/applicationList?page=${page}${createdAt ? `&createdAt=${createdAt}` : ""}${phoneNum ? `&phoneNum=${phoneNum}` : ""}`,
   );
 
   return response.json();
@@ -88,7 +91,8 @@ export const fetchRandomParticipants = async ({
   }>
 > => {
   const response = await fetch(
-    `/admin/lots/applicationList?page=${page}${phoneNum ? `&phoneNum=${phoneNum}` : ""}`,
+    RANDOM_URL +
+      `/admin/lots/applicationList?page=${page}${phoneNum ? `&phoneNum=${phoneNum}` : ""}`,
   );
 
   return response.json();
@@ -97,7 +101,7 @@ export const fetchRandomParticipants = async ({
 export const putFCFSReward = async (
   rewardInfo: RewardInterface,
 ): Promise<ApiResponse<RewardInterface>> => {
-  const response = await fetch("/admin/arrival/rewardconfig", {
+  const response = await fetch(RANDOM_URL + "/admin/arrival/rewardconfig", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -111,7 +115,7 @@ export const putFCFSReward = async (
 export const putRandomReward = async (
   rewardInfo: RewardInterface,
 ): Promise<ApiResponse<RewardInterface>> => {
-  const response = await fetch("/admin/lots/rewardconfig", {
+  const response = await fetch(RANDOM_URL + "/admin/lots/rewardconfig", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

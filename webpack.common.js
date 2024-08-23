@@ -84,7 +84,7 @@ module.exports = (env) => {
             }),
             createWebPGenerator({
               presetName: "webp-smallh",
-              quality: 75,
+              quality: 100,
               fileNames: [
                 "e1Gift.png",
                 "Drive1.png",
@@ -96,8 +96,8 @@ module.exports = (env) => {
                 "whiteRight.png",
               ],
               resizeOptions: {
-                width: 300,
-                hgith: 170,
+                width: 600,
+                height: 340,
               },
             }),
             createWebPGenerator({
@@ -111,7 +111,7 @@ module.exports = (env) => {
             }),
             createWebPGenerator({
               presetName: "webp-blur",
-              quality: 20,
+              quality: 40,
               fileNames: [
                 "random0.png",
                 "random1.png",
