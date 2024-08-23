@@ -24,7 +24,7 @@ function createWebPGenerator({
           {
             quality: quality,
             ...(resizeOptions && {
-              resize: { width: 300, height: 600 },
+              resize: resizeOptions,
             }),
           },
         ],
