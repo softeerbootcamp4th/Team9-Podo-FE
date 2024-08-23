@@ -163,7 +163,6 @@ export const postEvent2Answers = async (
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: decodeURI(Cookies.get("auth") || ""),
       },
       body: JSON.stringify(answers),
     });

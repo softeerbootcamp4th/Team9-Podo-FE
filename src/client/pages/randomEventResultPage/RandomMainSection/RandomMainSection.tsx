@@ -34,6 +34,7 @@ const RandomMainSection = ({
   const getUniqueUrl = async () => {
     if (isAuth)
       try {
+        console.log("getURL");
         const { result } = await postRandomResult(resultTypeId);
         setShareUrl(result.uniqueLink);
       } catch (error) {
@@ -57,11 +58,10 @@ const RandomMainSection = ({
   const handleEventParticipation = async () => {
     if (isAuth) {
       getUniqueUrl();
+      setIsRandomEnd(true);
     } else {
       navigate("/auth-modal", { state: { background: location, event: 2 } });
     }
-
-    setIsRandomEnd(true);
   };
 
   useEffect(() => {
@@ -91,12 +91,12 @@ const RandomMainSection = ({
 
         <div className="flex font-kia-signature-bold text-title-3">
           {description.map((item, index) => (
-            <span
+            <div
               key={index}
-              className={`${item.highlighted ? "text-gray-50" : "text-gray-400"}`}
+              className={`${item.highlighted ? "text-gray-50" : "text-gray-400"} whitespace-pre`}
             >
               {item.content}
-            </span>
+            </div>
           ))}
         </div>
 

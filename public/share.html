@@ -138,14 +138,17 @@
                 </div>
               </div>
               <div
-                class="margin-top-2-25-rem flex-column gap-1-rem flex flex-center"
+                class="margin-top-2-25-rem flex-column gap-1-rem flex-center"
               >
-                <p class="color-gray-200 font-kia-signature">
-                  이벤트 응모하고<span
-                    class="color-gray-50 font-kia-signature-bold"
-                    >시그니엘 숙박권</span
-                  >받자!!
-                </p>
+                <div
+                  class="color-gray-200 whitespace-pre font-kia-signature flex-center"
+                >
+                  <span>이벤트 응모하고</span
+                  ><span
+                    class="color-gray-50 whitespace-pre font-kia-signature-bold"
+                    >&nbsp시그니엘 숙박권</span
+                  ><span>&nbsp받자!!</span>
+                </div>
                 <button
                   class="position-relative height-6-25-rem width-94-rem border-radius-3xl background-primary color-gray-950 group overflow-hidden flex-center"
                   onclick="window.location.href='https://www.hyundaiseltos.site/event2/0';"
@@ -254,7 +257,7 @@
 
         descriptionTextElement.innerHTML = descriptionList
           .map((item) => {
-            return `<span class="${item.highlighted ? "color-gray-50" : "color-gray-400"}">${item.content} </span>`;
+            return `<span class="${item.highlighted ? "color-gray-50" : "color-gray-400"} whitespace-pre">${item.content} </span>`;
           })
           .join("");
 

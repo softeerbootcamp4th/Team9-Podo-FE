@@ -41,7 +41,6 @@ const DriveSection = () => {
               description={description}
               img={image}
               isSelected={index === selectedIndex}
-              noneSelected={selectedIndex === -1}
               tailwind={`${isInView ? "opacity-100 scale-100" : "opacity-0 scale-90"} transition-all duration-[200ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)] origin-bottom-right ${animationDelay[index as keyof typeof animationDelay]} `}
             />
           </div>
