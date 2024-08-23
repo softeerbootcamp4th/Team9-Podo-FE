@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "../../../../utils/TestUtils";
 import InsideSection from "./InsideSection";
-import Interior from "../../../../../common/assets/images/Interior.webp";
+import Interior from "../../../../../common/assets/images/Interior.png?as=webp";
 
 IntersectionObserver = jest.fn().mockImplementation((callback) => {
   return {

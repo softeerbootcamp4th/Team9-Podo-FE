@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import carImg from "../../../../../common/assets/images/powerImg.webp";
+import carImg from "../../../../../common/assets/images/powerImg.png?as=webp";
 import {
   ELECTRONIC_4WD,
   ENGINE_SPECS,

@@ -1,11 +1,11 @@
 import React, { ComponentPropsWithRef, ForwardedRef, forwardRef } from "react";
-import hint1 from "../../../../common/assets/images/hint1.webp";
-import hint2 from "../../../../common/assets/images/hint2.webp";
-import hint3 from "../../../../common/assets/images/hint3.webp";
-import hint4 from "../../../../common/assets/images/hint4.webp";
-import hint5 from "../../../../common/assets/images/hint5.webp";
-import hint6 from "../../../../common/assets/images/hint6.webp";
-import hint7 from "../../../../common/assets/images/hint7.webp";
+import hint1 from "../../../../common/assets/images/hint1.png?as=webp";
+import hint2 from "../../../../common/assets/images/hint2.png?as=webp";
+import hint3 from "../../../../common/assets/images/hint3.png?as=webp";
+import hint4 from "../../../../common/assets/images/hint4.png?as=webp";
+import hint5 from "../../../../common/assets/images/hint5.png?as=webp";
+import hint6 from "../../../../common/assets/images/hint6.png?as=webp";
+import hint7 from "../../../../common/assets/images/hint7.png?as=webp";
 
 interface FCFSHintSectionProps extends ComponentPropsWithRef<"div"> {}
 
