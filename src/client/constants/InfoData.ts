@@ -2,12 +2,12 @@ import Outside1 from "../../common/assets/images/Outside1.png?as=webp";
 import Outside2 from "../../common/assets/images/Outside2.png?as=webp";
 import Outside3 from "../../common/assets/images/Outside3.png?as=webp";
 
-import Drive1 from "../../common/assets/images/Drive1.png?as=webp";
-import Drive2 from "../../common/assets/images/Drive2.png?as=webp";
-import Drive3 from "../../common/assets/images/Drive3.png?as=webp";
-import Drive4 from "../../common/assets/images/Drive4.png?as=webp";
-import Drive5 from "../../common/assets/images/Drive5.png?as=webp";
-import Drive6 from "../../common/assets/images/Drive6.png?as=webp";
+import Drive1 from "../../common/assets/images/Drive1.png?as=webp-smallh";
+import Drive2 from "../../common/assets/images/Drive2.png?as=webp-smallh";
+import Drive3 from "../../common/assets/images/Drive3.png?as=webp-smallh";
+import Drive4 from "../../common/assets/images/Drive4.png?as=webp-smallh";
+import Drive5 from "../../common/assets/images/Drive5.png?as=webp-smallh";
+import Drive6 from "../../common/assets/images/Drive6.png?as=webp-smallh";
 
 import Convenience1 from "../../common/assets/images/Convenience1.png?as=webp";
 import Convenience2 from "../../common/assets/images/Convenience2.png?as=webp";

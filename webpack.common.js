@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 const {
   input,
 } = require("@testing-library/user-event/dist/cjs/event/input.js");
+const { createWebPGenerator } = require("./webpackUtil");
 
 module.exports = (env) => {
   const { DEV } = env;
@@ -74,49 +75,49 @@ module.exports = (env) => {
             },
           },
           generator: [
-            {
-              preset: "webp",
-              filename: "wp-[name][ext]",
-              implementation: ImageMinimizerPlugin.imageminGenerate,
-              filter: (source, sourcePath) => {
-                return true;
+            createWebPGenerator({ presetName: "webp", quality: 75 }),
+            createWebPGenerator({
+              presetName: "webp-high",
+              quality: 50,
+              fileNames: ["OutsideInfo.png"],
+            }),
+            createWebPGenerator({
+              presetName: "webp-smallh",
+              quality: 75,
+              fileNames: [
+                "e1Gift.png",
+                "Drive1.png",
+                "Drive2.png",
+                "Drive3.png",
+                "Drive4.png",
+                "Drive5.png",
+                "Drive6.png",
+                "whiteRight.png",
+              ],
+              resizeOptions: {
+                width: 300,
+                hgith: 170,
               },
-              options: {
-                plugins: [
-                  [
-                    "imagemin-webp",
-                    {
-                      quality: 75,
-                    },
-                  ],
-                ],
+            }),
+            createWebPGenerator({
+              presetName: "webp-smallw",
+              quality: 75,
+              fileNames: ["e1Gift.png"],
+              resizeOptions: {
+                width: 300,
+                height: 500,
               },
-            },
-            {
-              preset: "webp-high",
-              filename: "wp-[name][ext]",
-              implementation: ImageMinimizerPlugin.imageminGenerate,
-              filter: (source, sourcePath) => {
-                return (
-                  path.basename(sourcePath) === "OutsideInfo.png" ||
-                  path.basename(sourcePath) === "e1Gift.png"
-                );
-              },
-              options: {
-                plugins: [
-                  [
-                    "imagemin-webp",
-                    {
-                      quality: 50,
-                      resize: {
-                        width: 200,
-                        height: 400,
-                      },
-                    },
-                  ],
-                ],
-              },
-            },
+            }),
+            createWebPGenerator({
+              presetName: "webp-blur",
+              quality: 20,
+              fileNames: [
+                "random0.png",
+                "random1.png",
+                "random2.png",
+                "random3.png",
+              ],
+            }),
           ],
         }),
       ],

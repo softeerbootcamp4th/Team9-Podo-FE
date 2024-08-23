@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import e1Gift from "../../../../../common/assets/images/e1Gift.png?as=webp-high";
+import e1Gift from "../../../../../common/assets/images/e1Gift.png?as=webp-smallw";
 import e2Gift from "../../../../../common/assets/images/e2Gift.png?as=webp";
 import mainCar from "../../../../../common/assets/images/mainCar.png?as=webp";
 import landingCar from "../../../../../common/assets/images/landingCar.png?as=webp";
