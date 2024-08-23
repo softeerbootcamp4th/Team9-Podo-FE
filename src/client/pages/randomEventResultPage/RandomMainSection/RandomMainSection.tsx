@@ -26,6 +26,7 @@ const RandomMainSection = ({
 
   const [isCopied, setIsCopied] = useState(false);
   const [shareUrl, setShareUrl] = useState("https://www.hyundaiseltos.site/");
+  const [isAlreadyEnd, setIsAlreadyEnd] = useState(false);
 
   const handleRetry = () => {
     navigate("/event2/0");
@@ -37,6 +38,8 @@ const RandomMainSection = ({
         console.log("getURL");
         const { result } = await postRandomResult(resultTypeId);
         setShareUrl(result.uniqueLink);
+        console.log("setState");
+        if (!result.applied) setIsAlreadyEnd(true);
       } catch (error) {
         if (error instanceof Error) {
           if (error.message === "Failed to fetch") return;
@@ -63,10 +66,6 @@ const RandomMainSection = ({
       navigate("/auth-modal", { state: { background: location, event: 2 } });
     }
   };
-
-  useEffect(() => {
-    getUniqueUrl();
-  }, [isAuth]);
 
   const setText = () => {
     if (isAuth === false) return LONG_BUTTON_TEXT.NO_AUTH;
@@ -134,7 +133,11 @@ const RandomMainSection = ({
           size="long"
           onClick={handleEventParticipation}
           defaultText={setText()}
-          disabledText={LONG_BUTTON_TEXT.EVENT_END}
+          disabledText={
+            isAlreadyEnd
+              ? LONG_BUTTON_TEXT.ALREADY_END
+              : LONG_BUTTON_TEXT.EVENT_END
+          }
           isEnabled={!isAuth || !isRandomEnd}
         />
       </div>

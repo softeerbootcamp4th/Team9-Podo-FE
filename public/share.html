@@ -179,20 +179,25 @@
         const uid = urlParams.get("UID");
 
         try {
-          await fetch(`lots/link&UID=${uid}`);
+          await fetch(
+            `https://d1zb0qi5v6qyks.cloudfront.net/lots/link&UID=${uid}`,
+          );
         } catch (error) {
           console.error("Error posting answers:", error);
           return null;
         }
 
         try {
-          const response = await fetch("/lots/typeId", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
+          const response = await fetch(
+            "https://d1zb0qi5v6qyks.cloudfront.net/lots/typeId",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ resultTypeId: id }),
             },
-            body: JSON.stringify({ resultTypeId: id }),
-          });
+          );
 
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
