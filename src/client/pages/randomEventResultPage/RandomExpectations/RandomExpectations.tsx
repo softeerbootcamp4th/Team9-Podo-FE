@@ -20,7 +20,10 @@ const RandomExpectations = forwardRef<HTMLDivElement>((props, ref) => {
         setError("success");
         setExpectation("");
       } catch (error) {
-        showBoundary(error);
+        if (error instanceof Error) {
+          if (error.message === "Failed to fetch") return;
+          showBoundary(error);
+        }
       }
     }
     setToastKey((current) => current + 1);

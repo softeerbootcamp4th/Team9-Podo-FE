@@ -13,13 +13,15 @@ const NotificationScreen = () => {
   const navigate = useNavigate();
   const [wordCloudData, setWordCloudData] = useState<Word[] | null>(null);
 
-
   useEffect(() => {
     const tryFetch = async () => {
       try {
         await fetchData();
       } catch (error) {
-        showBoundary(error);
+        if (error instanceof Error) {
+          if (error.message === "Failed to fetch") return;
+          showBoundary(error);
+        }
       }
     };
     tryFetch();

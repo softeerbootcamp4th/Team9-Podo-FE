@@ -183,7 +183,7 @@ describe("AuthModal 인증 관련 테스트", () => {
 
   test("인증 번호가 맞지 않은 상태에서 인증하기 버튼을 누르면 오류 토스트를 보여줘야 한다.", async () => {
     server.resetHandlers(
-      http.post("/verification/check", () => {
+      http.post("/undefined/verification/check", () => {
         return HttpResponse.json(phoneAuthCheckFailResult);
       }),
     );
