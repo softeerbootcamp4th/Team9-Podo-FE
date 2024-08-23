@@ -78,6 +78,7 @@ export interface ScenarioInterface {
 
 export interface SharedLinkInterface {
   uniqueLink: string;
+  applied: boolean;
 }
 
 export interface TooltipInterface {
