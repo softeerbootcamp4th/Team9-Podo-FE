@@ -1,10 +1,6 @@
 import React from "react";
 import car from "../../../../common/assets/images/whiteRight.png?as=webp-smallh"; // car 이미지 경로
 
-interface ProgressBarInterface {
-  currentIndex: number;
-  maxIndex: number;
-}
 import { ProgressBarInterface } from "../../../types/RandomEvent";
 
 /**

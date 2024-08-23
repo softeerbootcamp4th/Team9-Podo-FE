@@ -37,13 +37,12 @@ const FCFSEventSection = (
   const onEndHandler = () => {
     setIsOpen(true);
   };
+  const URL = process.env.FCFS_URL;
 
   useEffect(() => {
     const tryFetch = () => {
       try {
-        const eventSource = new EventSource(
-          "https://www.hyundaiseltos.site/arrival/time",
-        );
+        const eventSource = new EventSource(URL + "/arrival/time");
 
         eventSource.onmessage = (event) => {
           const date = JSON.parse(event.data);
