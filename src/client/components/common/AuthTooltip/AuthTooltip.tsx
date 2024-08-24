@@ -13,6 +13,10 @@ const AuthTooltip = () => {
 
   const { reset, minutes, seconds } = useTimer(initialTime);
 
+  useEffect(() => {
+    if (isAuth) reset();
+  }, [isAuth]);
+
   const refreshHandler = async () => {
     try {
       await refreshToken();

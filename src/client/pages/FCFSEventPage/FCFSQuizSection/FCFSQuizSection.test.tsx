@@ -17,7 +17,14 @@ jest.mock("react-router", () => ({
   useNavigate: jest.fn(() => {
     return navigate;
   }),
+  useLocation: jest.fn().mockImplementation(() => {
+    return {
+      state: { leftTime: 0 },
+    };
+  }),
 }));
+
+Element.prototype.animate = jest.fn();
 
 describe("FCFSQuizSection Component", () => {
   beforeEach(() => {
@@ -49,7 +56,9 @@ describe("FCFSQuizSection Component", () => {
     await userEvent.click(quizChoices[0]);
     await userEvent.click(submitButton);
 
-    expect(navigate).toHaveBeenCalledWith("/event1/result");
+    expect(navigate).toHaveBeenCalledWith("/event1/result", {
+      state: { isWin: true, leftTime: 0 },
+    });
   });
 
   test("오답을 제출하면 결과를 알리는 화면으로 이동하지 않아야 한다.", async () => {

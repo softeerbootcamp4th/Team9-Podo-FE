@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { ErrorToastKey, QuizInfo } from "../../../types/FCFSEvent";
-import { useNavigate } from "react-router";
+import { useLoaderData, useLocation, useNavigate } from "react-router";
 import Button from "../../../components/common/Button/Button";
 import { useAppContext } from "../../../providers/AppProvider";
 import Toast from "../../../components/common/Toast/Toast";
 import { MESSAGE } from "../../../constants/FCFSEventResultData";
+import Cookies from "js-cookie";
+import { fetchFCFSResult } from "../../../api/fetch";
+import { useErrorBoundary } from "react-error-boundary";
 
 interface FCFSQuizSectionProps {
   quizInfo: QuizInfo;
@@ -27,24 +30,45 @@ const IS_SELECTED = {
 const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
   const navigate = useNavigate();
   const { isAuth, setIsFCFSEnd } = useAppContext();
+  const location = useLocation();
+  const { showBoundary } = useErrorBoundary();
 
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [toastKey, setToastKey] = useState(0);
   const [isError, setIsError] = useState<ErrorToastKey | null>(null);
+  const [isWin, setIsWin] = useState(false);
+
   const { choice1, choice2, choice3, choice4, answer, question } = quizInfo;
 
   const choices = [choice1, choice2, choice3, choice4];
 
-  // 선택지 클릭 핸들러sss
+  const fetchResultData = async () => {
+    const quizData = await fetchFCFSResult();
+    if (quizData.message === "이미 응모한 전화번호입니다.") {
+      setIsError("DUPLICATE_APPLY");
+      setToastKey((current) => current + 1);
+    }
+    if (quizData.isSuccess === true) {
+      setIsWin(true);
+      setIsFCFSEnd(true);
+      navigate("/event1/result", {
+        state: { leftTime: location.state.leftTime, isWin: true },
+      });
+    }
+  };
+  // 선택지 클릭 핸들러
   const handleChoiceClick = (index: number) => {
     setSelectedIndex(index);
   };
 
   // 제출버튼 클릭 핸들러
-  const handleSubmitClick = () => {
+  const handleSubmitClick = async () => {
     if (selectedIndex + 1 === parseInt(answer)) {
-      setIsFCFSEnd(true);
-      navigate("/event1/result");
+      try {
+        await fetchResultData();
+      } catch (error) {
+        showBoundary(error);
+      }
     } else {
       if (selectedIndex === -1) {
         setIsError("NO_ANSWER");
