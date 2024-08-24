@@ -8,6 +8,7 @@ const {
   input,
 } = require("@testing-library/user-event/dist/cjs/event/input.js");
 const { createWebPGenerator } = require("./webpackUtil");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = (env) => {
   const { DEV } = env;
@@ -64,7 +65,37 @@ module.exports = (env) => {
       ],
     },
     optimization: {
+      minimize: true,
       minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            format: {
+              comments: false,
+            },
+            compress: {
+              drop_console: true,
+              drop_debugger: true,
+              dead_code: true,
+              unused: true,
+              reduce_vars: true,
+              collapse_vars: true,
+              evaluate: true,
+              booleans: true,
+              conditionals: true,
+              sequences: true,
+              properties: true,
+              hoist_funs: true,
+              hoist_vars: true,
+              passes: 2,
+              inline: true,
+            },
+            mangle: true,
+            toplevel: true,
+            keep_classnames: undefined,
+            keep_fnames: false,
+          },
+          extractComments: false,
+        }),
         new ImageMinimizerPlugin({
           minimizer: {
             implementation: ImageMinimizerPlugin.sharpMinify,
