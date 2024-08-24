@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import Video from "../../../../../common/assets/video/CarInfoVideo.mp4";
 
 const VideoSection = () => {
   const [isShown, setIsShown] = useState(false);
@@ -47,7 +46,7 @@ const VideoSection = () => {
         muted
         className="sticky top-0 z-0 h-screen w-screen snap-start"
       >
-        <source src={Video} />
+        <source src="https://www.hyundaiseltos.site/CarInfoVideo.mp4" />
       </video>
       <div
         role="banner"

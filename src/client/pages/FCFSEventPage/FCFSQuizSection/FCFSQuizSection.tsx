@@ -48,7 +48,7 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
       setIsError("DUPLICATE_APPLY");
       setToastKey((current) => current + 1);
     }
-    if (quizData.isSuccess === true) {
+    if (quizData.result.success === true) {
       setIsWin(true);
       setIsFCFSEnd(true);
       navigate("/event1/result", {

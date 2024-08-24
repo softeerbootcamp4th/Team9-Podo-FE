@@ -46,10 +46,14 @@ const FCFSEventPage = () => {
     };
     tryFetch();
     if (!isAuth) navigate("/auth-modal");
+    if (!location.state || !("leftTime" in location.state)) navigate("/");
     else if (location.state?.leftTime !== 0) {
-      console.log("back", isAuth);
       navigate("/");
     }
+    // else if (location.state?.leftTime !== 0) {
+    //   console.log("back", isAuth);
+    //   navigate("/");
+    // }
   }, []);
 
   const fetchData = async () => {

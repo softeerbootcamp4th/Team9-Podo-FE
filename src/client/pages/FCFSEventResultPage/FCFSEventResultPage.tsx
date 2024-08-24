@@ -84,8 +84,9 @@ const FCFSEventResultPage = () => {
   };
 
   useEffect(() => {
+    console.log("location.state", location.state);
     if (!isAuth) navigate("/auth-modal");
-    else if (!location.state || !("leftTime" in location.state)) navigate("/");
+    if (!location.state || !("leftTime" in location.state)) navigate("/");
     else if (location.state?.leftTime !== 0) {
       navigate("/");
     }
