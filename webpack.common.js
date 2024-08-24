@@ -46,8 +46,7 @@ module.exports = (env) => {
         },
         {
           test: /\.css?$/,
-          exclude: [],
-          use: ["style-loader", "css-loader", "postcss-loader"],
+          use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
         },
         {
           test: /\.svg$/,
@@ -168,7 +167,8 @@ module.exports = (env) => {
         "process.env.FCFS_URL": JSON.stringify(process.env.FCFS_URL),
       }),
       new MiniCssExtractPlugin({
-        filename: "style.css",
+        filename: "[name].bundle.css",
+        chunkFilename: "[id].css",
       }),
     ],
   };
