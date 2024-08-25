@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { useErrorBoundary } from "react-error-boundary";
 import { useAppContext } from "../../../providers/AppProvider";
-import { postRandomResult } from "../../../api/fetch";
 import Tooltip from "../../../components/randomEventPage/Tooltip/Tooltip";
 import { RandomMainInterface } from "../../../types/RandomEvent";
 import Button from "../../../components/common/Button/Button";
-import reset from "../../../../common/assets/images/reset.png";
-import share from "../../../../common/assets/images/share.png";
+import reset from "../../../../common/assets/images/reset.png?as=webp";
+import share from "../../../../common/assets/images/share.png?as=webp";
+import { postRandomResult } from "../../../api/fetch";
 import {
   TEXT_CONTENT,
   TOOLTIP_CONTENT,
@@ -26,6 +26,7 @@ const RandomMainSection = ({
 
   const [isCopied, setIsCopied] = useState(false);
   const [shareUrl, setShareUrl] = useState("https://www.hyundaiseltos.site/");
+  const [isAlreadyEnd, setIsAlreadyEnd] = useState(false);
 
   const handleRetry = () => {
     navigate("/event2/0");
@@ -34,8 +35,11 @@ const RandomMainSection = ({
   const getUniqueUrl = async () => {
     if (isAuth)
       try {
+        console.log("getURL");
         const { result } = await postRandomResult(resultTypeId);
         setShareUrl(result.uniqueLink);
+        console.log("setState");
+        if (!result.applied) setIsAlreadyEnd(true);
       } catch (error) {
         if (error instanceof Error) {
           if (error.message === "Failed to fetch") return;
@@ -57,16 +61,11 @@ const RandomMainSection = ({
   const handleEventParticipation = async () => {
     if (isAuth) {
       getUniqueUrl();
+      setIsRandomEnd(true);
     } else {
       navigate("/auth-modal", { state: { background: location, event: 2 } });
     }
-
-    setIsRandomEnd(true);
   };
-
-  useEffect(() => {
-    getUniqueUrl();
-  }, [isAuth]);
 
   const setText = () => {
     if (isAuth === false) return LONG_BUTTON_TEXT.NO_AUTH;
@@ -91,12 +90,12 @@ const RandomMainSection = ({
 
         <div className="flex font-kia-signature-bold text-title-3">
           {description.map((item, index) => (
-            <span
+            <div
               key={index}
-              className={`${item.highlighted ? "text-gray-50" : "text-gray-400"}`}
+              className={`${item.highlighted ? "text-gray-50" : "text-gray-400"} whitespace-pre`}
             >
               {item.content}
-            </span>
+            </div>
           ))}
         </div>
 
@@ -134,7 +133,11 @@ const RandomMainSection = ({
           size="long"
           onClick={handleEventParticipation}
           defaultText={setText()}
-          disabledText={LONG_BUTTON_TEXT.EVENT_END}
+          disabledText={
+            isAlreadyEnd
+              ? LONG_BUTTON_TEXT.ALREADY_END
+              : LONG_BUTTON_TEXT.EVENT_END
+          }
           isEnabled={!isAuth || !isRandomEnd}
         />
       </div>

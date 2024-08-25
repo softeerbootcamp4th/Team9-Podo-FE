@@ -1,37 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import carMask from "../../../../common/assets/images/wordcloud.webp";
 import Button from "../../../components/common/Button/Button";
 import { useNavigate } from "react-router";
 import { EVENT_TERMS } from "../../../constants/EventData";
-import { fetchWordCloudData } from "../../../api/fetch";
 import WordCloud from "../../../components/mainPage/InfoScreen/WordCloud";
-import { useErrorBoundary } from "react-error-boundary";
-import { Word } from "../../../types/InfoScreen";
 
 const NotificationScreen = () => {
-  const { showBoundary } = useErrorBoundary();
   const navigate = useNavigate();
-  const [wordCloudData, setWordCloudData] = useState<Word[] | null>(null);
-
-  useEffect(() => {
-    const tryFetch = async () => {
-      try {
-        await fetchData();
-      } catch (error) {
-        if (error instanceof Error) {
-          if (error.message === "Failed to fetch") return;
-          showBoundary(error);
-        }
-      }
-    };
-    tryFetch();
-  }, []);
-
-  const fetchData = async () => {
-    const data = await fetchWordCloudData();
-
-    setWordCloudData(data.result.wordList);
-  };
 
   return (
     <div className="snap-start flex-col flex-center">
@@ -44,9 +18,9 @@ const NotificationScreen = () => {
             EVENT 2를 통해 기대평을 작성하실 수 있습니다.
           </p>
         </div>
-        {wordCloudData && (
-          <WordCloud data={wordCloudData} maskImage={carMask}></WordCloud>
-        )}
+
+        <WordCloud></WordCloud>
+
         <Button
           size="small"
           onClick={() => {

@@ -24,7 +24,7 @@ describe("DriveDescriptionItem 렌더링 테스트", () => {
   });
 
   test("아무 요소도 선택되지 않았다면 텍스트가 보이지 않고, 이미지가 렌더링 되야 한다.", () => {
-    render(<DriveDescriptionItem {...defaultProps} noneSelected />);
+    render(<DriveDescriptionItem {...defaultProps} />);
 
     const article = screen.getByRole("figure");
 
@@ -33,13 +33,7 @@ describe("DriveDescriptionItem 렌더링 테스트", () => {
   });
 
   test("요소가 선택되지 않았다면 텍스트가 보이지 않고, 투명도가 적용된 이미지가 렌더링 되야 한다.", () => {
-    render(
-      <DriveDescriptionItem
-        {...defaultProps}
-        noneSelected={false}
-        isSelected={false}
-      />,
-    );
+    render(<DriveDescriptionItem {...defaultProps} isSelected={false} />);
 
     const article = screen.getByRole("figure");
 
@@ -50,13 +44,7 @@ describe("DriveDescriptionItem 렌더링 테스트", () => {
   });
 
   test("요소가 선택되지 않았다면 텍스트가 보이고, 투명도가 적용된 이미지가 렌더링 되야 한다.", () => {
-    render(
-      <DriveDescriptionItem
-        {...defaultProps}
-        noneSelected={false}
-        isSelected={false}
-      />,
-    );
+    render(<DriveDescriptionItem {...defaultProps} isSelected={false} />);
 
     const article = screen.getByRole("figure");
 

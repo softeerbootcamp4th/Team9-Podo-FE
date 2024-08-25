@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import e1Gift from "../../../../../common/assets/images/e1Gift.webp";
-import e2Gift from "../../../../../common/assets/images/e2Gift.webp";
-import mainCar from "../../../../../common/assets/images/mainCar.webp";
-import landingCar from "../../../../../common/assets/images/landingCar.webp";
+import e1Gift from "../../../../../common/assets/images/e1Gift.png?as=webp-smallw";
+import e2Gift from "../../../../../common/assets/images/e2Gift.png?as=webp";
+import mainCar from "../../../../../common/assets/images/mainCar.png?as=webp";
+import landingCar from "../../../../../common/assets/images/landingCar.png?as=webp";
 import useAnimation from "../../../../hooks/useAnimation";
 import { SELECT_DATA } from "../../../../constants/EventData";
 import EventSelectOptions from "../../../../components/mainPage/MainScreen/EventSelectOptions/EventSelectOptions";

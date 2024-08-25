@@ -1,5 +1,6 @@
 import React from "react";
-import car from "../../../../common/assets/images/whiteRight.webp";
+import car from "../../../../common/assets/images/whiteRight.png?as=webp-smallh"; // car 이미지 경로
+
 import { ProgressBarInterface } from "../../../types/RandomEvent";
 
 /**

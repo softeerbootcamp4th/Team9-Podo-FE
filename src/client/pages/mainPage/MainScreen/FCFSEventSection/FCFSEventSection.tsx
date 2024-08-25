@@ -2,7 +2,7 @@ import React, { ForwardedRef, forwardRef, useEffect, useState } from "react";
 import Timer from "../../../../components/mainPage/MainScreen/Timer/Timer";
 import EventHeader from "../../../../components/mainPage/MainScreen/EventHeader/EventHeader";
 import Button from "../../../../components/common/Button/Button";
-import e1Gift from "../../../../../common/assets/images/e1Gift.webp";
+import e1Gift from "../../../../../common/assets/images/e1Gift.png?as=webp-smallw";
 import {
   FCFS_EVENT_DATA,
   FCFS_PARTICIPATION_STEPS,
@@ -34,16 +34,21 @@ const FCFSEventSection = (
   const [isOpen, setIsOpen] = useState(false);
   const [leftTime, setLeftTime] = useState(0);
   const { showBoundary } = useErrorBoundary();
+
   const onEndHandler = () => {
     setIsOpen(true);
   };
 
   useEffect(() => {
+    console.log("efffect", isOpen);
+  }, [isOpen]);
+
+  const URL = process.env.FCFS_URL;
+
+  useEffect(() => {
     const tryFetch = () => {
       try {
-        const eventSource = new EventSource(
-          "https://www.hyundaiseltos.site/arrival/time",
-        );
+        const eventSource = new EventSource(URL + "/arrival/time");
 
         eventSource.onmessage = (event) => {
           const date = JSON.parse(event.data);
@@ -149,10 +154,18 @@ const FCFSEventSection = (
         </div>
         <Button
           onClick={() => {
+            console.log("isOpen", isOpen);
             isAuth
-              ? navigate("event1")
+              ? navigate("event1", {
+                  state: { leftTime: leftTime, isOpen: isOpen },
+                })
               : navigate("auth-modal", {
-                  state: { background: location, event: 1, isOpen: isOpen },
+                  state: {
+                    background: location,
+                    event: 1,
+                    isOpen: isOpen,
+                    leftTime: leftTime,
+                  },
                 });
           }}
           size="big"

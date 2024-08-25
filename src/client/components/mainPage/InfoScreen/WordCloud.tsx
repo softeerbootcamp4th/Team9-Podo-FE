@@ -1,15 +1,44 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
 import "echarts-wordcloud";
+import { Word } from "../../../types/InfoScreen";
+import { fetchWordCloudData } from "../../../api/fetch";
+import { useErrorBoundary } from "react-error-boundary";
+import carMask from "../../../../common/assets/images/wordcloud.png?as=webp";
 
-const WordCloud = ({ data, maskImage }: any) => {
+const WordCloud = () => {
+  const { showBoundary } = useErrorBoundary();
+  const [wordCloudData, setWordCloudData] = useState<Word[] | null>(null);
+
+  useEffect(() => {
+    const tryFetch = async () => {
+      try {
+        await fetchData();
+      } catch (error) {
+        if (error instanceof Error) {
+          if (error.message === "Failed to fetch") return;
+          showBoundary(error);
+        }
+      }
+    };
+    tryFetch();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetchWordCloudData();
+
+    setWordCloudData(data.result.wordList);
+  };
+
   const chartRef = useRef(null);
 
   useEffect(() => {
+    if (wordCloudData === null) return;
+
     const chart = echarts.init(chartRef.current);
 
     const maskImg = new Image();
-    maskImg.src = maskImage;
+    maskImg.src = carMask;
 
     maskImg.onload = function () {
       const option = {
@@ -28,7 +57,7 @@ const WordCloud = ({ data, maskImage }: any) => {
                 return colors[Math.floor(Math.random() * colors.length)];
               },
             },
-            data: data,
+            data: wordCloudData,
           },
         ],
       };
@@ -39,7 +68,7 @@ const WordCloud = ({ data, maskImage }: any) => {
     return () => {
       chart.dispose();
     };
-  }, [data]);
+  }, [wordCloudData]);
 
   return <div ref={chartRef} style={{ width: "88rem", height: "36rem" }}></div>;
 };

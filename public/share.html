@@ -8,12 +8,17 @@
     <meta property="og:description" content="나는 어떤 유형의 운전자일까?" />
     <meta
       property="og:image"
-      content="https://velog.velcdn.com/images/jw0097/post/84911c75-715c-4bc9-8cde-1ff0ee2e4f4b/image.png"
+      content="https://www.hyundaiseltos.site/OGImage.png"
     />
     <meta property="og:url" content="https://www.hyundaiseltos.site" />
     <meta property="og:type" content="website" />
     <title>운전자 유형 테스트</title>
     <link rel="stylesheet" href="share.css" />
+    <link
+      rel="icon"
+      href="https://www.hyundaiseltos.site/favicon.png"
+      type="image/x-icon"
+    />
   </head>
   <body cz-shortcut-listen="true">
     <div id="root">
@@ -138,14 +143,17 @@
                 </div>
               </div>
               <div
-                class="margin-top-2-25-rem flex-column gap-1-rem flex flex-center"
+                class="margin-top-2-25-rem flex-column gap-1-rem flex-center"
               >
-                <p class="color-gray-200 font-kia-signature">
-                  이벤트 응모하고<span
-                    class="color-gray-50 font-kia-signature-bold"
-                    >시그니엘 숙박권</span
-                  >받자!!
-                </p>
+                <div
+                  class="color-gray-200 whitespace-pre font-kia-signature flex-center"
+                >
+                  <span>이벤트 응모하고</span
+                  ><span
+                    class="color-gray-50 whitespace-pre font-kia-signature-bold"
+                    >&nbsp시그니엘 숙박권</span
+                  ><span>&nbsp받자!!</span>
+                </div>
                 <button
                   class="position-relative height-6-25-rem width-94-rem border-radius-3xl background-primary color-gray-950 group overflow-hidden flex-center"
                   onclick="window.location.href='https://www.hyundaiseltos.site/event2/0';"
@@ -176,20 +184,25 @@
         const uid = urlParams.get("UID");
 
         try {
-          await fetch(`lots/link&UID=${uid}`);
+          await fetch(
+            `https://d1zb0qi5v6qyks.cloudfront.net/lots/link&UID=${uid}`,
+          );
         } catch (error) {
           console.error("Error posting answers:", error);
           return null;
         }
 
         try {
-          const response = await fetch("/lots/typeId", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
+          const response = await fetch(
+            "https://d1zb0qi5v6qyks.cloudfront.net/lots/typeId",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ resultTypeId: id }),
             },
-            body: JSON.stringify({ resultTypeId: id }),
-          });
+          );
 
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -254,7 +267,7 @@
 
         descriptionTextElement.innerHTML = descriptionList
           .map((item) => {
-            return `<span class="${item.highlighted ? "color-gray-50" : "color-gray-400"}">${item.content} </span>`;
+            return `<span class="${item.highlighted ? "color-gray-50" : "color-gray-400"} whitespace-pre">${item.content} </span>`;
           })
           .join("");
 

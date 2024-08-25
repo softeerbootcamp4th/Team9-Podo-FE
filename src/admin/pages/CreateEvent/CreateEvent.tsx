@@ -46,6 +46,7 @@ const EventForm: React.FC = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
+    console.log(file);
     setFormData((prevState) => ({
       ...prevState,
       tagImage: file,
@@ -74,15 +75,30 @@ const EventForm: React.FC = () => {
   const putData = async (putApi: Function) => {
     const formDataToSend = new FormData();
 
-    formDataToSend.append("title", formData.title || "");
-    formDataToSend.append("description", formData.description || "");
-    formDataToSend.append("repeatDay", formData.repeatDay || "");
-    formDataToSend.append("repeatTime", formData.repeatTime || "");
-    formDataToSend.append("startAt", formData.startAt || "");
-    formDataToSend.append("endAt", formData.endAt || "");
+    // formDataToSend.append("title", formData.title || "");
+    // formDataToSend.append("description", formData.description || "");
+    // formDataToSend.append("repeatDay", formData.repeatDay || "");
+    // formDataToSend.append("repeatTime", formData.repeatTime || "");
+    // formDataToSend.append("startAt", formData.startAt || "");
+    // formDataToSend.append("endAt", formData.endAt || "");
+    const formDataEdited = {
+      title: formData.title,
+      description: formData.description,
+      repeatDay: formData.repeatDay,
+      repeatTime: formData.repeatTime,
+      startAt: formData.startAt,
+      endAt: formData.endAt,
+    };
+
+    formDataToSend.append(
+      "dto",
+      new Blob([JSON.stringify(formDataEdited)], {
+        type: "application/json",
+      }),
+    );
 
     if (formData.tagImage) {
-      formDataToSend.append("tagImage", formData.tagImage);
+      formDataToSend.append("file", formData.tagImage);
     }
 
     const response = await putApi(formDataToSend);
@@ -111,7 +127,7 @@ const EventForm: React.FC = () => {
 
   return (
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex-col rounded-md bg-gray-100 p-8 flex-center">
-      <h2 className="text-2xl font-bold">신규 이벤트 등록</h2>
+      <h2 className="text-2xl font-bold">이벤트 수정</h2>
       <form>
         <div className="grid grid-cols-2 gap-4">
           {/* 이벤트 제목 */}
@@ -267,7 +283,7 @@ const EventForm: React.FC = () => {
             onClick={handleSubmit}
             className="w-full rounded bg-gray-400 py-3 font-bold text-white"
           >
-            등록 신청
+            수정
           </button>
         </div>
       </form>

@@ -14,4 +14,4 @@ export interface QuizResult {
   grade: number;
 }
 
-export type ErrorToastKey = "WRONG_ANSWER" | "NO_ANSWER";
+export type ErrorToastKey = "WRONG_ANSWER" | "NO_ANSWER" | "DUPLICATE_APPLY";

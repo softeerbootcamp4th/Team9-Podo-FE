@@ -20,4 +20,5 @@ export const NOTICE = {
 export const MESSAGE: Record<ErrorToastKey, string> = {
   NO_ANSWER: "정답을 선택해 주세요.",
   WRONG_ANSWER: "정답이 아닙니다. 다시 답변해주세요.",
+  DUPLICATE_APPLY: "이미 이벤트에 참여하셨습니다. 내일 다시 참여해주세요.",
 };

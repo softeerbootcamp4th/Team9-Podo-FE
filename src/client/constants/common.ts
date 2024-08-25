@@ -9,4 +9,5 @@ export const LONG_BUTTON_TEXT = {
   NO_AUTH: "본인인증하고 이벤트 참여하기",
   EVENT_END: "이벤트 참여 완료",
   START_EVENT: "이벤트 참여하기",
+  ALREADY_END: "이미 참여하셨습니다",
 };

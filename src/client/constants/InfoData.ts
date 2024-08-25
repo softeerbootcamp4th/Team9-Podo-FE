@@ -1,23 +1,23 @@
-import Outside1 from "../../common/assets/images/Outside1.webp";
-import Outside2 from "../../common/assets/images/Outside2.webp";
-import Outside3 from "../../common/assets/images/Outside3.webp";
+import Outside1 from "../../common/assets/images/Outside1.png?as=webp";
+import Outside2 from "../../common/assets/images/Outside2.png?as=webp";
+import Outside3 from "../../common/assets/images/Outside3.png?as=webp";
 
-import Drive1 from "../../common/assets/images/Drive1.webp";
-import Drive2 from "../../common/assets/images/Drive2.webp";
-import Drive3 from "../../common/assets/images/Drive3.webp";
-import Drive4 from "../../common/assets/images/Drive4.webp";
-import Drive5 from "../../common/assets/images/Drive5.webp";
-import Drive6 from "../../common/assets/images/Drive6.webp";
+import Drive1 from "../../common/assets/images/Drive1.png?as=webp-smallh";
+import Drive2 from "../../common/assets/images/Drive2.png?as=webp-smallh";
+import Drive3 from "../../common/assets/images/Drive3.png?as=webp-smallh";
+import Drive4 from "../../common/assets/images/Drive4.png?as=webp-smallh";
+import Drive5 from "../../common/assets/images/Drive5.png?as=webp-smallh";
+import Drive6 from "../../common/assets/images/Drive6.png?as=webp-smallh";
 
-import Convenience1 from "../../common/assets/images/Convenience1.webp";
-import Convenience2 from "../../common/assets/images/Convenience2.webp";
-import Convenience3 from "../../common/assets/images/Convenience3.webp";
+import Convenience1 from "../../common/assets/images/Convenience1.png?as=webp";
+import Convenience2 from "../../common/assets/images/Convenience2.png?as=webp";
+import Convenience3 from "../../common/assets/images/Convenience3.png?as=webp";
 
-import white from "../../common/assets/images/colorSnowWhitePearl.webp";
-import blue from "../../common/assets/images/colorDarkOceanBlue.webp";
-import green from "../../common/assets/images/colorGrean.webp";
-import gray from "../../common/assets/images/colorGravityGray.webp";
-import black from "../../common/assets/images/colorFusionBlack.webp";
+import white from "../../common/assets/images/colorSnowWhitePearl.png?as=webp";
+import blue from "../../common/assets/images/colorDarkOceanBlue.png?as=webp";
+import green from "../../common/assets/images/colorGrean.png?as=webp";
+import gray from "../../common/assets/images/colorGravityGray.png?as=webp";
+import black from "../../common/assets/images/colorFusionBlack.png?as=webp";
 
 import { InsideInfo, InsideInfoData } from "../types/InfoScreen";
 
@@ -27,14 +27,14 @@ export const outsideInfoData = [
     image: Outside1,
     title: "미래를 향한 혁신적 시도",
     content:
-      "기아의 신규 디자인 철학인 오피짓 유나이티드(Opposites United, 상반된 개념의 상의적 융합)의 속성 중 '미래를 향한 혁신적 시도(Power to Progress)'에서 영감 받아, 대담하고도 미래지항적인 외장 디자인을 추구했습니다.",
+      "기아의 신규 디자인 철학인 오피짓 유나이티드(Opposites United, 상반된 개념의 상의적 융합)의 속성 중 '미래를 향한 혁신적 시도(Power to Progress)'에서 영감 받아, 대담하고도 미래지향적인 외장 디자인을 추구했습니다.",
   },
   {
     key: 1,
     image: Outside2,
     title: "셀토스 스타일",
     content:
-      "강인하고 당당하면서도 고급스러움을 추구하는 것, 바로 '셀토스 스타일(Seltos style)'입니다.",
+      "강인하고 당당하면서도 고급스러움을 추구하는 것, 바로 '셀토스 스타일(Seltos Style)'입니다.",
   },
   {
     key: 2,
@@ -51,7 +51,7 @@ export const driveInfoData = [
     image: Drive1,
     title: "차로 이탈방지 보조",
     description:
-      "일정 속도 이상 주행 중 방향지시등 스위치 조작 없이 차로 이달 시, 경고 및 자동으로 조향을 보조하여 차로를 이탈하지 않도록 도와줍니다.",
+      "일정 속도 이상 주행 중 방향지시등 스위치 조작 없이 차로 이탈 시, 경고 및 자동으로 조향을 보조하여 차로를 이탈하지 않도록 도와줍니다.",
   },
   {
     key: 1,
@@ -63,7 +63,7 @@ export const driveInfoData = [
   {
     key: 2,
     image: Drive3,
-    title: "내비게이선 기반 스마트 크루즈 컨트를",
+    title: "내비게이션 기반 스마트 크루즈 컨트를",
     description:
       "고속도로 및 자동차 전용 도로 주행 시, 도로 상황에 맞춰 안전한 속도로 주행하도록 도와줍니다. (고속도로 / 자동차 전용도로 內 안전구간 / 곡선로)",
   },
@@ -72,14 +72,14 @@ export const driveInfoData = [
     image: Drive4,
     title: "지능형 속도제한 보조",
     description:
-      "전방 카메라 또는 내비게이선의 제한 속도 정보를 초과하여 주행할 경위 경고를 해주고 제한 속도를 초과하지 않도록 도와줍니다.",
+      "전방 카메라 또는 내비게이션의 제한 속도 정보를 초과하여 주행할 경위 경고를 해주고 제한 속도를 초과하지 않도록 도와줍니다.",
   },
   {
     key: 4,
     image: Drive5,
     title: "차로 유지 보조",
     description:
-      "차량이 차로 한가운데를 유지하며 주행할 수 있게끔 도와 주는 기능으로 주행 안정감과 더불어 운전자의 심리적 안정감을 더하는 기능이 됩니다.",
+      "차량이 차로 한가운데를 유지하며 주행할 수 있게끔 도와주는 기능으로 주행 안정감과 더불어 운전자의 심리적 안정감을 더하는 기능이 됩니다.",
   },
   {
     key: 5,
@@ -124,7 +124,7 @@ export const ENGINE_SPECS = {
     title: "1.6 가솔린 터보",
     specs: [
       { value: "198", label: "최고출력\nps / 6,000rpm" },
-      { value: "27.0", label: "최대토크\nkgf∙m / 1,600~45,00rpm" },
+      { value: "27.0", label: "최대토크\nkgf∙m / 1,600~4,500rpm" },
       { value: "12.8", label: "복합연비\nkm/L" },
     ],
     note: "(2WD 16인치 타이어, 빌트인 캠 미장착 기준)",
@@ -132,8 +132,8 @@ export const ENGINE_SPECS = {
   gasoline_2_0: {
     title: "2.0 가솔린",
     specs: [
-      { value: "149", label: "최고출력\nps / 6,000rpm" },
-      { value: "18.3", label: "최대토크\nkgf∙m / 1,600~45,00rpm" },
+      { value: "149", label: "최고출력\nps / 6,200rpm" },
+      { value: "18.3", label: "최대토크\nkgf∙m / 4,500rpm" },
       { value: "12.9", label: "복합연비\nkm/L" },
     ],
     note: "(2WD 16인치 타이어 기준)",

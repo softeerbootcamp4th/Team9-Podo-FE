@@ -1,6 +1,6 @@
 import React from "react";
 import InsideGuide from "./InsideGuide";
-import Interior from "../../../../../common/assets/images/Interior.webp";
+import Interior from "../../../../../common/assets/images/Interior.png?as=webp";
 
 const InsideSection = () => {
   return (

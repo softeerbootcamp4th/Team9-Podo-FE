@@ -2,7 +2,13 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const dotenv = require("dotenv");
+const {
+  input,
+} = require("@testing-library/user-event/dist/cjs/event/input.js");
+const { createWebPGenerator } = require("./webpackUtil");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = (env) => {
   const { DEV } = env;
@@ -16,7 +22,7 @@ module.exports = (env) => {
   return {
     entry: "./src/client/index.tsx",
     output: {
-      filename: "bundle.js",
+      filename: "[name]-bundle.js",
       path: path.resolve(__dirname, "build"),
       publicPath: "/",
       clean: true,
@@ -40,8 +46,7 @@ module.exports = (env) => {
         },
         {
           test: /\.css?$/,
-          exclude: [],
-          use: ["style-loader", "css-loader", "postcss-loader"],
+          use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
         },
         {
           test: /\.svg$/,
@@ -51,15 +56,101 @@ module.exports = (env) => {
         },
         {
           test: /\.(png|jpe?g|gif|mp4|webp)$/i,
-          use: [
-            {
-              loader: "file-loader",
-              options: {
-                name: "[path][name].[ext]",
+          type: "asset/resource",
+          generator: {
+            filename: "assets/[name][ext]",
+          },
+        },
+      ],
+    },
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            format: {
+              comments: false,
+            },
+            compress: {
+              drop_console: true,
+              drop_debugger: true,
+              dead_code: true,
+              unused: true,
+              reduce_vars: true,
+              collapse_vars: true,
+              evaluate: true,
+              booleans: true,
+              conditionals: true,
+              sequences: true,
+              properties: true,
+              hoist_funs: true,
+              hoist_vars: true,
+              passes: 2,
+              inline: true,
+            },
+            mangle: true,
+            toplevel: true,
+            keep_classnames: undefined,
+            keep_fnames: false,
+          },
+          extractComments: false,
+        }),
+        new ImageMinimizerPlugin({
+          minimizer: {
+            implementation: ImageMinimizerPlugin.sharpMinify,
+            options: {
+              encodeOptions: {
+                webp: {},
+                png: {},
               },
             },
+          },
+          generator: [
+            createWebPGenerator({ presetName: "webp", quality: 75 }),
+            createWebPGenerator({
+              presetName: "webp-high",
+              quality: 50,
+              fileNames: ["OutsideInfo.png"],
+            }),
+            createWebPGenerator({
+              presetName: "webp-smallh",
+              quality: 100,
+              fileNames: [
+                "e1Gift.png",
+                "Drive1.png",
+                "Drive2.png",
+                "Drive3.png",
+                "Drive4.png",
+                "Drive5.png",
+                "Drive6.png",
+                "whiteRight.png",
+              ],
+              resizeOptions: {
+                width: 600,
+                height: 340,
+              },
+            }),
+            createWebPGenerator({
+              presetName: "webp-smallw",
+              quality: 75,
+              fileNames: ["e1Gift.png"],
+              resizeOptions: {
+                width: 300,
+                height: 500,
+              },
+            }),
+            createWebPGenerator({
+              presetName: "webp-blur",
+              quality: 40,
+              fileNames: [
+                "random0.png",
+                "random1.png",
+                "random2.png",
+                "random3.png",
+              ],
+            }),
           ],
-        },
+        }),
       ],
     },
     resolve: {
@@ -76,7 +167,8 @@ module.exports = (env) => {
         "process.env.FCFS_URL": JSON.stringify(process.env.FCFS_URL),
       }),
       new MiniCssExtractPlugin({
-        filename: "style.css",
+        filename: "[name].bundle.css",
+        chunkFilename: "[id].css",
       }),
     ],
   };

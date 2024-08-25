@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { userEvent } from "@storybook/test";
-import { act, render, screen, waitFor } from "../../utils/TestUtils";
+import {
+  act,
+  MockContext,
+  render,
+  screen,
+  waitFor,
+} from "../../utils/TestUtils";
 import FCFSEventResultPage from "./FCFSEventResultPage";
 import {
   bothFadeOptions,
@@ -10,6 +16,12 @@ import {
 import { fadeIn, fadeOut, carMoveRight } from "../../styles/keyframes";
 
 Element.prototype.animate = jest.fn();
+
+jest.mock("../../providers/AppProvider", () => ({
+  useAppContext: jest.fn().mockImplementation(() => {
+    return useContext(MockContext);
+  }),
+}));
 
 describe("FCFSEventResultPage Component", () => {
   beforeEach(() => {

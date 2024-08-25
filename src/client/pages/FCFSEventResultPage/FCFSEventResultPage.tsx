@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import FCFSCar from "../../../common/assets/images/FCFSCar.webp";
-import FCFSKey from "../../../common/assets/images/FCFSKey.webp";
+import FCFSCar from "../../../common/assets/images/FCFSCar.png?as=webp";
+import FCFSKey from "../../../common/assets/images/FCFSKey.png?as=webp";
 import FCFSKeyButton from "../../../common/assets/svg/FCFSKeyButton";
 import { fetchFCFSResult } from "../../api/fetch";
 import useAnimation from "../../hooks/useAnimation";
@@ -16,19 +16,29 @@ import {
   FCFSWinOptions,
 } from "../../styles/options";
 import Button from "../../components/common/Button/Button";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import FCFSNoticeBanner from "../../../common/assets/svg/FCFSNoticeBanner";
 import { NOTICE } from "../../constants/FCFSEventResultData";
 import Glow from "../../components/common/Glow/Glow";
 import Confetti from "react-confetti";
 import { useErrorBoundary } from "react-error-boundary";
+import HomeButton from "../../components/common/HomeButton/HomeButton";
+import AuthTooltip from "../../components/common/AuthTooltip/AuthTooltip";
+import { useAppContext } from "../../providers/AppProvider";
 
 const FCFSEventResultPage = () => {
   const navigate = useNavigate();
   const { showBoundary } = useErrorBoundary();
-
-  const [isWin, setIsWin] = useState(false);
+  const location = useLocation();
+  let isWin;
+  if (location.state) {
+    isWin = location.state.isWin;
+  } else {
+    isWin = false;
+  }
   const [isResultVisible, setIsResultVisible] = useState(false);
+
+  const { isAuth } = useAppContext();
 
   // 차 애니메이션
   const { elementRef: carRef, startAnimation: carStartAnimation } =
@@ -58,14 +68,8 @@ const FCFSEventResultPage = () => {
       startOptions: bothFadeOptions,
     });
 
-  const fetchData = async () => {
-    const quizData = await fetchFCFSResult();
-    if (Object.keys(quizData).length !== 0) setIsWin(true);
-  };
-
   const handleButtonClick = async () => {
     try {
-      await fetchData();
       setIsResultVisible(true);
       carStartAnimation();
       textStartAnimation();
@@ -80,6 +84,15 @@ const FCFSEventResultPage = () => {
   };
 
   useEffect(() => {
+    console.log("location.state", location.state);
+    if (!isAuth) navigate("/auth-modal");
+    if (!location.state || !("leftTime" in location.state)) navigate("/");
+    else if (location.state?.leftTime !== 0) {
+      navigate("/");
+    }
+  }, []);
+
+  useEffect(() => {
     if (isResultVisible) {
       buttonStartAnimation();
     }
@@ -87,6 +100,8 @@ const FCFSEventResultPage = () => {
 
   return (
     <div className="relative flex h-screen w-screen flex-col items-center justify-start overflow-hidden bg-black">
+      <HomeButton />
+      <AuthTooltip />
       {isWin && isResultVisible && (
         <Confetti width={window.innerWidth} height={window.innerHeight} />
       )}
@@ -172,7 +187,7 @@ const FCFSEventResultPage = () => {
       />
       {!isResultVisible && (
         <FCFSKeyButton
-          className="absolute bottom-0"
+          className="absolute bottom-0 animate-pulse"
           onClick={handleButtonClick}
         />
       )}
