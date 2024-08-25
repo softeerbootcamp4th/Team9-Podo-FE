@@ -54,6 +54,14 @@ const FCFSQuizSection = ({ quizInfo }: FCFSQuizSectionProps) => {
       navigate("/event1/result", {
         state: { leftTime: location.state.leftTime, isWin: true },
       });
+    } else if (
+      quizData.result.success === false &&
+      quizData.result.grade === -1
+    ) {
+      setIsFCFSEnd(true);
+      navigate("/event1/result", {
+        state: { leftTime: location.state.leftTime, isWin: false },
+      });
     }
   };
   // 선택지 클릭 핸들러
