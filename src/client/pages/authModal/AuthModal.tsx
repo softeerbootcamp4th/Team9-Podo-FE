@@ -1,4 +1,4 @@
-import React, { MouseEvent, useContext, useState } from "react";
+import React, { MouseEvent, useContext, useEffect, useState } from "react";
 import {
   AUTH_DELAY,
   MESSAGE,
@@ -10,6 +10,7 @@ import useInputs from "../../hooks/useInputs";
 import { validateName, verifyCodeCorrector } from "../../utils/auth";
 import { ErrorToastKey, PhoneAuthCheckForm } from "../../types/AuthModal";
 import {
+  checkAndRefreshToken,
   postPhoneAuthCheckRequest,
   postPhoneAuthRequest,
 } from "../../api/fetch";
@@ -97,6 +98,30 @@ const AuthModal = () => {
       }
     }
   };
+  useEffect(() => {
+    const tryFetch = async () => {
+      try {
+        await checkToken();
+      } catch (error) {
+        if (error instanceof Error) {
+          if (error.message === "Failed to fetch") return;
+          showBoundary(error);
+        }
+      }
+    };
+    tryFetch();
+  }, []);
+
+  const checkToken = async () => {
+    const response = await checkAndRefreshToken();
+    if (response.code === 200) {
+      setIsAuth(true);
+      Cookies.set("auth", response.result.accessToken, { expires: 1 / 24 });
+    } else {
+      setIsAuth(false);
+      Cookies.remove("auth");
+    }
+  };
 
   // 인증하기 버튼 핸들러
   const handleReqeustPhoneAuthCheckClick = async (
@@ -111,13 +136,13 @@ const AuthModal = () => {
       try {
         const response = await postPhoneAuthCheckRequest(form);
         if (response.code === 200) {
-          if (location.state.event) setIsAuth(true);
+          setIsAuth(true);
           Cookies.set("auth", response.result.accessToken, { expires: 1 / 24 });
 
           console.log(location.state);
           navigate(
-            `${location.state.event === 2 ? "/event2/result" : location.state.isOpen ? "/event1" : "/"}`,
-            { state: { leftTime: location.state.leftTime } },
+            `${location.state?.event === 2 ? "/event2/result" : location.state?.isOpen ? "/event1" : "/"}`,
+            { state: { leftTime: location.state?.leftTime } },
           );
         } else {
           setIsError("AUTH_NUM_INCORRECT");

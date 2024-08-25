@@ -27,14 +27,14 @@ export const outsideInfoData = [
     image: Outside1,
     title: "미래를 향한 혁신적 시도",
     content:
-      "기아의 신규 디자인 철학인 오피짓 유나이티드(Opposites United, 상반된 개념의 상의적 융합)의 속성 중 '미래를 향한 혁신적 시도(Power to Progress)'에서 영감 받아, 대담하고도 미래지항적인 외장 디자인을 추구했습니다.",
+      "기아의 신규 디자인 철학인 오피짓 유나이티드(Opposites United, 상반된 개념의 상의적 융합)의 속성 중 '미래를 향한 혁신적 시도(Power to Progress)'에서 영감 받아, 대담하고도 미래지향적인 외장 디자인을 추구했습니다.",
   },
   {
     key: 1,
     image: Outside2,
     title: "셀토스 스타일",
     content:
-      "강인하고 당당하면서도 고급스러움을 추구하는 것, 바로 '셀토스 스타일(Seltos style)'입니다.",
+      "강인하고 당당하면서도 고급스러움을 추구하는 것, 바로 '셀토스 스타일(Seltos Style)'입니다.",
   },
   {
     key: 2,
@@ -124,7 +124,7 @@ export const ENGINE_SPECS = {
     title: "1.6 가솔린 터보",
     specs: [
       { value: "198", label: "최고출력\nps / 6,000rpm" },
-      { value: "27.0", label: "최대토크\nkgf∙m / 1,600~45,00rpm" },
+      { value: "27.0", label: "최대토크\nkgf∙m / 1,600~4,500rpm" },
       { value: "12.8", label: "복합연비\nkm/L" },
     ],
     note: "(2WD 16인치 타이어, 빌트인 캠 미장착 기준)",
@@ -132,8 +132,8 @@ export const ENGINE_SPECS = {
   gasoline_2_0: {
     title: "2.0 가솔린",
     specs: [
-      { value: "149", label: "최고출력\nps / 6,000rpm" },
-      { value: "18.3", label: "최대토크\nkgf∙m / 1,600~45,00rpm" },
+      { value: "149", label: "최고출력\nps / 6,200rpm" },
+      { value: "18.3", label: "최대토크\nkgf∙m / 4,500rpm" },
       { value: "12.9", label: "복합연비\nkm/L" },
     ],
     note: "(2WD 16인치 타이어 기준)",

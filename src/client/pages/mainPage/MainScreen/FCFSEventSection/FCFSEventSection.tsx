@@ -156,7 +156,9 @@ const FCFSEventSection = (
           onClick={() => {
             console.log("isOpen", isOpen);
             isAuth
-              ? navigate("event1", { state: { leftTime: leftTime } })
+              ? navigate("event1", {
+                  state: { leftTime: leftTime, isOpen: isOpen },
+                })
               : navigate("auth-modal", {
                   state: {
                     background: location,

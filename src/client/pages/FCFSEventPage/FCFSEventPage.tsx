@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import FCFSHintSection from "./FCFSHintSection/FCFSHintSection";
 import FCFSQuizSection from "./FCFSQuizSection/FCFSQuizSection";
-import { checkAndRefreshToken, fetchFCFSQuizInfo } from "../../api/fetch";
+import {
+  checkAndRefreshToken,
+  fetchFCFSQuizInfo,
+  fetchFCFSResult,
+} from "../../api/fetch";
 import { QuizInfo } from "../../types/FCFSEvent";
 import useAnimation from "../../hooks/useAnimation";
 import { showUp, goDown } from "../../styles/keyframes";
@@ -41,10 +45,15 @@ const FCFSEventPage = () => {
       }
     };
     tryFetch();
-    if (!isAuth) navigate("/");
-
-    if (location.state?.leftTime !== 0) {
+    if (!isAuth) navigate("/auth-modal");
+    if (!location.state || !("leftTime" in location.state)) navigate("/");
+    else if (location.state?.leftTime !== 0) {
+      navigate("/");
     }
+    // else if (location.state?.leftTime !== 0) {
+    //   console.log("back", isAuth);
+    //   navigate("/");
+    // }
   }, []);
 
   const fetchData = async () => {

@@ -1,4 +1,5 @@
 import React, { MouseEventHandler } from "react";
+import { className } from "../../../client/styles/tailwind";
 
 interface FCFSKeyButtonProps {
   onClick: MouseEventHandler<SVGSVGElement>;

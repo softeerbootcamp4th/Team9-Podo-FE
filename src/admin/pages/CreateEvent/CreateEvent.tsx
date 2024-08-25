@@ -127,7 +127,7 @@ const EventForm: React.FC = () => {
 
   return (
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex-col rounded-md bg-gray-100 p-8 flex-center">
-      <h2 className="text-2xl font-bold">신규 이벤트 등록</h2>
+      <h2 className="text-2xl font-bold">이벤트 수정</h2>
       <form>
         <div className="grid grid-cols-2 gap-4">
           {/* 이벤트 제목 */}
@@ -283,7 +283,7 @@ const EventForm: React.FC = () => {
             onClick={handleSubmit}
             className="w-full rounded bg-gray-400 py-3 font-bold text-white"
           >
-            등록 신청
+            수정
           </button>
         </div>
       </form>
