@@ -15,7 +15,7 @@ const LoadingSpinner = () => (
       style={{
         width: "64px",
         height: "64px",
-        border: "8px solid #F2F2F2", // 얇은 외곽선과 반투명 색상
+        border: "8px solid #505861", // 얇은 외곽선과 반투명 색상
         borderTop: "8px solid #1B3F72", // 메인 스피너 색상
         borderRadius: "50%",
         animation: "spin 1s ease-in-out infinite", // 부드러운 애니메이션

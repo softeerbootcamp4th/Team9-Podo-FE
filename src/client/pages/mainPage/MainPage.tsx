@@ -1,11 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { lazy, useEffect, useRef } from "react";
 import { useErrorBoundary } from "react-error-boundary";
 import Cookies from "js-cookie";
 import { checkAndRefreshToken } from "../../api/fetch";
 import { useAppContext } from "../../providers/AppProvider";
 import MainScreen from "./MainScreen/MainScreen";
-import NotificationScreen from "./NotificationScreen/NotificationScreen";
-import InfoScreen from "./InfoScreen/InfoScreen";
+
+const InfoScreen = lazy(() => import("./InfoScreen/InfoScreen"));
+const NotificationScreen = lazy(
+  () => import("./NotificationScreen/NotificationScreen"),
+);
 
 const MainPage = () => {
   const infoRef = useRef<HTMLDivElement>(null);
