@@ -102,12 +102,15 @@ describe("RandomMainSection", () => {
   test("본인인증이 된 상태에서 공유하기를 누르면 자신의 고유 사이트 주소가 복사되어야 한다.", async () => {
     (useAppContext as jest.Mock).mockReturnValue({
       isAuth: true,
-      isRandomEnd: true,
+      isRandomEnd: false,
       setIsRandomEnd: jest.fn(),
     });
+
     render(
       <RandomMainSection resultTypeId={1} description={[]} scenarioList={[]} />,
     );
+
+    await userEvent.click(screen.getByText("이벤트 참여하기"));
 
     await userEvent.click(screen.getByText("공유하기"));
 
