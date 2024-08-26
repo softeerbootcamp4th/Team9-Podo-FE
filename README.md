@@ -1,10 +1,10 @@
 # 못말리는 현기차팀 FrontEnd
 
 ## 목차
-1. [👥 팀원 소개](#👥-팀원-소개)
-2. [🛠️ Tech Stacks](#🛠️-Tech-Stacks)
-3. [🤝 협업 전략](#🤝-협업-전략)
-4. [📖 그라운드 룰](#📖-그라운드-룰)
+1. [👥 팀원 소개](#-팀원-소개)
+2. [🛠️ Tech Stacks](#-Tech-Stacks)
+3. [🤝 협업 전략](#-협업-전략)
+4. [📖 그라운드 룰](#-그라운드-룰)
 5. [Components Architecture Diagram](#Components-Architecture-Diagram)
 6. [Route](#Route)
 7. [주요 개발 사항](#주요-개발-사항)
