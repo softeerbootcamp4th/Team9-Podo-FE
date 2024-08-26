@@ -7,8 +7,8 @@
 2. [🛠️ Tech Stacks](#-Tech-Stacks)
 3. [🤝 협업 전략](#-협업-전략)
 4. [📖 그라운드 룰](#-그라운드-룰)
-5. [🗂️ Components Architecture Diagram](#🗂️-Components-Architecture-Diagram)
-6. [🗺️ Route](#🗺️-Route)
+5. [🗂️ Components Architecture Diagram](#%EF%B8%8F-components-architecture-diagram)
+6. [🗺️ Route](#%EF%B8%8F-route)
 7. [🚀 주요 개발 사항](#-주요-개발-사항)
 8. [🔗 링크 모음](#-링크-모음)
 
