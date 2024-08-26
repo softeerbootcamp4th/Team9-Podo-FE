@@ -2,9 +2,7 @@ name: CI/CD
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [ "end" ] # S3 프리징
 
 jobs:
   cicd:
