@@ -7,10 +7,10 @@
 2. [🛠️ Tech Stacks](#-Tech-Stacks)
 3. [🤝 협업 전략](#-협업-전략)
 4. [📖 그라운드 룰](#-그라운드-룰)
-5. [Components Architecture Diagram](#Components-Architecture-Diagram)
-6. [Route](#Route)
-7. [주요 개발 사항](#주요-개발-사항)
-8. [링크 모음](#링크-모음)
+5. [🗂️ Components Architecture Diagram](#-Components-Architecture-Diagram)
+6. [🗺️ Route](#-Route)
+7. [🚀 주요 개발 사항](#-주요-개발-사항)
+8. [🔗 링크 모음](#-링크-모음)
 
 ## 👥 팀원 소개
 <table >
