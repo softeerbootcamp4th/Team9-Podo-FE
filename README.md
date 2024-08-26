@@ -156,7 +156,7 @@ feature/{feature-name}
 ### 📝 Meeting Minutes
 TEAM: [Notion](https://www.notion.so/bside/19054254d3d14ebca54704c52c370e46)
 
-FE: [Notion](https://www.notion.so/bside/4dac5712789243f09ed25a08c1d02670?v=061f3d1
+FE: [Notion](https://www.notion.so/bside/4dac5712789243f09ed25a08c1d02670?v=061f3d1)
 
 
 
