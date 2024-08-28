@@ -34,7 +34,7 @@ export const QUIZ_LIST = [
   },
   {
     background: img2,
-    question: "Q3. 날시 좋은 주말, 휴일을 보내는 당신의 선택은?",
+    question: "Q3. 날씨 좋은 주말, 휴일을 보내는 당신의 선택은?",
     optionList: [
       {
         label: "A.",
